@@ -376,9 +376,6 @@ class UserController extends BaseController
 		$tu = new TTUser( $uid );
 
 		$ua = $tu->getf( array( TT::CAPACITY_STAT,TT::EXP_STAT ) );
-$ret['ua'] = $ua;
-		$i = 0;//找出当前商厦状态对应数组中第几个
-		foreach( $mall_level as $k=>$v ){
 			if( $v['capacity'] != $ua['capacity'] ){
 				continue;
 			}
@@ -392,9 +389,8 @@ $ret['level'] = $level;
 			return $ret;
 		}
 		//检查金币
-		$leftmoney = $tu->numch( TT::MONEY_STAT,0-$mall_level[$i+1]['needmoney'] );
+		$leftmoney = $tu->change( TT::MONEY_STAT,0-$mall_level[$i+1]['needmoney'] );
 		if( $leftmoney<0 ){
-			$tu->numch( TT::MONEY_STAT,$mall_level[$i+1]['needmoney'] );
 			$ret['s'] = 'money';
 			return $ret;
 		}
@@ -430,19 +426,44 @@ $ret['level'] = $level;
 	 * 更新用户形象等
 	 * @param $params
 	 *   require  u               -- 玩家id
-	 *            keys            -- 键数组
-	 *            values          -- 值数组
+	 *            ups             -- 形象数组
 	 * @return 
 	 *            s         --  OK
 	 */	
 	
 	public function update_profile( $params )
-	{/*
+	{
+		$uid = $params['u'];
+		$ups = $params['ups'];
+		$tu = new TTUser( $uid );
+		foreach ($ups as $k=>$v){
+		    if( $v )
+				$tu->putf($k,$v);
+		}
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+
+
+	/**
+	 * 把顾客强行拖进电影院
+	 * @param $params
+	 *   require  u               -- 玩家id
+	 *            cid             -- cinema id
+	 *            values          -- 值数组
+	 * @return 
+	 *            s         --  OK
+	 */	
+	public function enter_cinema( $params )
+	{
 	    $uid = $params['u'];
-	    $keys = $params['keys'];
-	    $values = $params['values'];
+	    $cid = $params['cid'];
 	    $tu = new TTUser( $uid );
-	    $tu->putf( $keys,$values );*/
+	    $cinema_obj = $tu->getbyid( $cid );
+	    if( !$cinema_obj ){
+	        $ret['s'] = 'notexsit';
+	        return $ret;
+	    }
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}

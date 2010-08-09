@@ -1,6 +1,4 @@
-<html 
-xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:xn="http://www.renren.com/2009/xnml">
+<html>
 <head>
 <link rel="stylesheet" type="text/css" href="static/css/gift.css" />
 </head>
@@ -49,8 +47,8 @@ exit ;
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
 			<div class="gift_box_holder">
 				<div class="gift_box_cont">
-					<div class="giftConfirm_img"><img src="<?php echo $gift[$gid]['icon'];?>"></div>
-					<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
+					<div class="giftConfirm_img"><img src="<?php echo $gift[$value[$gid]]['icon'];?>"></div>
+					<div class="giftConfirm_name"><span><?php echo $gift[$value[$gid]]['name'];?></span></div>
 				</div>
 				<div class="gift_from"><h3>From</h3></div>
 				<div class="from_box_cont">

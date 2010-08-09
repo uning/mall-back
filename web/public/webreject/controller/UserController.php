@@ -355,7 +355,9 @@ class UserController extends BaseController
 	{
 
 		//该数组是UpgradeConfig.php中数组的一个子集，不涉及商厦容量无变化的元素
-		$mall_level = array(1=>array('level'=>2,'capacity'=>"3,3",'needmoney'=>500)
+		$mall_level = array(
+				0=>array('level'=>1,'capacity'=>"3,2",'needmoney'=>0)
+			    ,1=>array('level'=>2,'capacity'=>"3,3",'needmoney'=>500)
 				,2=>array('level'=>5,'capacity'=>"4,3",'needmoney'=>1000)
 				,3=>array('level'=>9,'capacity'=>"5,3",'needmoney'=>10000)
 				,4=>array('level'=>13,'capacity'=>"5,4",'needmoney'=>10000)
@@ -374,7 +376,6 @@ class UserController extends BaseController
 		$tu = new TTUser( $uid );
 
 		$ua = $tu->getf( array( TT::CAPACITY_STAT,TT::EXP_STAT ) );
-
 		$i = 0;//找出当前商厦状态对应数组中第几个
 		foreach( $mall_level as $k=>$v ){
 			if( $v['capacity'] != $ua['capacity'] ){
@@ -389,9 +390,8 @@ class UserController extends BaseController
 			return $ret;
 		}
 		//检查金币
-		$leftmoney = $tu->numch( TT::MONEY_STAT,0-$mall_level[$i+1]['needmoney'] );
+		$leftmoney = $tu->change( TT::MONEY_STAT,0-$mall_level[$i+1]['needmoney'] );
 		if( $leftmoney<0 ){
-			$tu->numch( TT::MONEY_STAT,$mall_level[$i+1]['needmoney'] );
 			$ret['s'] = 'money';
 			return $ret;
 		}
@@ -427,19 +427,44 @@ class UserController extends BaseController
 	 * 更新用户形象等
 	 * @param $params
 	 *   require  u               -- 玩家id
-	 *            keys            -- 键数组
-	 *            values          -- 值数组
+	 *            ups             -- 形象数组
 	 * @return 
 	 *            s         --  OK
 	 */	
 	
 	public function update_profile( $params )
-	{/*
+	{
+		$uid = $params['u'];
+		$ups = $params['ups'];
+		$tu = new TTUser( $uid );
+		foreach ($ups as $k=>$v){
+		    if( $v )
+				$tu->putf($k,$v);
+		}
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+
+
+	/**
+	 * 把顾客强行拖进电影院
+	 * @param $params
+	 *   require  u               -- 玩家id
+	 *            cid             -- cinema id
+	 *            values          -- 值数组
+	 * @return 
+	 *            s         --  OK
+	 */	
+	public function enter_cinema( $params )
+	{
 	    $uid = $params['u'];
-	    $keys = $params['keys'];
-	    $values = $params['values'];
+	    $cid = $params['cid'];
 	    $tu = new TTUser( $uid );
-	    $tu->putf( $keys,$values );*/
+	    $cinema_obj = $tu->getbyid( $cid );
+	    if( !$cinema_obj ){
+	        $ret['s'] = 'notexsit';
+	        return $ret;
+	    }
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}

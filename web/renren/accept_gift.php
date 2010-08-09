@@ -57,7 +57,7 @@ exit ;
 					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"></div>
 					<div class="giftFrom_name"><span><?php echo $tudata['name'];?></span></div>
 				</div>
-				<input type="button" name="acc" value="进入游戏"></input>
+				<input type="button" name="acc" value="进入游戏" style="background-color: blue;" onclick=""></input>
 			</div>
 		</div>
 		

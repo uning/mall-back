@@ -5,7 +5,7 @@
 </head>
 <body>
 <?php
-require_once('config.php');
+//require_once('config.php');
 require_once('pop/freeGift.php');
 $gid = 10103;
 ?>

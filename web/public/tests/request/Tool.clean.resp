@@ -1,0 +1,1189 @@
+Array
+(
+    [bitems] => Array
+        (
+        )
+
+    [bgoods] => Array
+        (
+        )
+
+    [aid] => 21:#:advert
+    [badverts] => 
+    [bua] => Array
+        (
+            [#] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 21:#:mannual
+                            [1] => Array
+                                (
+                                    [dtime] => 1281200107
+                                )
+
+                            [4] => Array
+                                (
+                                    [dtime] => 1281200125
+                                )
+
+                            [2] => Array
+                                (
+                                    [dtime] => 1281200509
+                                )
+
+                            [3] => Array
+                                (
+                                    [dtime] => 1281201251
+                                )
+
+                            [5] => Array
+                                (
+                                    [dtime] => 1281201349
+                                )
+
+                        )
+
+                )
+
+            [capacity] => 3,2
+            [compute] => 0
+            [continued] => 0
+            [exp] => 9584
+            [fids] => 302268025,242131853,722010918,142824391,268756270,45597666,307636468,285461479,232535305,98375729,234801649
+            [garage] => 6
+            [gem] => 11
+            [gogoods_count] => 38
+            [it] => 1281338161
+            [lastawardtime] => 0
+            [money] => 66478
+            [popu] => 1665
+            [shop_num] => 102
+            [total_count] => 25463
+            [total_sale] => 279478
+            [ts] => 1
+            [c] => Array
+                (
+                    [0] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 1281330760
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5d4b88f09a0
+                            [goodsTag] => 10104
+                        )
+
+                    [1] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [y] => 0
+                                    [x] => 1
+                                )
+
+                            [t] => 1281334649
+                            [id] => 21:c:4c5d94adc9ca6
+                            [goodsTag] => 10104
+                        )
+
+                    [2] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [y] => 0
+                                    [x] => 2
+                                )
+
+                            [t] => 1281334654
+                            [id] => 21:c:4c5d94adca089
+                            [goodsTag] => 10104
+                        )
+
+                    [3] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [y] => 0
+                                    [x] => 3
+                                )
+
+                            [t] => 1281330763
+                            [id] => 21:c:4c5d94adca49e
+                            [goodsTag] => 10104
+                        )
+
+                    [4] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [x] => 4
+                                    [y] => 0
+                                )
+
+                            [t] => 1281330768
+                            [id] => 21:c:4c5f66ed52e48
+                            [goodsTag] => 10104
+                        )
+
+                    [5] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5faae745eda
+                        )
+
+                    [6] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5faaea0f4a8
+                        )
+
+                    [7] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5faaeba3ec2
+                        )
+
+                    [8] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5fab2dc0c20
+                        )
+
+                    [9] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5fab318bc7a
+                        )
+
+                )
+
+            [fr] => Array
+                (
+                    [0] => Array
+                        (
+                            [gem] => 1
+                            [money] => 16400
+                            [exp] => 288
+                            [name] => 
+                            [icon] => 
+                            [pid] => 242131853
+                            [ut] => 1281336599
+                            [id] => 21:fr:12
+                            [dbid] => 12
+                        )
+
+                    [1] => Array
+                        (
+                            [gem] => 6
+                            [money] => 121250
+                            [exp] => 2160
+                            [name] => 石锐
+                            [icon] => http://hd32.xiaonei.com/photos/hd32/20071231/21/50/tiny_10991g107.jpg
+                            [pid] => 234801649
+                            [ut] => 1281336599
+                            [id] => 21:fr:14
+                            [dbid] => 14
+                        )
+
+                    [2] => Array
+                        (
+                            [gem] => 6
+                            [money] => 31899
+                            [exp] => 12240
+                            [name] => 王杰
+                            [icon] => http://hdn.xnimg.cn/photos/hdn521/20100620/0900/tiny_7CsH_131687h019117.jpg
+                            [pid] => 232535305
+                            [ut] => 1281336599
+                            [id] => 21:fr:19
+                            [dbid] => 19
+                        )
+
+                    [3] => Array
+                        (
+                            [gem] => 1
+                            [money] => 19575
+                            [exp] => 0
+                            [name] => 周筱敏
+                            [icon] => http://hdn.xnimg.cn/photos/hdn521/20100215/2110/tiny_WqBC_88063l019116.jpg
+                            [pid] => 302268025
+                            [ut] => 1281336599
+                            [id] => 21:fr:48
+                            [dbid] => 48
+                        )
+
+                    [4] => Array
+                        (
+                            [gem] => 1
+                            [money] => 37955
+                            [exp] => 176
+                            [name] => 赵晨
+                            [icon] => http://hdn.xnimg.cn/photos/hdn421/20100801/2120/h_tiny_eJHZ_596b00008b032f75.jpg
+                            [pid] => 98375729
+                            [ut] => 1281336599
+                            [id] => 21:fr:63
+                            [dbid] => 63
+                        )
+
+                    [5] => Array
+                        (
+                            [gem] => 1
+                            [money] => 62050
+                            [exp] => 0
+                            [name] => 尹力炜
+                            [icon] => http://hdn.xnimg.cn/photos/hdn521/20100318/1145/h_tiny_C53H_5078000373402f76.jpg
+                            [pid] => 45597666
+                            [ut] => 1281336599
+                            [id] => 21:fr:9
+                            [dbid] => 9
+                        )
+
+                )
+
+            [t] => Array
+                (
+                    [0] => Array
+                        (
+                            [tag] => 310
+                            [ct] => 1281318128
+                            [s] => 0
+                            [sc] => 0
+                            [id] => 21:t:4c5f5cf08fadc
+                        )
+
+                    [1] => Array
+                        (
+                            [tag] => 300
+                            [ct] => 1281318128
+                            [s] => 0
+                            [sc] => 0
+                            [id] => 21:t:4c5f5cf08fec0
+                        )
+
+                    [2] => Array
+                        (
+                            [tag] => 306
+                            [ct] => 1281318128
+                            [s] => 0
+                            [sc] => 0
+                            [id] => 21:t:4c5f5cf0902a9
+                        )
+
+                )
+
+        )
+
+    [aua] => Array
+        (
+            [#] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 21:#:mannual
+                            [1] => Array
+                                (
+                                    [dtime] => 1281200107
+                                )
+
+                            [4] => Array
+                                (
+                                    [dtime] => 1281200125
+                                )
+
+                            [2] => Array
+                                (
+                                    [dtime] => 1281200509
+                                )
+
+                            [3] => Array
+                                (
+                                    [dtime] => 1281201251
+                                )
+
+                            [5] => Array
+                                (
+                                    [dtime] => 1281201349
+                                )
+
+                        )
+
+                )
+
+            [capacity] => 3,2
+            [compute] => 0
+            [continued] => 0
+            [exp] => 9584
+            [fids] => 302268025,242131853,722010918,142824391,268756270,45597666,307636468,285461479,232535305,98375729,234801649
+            [garage] => 7
+            [gem] => 12
+            [gogoods_count] => 38
+            [it] => 1281338377
+            [lastawardtime] => 0
+            [money] => 76478
+            [popu] => 1695
+            [shop_num] => 104
+            [total_count] => 25463
+            [total_sale] => 279478
+            [ts] => 1
+            [c] => Array
+                (
+                    [0] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 1281330760
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5d4b88f09a0
+                            [goodsTag] => 10104
+                        )
+
+                    [1] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [y] => 0
+                                    [x] => 1
+                                )
+
+                            [t] => 1281334649
+                            [id] => 21:c:4c5d94adc9ca6
+                            [goodsTag] => 10104
+                        )
+
+                    [2] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [y] => 0
+                                    [x] => 2
+                                )
+
+                            [t] => 1281334654
+                            [id] => 21:c:4c5d94adca089
+                            [goodsTag] => 10104
+                        )
+
+                    [3] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [y] => 0
+                                    [x] => 3
+                                )
+
+                            [t] => 1281330763
+                            [id] => 21:c:4c5d94adca49e
+                            [goodsTag] => 10104
+                        )
+
+                    [4] => Array
+                        (
+                            [tag] => 92701
+                            [pos] => Array
+                                (
+                                    [x] => 4
+                                    [y] => 0
+                                )
+
+                            [t] => 1281330768
+                            [id] => 21:c:4c5f66ed52e48
+                            [goodsTag] => 10104
+                        )
+
+                    [5] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5faae745eda
+                        )
+
+                    [6] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5faaea0f4a8
+                        )
+
+                    [7] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5faaeba3ec2
+                        )
+
+                    [8] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5fab2dc0c20
+                        )
+
+                    [9] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5fab318bc7a
+                        )
+
+                    [10] => Array
+                        (
+                            [tag] => 92701
+                            [t] => 0
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 0
+                                )
+
+                            [id] => 21:c:4c5fac09614a7
+                        )
+
+                )
+
+            [fr] => Array
+                (
+                    [0] => Array
+                        (
+                            [gem] => 1
+                            [money] => 16400
+                            [exp] => 288
+                            [name] => 
+                            [icon] => 
+                            [pid] => 242131853
+                            [ut] => 1281336599
+                            [id] => 21:fr:12
+                            [dbid] => 12
+                        )
+
+                    [1] => Array
+                        (
+                            [gem] => 6
+                            [money] => 121250
+                            [exp] => 2160
+                            [name] => 石锐
+                            [icon] => http://hd32.xiaonei.com/photos/hd32/20071231/21/50/tiny_10991g107.jpg
+                            [pid] => 234801649
+                            [ut] => 1281336599
+                            [id] => 21:fr:14
+                            [dbid] => 14
+                        )
+
+                    [2] => Array
+                        (
+                            [gem] => 6
+                            [money] => 31899
+                            [exp] => 12240
+                            [name] => 王杰
+                            [icon] => http://hdn.xnimg.cn/photos/hdn521/20100620/0900/tiny_7CsH_131687h019117.jpg
+                            [pid] => 232535305
+                            [ut] => 1281336599
+                            [id] => 21:fr:19
+                            [dbid] => 19
+                        )
+
+                    [3] => Array
+                        (
+                            [gem] => 1
+                            [money] => 19575
+                            [exp] => 0
+                            [name] => 周筱敏
+                            [icon] => http://hdn.xnimg.cn/photos/hdn521/20100215/2110/tiny_WqBC_88063l019116.jpg
+                            [pid] => 302268025
+                            [ut] => 1281336599
+                            [id] => 21:fr:48
+                            [dbid] => 48
+                        )
+
+                    [4] => Array
+                        (
+                            [gem] => 1
+                            [money] => 37955
+                            [exp] => 176
+                            [name] => 赵晨
+                            [icon] => http://hdn.xnimg.cn/photos/hdn421/20100801/2120/h_tiny_eJHZ_596b00008b032f75.jpg
+                            [pid] => 98375729
+                            [ut] => 1281336599
+                            [id] => 21:fr:63
+                            [dbid] => 63
+                        )
+
+                    [5] => Array
+                        (
+                            [gem] => 1
+                            [money] => 62050
+                            [exp] => 0
+                            [name] => 尹力炜
+                            [icon] => http://hdn.xnimg.cn/photos/hdn521/20100318/1145/h_tiny_C53H_5078000373402f76.jpg
+                            [pid] => 45597666
+                            [ut] => 1281336599
+                            [id] => 21:fr:9
+                            [dbid] => 9
+                        )
+
+                )
+
+            [g] => Array
+                (
+                    [0] => Array
+                        (
+                            [tag] => 10103
+                            [num] => 900
+                            [stag] => 60002
+                            [stime] => 1281338377
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 21:o:s:4c5fac0961896
+                                )
+
+                            [id] => 21:g:4c5fac0961c7a
+                        )
+
+                    [1] => Array
+                        (
+                            [tag] => 10106
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac096206a
+                        )
+
+                    [2] => Array
+                        (
+                            [tag] => 10106
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0962452
+                        )
+
+                    [3] => Array
+                        (
+                            [tag] => 10106
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0962833
+                        )
+
+                    [4] => Array
+                        (
+                            [tag] => 10106
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0962c60
+                        )
+
+                    [5] => Array
+                        (
+                            [tag] => 10106
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0963047
+                        )
+
+                    [6] => Array
+                        (
+                            [tag] => 10107
+                            [pos] => s
+                            [num] => 450
+                            [id] => 21:g:4c5fac0963427
+                        )
+
+                    [7] => Array
+                        (
+                            [tag] => 10107
+                            [pos] => s
+                            [num] => 450
+                            [id] => 21:g:4c5fac0963811
+                        )
+
+                    [8] => Array
+                        (
+                            [tag] => 10107
+                            [pos] => s
+                            [num] => 450
+                            [id] => 21:g:4c5fac0963c15
+                        )
+
+                    [9] => Array
+                        (
+                            [tag] => 10107
+                            [pos] => s
+                            [num] => 450
+                            [id] => 21:g:4c5fac0963ffc
+                        )
+
+                    [10] => Array
+                        (
+                            [tag] => 10107
+                            [pos] => s
+                            [num] => 450
+                            [id] => 21:g:4c5fac09643e6
+                        )
+
+                    [11] => Array
+                        (
+                            [tag] => 10108
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac09647cd
+                        )
+
+                    [12] => Array
+                        (
+                            [tag] => 10108
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0964bb5
+                        )
+
+                    [13] => Array
+                        (
+                            [tag] => 10108
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0964f9d
+                        )
+
+                    [14] => Array
+                        (
+                            [tag] => 10108
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac0965386
+                        )
+
+                    [15] => Array
+                        (
+                            [tag] => 10108
+                            [pos] => s
+                            [num] => 225
+                            [id] => 21:g:4c5fac096576d
+                        )
+
+                )
+
+            [o] => Array
+                (
+                    [0] => Array
+                        (
+                            [tag] => 99505
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => bb
+                                )
+
+                            [id] => 21:o:4c5fac0965b57
+                        )
+
+                    [1] => Array
+                        (
+                            [tag] => 99204
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => roo
+                                )
+
+                            [id] => 21:o:4c5fac0965f47
+                        )
+
+                    [2] => Array
+                        (
+                            [tag] => 99001
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => ver0
+                                )
+
+                            [id] => 21:o:4c5fac096633a
+                        )
+
+                    [3] => Array
+                        (
+                            [tag] => 99001
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => ver1
+                                )
+
+                            [id] => 21:o:4c5fac096670d
+                        )
+
+                    [4] => Array
+                        (
+                            [tag] => 96003
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 50
+                                )
+
+                            [id] => 21:o:4c5fac0966af4
+                        )
+
+                    [5] => Array
+                        (
+                            [tag] => 96003
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 49
+                                )
+
+                            [id] => 21:o:4c5fac0966edc
+                        )
+
+                    [6] => Array
+                        (
+                            [tag] => 71105
+                            [pos] => Array
+                                (
+                                    [y] => 50
+                                    [x] => 0
+                                )
+
+                            [id] => 21:o:4c5fac09672c6
+                        )
+
+                    [7] => Array
+                        (
+                            [tag] => 71105
+                            [pos] => Array
+                                (
+                                    [y] => 50
+                                    [x] => 2
+                                )
+
+                            [id] => 21:o:4c5fac09676ac
+                        )
+
+                    [8] => Array
+                        (
+                            [tag] => 71105
+                            [pos] => Array
+                                (
+                                    [y] => 50
+                                    [x] => 4
+                                )
+
+                            [id] => 21:o:4c5fac0967a94
+                        )
+
+                    [9] => Array
+                        (
+                            [tag] => 71105
+                            [pos] => Array
+                                (
+                                    [y] => 50
+                                    [x] => 6
+                                )
+
+                            [id] => 21:o:4c5fac0967e7b
+                        )
+
+                    [10] => Array
+                        (
+                            [tag] => 60002
+                            [pos] => Array
+                                (
+                                    [x] => 0
+                                    [y] => 50
+                                )
+
+                            [id] => 21:o:s:4c5fac0961896
+                        )
+
+                )
+
+            [t] => Array
+                (
+                    [0] => Array
+                        (
+                            [tag] => 310
+                            [ct] => 1281318128
+                            [s] => 0
+                            [sc] => 0
+                            [id] => 21:t:4c5f5cf08fadc
+                        )
+
+                    [1] => Array
+                        (
+                            [tag] => 300
+                            [ct] => 1281318128
+                            [s] => 0
+                            [sc] => 0
+                            [id] => 21:t:4c5f5cf08fec0
+                        )
+
+                    [2] => Array
+                        (
+                            [tag] => 306
+                            [ct] => 1281318128
+                            [s] => 0
+                            [sc] => 0
+                            [id] => 21:t:4c5f5cf0902a9
+                        )
+
+                )
+
+        )
+
+    [aitems] => Array
+        (
+            [0] => Array
+                (
+                    [tag] => 99505
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => bb
+                        )
+
+                    [id] => 21:o:4c5fac0965b57
+                )
+
+            [1] => Array
+                (
+                    [tag] => 99204
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => roo
+                        )
+
+                    [id] => 21:o:4c5fac0965f47
+                )
+
+            [2] => Array
+                (
+                    [tag] => 99001
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => ver0
+                        )
+
+                    [id] => 21:o:4c5fac096633a
+                )
+
+            [3] => Array
+                (
+                    [tag] => 99001
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => ver1
+                        )
+
+                    [id] => 21:o:4c5fac096670d
+                )
+
+            [4] => Array
+                (
+                    [tag] => 96003
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 50
+                        )
+
+                    [id] => 21:o:4c5fac0966af4
+                )
+
+            [5] => Array
+                (
+                    [tag] => 96003
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 49
+                        )
+
+                    [id] => 21:o:4c5fac0966edc
+                )
+
+            [6] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 0
+                        )
+
+                    [id] => 21:o:4c5fac09672c6
+                )
+
+            [7] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 2
+                        )
+
+                    [id] => 21:o:4c5fac09676ac
+                )
+
+            [8] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 4
+                        )
+
+                    [id] => 21:o:4c5fac0967a94
+                )
+
+            [9] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 6
+                        )
+
+                    [id] => 21:o:4c5fac0967e7b
+                )
+
+            [10] => Array
+                (
+                    [tag] => 60002
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 50
+                        )
+
+                    [id] => 21:o:s:4c5fac0961896
+                )
+
+        )
+
+    [agoods] => Array
+        (
+            [0] => Array
+                (
+                    [tag] => 10103
+                    [num] => 900
+                    [stag] => 60002
+                    [stime] => 1281338377
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 21:o:s:4c5fac0961896
+                        )
+
+                    [id] => 21:g:4c5fac0961c7a
+                )
+
+            [1] => Array
+                (
+                    [tag] => 10106
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac096206a
+                )
+
+            [2] => Array
+                (
+                    [tag] => 10106
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0962452
+                )
+
+            [3] => Array
+                (
+                    [tag] => 10106
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0962833
+                )
+
+            [4] => Array
+                (
+                    [tag] => 10106
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0962c60
+                )
+
+            [5] => Array
+                (
+                    [tag] => 10106
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0963047
+                )
+
+            [6] => Array
+                (
+                    [tag] => 10107
+                    [pos] => s
+                    [num] => 450
+                    [id] => 21:g:4c5fac0963427
+                )
+
+            [7] => Array
+                (
+                    [tag] => 10107
+                    [pos] => s
+                    [num] => 450
+                    [id] => 21:g:4c5fac0963811
+                )
+
+            [8] => Array
+                (
+                    [tag] => 10107
+                    [pos] => s
+                    [num] => 450
+                    [id] => 21:g:4c5fac0963c15
+                )
+
+            [9] => Array
+                (
+                    [tag] => 10107
+                    [pos] => s
+                    [num] => 450
+                    [id] => 21:g:4c5fac0963ffc
+                )
+
+            [10] => Array
+                (
+                    [tag] => 10107
+                    [pos] => s
+                    [num] => 450
+                    [id] => 21:g:4c5fac09643e6
+                )
+
+            [11] => Array
+                (
+                    [tag] => 10108
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac09647cd
+                )
+
+            [12] => Array
+                (
+                    [tag] => 10108
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0964bb5
+                )
+
+            [13] => Array
+                (
+                    [tag] => 10108
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0964f9d
+                )
+
+            [14] => Array
+                (
+                    [tag] => 10108
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac0965386
+                )
+
+            [15] => Array
+                (
+                    [tag] => 10108
+                    [pos] => s
+                    [num] => 225
+                    [id] => 21:g:4c5fac096576d
+                )
+
+        )
+
+    [aadverts] => 
+)

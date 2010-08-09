@@ -1,0 +1,23 @@
+Array
+(
+    [g] => 1
+    [c] => Array
+        (
+            [0] => Array
+                (
+                    [tag] => 92701
+                    [t] => 0
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 0
+                        )
+
+                    [id] => 86:c:4c5fd563acbd2
+                    [goodsTag] => 10101
+                )
+
+        )
+
+    [s] => OK
+)

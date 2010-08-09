@@ -1,0 +1,189 @@
+Array
+(
+    [r] => Array
+        (
+            [0] => Array
+                (
+                    [tag] => 99505
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => bb
+                        )
+
+                    [id] => 86:o:4c5fd563b1249
+                )
+
+            [1] => Array
+                (
+                    [tag] => 99204
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => roo
+                        )
+
+                    [id] => 86:o:4c5fd563b1632
+                )
+
+            [2] => Array
+                (
+                    [tag] => 99001
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => ver0
+                        )
+
+                    [id] => 86:o:4c5fd563b1a1b
+                )
+
+            [3] => Array
+                (
+                    [tag] => 99001
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => ver1
+                        )
+
+                    [id] => 86:o:4c5fd563b1df6
+                )
+
+            [4] => Array
+                (
+                    [tag] => 96003
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 50
+                        )
+
+                    [id] => 86:o:4c5fd563b21de
+                )
+
+            [5] => Array
+                (
+                    [tag] => 96003
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 49
+                        )
+
+                    [id] => 86:o:4c5fd563b25c7
+                )
+
+            [6] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 0
+                        )
+
+                    [id] => 86:o:4c5fd563b29da
+                )
+
+            [7] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 2
+                        )
+
+                    [id] => 86:o:4c5fd563b2dc1
+                )
+
+            [8] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 4
+                        )
+
+                    [id] => 86:o:4c5fd563b3197
+                )
+
+            [9] => Array
+                (
+                    [tag] => 71105
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 6
+                        )
+
+                    [id] => 86:o:4c5fd563b357d
+                )
+
+            [10] => Array
+                (
+                    [pos] => Array
+                        (
+                            [y] => 50
+                            [x] => 0
+                        )
+
+                    [ctime] => 1281350059
+                    [havePop] => 1
+                    [tag] => 60101
+                    [isShop] => 
+                    [id] => 86:o:4c5fd9ac14659
+                )
+
+            [11] => Array
+                (
+                    [tag] => 60002
+                    [pos] => s
+                    [id] => 86:o:s:4c5fd563acfd4
+                )
+
+            [12] => Array
+                (
+                    [havePop] => 1
+                    [isShop] => 1
+                    [pos] => Array
+                        (
+                            [y] => 49
+                            [x] => 1
+                        )
+
+                    [tag] => 60001
+                    [id] => 86:o:s:4c5fd98290a7f
+                    [goods] => Array
+                        (
+                            [86:g:4c5fd977020ec] => 1281350020
+                        )
+
+                )
+
+            [13] => Array
+                (
+                    [pos] => Array
+                        (
+                            [y] => 49
+                            [x] => 0
+                        )
+
+                    [isShop] => 1
+                    [havePop] => 1
+                    [tag] => 60001
+                    [id] => 86:o:s:4c5fda1c24415
+                    [goods] => Array
+                        (
+                            [86:g:4c5fd9770191c] => 1281350173
+                        )
+
+                )
+
+        )
+
+    [scale] => 3,2
+    [s] => OK
+)

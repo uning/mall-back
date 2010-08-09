@@ -1,0 +1,18 @@
+Array
+(
+    [s] => OK
+    [c] => Array
+        (
+            [tag] => 92701
+            [t] => 1281350269
+            [pos] => Array
+                (
+                    [x] => 0
+                    [y] => 0
+                )
+
+            [id] => 36:c:4c5faad84a14f
+            [goodsTag] => 10107
+        )
+
+)

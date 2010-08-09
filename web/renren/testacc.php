@@ -2,6 +2,7 @@
 	xmlns:xn="http://www.renren.com/2009/xnml">
 <head>
 <link rel="stylesheet" type="text/css" href="static/css/gift.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
 <?php

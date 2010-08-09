@@ -376,6 +376,8 @@ class UserController extends BaseController
 		$tu = new TTUser( $uid );
 
 		$ua = $tu->getf( array( TT::CAPACITY_STAT,TT::EXP_STAT ) );
+		$i = 0;//找出当前商厦状态对应数组中第几个
+		foreach( $mall_level as $k=>$v ){
 			if( $v['capacity'] != $ua['capacity'] ){
 				continue;
 			}
@@ -383,7 +385,6 @@ class UserController extends BaseController
 		}
 
 		$level = UpgradeConfig::getLevel( $ua['exp'] );
-$ret['level'] = $level;
 		if( $level < $mall_level[$i+1]['level'] ){
 			$ret['s'] = 'level';
 			return $ret;

@@ -37,7 +37,6 @@ class Tool
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$ret['aid'] = $aid;
 		$ret['badverts'] = $tu->getbyid( $aid );	
-		$ret['bua'] = $tu->getAll();
 		foreach( $ret['bitems'] as $item ){
 			$itemids[] = $item['id'];
 		}		
@@ -61,10 +60,10 @@ class Tool
 		$ret['bitems'] = $tu->get( TT::ITEM_GROUP );
 		$ret['bgoods'] = $tu->get( TT::GOODS_GROUP );
 		$ret['bcars'] = $tu->get( TT::CAR_GROUP );
+		$ret['bua'] = $tu->getf( array( TT::MONEY_STAT,TT::GEM_STAT,TT::EXP_STAT,TT::COMPUTE_PONIT,TT::SHOP_NUM,TT::POPU,TT::GARAGE_STAT,TT::CAPACITY_STAT,TT::TASK_STAT,'lastawardtime','continued') );
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$ret['aid'] = $aid;
 		$ret['badverts'] = $tu->getbyid( $aid );	
-		$ret['bua'] = $tu->getAll();
 		foreach( $ret['bitems'] as $item ){
 			$itemids[] = $item['id'];
 		}		
@@ -74,7 +73,7 @@ class Tool
 		foreach( $ret['bcars'] as $car ){
 			$carids[] = $car['id'];
 		}
-		$ret['ball'] = $tu->getAll();
+//		$ret['ball'] = $tu->getAll();
 		return $ret;
 	}
 }

@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <link rel="stylesheet" type="text/css" href="static/css/gift.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,8 +20,8 @@ $gid = 10103;
 				</div>
 				<div class="gift_from"><h3>From</h3></div>
 				<div class="from_box_cont">
-					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"></div>
-					<div class="giftFrom_name"><span><?php echo $tudata['name'];?></span></div>
+					<div class="giftFrom_img"><img src="<?php echo "jj";?>"></div>
+					<div class="giftFrom_name"><span><?php echo "jirji";?></span></div>
 				</div>
 				<input type="button" name="acc" value="进入游戏"></input>
 			</div>

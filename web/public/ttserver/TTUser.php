@@ -55,9 +55,8 @@ class TTUser extends TTUDB
 
 		//初始化一箱酒
 		$goods_obj['tag'] = 10103;
-		$goods = ItemConfig::getItem( $goods_obj['tag'] );
-		$goods_obj['num'] = $goods['unitcout'];
-		$goods_obj['stag'] = $shop_obj['tag'];
+		$goods_obj['num'] = 900;
+		$goods_obj['stag'] = 60002;
 		$goods_obj['stime'] = $now;
 		$goods_obj['pos']['x'] = 0;
 		$goods_obj['pos']['y'] = $shop_id;
@@ -76,7 +75,7 @@ class TTUser extends TTUDB
 				$this->puto( $inventory_obj,TT::GOODS_GROUP );
 			}
 		}
-		
+
 		//初始化楼体
 		$bb_obj['tag'] = 99505;
 		$bb_obj['pos']['x'] = 0;

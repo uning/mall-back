@@ -44,7 +44,7 @@ echo init $name in $mrun_dir
 
 
 if [ "x$name" == "x" ] ;then
-    dbname="*.tcf#capsiz=268435456#capnam=10000000" #mem hashdb 256M, <1000w records
+    dbname="*.tcf#capsiz=268435456#capnam=1000000" #mem hashdb 256M, <1000w records
 fi
 
     dbname="$mdata_dir/log.tct#lmemb=1024#nmemb=2048#bnum=200000000#opts=l#rcnum=100000#idx=u"
@@ -53,14 +53,14 @@ fi
     dbname="$mdata_dir/bag.tct#lmemb=1024#nmemb=2048#bnum=200000000#opts=l#rcnum=100000#idx=u#idx=@"
 
 
-    dbname="$mdata_dir/stat.tcb#lmemb=1024#nmemb=2048#bnum=20000000"
+dbname="$mdata_dir/stat.tcb#lmemb=1024#nmemb=2048#bnum=2000"
 #default 
-dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=200000000"
+dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=20000"
 if [ "x$dbtype" == "xt" ] ;then
-    dbname="$mdata_dir/$name.tct#lmemb=1024#nmemb=2048#bnum=200000000#opts=l#rcnum=100000#idx=u#idx=pid"
+    dbname="$mdata_dir/$name.tct#lmemb=1024#nmemb=2048#bnum=20000#opts=l#rcnum=1000#idx=u#idx=pid"
 fi
 if [ "x$dbtype" == "xo" ] ;then
-    dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=20000000"
+    dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=20000"
 fi
 #runopts='-l '
 echo $dbname

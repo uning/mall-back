@@ -3,7 +3,7 @@ Array
     [infos] => Array
         (
             [pid] => sr003
-            [at] => 1281351284
+            [at] => 1281353205
             [access_token] => sdhf7*T)*Y*T&$&^FOUGF&*UDIUSGf
             [id] => 66
             [gender] => 1
@@ -20,12 +20,12 @@ Array
     [a] => Array
         (
             [gem] => 19806
-            [money] => 1075795
+            [money] => 1076635
             [exp] => 20968
         )
 
     [s] => OK
-    [t] => 1281351284
+    [t] => 1281353205
     [all] => Array
         (
             [#] => Array
@@ -68,7 +68,7 @@ Array
                 )
 
             [capacity] => 3,3
-            [compute] => 1281350833
+            [compute] => 1281352515
             [continued] => 1
             [exp] => 20968
             [garage] => 1
@@ -76,11 +76,11 @@ Array
             [gogoods_count] => 13
             [it] => 1281332960
             [lastawardtime] => 1281332962
-            [money] => 1075795
+            [money] => 1076635
             [popu] => 135
             [shop_num] => 6
-            [total_count] => 1141
-            [total_sale] => 30335
+            [total_count] => 1165
+            [total_sale] => 31175
             [ts] => 1
             [c] => Array
                 (
@@ -227,7 +227,7 @@ Array
                     [0] => Array
                         (
                             [tag] => 10103
-                            [num] => 59
+                            [num] => 35
                             [stag] => 60002
                             [stime] => 1281332960
                             [pos] => Array
@@ -237,7 +237,7 @@ Array
                                 )
 
                             [id] => 66:g:4c5f96e0ee292
-                            [ctime] => 1281350833
+                            [ctime] => 1281352515
                         )
 
                     [1] => Array

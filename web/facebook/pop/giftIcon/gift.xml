@@ -1,0 +1,11 @@
+<freeGift>
+	<gift level="0" icon="1.gif" name="beauty" bg=""></gift>
+	<gift level="0" icon="2.gif" name="monkey" bg=""></gift>
+	<gift level="0" icon="3.gif" name="donkey" bg=""></gift>
+	<gift level="0" icon="4.gif" name="pigey"  bg=""></gift>
+	<gift level="0" icon="5.gif" name="birdey" bg=""></gift>
+	<gift level="0" icon="6.gif" name="birdey" bg=""></gift>
+	<gift level="0" icon="7.png" name="bey" bg=""></gift>
+	<gift level="0" icon="8.png" name="ff" bg=""></gift>
+	<gift level="2" icon="9.png" name="yy" bg=""></gift>
+</freeGift>

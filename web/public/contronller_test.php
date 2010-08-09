@@ -1,0 +1,100 @@
+<?php
+require_once (dirname(__FILE__).'/base.php');
+require_once (LIB_ROOT.'/JsonServer.php');
+
+
+function dotest($m,$p=null)
+{
+	$server = new JsonServer;
+	if(!$p)
+		$p = JsonServer::getMethodLastCallParam($m);
+	echo "method $m\n";
+        echo "The params are these as follow:\n";
+        print_r( $p );
+        echo "The response are these as follow:\n";
+        print_r($server->doRequest($m,$p));      
+        echo "===============================================\n\n";
+}
+dotest('Friend.get');
+return;
+
+dotest('ItemController.buy');
+return;
+dotest('Advert.get');
+//dotest('Advert.set');
+dotest('Advert.buy');
+return;
+dotest('GoodsController.checkout',array('u'=>58));
+return;
+print_r($data=TTGenid::genid(array('pid'=>'dfs1','gender'=>1,'name'=>"wahaha"),$new));
+echo "new = $new\n";
+print_r($data=TTGenid::genid(array('pid'=>'dfs1','gender'=>1,'name'=>"wahaha"),$new));
+echo "new = $new\n";
+return;
+dotest('UserController.login',$data);
+dotest('UserController.login',$data);
+dotest('UserController.get_achieves');
+otest('UserController.showids');
+dotest('UserController.genusers');
+dotest('UserController.login');
+dotest('UserController.get_items');
+dotest('Man.get');
+dotest('Man.update');
+dotest('DataS.put');
+dotest('DataS.get');
+/*
+print_r($data=TTGenid::genid(array('pid'=>'dfs','gender'=>1,'name'=>"wahaha"),$new));
+echo "new =$new\n";
+$data['pid'] = '1erer2';
+$u =20;
+dotest('UserController.login',$data);
+dotest('UserController.get_items',$p=array('u'=>$u));
+dotest('UserController.get_all',$p=array('u'=>$u));
+dotest('TaskController.accept');
+dotest('UserController.update_friends',$p=array('u'=>'1','fids'=>'quest01,quest03'));
+dotest('UserController.update_friends',$p=array('u'=>'1'));
+
+dotest('UserController.get_tasks',$p = array('u'=>'27') );
+dotest('TaskController.get_award',$p = array('u'=>'27','tid'=>'27:t:4c4a968aeb924:o') );
+
+dotest('UserController.showids',$p=array('id'=>'1'));
+dotest('UserController.get_tasks',$p=array('u'=>'26'));
+dotest('UserController.set_advert',$p=array( 'u'=>'1','tag'=>'1') );
+dotest('UserController.get_advert',$p=array( 'u'=>'1' ) ); 
+dotest('UserController.get_others',$p=array('id'=>'1:#:4c46650777','u'=>1,'gender'=>1,'name'=>"wahaha"));
+dotest('UserController.enlarge_mall',$p=array('u'=>'1','cap'=>"8,8"));
+
+dotest('UserController.login',$p=array('pid'=>'001','gender'=>1,'name'=>"wahaha"));
+dotest('UserController.update_info',$p=array('id'=>8,'pid'=>'001','gender'=>1,'name'=>"wahaha",'icon'=>'nonono','favor'=>'Mariah Carey','o'=>'oii'));
+dotest('UserController.update_friends',$p=array('u'=>1));
+dotest('UserController.update_friends',$p=array('u'=>1,'fids'=>"quest07,wely0211"));
+dotest('UserController.get_achieves',$p=array('u'=>39));
+
+dotest('UserController.set_advert',$p=array('u'=>1,'tag'=>3) ); 
+//dotest('UserController.delete',$p=array('u'=>38));    
+dotest( 'CarController.buy',$p = array( 'u'=>1,'c'=>array( array( 'tag'=>5004,'pos'=>array( 'x'=>'1','y'=>'1' ) ) ) ) );
+
+dotest('UserController.get_achieves',$p=array('u'=>38));
+dotest('UserController.get_tasks',$p=array('u'=>5));
+dotest('UserController.get_items',$p=array('u'=>5));
+//dotest('UserController.deleteall',$p=array('u'=>5));
+dotest('ItemController.buy',$p=array('u'=>5,'d'=>array(array('tag'=>5,'pos'=>array('x'=>3,'y'=>49),'n'=>2))));
+dotest('UserController.get_items',$p=array('u'=>5));
+dotest('UserController.login',$p=array('pid'=>'JimmyChou'));
+dotest('UserController.get_tasks',$p=array('u'=>5));
+dotest('UserController.get_goods',$p=array('u'=>5));
+dotest('UserController.get_cars',$p=array('u'=>5));
+dotest('UserController.get_all',$p=array('u'=>5));
+
+$p = array('u'=>'5','d'=>array('tag'=>5,'pos'=>array('x'=>0,'y'=>49) ),'n'=>2 );
+dotest('ItemController.buy',$p);
+
+$p = array('u'=>'5','d'=>array(array('tag'=>900,'num'=>6,'stime'=>time(),'pos'=>array('x'=>0,'y'=>49) ) ));
+dotest('GoodsController.buy',$p);
+
+dotest('GoodsController.exhibit_goods');
+dotest('ItemController.buy');
+//*/
+dotest('Gift.get',$p=array('u'=>1,'fname'=>'xxx','fid'=>2,'gtag'=>'12','gid'=>'test','desc'=>'test' ));
+dotest('Gift.view',$p=array('u'=>1));
+dotest('Gift.accept',$p=array('u'=>1,'d'=>array(array('id'=>'1:gi:4c4e5bbf2c579','pos'=>'s')) ));

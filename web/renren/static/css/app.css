@@ -1,0 +1,130 @@
+@CHARSET "UTF-8";
+div#tabs, div.tabs {
+	border-bottom: 1px solid #898989;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.ie7 div#tabs, .ie7 div.tabs {
+	margin-top: 10px;
+}
+
+div#tabs ul, div.tabs ul {
+	padding: 0 0 0 10px;
+	margin: 0 0 -1px 0;
+	font-size: 11px;
+	font-weight: bold;
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+}
+.ie7 div#tabs ul, .ie7 div.tabs ul {
+	margin-bottom: 0px;
+	padding-top: 1px;
+}
+
+div#tabs ul li, div.tabs ul li {
+	text-align: center;
+	display: inline;
+	padding: 2px 0 3px 1px;
+	border: 1px solid #898989;
+	border-width: 1px 1px 1px 0px;
+	background-color: #e8e8e8;
+}
+
+.ie7 div#tabs ul li, .ie7 div.tabs ul li {
+	padding: 0 0 0 1px;
+}
+
+div#tabs ul li.first, div.tabs ul li.first {
+	border-width: 1px 1px 1px 1px;
+}
+
+div#tabs ul li a, div.tabs ul li a {
+	display: inline-block;
+	padding: 3px 8px 4px 9px;
+	color: #333;
+	text-decoration: none;
+	outline-style: none;
+}
+
+div#tabs ul li a:hover, div.tabs ul li a:hover {
+	text-decoration: underline;
+}
+
+div#tabs ul li.selected a:hover, div.tabs ul li.selected a:hover {
+	text-decoration: none;
+}
+
+div#tabs ul li.selected, div.tabs ul li.selected {
+	border: 1px solid #37538E;
+	background-color: #687EAC;
+	margin-left: -1px;	
+}
+
+div#tabs ul li.selected a, div.tabs ul li.selected a {
+	color: #fff;
+}
+
+#skUpdater {
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+#skUpdater iframe {
+	border: 0;
+}
+
+
+.inputbutton, .inputsubmit {
+	border-style:solid;
+	border-width:1px;
+	border-color:#d9dfea #0e1f5b #0e1f5b #d9dfea;
+	background-color:#3b5998;
+	color:#fff;
+	padding:2px 15px 3px 15px;
+	text-align:center;
+	*width:1;
+	overflow:visible;
+	*padding:2px 15px
+}
+
+.inputaux {
+	background:#f0f0f0;
+	border-color:#e7e7e7 #666 #666 #e7e7e7;
+	color:#000;
+	font-size:12px;
+	font-weight:bold;
+	margin:1px 5px;
+	padding:3px 10px;
+	text-decoration:none;
+}
+
+#appFrame {
+	position: relative;
+}
+
+#appFrame .offscreen {
+	position: absolute;
+	top: -10000px;
+}
+#appFrame.flashVisible {
+	height: 650px;
+}
+
+#flashFrame {
+	position: absolute;
+}
+
+#htmlFrame iframe {
+	width: 760px;
+	border: 0;
+}
+
+#htmlFrame iframe.preloaded {
+	height: 0 !important;
+}
+
+#loadingFrame {
+	padding: 30px 0;
+	background-color: #fff;
+	text-align: center;
+}

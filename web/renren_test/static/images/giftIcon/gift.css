@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+
+  h1 { font-size: 11pt; font-weight: bold; }
+  h2 { font-weight: bold; }
+  .noticebox { border: 1px solid #ffd100; padding: 8px; background-color: #fff4bf; }
+  .subheader { border-bottom: 1px solid #808080; margin: 0pt 0pt 6px; padding: 4px 0pt 2px; font-size: 13px; }
+  .section { margin: 0pt 0pt 10px; }
+  .padding_content { padding: 8px; }
+  .help div,   .help h2 { padding: 4px 0px; }
+  .help h1 { padding-bottom: 4px; }
+  .help ul { margin: 5px 20px; padding: 0px 10px; list-style-type: disc; }
+  .left { display: block; float: left; }
+  .center { text-align: center; }
+  .right { display: block; float: right; }
+  .clear { clear: both; }
+  .gift_img { padding: 17px 11px 0px 0px; text-align: center; }
+  .gift_name { margin: 5px 17px 0px 5px; color: #70461e; font-weight: bold; }
+  li.giftLocked .gift_name { color: #666666; }
+  .gift_name span { display: block; height: 30px; }
+  .gift_action { margin: 3px 17px 0px 5px; color: red; font-weight: bold; }
+  .giftIconImg { width: 75px; height: 75px; }
+  .giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
+  .giftsendbtn { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 10px; text-decoration: none; }
+  .fv_main_body_cont { margin: 0pt auto; padding: 10px 0px; width: 760px; }
+  .main_gift_cont ul { list-style-type: none; }
+  #app201278444497_probar_iframe { border: 0px none #ffffff; overflow: hidden; width: 760px; }
+  .treasure_main_body_cont { margin: 0pt auto; padding: 10px 0px; width: 760px; }
+  .main_gift_cont h2.title_generalgift { background: #ffffff none no-repeat scroll 0pt 0pt; height: 26px; width: 661px; }
+  .main_gift_cont h2.title_collectiongift { margin: 20px auto; background: #ffffff none no-repeat scroll 0pt 0pt; height: 26px; width: 547px; }
+  .main_gift_cont h2.title_generalgift span,   .main_gift_cont h2.title_collectiongift span { display: none; }
+  .main_gift_cont ul { list-style-type: none; }
+  .main_gift_cont li { background: #ffffff none no-repeat scroll left top; width: 143px; height: 159px; float: left; position: relative; text-align: center; }
+  .main_gift_cont li.giftLocked { background: #ffffff none no-repeat scroll left top; }
+  .main_gift_cont li.giftCollection { background: #ffffff none no-repeat scroll left top; position: relative; }
+  .main_gift_cont .gift_img { padding: 0px 11px 12px 0px; height: 80px; }
+  .main_gift_cont .gift_img span { margin: 0pt auto; display: block; height: 80px; width: 75px; }
+  .main_gift_cont .gift_name { margin: 10px 12px 0px 5px; color: #70461e; font-weight: bold; text-align: center; font-size: 12px; }
+  li.giftLocked .gift_name { color: #666666; }
+  .main_gift_cont .gift_name span { margin: 4px 0px 0px 6px; display: block; height: 25px; width: 115px; }
+  .main_gift_cont .gift_action { margin: 3px 10px 0px 5px; color: red; font-weight: bold; text-align: center; }
+  .main_gift_cont .gift_star { background: transparent none no-repeat scroll 0pt 0pt; position: absolute; width: 34px; height: 34px; top: 0pt; left: 0pt; }
+  .main_gift_cont .gift_collection_amount { position: absolute; top: 0pt; left: 100px; z-index: 1000; }
+  .main_gift_cont .numb_lft { background: transparent none no-repeat scroll left top; padding-left: 14px; }
+  .main_gift_cont .numb_rht { padding: 9px 16px 12px 0pt; background: transparent none no-repeat scroll right top; color: #402e00; font-weight: bold; font-size: 16px; }
+  .main_gift_cont .gift_count { position: absolute; color: #ffffff; font-weight: bold; text-align: center; width: 30px; height: 17px; top: 83px; right: 29px; }
+  .main_giftWide_cont {  }
+  .main_giftWide_cont h2.title_generalgift { background: #ffffff none no-repeat scroll 0pt 0pt; height: 55px; width: 661px; }
+  .main_giftWide_cont h2.title_collectiongift { margin: 20px auto; background: #ffffff none no-repeat scroll 0pt 0pt; height: 26px; width: 547px; }
+  .main_giftWide_cont h2.title_generalgift span,   .main_giftWide_cont h2.title_collectiongift span { display: none; }
+  .main_giftWide_cont ul { list-style-type: none; }
+  .main_giftWide_cont li { background: #ffffff none no-repeat scroll left top; width: 176px; height: 180px; float: left; }
+  .main_giftWide_cont .gift_img { padding: 0px; }
+  .main_giftWide_cont .gift_img span { margin: 0pt auto; width: 70px; height: 75px; }
+  .main_giftWide_cont .gift_img img { width: 70px; }
+  .main_giftWide_cont .gift_name { margin: 0pt 10px; height: 30px; color: #70461e; font-weight: bold; text-align: center; }
+  .main_giftWide_cont .gift_name span { display: block; height: 30px; }
+  .main_giftWide_cont .gift_action { margin: 0px 5px 0px 2px; color: red; font-weight: bold; text-align: center; }
+  .main_giftWide_cont .collectables .gift_action { margin-top: 0pt; }
+  .main_giftWide_cont .gift_star { background: transparent none no-repeat scroll 0pt 0pt; position: absolute; width: 34px; height: 34px; top: 0pt; left: 0pt; }
+  .main_giftWide_cont .gift_collection_amount { position: absolute; top: -3px; left: 130px; z-index: 10000; }
+  .main_giftWide_cont .numb_lft { background: transparent none no-repeat scroll left top; padding-left: 14px; }
+  .main_giftWide_cont .numb_rht { padding: 9px 16px 12px 0pt; background: transparent none no-repeat scroll right top; color: #402e00; font-weight: bold; font-size: 16px; }
+  .giftHover { position: absolute; width: 144px; height: 82px; background-repeat: no-repeat; display: none; top: -52px; left: -1px; text-align: center; }
+  .giftHover .title { padding: 13px 4px 5px; font-size: 15px; font-family: Verdana,Arial,sans-serif; font-weight: bold; color: #ae218f; height: 30px; }
+  .giftHover .collection { font-size: 11px; font-family: Verdana,Arial,sans-serif; color: #6f8164; }
+  .giftHover .icon { height: 80px; padding-bottom: 5px; }
+  .giftHover .description { padding: 8px 15px; overflow: hidden; font-weight: bold; font-size: 12px; font-family: Verdana,Arial,sans-serif; color: #6f8164; height: 43px; }
+  .giftButtonFloat { float: right; margin-top: 1px; margin-bottom: 12px; }
+  .main_gift_cont li { float: left; text-align: center; }
+  .main_gift_cont li.giftLi,   .main_gift_cont li.giftLocked,   .main_gift_cont li.giftLe,   .main_gift_cont li.giftCollectible { width: 143px; height: 166px; }
+  .main_gift_cont li.giftAnimal,   .main_gift_cont li.giftBuilding,   .main_gift_cont li.giftTree,   .main_gift_cont li.giftBuildingResource { width: 143px; height: 166px; }
+  .main_gift_cont li.giftResource,   .main_gift_cont li.giftEnergy { width: 143px; height: 166px; }
+  .main_gift_cont li.giftLiWide,   .main_gift_cont li.giftLockedWide { width: 175px; height: 166px; }
+  .main_gift_cont li { background: #ffffff none no-repeat scroll left top; }
+  .main_gift_cont li.giftLi { background-image: url("css/gift_box_open.png"); }
+  .main_gift_cont li.giftLe { background-image: url("css/gift_box_le.png"); }
+  .main_gift_cont li.giftCollectible { background-image: url("css/gift_box_collectible.png"); }
+  .main_gift_cont li.giftAnimal { background-image: url("css/gift_box_animal.png"); }
+  .main_gift_cont li.giftBuilding { background-image: url("css/gift_box_building.png"); }
+  .main_gift_cont li.giftTree { background-image: url("css/gift_box_tree.png"); }
+  .main_gift_cont li.giftBuildingResource { background-image: url("css/gift_box_building_resource.png"); }
+  .main_gift_cont li.giftResource { background-image: url("css/gift_box_resource.png"); }
+  .main_gift_cont li.giftEnergy { background-image: url("css/gift_box_energy.png"); }
+  .main_gift_cont li.giftSchoolSupplies { background-image: url("css/gift_box_school.png"); }
+  .main_gift_cont li.giftLocked { background-image: url("css/gift_box_locked.png"); }
+  .main_gift_cont li.giftLiWide { background-image: url("css/gift_box_open_wide.png"); }
+  .main_gift_cont li.giftLockedWide { background-image: url("css/gift_box_locked_wide.png"); }
+  .main_giftWide_cont li { background: #ffffff none no-repeat scroll left top; }
+  .main_giftWide_cont li.giftLi { background-image: url("css/gift_box_open_wide.png"); }
+  .main_giftWide_cont li.giftLe { background-image: url("css/gift_box_le_wide.png"); }
+  .main_giftWide_cont li.giftLocked { background-image: url("css/gift_box_locked_wide.png"); }
+  .main_giftWide_cont li.giftCollectible { background-image: url("css/gift_box_collectible_wide.png"); }
+  .main_giftWide_cont li.giftAnimal { background-image: url("css/gift_box_animal_wide.png"); }
+  .main_giftWide_cont li.giftBuilding { background-image: url("css/gift_box_building_wide.png"); }
+  .main_giftWide_cont li.giftTree { background-image: url("css/gift_box_tree_wide.png"); }
+  .main_giftWide_cont li.giftBuildingResource { background-image: url("css/gift_box_building_resource_wide.png"); }
+  .main_giftWide_cont li.giftResource { background-image: url("css/gift_box_resource_wide.png"); }
+  .main_giftWide_cont li.giftEnergy { background-image: url("css/gift_box_energy_wide.png"); }
+  .main_giftWide_cont li.giftSchoolSupplies { background-image: url("css/gift_box_school_wide.png"); }
+  .giftIconImg { height: 80px; margin-top: 15px; margin-left: -13px; margin-bottom: 10px; }
+  a.inputaux { padding: 5px 15px; }
+.inputbutton, .inputsubmit {
+	border-style:solid;
+	border-width:1px;
+	border-color:#d9dfea #0e1f5b #0e1f5b #d9dfea;
+	background-color:#3b5998;
+	color:#fff;
+	padding:2px 15px 3px 15px;
+	text-align:center;
+	*width:1;
+	overflow:visible;
+	*padding:2px 15px
+}
+
+.inputaux {
+	background:#f0f0f0;
+	border-color:#e7e7e7 #666 #666 #e7e7e7;
+	color:#000;
+	font-size:12px;
+	font-weight:bold;
+	margin:1px 5px;
+	padding:3px 10px;
+	text-decoration:none;
+}giftButtonFloat

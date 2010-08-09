@@ -1,0 +1,114 @@
+
+
+li {
+    list-style: none;
+}
+.clearfix {
+    display: inline-block;
+}
+
+
+.tcenter {
+    text-align: center;
+}
+
+
+
+
+
+/*head*/
+#header .logo {
+    width: 100px;
+    height: 46px;
+    background: url("") no-repeat center;
+    text-indent: -9999px;
+    float: left;
+}
+
+#header .logo  a {
+    display: block;
+    height: 36px;
+}
+
+#main-nav ul {
+    margin: 0 0 5px 0px;
+    padding-top: 14px;
+}
+
+#navga ul li {
+    float: left;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+#navga ul li a {
+    display: block;
+    text-indent: -9999px;
+    background: url("../images/nav.png") no-repeat left top;
+    width: 95px;
+    height: 32px;
+}
+
+#navga ul li.game a {
+    background-position: 0 0;
+}
+
+
+#navga ul li.game a.active, #navga ul li.game a:hover {
+    background-position: 0 -45px;
+}
+
+#navga ul li.freegift a {
+    background-position: 0 -88px;
+}
+
+#navga ul li.freegift a.active, #navga ul li.freegift a:hover {
+    background-position: 0 -133px;
+}
+/*faq
+#navga ul li.invite a {
+    background-position: 0 -176px;
+}
+
+#navga ul li.invite a.active, #navga ul li.invite a:hover {
+    background-position: 0 -221px;
+}
+*/
+/*payment*/
+#navga ul li.faq a {
+    background-position: 0 -263px;
+}
+
+#navga ul li.faq a.active, #navga ul li.faq a:hover {
+    background-position: 0 -308px;
+}
+
+#navga ul li.forum a {
+    background-position: 0 -352px;
+}
+
+#navga ul li.forum a.active, #navga ul li.forum a:hover {
+    background-position: 0 -397px;
+}
+#navga ul li.payment a {
+    background-position: 0 -441px;
+}
+
+#navga ul li.payment a.active, #navga ul li.payment a:hover {
+    background-position: 0 -486px;
+}
+/*#navga ul li.freegift a,#navga ul li.freegift a.active, #navga ul li.freegift a:hover {
+    background-position: 0 -639px;
+    height: 45px;
+    margin-top: -11px;
+    position:relative;
+}*/
+
+#navga ul li.invite a {
+    background-position: 0 -534px;
+}
+
+#navga ul li.invite a.active, #navga ul li.invite a:hover {
+    background-position: 0 -581px;
+}
+

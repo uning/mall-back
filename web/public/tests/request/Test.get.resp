@@ -1,0 +1,51 @@
+Array
+(
+    [s] => OK
+    [d] => Array
+        (
+            [4c3175e5ba60e] => Array
+                (
+                    [id] => 4c3175e5ba60e
+                    [pos] => s
+                    [tag] => 5
+                )
+
+            [4c3175e7b83a2] => Array
+                (
+                    [id] => 4c3175e7b83a2
+                    [pos] => Array
+                        (
+                            [x] => 1
+                            [y] => 48
+                        )
+
+                    [tag] => 5
+                )
+
+            [4c3175f11e68a] => Array
+                (
+                    [id] => 4c3175f11e68a
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 4c3175e7b83a2
+                        )
+
+                    [tag] => 900
+                )
+
+            [4c3175f325c95] => Array
+                (
+                    [id] => 4c3175f325c95
+                    [pos] => Array
+                        (
+                            [x] => 0
+                            [y] => 4c3175e5ba60e
+                        )
+
+                    [tag] => 901
+                )
+
+        )
+
+)

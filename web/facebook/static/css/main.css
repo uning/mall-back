@@ -1,0 +1,181 @@
+html * {
+    margin: 0;
+    /*padding: 0; SELECT NOT DISPLAYED CORRECTLY IN FIREFOX */
+}
+
+/* GENERAL */
+
+.spinner {
+    padding: 5px;
+    position: absolute;
+    right: 0;
+}
+
+body {
+	margin: 0px 0px 0px 0px;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 75%;
+	width: 100%; /*add by tingkun*/
+	height: 100%; /*add by tingkun*/
+	overflow:hidden
+ }
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+html[xmlns] .clearfix {
+	display: block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+#tabs_container ul
+{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+
+#tabs_container ul li
+{
+	margin:0;
+	padding:0;
+	float:left;
+	list-style-type:none;
+}
+
+#tabs_container ul li a
+{
+	display:block;
+	padding:6px 8px
+}
+
+div#tabs, div.tabs
+{
+	border-bottom:1px solid #898989;
+	display:block;
+	position:relative;
+}
+
+.ie7 div#tabs, .ie7 div.tabs
+{
+	margin-top:10px;
+}
+
+div#tabs ul, div.tabs ul
+{
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	margin:0 0 -1px;
+	padding:0 0 0 10px;
+}
+
+.ie7 div#tabs ul, .ie7 div.tabs ul
+{
+	margin-bottom:0;
+	padding-top:1px;
+}
+
+div#tabs ul li, div.tabs ul li
+{
+	background-color:#E8E8E8;
+	border-color:#898989;
+	border-style:solid;
+	border-width:1px 1px 1px 0;
+	display:inline;
+	padding:2px 0 3px 1px;
+	text-align:center;
+}
+
+.ie7 div#tabs ul li, .ie7 div.tabs ul li
+{
+	padding:0 0 0 1px;
+}
+
+div#tabs ul li.first, div.tabs ul li.first
+{
+	border-width: 1px 1px 1px 1px;
+}
+
+div#tabs ul li a, div.tabs ul li a
+{
+	color:#333333;
+	display:inline-block;
+	outline-style:none;
+	padding:3px 8px 4px 9px;
+	text-decoration:none;
+}
+
+div#tabs ul li a:hover, div.tabs ul li a:hover
+{
+	text-decoration:underline;
+}
+
+div#tabs ul li.selected a:hover, div.tabs ul li.selected a:hover
+{
+	text-decoration:none;
+}
+
+div#tabs ul li.selected, div.tabs ul li.selected
+{
+	background-color:#687EAC !important;
+	border:1px solid #37538E;
+	margin-left:-1px;
+}
+
+div#tabs ul li.selected a, div.tabs ul li.selected a
+{
+	color:#FFFFFF;
+}
+.noticebox {border: 1px solid #FFD100; background-color: #FFF4BF; padding: 8px;}
+.left { display: block; float: left; }
+#probar_iframe{
+	border: 0px;
+	width: 760px;
+	overflow: hidden;
+}
+
+#appFrame {
+	position: relative;
+}
+
+#appFrame .offscreen {
+	position: absolute;
+	top: -10000px;
+}
+#appFrame.flashVisible {
+	height: 800px;
+}
+
+#flashFrame {
+	position: absolute;
+
+}
+
+#htmlFrame iframe {
+	width: 760px;
+	border: 0;
+}
+
+#htmlFrame iframe.preloaded {
+	height: 0 !important;
+}
+
+#loadingFrame {
+	padding: 30px 0;
+	background-color: #fff;
+	text-align: center;
+}

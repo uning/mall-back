@@ -1,0 +1,155 @@
+
+.action
+{
+	height:26px;overflow:hidden;padding:5px
+}
+.action h2
+{
+	font-weight:normal;
+	font-size:11px
+}
+
+.progress2 img, .progress2_done img
+{
+	margin:10px 0px 0 30px
+}
+.progress3 img, .progress3_done img
+{
+	margin:10px 0px 0 30px
+}
+.progress4 img, .progress4_done img
+{
+	margin:10px 0px 0 30px
+}
+.progress5 img, .progress5_done img
+{
+	margin:10px 0px 0 30px
+}
+
+.top_bar
+{
+	height: 80px; overflow: hidden;width:760px
+}
+
+.top_bar a img, .top_bar img
+{
+	border:none;
+}
+
+.top_bar table tr td
+{
+	padding:0;
+	margin:0;
+}
+
+.progress1_done
+{
+	background:url(../images/bar/step_01_done.png) 0 0 no-repeat;
+	width:135px
+}
+
+.progress2
+{
+	background:url(../images/bar/step_02.png) 0 0 no-repeat;
+	height:42px;
+	width:129px;
+	overflow:hidden;
+}
+
+.progress2_done
+{
+	background:url(../images/bar/step_02_done.png) 0 0 no-repeat;
+	height:42px;
+	width:129px;
+	overflow:hidden;
+}
+
+.progress3
+{
+	background:url(../images/bar/step_03.png) 0 0 no-repeat;
+	height:42px;
+	width:127px;
+	overflow:hidden;
+}
+
+.progress3_done
+{
+	background:url(../images/bar/step_03_done.png) 0 0 no-repeat;
+	height:42px;
+	width:127px;
+	overflow:hidden;
+}
+
+.progress4
+{
+	background:url(../images/bar/step_04.png) 0 0 no-repeat;
+	height:42px;
+	width:130px;
+	overflow:hidden;
+}
+
+.progress4_done
+{
+	background:url(../images/bar/step_04_done.png) 0 0 no-repeat;
+	height:42px;
+	width:130px;
+	overflow:hidden;
+}
+
+.progress5
+{
+	background:url(../images/bar/step_05.png) 0 0 no-repeat;
+	height:42px;
+	width:131px;
+	overflow:hidden;
+}
+
+.progress5_done
+{
+	background:url(../images/bar/step_05_done.png) 0 0 no-repeat;
+	height:42px;
+	width:131px;
+	overflow:hidden;
+}
+
+.bar_end
+{
+	background:url(../images/bar/right_end.png) 0 0 no-repeat;
+	width:16px;
+	height:80px;
+}
+
+.bar_1
+{
+	background:url(../images/bar/bar_20_complete.png) 0 0 no-repeat;
+	width:652px;
+	height:38px
+}
+
+.bar_2
+{
+    background:url(../images/bar/bar_40_complete.png) 0 0 no-repeat;
+	width:652px;
+	height:38px
+}
+
+.bar_3
+{
+    background:url(../images/bar/bar_60_complete.png) 0 0 no-repeat;
+	width:652px;
+	height:38px
+}
+
+.bar_4
+{
+    background:url(../images/bar/bar_80_complete.png) 0 0 no-repeat;
+	width:652px;
+	height:38px
+}
+
+.bar_5
+{
+    background:url(../images/bar/bar_100_complete.png) 0 0 no-repeat;
+	width:652px;
+	height:38px
+}

@@ -1,0 +1,6 @@
+编号,名称,描述,增加当前人气值,增加最大人气值,买入价格,持续时间,是否为宝石,元件名称,需要等级
+id,name,description,popularity,maxpopular,gem,allTime,onlyGem,showMc,needLevel
+1,广告1,广告1,15,30,1,86400,TRUE,AdvertIconMc,1
+2,广告2,广告2,45,60,3,86400,TRUE,AdvertIconMc2,1
+3,广告3,广告3,90,90,2,43200,TRUE,AdvertIconMc2,1
+4,广告4,广告4,120,120,4,43200,TRUE,AdvertIconMc2,1

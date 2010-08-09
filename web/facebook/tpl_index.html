@@ -1,0 +1,635 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+		<link rel="stylesheet" href="http://content00.nightclub-city.com/nlc/static/club/www/static/css/main.css?2" />
+        <link rel="shortcut icon" href="http://content00.nightclub-city.com/nlc/static/club/www/static/images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="http://content00.nightclub-city.com/nlc/static/club/www/static/css/boxy.css" type="text/css"/>
+
+		<script src="http://content00.nightclub-city.com/nlc/static/club/www/static/js/jquery-1.4.2.min.js"></script>
+		<script src="http://content00.nightclub-city.com/nlc/static/club/www/static/js/jquery.boxy.js"></script>
+
+		<script type="text/javascript">
+			$.extend({
+			  getUrlVars: function(){
+				var vars = [], hash;
+				var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+				for(var i = 0; i < hashes.length; i++)
+				{
+				  hash = hashes[i].split('=');
+				  vars.push(hash[0]);
+				  vars[hash[0]] = hash[1];
+				}
+				return vars;
+			  },
+			  getUrlVar: function(name){
+				return $.getUrlVars()[name];
+			  }
+			});
+		</script>
+
+        <title>Play Nightclub City</title>
+        
+		<meta name="layout" content="facebook"></meta>
+		
+
+		<script type="text/javascript">
+
+var cached_publish_stream = false;
+
+function complete_step(step)
+{
+	var button = $("#step_button_"+step);
+	button.attr("className", "progress"+step+"_done");
+}
+
+function increase_completion(step)
+{
+	var button = $("#step_button_"+step);
+	if (button.hasClass("button"))
+	{
+		var bar = $("#bar_completeness");
+		var steps = bar.attr("steps");
+		if (steps < 5)
+		{
+			steps++;
+			bar.attr("steps", steps);
+			bar.attr("className", "bar_"+steps);
+		}
+	}
+}
+
+function get_publish_permission(step)
+{
+	FB.Connect.showPermissionDialog("publish_stream", function(perms) {
+		if (perms.indexOf('publish_stream') == -1) {
+			// nothing
+		} else {
+			// advance bar
+			increase_completion(step);
+			complete_step(step);
+		}
+	});
+}
+
+function get_email_permission(step)
+{
+	FB.Connect.showPermissionDialog("email", function(perms) {
+		if (perms.indexOf('email') == -1) {
+			// nothing
+		} else {
+			// advance bar
+			increase_completion(step);
+			complete_step(step);
+			save_email();
+		}
+	});
+}
+
+function save_email()
+{
+	$.post("http://dynamic00.nightclub-city.com/nlc/ajax/email", {fb_sig_user:"657589045", fb_sig_session_key:"2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045", fb_sig_ss:"XwGg4ING03Cm8w_zLErLSg__"});
+}
+
+function bookmark(step)
+{
+	FB.Connect.showBookmarkDialog(function (success) {
+		if (success.bookmarked == 1)
+		{
+			increase_completion(step);
+			complete_step(step);
+			save_bookmarked();
+		}
+	});
+}
+
+function save_bookmarked()
+{
+	$.post("http://dynamic00.nightclub-city.com/nlc/ajax/bookmark", {fb_sig_user:"657589045", fb_sig_session_key:"2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045", fb_sig_ss:"XwGg4ING03Cm8w_zLErLSg__"});
+}
+
+function fan(step)
+{
+	$("#fan_dialog").show();
+	$("#fan_close_link").click(function() {
+		$("#fan_dialog").hide();
+		increase_completion(step);
+		complete_step(step);
+		save_fanned();
+	});
+}
+
+function save_fanned()
+{
+	$.post("http://dynamic00.nightclub-city.com/nlc/ajax/fan", {fb_sig_user:"657589045", fb_sig_session_key:"2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045", fb_sig_ss:"XwGg4ING03Cm8w_zLErLSg__"});
+}
+
+function initialize_bar()
+{
+	var show_header = false;
+	var total_calls = 0;
+
+	var api = FB.Facebook.apiClient;
+	// require user to login
+	api.requireLogin(function(exception){
+		api.fql_query("SELECT email, bookmarked, publish_stream, offline_access FROM permissions WHERE uid = "+api.get_session().uid, function(result, exception){
+			total_calls++;
+			if (result != null)
+			{
+				cached_publish_permission = result[0].publish_stream;
+				
+				if (result[0].bookmarked == 1)
+				{
+					increase_completion(3);
+					complete_step(3);
+					if (!false) save_bookmarked();
+				}
+				else
+				{
+					show_header = true;
+				}
+
+				if (result[0].email == 1)
+				{
+					increase_completion(5);
+					complete_step(5);
+				}
+				else
+				{
+					show_header = true;
+				}
+
+				if (result[0].publish_stream == 0) show_header = true;
+
+			}
+
+			if (show_header && total_calls > 1)
+			{
+				$("#installBarContainer").slideDown("fast");
+			}
+
+		});
+		api.fql_query("SELECT uid FROM page_fan WHERE uid = 657589045 and type = 'APPLICATION'", function(result, exception){
+			total_calls++;
+			try
+			{
+				if (result != null && result.length != 0 && result[0].uid != null)
+				{
+					// user is fan
+					increase_completion(4);
+					complete_step(4);
+					if (!true) save_fanned();
+				}
+				else
+				{
+					show_header = true;
+				}
+			}
+			catch (e)
+			{
+				show_header = true;
+			}
+
+			if (show_header && total_calls > 1)
+			{
+				$("#installBarContainer").slideDown("fast");
+			}
+		})
+
+	});
+}
+
+function check_stream_permission() {
+	return cached_publish_stream;
+}
+
+function get_stream_permission() {
+	if (!cached_publish_stream) {
+		FB.Connect.showPermissionDialog("publish_stream", function(perms) {
+		if (perms != null && perms.indexOf('publish_stream') == -1) {
+			// nothing
+			get_stream_permission_callback(false);
+		} else {
+			get_stream_permission_callback(true);
+		}
+		});
+	}
+	else
+	{
+		get_stream_permission_callback(true);
+	}
+}
+
+function get_stream_permission_callback(value) {
+	document.getElementById("gameFrame").contentWindow.get_stream_permission_callback(value);
+}
+</script>
+		<link rel='stylesheet' href='http://dynamic00.nightclub-city.com/nlc/static/css/installbar.css' type='text/css'/>
+
+		<script type="text/javascript">
+	var pay_obj;
+	var cur_item_id;
+	var cur_quantity;
+
+	function buy()
+	{
+		var item_id = $('#item_options input:radio:checked').val();
+		var payment_id = $('#payment_options input:radio:checked').val();
+
+		if (payment_id == 1)
+		{
+			buy_with_fb_credits(item_id);
+		}
+		else
+		{
+		}
+	}
+
+	function buy_with_fb_credits_complete(data)
+	{
+		if (data['order_id'])
+		{
+			data.itemId = cur_item_id;
+			document.getElementById("gameFrame").contentWindow.callExternalInterface(data);
+			get_fb_credits();
+		}
+		else if (data['error_code'])
+		{
+			data.itemId = cur_item_id;
+			document.getElementById("gameFrame").contentWindow.callExternalInterface(data);
+		}
+		else
+		{
+
+		}
+	}
+
+	function buy_with_fb_credits(item_id, quantity)
+	{
+		cur_item_id = item_id;
+		cur_quantity = quantity;
+		if (cur_quantity == null) cur_quantity = 1;
+		if (pay_obj == null) pay_obj = new FB.Payments();
+		pay_obj.setParam('order_info', {item_id:item_id, quantity:quantity});
+		pay_obj.setParam('credits_purchase', false);
+		pay_obj.setParam('next_js', buy_with_fb_credits_complete);
+		pay_obj.setParam('next_url', 'http://apps.facebook.com/nightclubcity/');
+		pay_obj.submitOrder();
+	}
+
+	function get_more_fb_credits_complete(data)
+	{
+		get_fb_credits();
+	}
+
+	function get_more_fb_credits()
+	{
+		if (pay_obj == null) pay_obj = new FB.Payments();
+		pay_obj.setParam('credits_purchase', true);
+		pay_obj.setParam('next_js',get_more_fb_credits_complete);
+		pay_obj.submitOrder();
+	}
+
+	function get_fb_credits()
+	{
+		$.post("http://dynamic00.nightclub-city.com/nlc/ajax/creditBalance",
+			{fb_sig_user:"657589045", fb_sig_session_key:"2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045", fb_sig_ss:"XwGg4ING03Cm8w_zLErLSg__"},
+			function (data)
+			{
+				try
+				{
+					if (data.error == 0) set_fb_credits_callback(data.creditBalance);
+				}
+				catch (e)
+				{
+					
+				}
+			},
+			"json"
+		);		
+	}
+
+	function set_fb_credits_callback(value)
+	{
+		document.getElementById("gameFrame").contentWindow.get_fb_credits_callback(value);
+	}
+
+</script>
+		
+		
+		<script type="text/javascript">
+var iframe_dlg = null;
+var inner_iframe_dlg = null;
+function invite_open(data, type)
+{
+	
+
+			//if ($.browser.msie)
+			//{
+			//    location.href = "http://dynamic00.nightclub-city.com/nlc/home/invite?type="+type+"&fb_sig_user=657589045&fb_sig_session_key=2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045&fb_sig_ss=XwGg4ING03Cm8w_zLErLSg__;
+			//    return;
+			//}
+
+			var max;
+			var exclude;
+			try
+			{
+				max = data.max;
+				exclude = data.exclude;
+			}
+			catch (e)
+			{
+
+			}
+
+			if (max == null) max = "";
+			if (exclude == null) exclude = "";
+
+			//if (iframe_dlg == null)
+			//{
+				//iframe_dlg = new Boxy("<div class='title-bar'><h2>&nbsp;</h2><a href='#' class='close' onclick='invite_close();return false'>[close]</a></div><div id='invite_loading' class='loading'><img src='http://content00.nightclub-city.com/nlc/static/club/www/static/images/spinner.gif'/></div><div id='iframe_content'><iframe src='http://dynamic00.nightclub-city.com/nlc/invite/dialog?type="+type+"&fb_sig_user=657589045&fb_sig_session_key=2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045&fb_sig_ss=XwGg4ING03Cm8w_zLErLSg__&max="+max+"&exclude="+exclude+"' width='646' height='500' frameborder='0' style='overflow:hidden'></iframe></div>");
+			//}
+
+			iframe_dlg = $("#inviteDialog");
+			inner_iframe_dlg = $("#innerInviteFrame");
+
+			try
+			{
+				if (iframe_dlg.css("left") != "32px")
+				{
+					iframe_dlg.css("left","32px");
+					hide_game();
+					$("#invite_loading").show();
+					inner_iframe_dlg.attr('src',"http://dynamic00.nightclub-city.com/nlc/invite/dialog?inviteType="+type+"&fb_sig_user=657589045&fb_sig_session_key=2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045&fb_sig_ss=XwGg4ING03Cm8w_zLErLSg__&max="+max+"&exclude="+exclude);
+				}
+			}
+			catch(e)
+			{
+
+			}
+			iframe_dlg.css("left","32px");
+
+	
+}
+
+function invite_friends_open(data)
+{
+    invite_open(data, "neighbor");
+}
+
+function invite_gift_open(data)
+{
+	invite_open(data, "gift");
+}
+
+
+
+	function invite_loaded()
+	{
+		iframe_dlg.css("left","32px");
+		$("#invite_loading").hide();
+	}
+
+	function invite_close(data)
+	{
+		if (iframe_dlg)
+		{
+			show_game();
+			//iframe_dlg.toggle();
+			//iframe_dlg.unload();
+			//iframe_dlg = null;
+			iframe_dlg.css("left","1032px");
+			document.getElementById("gameFrame").contentWindow.invite_friends_callback(data);
+			inner_iframe_dlg.attr('src',"http://dynamic00.nightclub-city.com/nlc/invite/blank");
+		}
+	}
+
+</script>
+		
+
+		<script type="text/javascript">
+	function hide_game()
+	{
+		$("#gameFrameContainer").css("margin-left","-760px");
+	}
+
+	function show_game()
+	{
+		$("#gameFrameContainer").css("margin-left","0px");
+	}
+
+	function nlc_stream_publish(post)
+	{
+			
+				hide_game();
+				FB.Connect.streamPublish(
+					"", 		// user message
+					post.attachment,
+					post.action_links,
+					post.target_id,
+					post.user_message_prompt,
+					function(post_id, exception)
+					{
+						show_game();
+						if ( post_id != null )
+						{
+							gPageTracker._trackEvent("Virality", "FB.Connect.streamPublish", "Success");
+							$.post("http://dynamic00.nightclub-city.com/nlc/ajax/streamPublish?post_id="+post_id+"&receiver_fbid="+post.target_id, {fb_sig_user:"657589045", fb_sig_session_key:"2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045", fb_sig_ss:"XwGg4ING03Cm8w_zLErLSg__"});
+						}
+						else
+						{
+							gPageTracker._trackEvent("Virality", "FB.Connect.streamPublish", "Cancel");
+						}
+					},
+					false,		// auto publish
+					null);		// actor id
+
+				gPageTracker._trackEvent("Virality", "FB.Connect.streamPublish", "Attempt");
+			
+	}
+
+	function process_new()
+	{
+		$.post("http://dynamic00.nightclub-city.com/nlc/ajax/processNew", {fb_sig_user:"657589045", fb_sig_session_key:"2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045", fb_sig_ss:"XwGg4ING03Cm8w_zLErLSg__"});
+	}
+
+	function switch_club(fbUserId)
+	{
+		$("#likeFrame").attr('src',"http://dynamic00.nightclub-city.com/nlc/like/index?fbid="+fbUserId);
+	}
+	function resize_height(height) {
+		$("#gameFrame").attr('height', height);
+		$("#gameFrameBackground").css('height',height+"px");
+	}
+</script>
+		
+
+		<script type="text/javascript">
+	var like_song_dlg = null;
+	var like_song_loading = null;
+
+	function user_liked_song(song_id)
+	{
+		like_song_dlg = $("#song_dialog");
+		inner_iframe_dlg = $("#innerLikeSongFrame");
+
+		try
+		{
+			$("#song_dialog").show();
+			$("#song_dialog_close_link").click(function() {
+				$("#song_dialog").hide();
+			});
+
+			$("#like_song_loading").show();
+			inner_iframe_dlg.attr('src',"http://dynamic00.nightclub-city.com/nlc/like/song?songId="+song_id);
+
+		}
+		catch(e)
+		{
+
+		}
+	}
+
+	function user_liked_song_loaded()
+	{
+		$("#like_song_loading").hide();
+	}
+
+	function close_user_liked_song()
+	{
+		$("#song_dialog").hide();
+	}
+</script>
+
+		<script type="text/javascript">		
+			function facebook_loaded_callback()
+			{
+				initialize_bar();
+				//$(window).unload(function() {
+				//  alert('Handler for .unload() called.');
+				//});
+				
+			}
+		</script>
+	
+    </head>
+    <body>
+
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			var gPageTracker;
+			try
+			{
+				gPageTracker = _gat._getTracker("UA-11981565-3");
+				gPageTracker._trackPageview();
+			}
+			catch(err)
+			{
+
+			}
+		</script>
+
+		<div id="FB_HiddenIFrameContainer" style="display:none; position:absolute; left:-100px; top:-100px; width:0px; height: 0px;"></div>
+
+		<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+		<script type="text/javascript">
+			var api_key = "da1418cc4a0008504bf086a7c6ce18ad";
+			var channel_path = "/nlc/static/facebook/xd_receiver.html";
+			FB.init(api_key, channel_path);
+
+			FB_RequireFeatures(["Connect","CanvasUtil","Api","Payments"], function(){
+				FB.XdComm.Server.init(channel_path);
+				FB.CanvasClient.startTimerToSizeToContent();
+
+				FB.ensureInit(function() {
+				   FB.Connect.get_status().waitUntilReady( function( status ) {
+					  switch ( status ) {
+					  case FB.ConnectState.connected:
+						 loggedIn = true;
+						 facebook_loaded_callback();
+						 break;
+					  case FB.ConnectState.appNotAuthorized:
+					  case FB.ConnectState.userNotLoggedIn:
+						 var tries;
+						 try
+						 {
+							var tempTries = $.getUrlVar('tries');
+							if (tempTries != null)
+							{
+								tries = parseInt(tempTries);
+								if (tries >= 5)
+								{
+									// do nothing
+								}
+								if (tries >= 3)
+								{
+									FB.Connect.requireSession(function() {
+										window.parent.location.href = 'http://www.facebook.com/login.php?v=1.0&api_key=da1418cc4a0008504bf086a7c6ce18ad&next=http%3A%2F%2Fapps.facebook.com%2Fnightclubcity%2F%3Ftries%3D1%26f%3Djl&canvas=true';
+									});
+								}
+								else
+								{
+									window.parent.location.href = 'http://www.facebook.com/login.php?v=1.0&api_key=da1418cc4a0008504bf086a7c6ce18ad&next=http%3A%2F%2Fapps.facebook.com%2Fnightclubcity%2F%3Ftries%3D1%26f%3Djl&canvas=true';
+								}
+							}
+						 }
+						 catch (e)
+						 {
+
+						 }
+						 break;
+					  }
+				   });
+				});
+
+
+			});
+		</script>
+
+        
+		<div style='margin-bottom:5px'><iframe style='overflow:hidden' scrolling='no' frameborder='0' src='http://content00.nightclub-city.com/nlc/static/club/www/static/ads/2.html' width='760' height='60'></iframe></div>
+
+<div id='tabs' class='clearfix'><ul class='tabs'><li class='first selected'><a title='Play' href='http://apps.facebook.com/nightclubcity' target='_top'>Play</a></li><li class=''><a title='Neighbors' href='http://apps.facebook.com/nightclubcity/home/neighbors' target='_top'>Neighbors</a></li><li class=''><a title='Love Nightclub City?' href='http://www.facebook.com/apps/application.php?id=105150252854220' target='_top'>Love Nightclub City?</a></li></ul></div>
+
+		<div style='margin-top:10px'><div id='installBarContainer' style='display:none'><div class='top_bar'><table width="760" cellpadding="0" cellspacing="0" style="background:white"><tr valign="top"><td width='92'><img src='http://content00.nightclub-city.com/nlc/static/club/www/static/images/bar/bar_logo.jpg'/></td><td><table cellpadding='0' cellspacing='0' width='652'><tr><td class="progress1_done"></td><td id='step_button_2' class="progress2 button"><a href="#" onclick="get_publish_permission(2);return false"><img src="http://content00.nightclub-city.com/nlc/static/club/www/static/images/facebook/buttons/permissions.png"/></a></td><td id='step_button_3' class="progress3 button"><a href="#" onclick="bookmark(3);return false"><img src="http://content00.nightclub-city.com/nlc/static/club/www/static/images/facebook/buttons/bookmark.png"/></a></td><td id='step_button_4' class="progress4 button"><a href="#" onclick="fan(4);return false"><img src="http://content00.nightclub-city.com/nlc/static/club/www/static/images/facebook/buttons/like.png"/></a></td><td id='step_button_5' class="progress5 button"><a href="#" onclick="get_email_permission(5);return false"><img src="http://content00.nightclub-city.com/nlc/static/club/www/static/images/facebook/buttons/subscribe.png"/></a></td></tr><tr><td colspan='5'><div id='bar_completeness' class='bar_1' steps='1'/></td></tr></table></td><td><div class="bar_end"></div></td></tr></table></div></div></div>
+
+		<div class="clearfix"><div id="gameFrameContainer" style="width:1520px"><iframe src ="http://dynamic00.nightclub-city.com/nlc/static/club/NightclubMogul.html?dynamic_server=http://dynamic00.nightclub-city.com/tas/&content_server=http://content00.nightclub-city.com/nlc/static/&app_root_url=http://apps.facebook.com/nightclubcity/&fb_sig_ss=XwGg4ING03Cm8w_zLErLSg__&fb_sig_user=657589045&fb_sig_session_key=2.jwibeYiMJkkgVNqyKRtuzA__.3600.1279274400-657589045&fb_sig_api_key=da1418cc4a0008504bf086a7c6ce18ad" frameborder="0" border="0" width="760" height="600" id="gameFrame" style="float:left;border:none;overflow:hidden;"><p>Your browser does not support iframes.</p></iframe><div id="gameFrameBackground" style="z-index:1;background:black url(http://content00.nightclub-city.com/nlc/static/club/www/static/images/genericbg.jpg);float:right;width:760px;height:600px;"></div></div></div>
+
+		<div class="clearfix" style="margin-top:8px;margin-bottom:8px;border:1px solid #ccc;background:#f7f7f7;height:58px"><div style="border:2px solid white;height:54px"><iframe id="likeFrame" src="http://dynamic00.nightclub-city.com/nlc/like/index?fbid=657589045" frameborder="0" border="0" width="754" height="54" style="overflow:hidden;margin:0;padding:0"></iframe></div></div>
+
+		<!-- Applifier cross-promo code begin -->
+<script language="JavaScript">
+document.write('<iframe src="http://applifier.com/delivery/bar.php?apid=20&t='+new Date().getTime()+'" width=760 height=60 marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling="no"></iframe>');
+</script>
+<!-- Applifier cross-promo code end -->
+
+<div style="text-align:center;margin-top:10px;margin-bottom:10px">
+	<a href="http://content00.nightclub-city.com/nlc/static/club/www/static/facebook/privacy.html" target="_blank">Privacy</a> | <a href="http://content00.nightclub-city.com/nlc/static/club/www/static/facebook/faq.html" target="_blank">FAQ</a> | <a href="http://www.facebook.com/apps/application.php?id=105150252854220" target="_blank">Become a Fan</a> | <a href="mailto:advertise@booyah.com">Advertise with Us!</a>
+
+</div>
+
+<div style="text-align:center;margin-bottom:10px">
+Having trouble seeing Nightclub City?
+Please <a href='http://get.adobe.com/flashplayer/' target="_blank">update your flash player</a> by clicking <a href='http://get.adobe.com/flashplayer/' target="_blank">HERE</a>.
+</div>
+
+<!-- Generated at 2010 6 16 1:13:47.219 -->
+<!-- 47-CN-->
+
+
+		<table id='fan_dialog' cellspacing='0' cellpadding='0' border='0' class='boxy-wrapper fixed' style='z-index: 1339; left:205px;top: 110.5px;display:none'><tbody><tr><td class='top-left'></td><td class='top'></td><td class='top-right'></td></tr><tr><td class='left'></td><td class='boxy-inner'><div class='title-bar' style='-moz-user-select: none;'><h2>Become a Fan</h2><a id='fan_close_link' class='close' href='#'>[close]</a></div><div style='display: block;' id='fan_dialog' class='boxy-content'><fb:fan profile_id='105150252854220'></fb:fan></div></td><td class='right'></td></tr><tr><td class='bottom-left'></td><td class='bottom'></td><td class='bottom-right'></td></tr></tbody></table>
+
+		<table id="inviteDialog" cellspacing="0" cellpadding="0" border="0" class="boxy-wrapper fixed" style="z-index: 1337; visibility: visible; left: 1032px; top: 158.5px;opacity: 1;"><tbody><tr><td class="top-left"></td><td class="top"></td><td class="top-right"></td></tr><tr><td class="left"></td><td class="boxy-inner"><div class="title-bar boxy-content" style="display: block;"><h2>&nbsp;</h2><a onclick="invite_close();return false" class="close" href="#">[close]</a></div><div class="loading boxy-content" id="invite_loading" style="display: none;"><img src="http://content00.nightclub-city.com/nlc/static/club/www/static/images/spinner.gif"></div><div id="iframe_content" style="display: block;" class="boxy-content"><iframe id="innerInviteFrame" width="646" height="500" frameborder="0" style="overflow: auto;" src="http://dynamic00.nightclub-city.com/nlc/invite/blank"></iframe></div></td><td class="right"></td></tr><tr><td class="bottom-left"></td><td class="bottom"></td><td class="bottom-right"></td></tr></tbody></table>
+
+		<table id='song_dialog' cellspacing='0' cellpadding='0' border='0' class='boxy-wrapper fixed' style='z-index: 1341; left:205px;top: 110.5px;display:none'><tbody><tr><td class='top-left'></td><td class='top'></td><td class='top-right'></td></tr><tr><td class='left'></td><td class='boxy-inner'><div class='title-bar' style='-moz-user-select: none;'><h2>Become a Fan</h2><a id='song_dialog_close_link' class='close' href='#'>[close]</a></div><div style='display: block;' id='fan_dialog' class='boxy-content'><div class="loading boxy-content" id="like_song_loading" style="display: none;"><img src="http://content00.nightclub-city.com/nlc/static/club/www/static/images/spinner.gif"></div><div id="like_song_iframe_content" style="display: block;" class="boxy-content"><iframe id="innerLikeSongFrame" width="300" height="80" frameborder="0" style="overflow: auto;" src="http://dynamic00.nightclub-city.com/nlc/like/song"></iframe></div></td><td class='right'></td></tr><tr><td class='bottom-left'></td><td class='bottom'></td><td class='bottom-right'></td></tr></tbody></table>
+	
+
+		<script type="text/javascript">
+			FB_RequireFeatures(["XFBML"], function(){
+				FB.Facebook.init(api_key, channel_path);
+			});
+		</script>
+    </body>
+</html>

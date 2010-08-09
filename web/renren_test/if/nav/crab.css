@@ -1,0 +1,488 @@
+@CHARSET "UTF-8";
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, code, em, img, q, small, strong, dd, dl, dt, li, ol, ul, fieldset, form, label, table, tbody, tr, th, td ,input {margin:0;padding:0;}
+body {font-size:12px;font-family:Tahoma,Verdana,sans-serif, simsun;}
+img,fieldset {border:0;}
+a {outline:none;}
+ul {list-style:none;}
+.clearfix:after {content:""; display:block; clear:both; height: 0; visibility:hidden; }
+select, label, textarea, input{font-family:'lucida grande',tahoma,verdana,arial,simsun,sans-serif;}
+input, textarea, select {font-size:12px;vertical-align:middle;}
+input.gray {background:#F0F0F0 none repeat scroll 0 0 !important;border-color:#FFF #848484 #848484 #FFF !important;border-style:solid;border-width:1px;color:#333333 !important;}
+
+/*top bar*/
+.top-bar {width: 798px; margin-bottom:5px;  }
+.top-bar-left { float:left; width:744px;  background:#efefef url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/farm_invite.jpg) no-repeat -175px -34px;}
+		#scrollBox{float:left; width:510px; height:20px; padding-left:32px; overflow:hidden; font-size:12px;}
+				#scrollBox li{ list-style:none; line-height:20px;}
+				#scrollBox li span {color:#f00;}
+		.top-bar-right {float:right; }
+				.invite-button {display:block;float:right; width:197px; height: 20px;  background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/farm_invite.jpg) no-repeat  0 0; text-indent:-1000em; }
+				.invite-button:hover {text-decoration:none; }
+/**home page*/
+#farm-content { width:800px; overflow:hidden; }
+.farm-container .main {width: 800px;}
+.farm-container .home {}
+/*invite*/
+.invite-out-wrapper {height: 700px; background:#EEF9FD; }
+.invite-copy-box {height: 210px;}
+
+.friendSelectorBox .selector {height:300px; }
+.friends-select-wrappper {background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/friends_select_bg.png) repeat-y -800px  0; }
+.friends-select-wrappper-inner { padding-top:75px; background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/friends_select_bg.png) no-repeat left top; }
+.friends-select-wrappper form {  padding-bottom:20px;background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/friends_select_b.png) no-repeat left bottom;  }
+.friends-select-wrappper .friendSelectorBox {padding:0 96px; }
+.friends-select-wrappper form .skipping {display:none; }
+.friendSelectorBox .selector {overflow-y:auto;}
+.friends-select-wrappper form .inputsubmit {width:88px; margin-left:20px; height:33px; background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/farm_invite_btn.png) no-repeat; border:none; color: #FFFFFF;font-weight: bold;cursor: pointer;}
+.friends-select-wrappper form .gray {display:none; }
+.friends-select-wrappper .button-container {padding-left: 180px;margin-bottom: 20px;}
+
+.iframe-copy-container { height:210px;padding:0 0 0 146px;background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/copy_box.png) no-repeat ;}
+.iframe-copy-main {padding-top:112px;}
+.hide {display:none; }
+.iframe-tip-copyok {display:none; position:absolute; left:150px; width:180px;padding:10px;border:1px solid #6E6E6E;background:#FFECA2;line-height:18px;}
+.iframe-copy-main textarea {float:left; width: 400px; height: 40px; margin-right:30px; border:1px solid #6B7A82; font-size:11px; overflow:hidden; }
+.iframe-copy-main .iframe-copy-btn {display:block; float:left; width: 88px; height: 33px; margin-top:5px; padding:0;font-weight:bold; color:#fff; background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/farm_invite_btn.png) no-repeat left top; overflow:hidden; cursor:pointer; text-align:center; line-height:33px;}
+
+
+/*error-page*/
+.error-wrapper { position:relative; width: 800px; height: 700px; background:#AADC5C url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/error_bg.png) no-repeat -2589px 556px;}
+.error-info {margin:0 0 0 180px; background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/error_bg.png) no-repeat ;  }
+.abs-btn {display:block; position:absolute;  height: 18px;  line-height:1000px; overflow:hidden;  }
+.no-link .error-info {width: 401px; height: 393px; background-position: 0 100px ;}
+a.reclick { left:364px; top:233px; width: 66px;}
+a.furm { left:498px; top:257px; width: 26px;}
+.upkeep .error-info {width: 401px; height: 397px; background-position: -411px 100px ;}
+.flash-error .error-info {width: 402px; height: 347px; background-position: -1293px 90px ;}
+a.flash-reclick { left:337px; top:239px; width: 46px;}
+a.flash-furm { left:498px; top:264px; width: 26px;}
+.quit .error-info {width: 401px; height: 344px; background-position: -1705px 104px ;}
+.num-top .error-info {width: 461px; height: 364px;  background-position: -822px 110px ; }
+.forbid .error-info {width: 472px; height: 370px;  background-position: -2116px 170px ; }
+/*sidebar 2009-12-28*/
+.sidebar {width: 800px; height: 50px; margin-bottom: 10px; background:url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/theme/1228/navigation.png) no-repeat  0 0; overflow:hidden; } 
+		 .sidebar .logo {margin: 5px 0 0 6px; float: left; display:inline; }
+		 .sidebar .logo a {display:block; width: 129px; height: 41px;}
+		 .sidebar .button-link {margin:7px 0 0 24px; float:left; display:inline; }
+ .button-link li { margin-left:12px; float:left; display:inline;} 
+
+		  .button-link li a {display:block; width:94px; height:33px; text-indent:-9999px;}
+
+/* begin lose plugin module */
+.lose-plugin-wrapper { width: 800px; height: 600px; background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/bg_flash_error.png) no-repeat; position: relative; }
+	.download-player, .clear-cache, .zi-xun { position: absolute; }
+	.download-player, .clear-cache { width: 302px; background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/button.png) no-repeat; left: 216px; }
+	.download-player { height: 38px; top: 230px; }
+	.download-player:hover { background-position: 0 -38px; }
+	.clear-cache { height: 41px; background-position: 0 -86px; top: 280px; }
+	.clear-cache:hover { background-position: 0 -127px; }
+	.zi-xun { width: 48px; height: 16px; left: 298px; top: 386px; }
+/* end lose plugin module */
+
+.help{margin-left:3px;height:18px;line-height:18px;margin-top:4px;width:800px;color:#444;}
+.help a{color:#006699;}
+
+/* begin 2010-05-01 */
+.content51 {
+	border: 1px solid #E5E5E5;
+	padding: 30px 40px;
+}
+.content51 h3 {
+	float: left;
+	width: 230px;
+	text-align: right;
+	font-size: 12px;
+	color: #666666;
+}
+.content51 .present, .content51 .sendto, .content51 .wish, .content51 .sendway {
+	margin-bottom: 20px;
+}
+.content51 .present {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #EDF4F9;
+}
+.content51 .present div {
+	float: left;
+}
+.content51 .present h4 {
+	margin-top: 10px;
+}
+.content51 .sendto h3 {
+	padding-top: 3px;
+}
+.sendto input {
+	width: 320px;
+	height: 14px;
+	line-height: 14px;
+	padding: 3px;
+	border: 1px solid #B8D4E8;
+}
+.wish textarea {
+	width: 320px;
+	height: 60px;
+	border: 1px solid #B8D4E8;
+}
+.sendway .sendway-list {
+	float: left;
+}
+.sendway-list li {
+	margin-bottom: 8px;
+}
+.sendway input {
+	vertical-align: middle;
+}
+.sendway label {
+	font-weight: bold;
+	margin: 0 3px;
+	vertical-align: middle;
+}
+.content51 .button-container {
+	text-align: center;
+}
+.content51 .button {
+	background-color: #005EAC;
+	color: #FFFFFF;
+	font-size: 12px;
+	padding: 4px 15px;
+	*padding: 6px 15px 2px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #B8D4E8 #124680 #124680 #B8D4E8;
+	text-align: center;
+	overflow: visible;
+	cursor: pointer;
+}
+/* end 2010-05-01 */
+/********** 2010-07-20 **********/
+.button {
+	background-color: #005EAC;
+	color: #FFFFFF;
+	font-size: 12px;
+	padding: 4px 15px;
+	*padding: 6px 15px 2px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #B8D4E8 #124680 #124680 #B8D4E8;
+	text-align: center;
+	overflow: visible;
+	cursor: pointer;
+}
+/* begin navigation */
+.navigation {
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/navigation.png) no-repeat;
+	height: 55px;
+	margin-bottom: 10px;
+	position: relative;
+	overflow: hidden;
+}
+.navigation .logo a, .navigation .button-link a {
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/navigation.png) no-repeat;
+	position: absolute;
+	text-indent: -9999px;
+}
+.navigation .logo a {
+	width: 130px;
+	height: 49px;
+	left: 0;
+	top: 3px;
+	background-position: 0 -3px;
+}
+.navigation .logo a:hover {
+	background-position: 0 -58px;
+}
+.navigation a.free-gift {
+	width: 117px;
+	height: 38px;
+	left: 135px;
+	top: 6px;
+	background-position: -135px -6px;
+}
+.navigation a.free-gift:hover {
+	background-position: -135px -61px;
+}
+.navigation a.home {
+	width: 117px;
+	height: 38px;
+	left: 254px;
+	top: 6px;
+	background-position: -254px -6px;
+}
+.navigation a.home:hover {
+	background-position: -254px -61px;
+}
+.navigation a.invite {
+	width: 97px;
+	height: 37px;
+	left: 377px;
+	top: 7px;
+	background-position: -377px -7px;
+}
+.navigation a.invite:hover {
+	background-position: -377px -62px;
+}
+.navigation a.discuss {
+	width: 99px;
+	height: 35px;
+	left: 479px;
+	top: 8px;
+	background-position: -479px -8px;
+}
+.navigation a.discuss:hover {
+	background-position: -479px -63px;
+}
+.navigation a.pay {
+	width: 99px;
+	height: 35px;
+	left: 586px;
+	top: 8px;
+	background-position: -586px -8px;
+}
+.navigation a.pay:hover {
+	background-position: -586px -63px;
+}
+.navigation a.fans {
+	width: 97px;
+	height: 31px;
+	left: 696px;
+	top: 10px;
+	background-position: -696px -10px;
+}
+.navigation a.fans:hover {
+	background-position: -696px -65px;
+}
+/* end navigation */
+/* begin send-gift */
+.send-gift {
+	padding-top: 162px;
+	background: #f5ffde url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/top_send-gift.png) no-repeat;
+}
+.send-gift .button-container {
+	text-align: center;
+	margin-bottom: 12px;
+}
+.send-gift .skip, .send-gift .select-friend {
+	height: 37px;
+	display: inline-block;
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/components.png) no-repeat;
+	vertical-align: middle;
+}
+.send-gift a.skip {
+	width: 111px;
+	margin-right: 27px;
+}
+.send-gift .select-friend {
+	width: 181px;
+	background-position: -111px 0;
+	border: none;
+	cursor: pointer;
+}
+.send-gift .gift-list {
+	margin-bottom: 20px;
+}
+.gift-list li {
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/gifts.png) no-repeat;
+	width: 104px;
+	height: 140px;
+	padding: 44px 19px 0;
+	float: left;
+	margin: 4px 8px;
+	text-align: center;
+}
+.gift-list .gift1 {
+	background-position: 0 0;
+}
+.gift-list .gift2 {
+	background-position: -158px 0;
+}
+.gift-list .gift3 {
+	background-position: -316px 0;
+}
+.gift-list .gift4 {
+	background-position: -474px 0;
+}
+.gift-list .gift5 {
+	background-position: -632px 0;
+}
+.gift-list .gift6 {
+	background-position: 0 -191px;
+}
+.gift-list .gift7 {
+	background-position: -158px -191px;
+}
+.gift-list .gift8 {
+	background-position: -316px -191px;
+}
+.gift-list .gift9 {
+	background-position: -474px -191px;
+}
+.gift-list .gift10 {
+	background-position: -632px -191px;
+}
+.gift-list .gift11 {
+	background-position: 0 -382px;
+}
+.gift-list .gift12 {
+	background-position: -158px -382px;
+}
+.gift-list .gift13 {
+	background-position: -316px -382px;
+}
+.gift-list .gift14 {
+	background-position: -474px -382px;
+}
+.gift-list .gift15 {
+	background-position: -632px -382px;
+}
+.gift-list li label {
+	height: 103px;
+	display: block;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+/* end send-gift */
+/* begin receive-gift */
+.receive-gift {
+	height: 520px;
+	padding: 90px 240px 0;
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/bg_receive-gift.png) no-repeat;
+}
+.receive-gift .message {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.receive-gift .avatar, .receive-gift .text, .receive-gift .gift-wrapper {
+	float: left;
+	margin-left: 20px;
+	display: inline;
+}
+.receive-gift .avatar {
+	text-align: center;
+}
+.receive-gift .avatar .name {
+	display: block;
+	margin-bottom: 10px;
+}
+.receive-gift .avatar .button {
+	display: block;
+	margin-top: 10px;
+	text-decoration: none;
+}
+.receive-gift .text {
+	margin-top: 40px;
+}
+.receive-gift .gift-wrapper {
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/components.png) no-repeat -187px -47px;
+	width: 101px;
+	height: 101px;
+	padding: 4px 0 0 4px;
+}
+.receive-gift .link-list {
+	text-align: center;
+	margin-top: 25px;
+}
+.receive-gift .link-list a {
+	display: inline-block;
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/components.png) no-repeat;
+	width: 173px;
+	height: 55px;
+	margin-bottom: 10px;
+}
+.receive-gift .link-list a.button_1 {
+	background-position: 0 -47px;
+}
+.receive-gift .link-list a.button_2 {
+	background-position: 0 -112px;
+	margin-bottom: 66px;
+}
+.receive-gift .link-list a.button_3 {
+	width: 162px;
+	height: 49px;
+	background-position: 0 -177px;
+}
+/* end receive-gift */
+/* begin faq */
+.faq {
+	position: relative;
+	zoom: 1;
+}
+.faq, .faq a {
+	color: #89402c;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.faq .intro {
+	display: block;
+	vertical-align: middle;
+}
+.faq .return_1, .faq .text {
+	position: absolute;
+}
+.faq .return_1 {
+	right: 20px;
+	top: 24px;
+}
+.faq .text {
+	right: 40px;
+	bottom: 40px;
+}
+.faq .return_2 {
+	margin-left: 30px;
+}
+/* end faq */
+/* begin choose-friend */
+.choose-friend {
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/bg_select-friend.png) no-repeat 0 35px;
+	min-height: 880px;
+	_height: 880px;
+	position: relative;
+}
+.choose-friend .text {
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	text-align: center;
+}
+.choose-friend .gift-wrapper .gift {
+	position: absolute;
+	left: 49px;
+	top: 77px;
+}
+.choose-friend .friend-selector {
+	width: 556px;
+	height: 582px;
+	margin: 18px 0 26px 232px;
+}
+.choose-friend .send-records {
+	width: 632px;
+	height: 145px;
+	padding: 77px 18px 18px;
+	background: url(http://flash.xnimg.cn/xnapp/youqu/farm/1007221054/img/bg_records.png) no-repeat;
+	margin: 0 auto;
+}
+.send-records .inner-wrapper {
+	border: 1px solid #ccc;
+	padding-right: 87px;
+	height: 130px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.send-records table {
+	width: 100%;
+}
+.send-records table td {
+	text-align: center;
+	padding: 5px 0;
+}
+.send-records table td.time {
+	width: 23%;
+}
+.send-records table td.user {
+	width: 45%;
+}
+.friend-selector form .skipping {display:none; }
+/* end choose-friend */
+/********** 2010-07-20 **********/

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="loader.js"></script>
+
+
+</head>
+<body>
+<script>
+PL.js(['install_bar.js']);
+var config = {
+		log:1,//init log? server can force debug, just for develop
+		//fb:1,//init fb?
+		//fbd:1,//init fb debug? 
+		logcb:function(r){//log init callback
+			console.log('log callback' +  window.location.href);
+		},
+		after_fbinit:function(){//before FB.init callback
+			console.log('after_fbinit in' + window.location.href);
+		},
+		before_fbinit:function(){//after FB.init callback
+			console.log('before_fbinit in' + window.location.href);
+		},
+		cb:function(){//after config allback
+			PL.js(['stat/common.js'],function(){
+
+                var tt='key';
+                var hash  = {tt:tt};
+                hash[tt]='vaule';
+                console.log(hash.tt,hash.key,hash[tt],hash['key'])
+				PLStat.stat_try({ 
+			    	 id  : PLStat.uuid(),//link 唯一标识
+			    	 channel:'mall', //应用标示，flash程序可以从配置读取
+			    	 type:'link',//
+					 u   : '1233456', //发送者fbid
+					 s  : 'a',
+					 w   : 'test', //什么地方触发？
+					 c   : 'testva', //内容标示
+					 d  : 'data1',//其他内容
+					 d1  : 'data1',//其他内容
+					 d2  : 'data1',//其他内容
+				       })
+			   }
+			);
+		}
+}
+console.log('JSON',JSON.parse('{"a":1}'))
+PL.init('fb_config.js',config);
+
+</script>
+
+</body>
+</html>

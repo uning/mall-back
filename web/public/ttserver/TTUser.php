@@ -76,7 +76,7 @@ class TTUser extends TTUDB
 				$this->puto( $inventory_obj,TT::GOODS_GROUP );
 			}
 		}
-
+		
 		//初始化楼体
 		$bb_obj['tag'] = 99505;
 		$bb_obj['pos']['x'] = 0;

@@ -1,25 +1,3 @@
-bin
-*bin-debug*
-*-debug*
-*\.bak*
-*.obj
-*\.*~
-*.log
-*::*
-backend/\.*
-
-
-settings/*
-public/photo/
-webreject/log/readme.txt
-web/public/tests/request/*
-frontflash/bin-test/*
-frontflash/to-server/history*
-backend/web/public/tests/request/*
-
-*.fla
-
-
 
 
 

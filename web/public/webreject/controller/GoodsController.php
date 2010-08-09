@@ -348,7 +348,7 @@ class GoodsController extends BaseController
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
 					if( $sconfig['gridWidth'] )					
-						$pertime = $gr[1]*$gconfig['selltime']/$sconfig['gridWidth'];
+						$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
 					if( $pertime )
 						$snum = floor( $stime/$pertime );
 					$ret['pertime'][$s][$t][$k] = $pertime;

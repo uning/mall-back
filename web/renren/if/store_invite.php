@@ -13,7 +13,7 @@ if($pid &&$ids && $linkid){
 	$tw->puto($_REQUEST);
 }
 file_put_contents('store_invite.txt',print_r($_REQUEST,true));
-echo "<pre>\n";
-print_r($_REQUEST);
+//echo "<pre>\n";
+//print_r($_REQUEST);
 	
 

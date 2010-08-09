@@ -451,7 +451,6 @@ class UserController extends BaseController
 	 * @param $params
 	 *   require  u               -- 玩家id
 	 *            cid             -- cinema id
-	 *            values          -- 值数组
 	 * @return 
 	 *            s         --  OK
 	 */	

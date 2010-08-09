@@ -37,6 +37,7 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 */
 //dotest( 'UserController.get_items',$p = array('u'=>21));
 //dotest( 'Tool.clean',$p = array('u'=>21));
+dotest( 'Tool.all',$p = array('u'=>36));
 //dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>1));

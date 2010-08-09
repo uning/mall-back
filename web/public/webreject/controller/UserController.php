@@ -355,7 +355,9 @@ class UserController extends BaseController
 	{
 
 		//该数组是UpgradeConfig.php中数组的一个子集，不涉及商厦容量无变化的元素
-		$mall_level = array(1=>array('level'=>2,'capacity'=>"3,3",'needmoney'=>500)
+		$mall_level = array(
+				0=>array('level'=>1,'capacity'=>"3,2",'needmoney'=>0)
+			    ,1=>array('level'=>2,'capacity'=>"3,3",'needmoney'=>500)
 				,2=>array('level'=>5,'capacity'=>"4,3",'needmoney'=>1000)
 				,3=>array('level'=>9,'capacity'=>"5,3",'needmoney'=>10000)
 				,4=>array('level'=>13,'capacity'=>"5,4",'needmoney'=>10000)
@@ -374,7 +376,7 @@ class UserController extends BaseController
 		$tu = new TTUser( $uid );
 
 		$ua = $tu->getf( array( TT::CAPACITY_STAT,TT::EXP_STAT ) );
-
+$ret['ua'] = $ua;
 		$i = 0;//找出当前商厦状态对应数组中第几个
 		foreach( $mall_level as $k=>$v ){
 			if( $v['capacity'] != $ua['capacity'] ){
@@ -384,6 +386,7 @@ class UserController extends BaseController
 		}
 
 		$level = UpgradeConfig::getLevel( $ua['exp'] );
+$ret['level'] = $level;
 		if( $level < $mall_level[$i+1]['level'] ){
 			$ret['s'] = 'level';
 			return $ret;

@@ -182,8 +182,7 @@ class Friend{
 		else{
 			$tu->putf( TT::FRIEND_STAT ,$fids);
 		}
-		$fids .= ",quest002,quest001,sr009";//for test
-		$fl = explode(",",$fids);
+		$fl = explode(',',$fids);
 		$rinfos= array();
 		$dup=array();
 		foreach( $fl as $pid ){
@@ -195,11 +194,10 @@ class Friend{
 			if($id){
 				$fdid = $tu->getdid($id,'fr');
 				$fdata = json_decode( $infos[$fdid],true);
-				if(!$fdata ||  $fdata['ut']<$now - 3600){
+				//if(!$fdata ||  $fdata['ut']<$now - 3600){
+				if(1||!$fdata ||  $fdata['ut']<$now - 3600){
 					$ftu = new TTUser($finfos['id']);
 					$acc = $ftu->getdata();
-					if($fdata)
-						$fdata = @array_merge($fdata,$acc);
 					$acc['name'] = $finfos['name'];
 					$acc['icon'] = $finfos['icon'];
 					$acc['pid'] = $pid;

@@ -80,7 +80,19 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="overflow: auto;background: url('../static/images/back.png') no-repeat;" >
+<body style="width=100%;height:100%;overflow: hidden;background: url('../static/images/back.png') no-repeat;" >
+ <div class="topbar" style='width:798px;height:20px;background-color:#FFFFE1;
+border:1px solid #E0E1E5;
+color:#FF0000;
+font-weight:bold;
+margin:15px 0;
+padding:10px 5px;'>
+  
+  购物天堂目前处于内测中 | <a href='#' onclick='$("#feedback").click();return false; '>反馈问题</a> 
+| <a href='<?php echo RenrenConfig::$callback_url?>/static/help/teach.html' target='_blank' >帮助</a> 
+| <a href='http://apps.renren.com/happyhotel/?f=mall' target='_blank' >返回旅馆</a>  
+</div>
+ <div style="clear:both"></div>
 
 
 
@@ -93,8 +105,9 @@ function install_swf(pid){
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
-        <li class="forum"><a  href="javascript:alert('暂未开放');"  class="fullpage">讨论群</a></li>
-        <li class="payment" ><a  href="javascript:alert('暂未开放');"   id ="pay">充值</a></li>
+        <li class="forum"><a  href="feedback.php"  id="feedback" >问题反馈</a></li>
+        <!--li class="forum"><a  href="javascript:alert('暂未开放');"  class="fullpage">讨论群</a></li-->
+        <li class="payment" ><a  href="javascript:alert('暂未开放');return false;"   id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>

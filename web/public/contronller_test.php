@@ -15,7 +15,9 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
+
 dotest('Friend.get');
+dotest('Friend.get',array('u'=>7));
 return;
 
 dotest('ItemController.buy');

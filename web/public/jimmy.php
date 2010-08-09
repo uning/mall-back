@@ -15,19 +15,12 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-<<<<<<< HEAD
-//dotest('Achieve.get',$p= array('u'=>1));
-//dotest('Achieve.finish',$p= array('u'=>1,'tag'=>1001));
-//dotest('Achieve.get',$p= array('u'=>1));
-dotest('UserController.login',$p = array('pid'=>'JimmyChou'));
-=======
 //dotest('Achieve.get',$p= array('u'=>192));
 //dotest('Achieve.finish',$p= array('u'=>1,'tag'=>1001));
 //dotest('Achieve.get',$p= array('u'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>1));
 //dotest('UserController.login',$p = array('pid'=>'sr013'));
 //dotest('UserController.login',$p = array('pid'=>'JimmyChou840720'));
->>>>>>> 55b8a05251f6b549a8112363241af697e94aeec1
 //dotest('Advert.get',$p= array('u'=>1));
 //dotest( 'UserController.precheckout',$p = array('u'=>1));
 dotest('Advert.get',$p= array('u'=>189));

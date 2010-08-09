@@ -9,7 +9,10 @@ class RenrenConfig
    public static  $canvas_name = "livemall";
    public static  $reciever_url = "/work/mall/backend/web/renren/xd.html";
    
+   //public static  $resource_urlp = "http://m1.hotel.6waves.com/mall/static/";
+   //public static  $resource_urlp = "static/";
    public static  $resource_urlp = "http://rrmall.playcrab.com/work/mall/backend/web/renren/static/";
+   //public static  $iframe_urlp = "http://supermall.playcrab.com/inif/";
    public static  $ajax_urlp = "/ajax/"; //this can be all the same??move to backend
     public static $group_url = "http://group.renren.com/GetTribe.do?id=301354649";
     public static $pay_secure = 'a0901b';

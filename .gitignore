@@ -12,10 +12,8 @@ backend/\.*
 settings/*
 public/photo/
 webreject/log/readme.txt
-/other_public/*
-backend/web/public/tests/request/*
+web/public/tests/request/*
 frontflash/bin-test/*
-frontflash/to-server/*.fla
 frontflash/to-server/history*
 backend/web/public/tests/request/*
 

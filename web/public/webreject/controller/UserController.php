@@ -1,5 +1,5 @@
 <?php
-class UserController // extends BaseController
+class UserController extends BaseController
 {
 	/**
 	 * 登录游戏
@@ -104,7 +104,6 @@ class UserController // extends BaseController
 	 * 更新用户信息
 	 * @param $params
 	 *  require  infos           --  用户数据
-	 *                           id          --  用户内部id，必需
 	 *  option                   icon        --  headicon
 	 *  option                   name        --  mall name
 	 *  option                   gender      --  
@@ -115,7 +114,8 @@ class UserController // extends BaseController
 	public function update_info($params)
 	{
 		$infos = $params['infos'];
-		TTGenid::update($infos);
+		$uid = $params['u'];
+		TTGenid::update($infos,$uid);
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -429,25 +429,18 @@ class UserController // extends BaseController
 	 *   require  u               -- 玩家id
 	 *            keys            -- 键数组
 	 *            values          -- 值数组
-	 *            直接放到一个map中不就ok了？//tingkun
 	 * @return 
 	 *            s         --  OK
 	 */	
 	
 	public function update_profile( $params )
-	{
-		$uid = $params['u'];
-		$keys = $params['keys'];
-		$values = $params['values'];
-		$tu = new TTUser( $uid );
-		foreach ($keys as $k=>$v){
-			$vv=$values[$k];//
-			if($vv && $v)
-				$tu->putf($v,$vv);
-		}
-
-
-		$ret['s'] = 'OK';
-		return $ret;
+	{/*
+	    $uid = $params['u'];
+	    $keys = $params['keys'];
+	    $values = $params['values'];
+	    $tu = new TTUser( $uid );
+	    $tu->putf( $keys,$values );*/
+	    $ret['s'] = 'OK';
+	    return $ret;
 	}
 }

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>意见反馈</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  
+</head>
+<body>
+<div id="feedback">
+<p class="message">与我们联系，请给出你宝贵的反馈。你留下的每个字都将被用来改善我们的服务。</p>
+
+<form method="post">
+    <p>称呼：
+	<input type="text" class="text" = name="name" id="idename" inlinetip="请留下你的尊姓大名" style="width:390px;*width:395px;" >  </p>
+    <p>联系方式：
+	<input type="text" class="text" = name="contact" id="idcontact" inlinetip="请留下你的联系方式，以便得到回复" style="width:390px;*width:395px;" >  </p>
+<p></p>
+    
+    <p>反馈内容：<br/>
+      <textarea name="content" id="idcontent" inlinetip="你的建议" cols="45" rows="5"></textarea>
+    </p>
+    <p><button><strong>提交</strong></button>&nbsp;<button class="ui-btn-gray" type="reset">取消</button></p>
+</form>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" >
+function form_triger(p_jqsel)
+{
+	  if(arguments.length   ==   0)  
+                  p_jasel   =   "";  
+        else  
+                  p_jasel   =   arguments[0];   
+	try{
+	 if(p_jasel == "" ){
+	 inputsWithTip = $('input[inlinetip],textarea[inlinetip]')
+		}
+	else{
+		inputsWithTip = $(p_jasel).children('input[inlinetip],textarea[inlinetip]')
+    }			
+		inputsWithTip.each(function(i,jqinput){
+				var input = $(jqinput);
+				if( input.attr('value') == ''){
+				  input.addClass('with-inlinetip');
+				  input.attr('value', input.attr('inlinetip'));
+				}
+				
+				
+				input.bind('focus',function(){
+					if( input.attr('value') == input.attr('inlinetip')){
+					input.removeClass('with-inlinetip');
+					input.attr('value', '');
+					}
+					});
+				input.bind('blur',function(){
+					if( input.attr('value') == '' ){
+					input.addClass('with-inlinetip');
+					input.attr('value', input.attr('inlinetip'));
+					}
+					});
+              
+				input.parents('form').bind('reset',function(){
+					window.setTimeout(function(){
+						input.trigger('blur');
+						},1);
+					});
+		});
+		
+		//*
+	$('form').bind('submit', function(){
+			$(this).find('input[inlinetip]').each(function(i, input){
+				var input = $(input);
+				if(input.val() == input.attr('inlinetip')){
+				input.val('');
+				}
+				});
+			});
+		//	*/
+		
+	}catch(e)
+	{
+		myalert("dfdf:"+e);
+	}
+}
+form_triger();
+</script>

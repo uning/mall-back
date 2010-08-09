@@ -5,6 +5,8 @@ require_once('config.php');
   // $platform_id = "renren".$renren->user;
     //$session_key = $renren->session_key;
 ?>
+
+<div style="clear:both"></div>
 <div id='is_install'></div>
 <div id='content'>
     <div class='container'>

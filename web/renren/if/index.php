@@ -86,7 +86,7 @@ function install_swf(pid){
 
 <div id="header">
     <div id="navga">
-	<div class="logo"><a href="<?php echo RenrenConfig::$canvas_url.'?from=bar_logo';?>" target="_top" title="开始游戏!">logo</a></div>
+    <div class="logo"><a href="http://apps.renren.com/happyfarmtwo/" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" >游戏</a></li>

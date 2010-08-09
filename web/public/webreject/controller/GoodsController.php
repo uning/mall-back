@@ -112,8 +112,8 @@ class GoodsController extends BaseController
 			$cnt= count($shop_obj['goods']);
 			$maxcnt = $item['backnum'] + 1; //todo : get backgoods num of shop
 			if($cnt > $maxcnt){
-				$ret['s'] = 'max';
-				return $ret;
+				//$ret['s'] = 'max';
+				//return $ret;
 			}
 			$shop_obj['goods'][$goods['id']]=$now+$index;
 //			$goods['stime'] =  $now + $index;

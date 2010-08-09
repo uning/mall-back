@@ -1,4 +1,5 @@
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xn="http://www.renren.com/2009/xnml">
 <head>
 <link rel="stylesheet" type="text/css" href="static/css/gift.css" />
 </head>

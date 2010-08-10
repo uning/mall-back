@@ -462,6 +462,7 @@ class UserController extends BaseController
 	    $cid = $params['cid'];
 	    $tu = new TTUser( $uid );
 	    $cinema_obj = $tu->getbyid( $cid );
+	    $ret['cinemaobj'] = $cinema_obj;
 	    if( !$cinema_obj ){
 	        $ret['s'] = 'notexsit';
 	        return $ret;

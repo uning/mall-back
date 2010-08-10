@@ -5,8 +5,9 @@ class Gift{
 	 * @param $params
 	 *  require u  -- user id
 	 *  require fid  -- friend id
-	 *  require gtag  -- gift id
 	 *  require gid  -- gift id
+	 *  require msg  -- msg
+	 *  optional  gtag  -- gift tag
 	 *  optional  fname  -- myname
 	 *  optional  fpic  -- myname
 	 *
@@ -95,7 +96,7 @@ class Gift{
 	 * @param $params
 	 *  require u  -- user id
 	 *  require d  -- 礼物数据(数组)
-	 array(array('id',tag,otherdata));//前端按记录准备好的数据
+	 array(array(id,tag,otherdata));//前端按记录准备好的数据
 	 id   礼物对应record id
 
 	 * @return 

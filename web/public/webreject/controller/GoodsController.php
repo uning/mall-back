@@ -318,8 +318,13 @@ class GoodsController extends BaseController
 			$sconfig = ItemConfig::getItem( $shopids[$s] );
 			//			$ret['sconfig'][$s] = $sconfig;
 			//			$ret['before_gs'][] = $gs;
-			array();
-			if( 0 ){//对电影院等特殊商店加入结算时间
+			if( $sconfig['tag'] == '60102' ){//对电影院加入结算时间，并上锁
+			    $cinema_obj = $tu->getbyid( $s );
+			    if( !$cinema_obj ){
+			        continue;
+			    }
+			    if( $cinema_obj['ctime'] ){
+			    }
 			}
 			ksort($gs);
 			//          $ret['after_gs'][] = $gs;

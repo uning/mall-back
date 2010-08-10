@@ -449,7 +449,7 @@ class UserController extends BaseController
 
 
 	/**
-	 * 把顾客强行拖进电影院，目前进一个提前１分钟结算时间
+	 * 把顾客强行拖进电影院，目前按4分钟进一个计算
 	 * @param $params
 	 *   require  u               -- 玩家id
 	 *            cid             -- cinema id
@@ -466,15 +466,48 @@ class UserController extends BaseController
 	        $ret['s'] = 'notexsit';
 	        return $ret;
 	    }
-	    if( $cinema_obj['lock'] == '1' ){
+	    $item = ItemConfig::getItem( $cinema_obj['tag'] );
+	    $less_time = $item['selltime'];
+	    if( $cinema_obj['lock'] != '0' ){//有钱未捡或正在上映
 	        $ret['s'] = 'lock';
 	        return $ret;
 	    }
-	    $cinema_obj['ctime'] -= 60;
+	    $cinema_obj['ctime'] -= $less_time;
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}
 
+	
+	/**
+	 * 电影开始上演，在线时前端触发
+	 * @param $params
+	 *   require  u               -- 玩家id
+	 *            sid             -- shop id 不仅限于cinema
+	 * @return 
+	 *            s         --  OK
+	 */		
+
+	public function start_showing( $params )
+	{
+	    $uid = $params['u'];
+	    $cid = $params['cid'];
+	    $now = time();
+	    $tu = new TTUser( $uid );
+	    $cinema_obj = $tu->getbyid( $cid );
+	    if( !$cinema_obj ){
+	        $ret['s'] = 'notexsit';
+	        return $ret;
+	    }
+	    $item = ItemConfig::getItem( $cinema_obj['tag'] );
+	    if( $cinema_obj['lock'] != '0' ){//有钱未捡或正在上映
+	        $ret['s'] = 'lock';
+	        return $ret;
+	    }
+	    $cinema_obj['lock'] = '2';
+	    $cinema_obj['ctime'] = $now - 30*$item['selltime'];
+	    $ret['s'] = 'OK';
+	    return $ret;
+	}	
 	
 	/**
 	 * 捡钱
@@ -495,7 +528,7 @@ class UserController extends BaseController
 	        $ret['s'] = 'notexist';
 	        return $ret;
 	    }
-	    if( $shop_obj['lock'] == '0' ){
+	    if( $shop_obj['lock'] != '1' ){//没钱可捡或正在上映
 	        $ret['s'] = 'cantpick';
 	        return $ret;
 	    }
@@ -504,7 +537,7 @@ class UserController extends BaseController
 	        $shop_obj['money'] = 0;
 	    }
 	    $shop_obj['lock'] = '0';
-	    $shop_obj['ctime'] = $now;//捡钱后可以播放
+	    $shop_obj['ctime'] = $now;//捡钱后可以重新进人
 	    $tu->puto( $shop_obj );
 	    $ret['s'] = 'OK';
 	    return $ret;

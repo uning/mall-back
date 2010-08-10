@@ -81,7 +81,7 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="background: url('../static/images/back.png') no-repeat;overflow-x: hidden;overflow-y: scroll;" >
+<body style="background: url('../static/images/back.png') no-repeat;overflow-x: hidden;overflow-y: hidden;" >
 
 
 

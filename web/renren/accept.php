@@ -76,7 +76,7 @@ if(!$irec){?>
 		</div>
 		</div>
 		<div align="center">
-			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="window.location=<?php echo RenrenConfig::$canvas_url;?>"/>
+			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
 		</div>
 		<?php 
 			$id = $ttu->getdid( '',TT::GIFT_GROUP );

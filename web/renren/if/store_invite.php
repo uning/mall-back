@@ -1,6 +1,5 @@
 <?php
 require_once('../config.php');
-header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 $linkid = $_REQUEST['linkid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
@@ -14,6 +13,7 @@ if($pid &&$ids && $linkid){
 	file_put_contents('store_invite.txt',print_r($_REQUEST,true));
 }
 file_put_contents('store_invite.txt',print_r($_REQUEST,true));
+header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 //echo "<pre>\n";
 //print_r($_REQUEST);
 	

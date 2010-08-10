@@ -27,7 +27,7 @@ function dotest($m,$p=null)
 //dotest('Advert.get',$p= array('u'=>189));
 //dotest('Advert.buy',$p= array('u'=>1,'tag'=>1,'num'=>100));
 //dotest('Advert.set',$p= array('u'=>1,'tag'=>1));
-//dotest('Friend.get',$p=array('u'=>5));
+//dotest('Friend.test',$p=array('u'=>5));
 //dotest('Friend.get',$p=array('u'=>1));
 //dotest('UserController.get_achieves',$p=array('u'=>1));
 /*

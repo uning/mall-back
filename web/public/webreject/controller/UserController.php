@@ -488,7 +488,24 @@ class UserController extends BaseController
 	{
 	    $uid = $params['u'];
 	    $sid = $params['sid'];
+	    $now = time();
 	    $tu = new TTUser( $uid );
+	    $shop_obj = $tu->getbyid( $sid );
+	    if( !$shop_obj ){
+	        $ret['s'] = 'notexist';
+	        return $ret;
+	    }
+	    if( $shop_obj['lock'] == '0' ){
+	        $ret['s'] = 'cantpick';
+	        return $ret;
+	    }
+	    if( $shop_obj['money'] ){
+	        $tu->numch( TT::MONEY_STAT,$shop_obj['money'] );
+	        $shop_obj['money'] = 0;
+	    }
+	    $shop_obj['lock'] = '0';
+	    $shop_obj['ctime'] = $now;//捡钱后可以播放
+	    $tu->puto( $shop_obj );
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}	

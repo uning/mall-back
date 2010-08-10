@@ -20,14 +20,14 @@ function dotest($m,$p=null)
 //dotest('Achieve.get',$p= array('u'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>1));
 //dotest('UserController.enlarge_mall',$p = array('u'=>47));
-//dotest('UserController.login',$p = array('pid'=>'285461479'));
+//dotest('UserController.login',$p = array('pid'=>'45597666'));
 //dotest('UserController.login',$p = array('pid'=>'JimmyChou840720'));
 //dotest('Advert.get',$p= array('u'=>1));
 //dotest( 'UserController.precheckout',$p = array('u'=>1));
 //dotest('Advert.get',$p= array('u'=>189));
 //dotest('Advert.buy',$p= array('u'=>1,'tag'=>1,'num'=>100));
 //dotest('Advert.set',$p= array('u'=>1,'tag'=>1));
-//dotest('Friend.get',$p=array('u'=>161));
+//dotest('Friend.test',$p=array('u'=>5));
 //dotest('Friend.get',$p=array('u'=>1));
 //dotest('UserController.get_achieves',$p=array('u'=>1));
 /*
@@ -39,7 +39,7 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 //dotest( 'Tool.clean',$p = array('u'=>48));
 //dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));
-dotest('GoodsController.checkout',$p=array('u'=>48));
+//dotest('GoodsController.checkout',$p=array('u'=>48));
 //dotest( 'Tool.showids',$p = array('u'=>1));
 //dotest( 'Tool.genusers',$p = array('u'=>1));
 //dotest('CarController.go_goods',$p = Array('c'=>Array('id'=>"23:c:4c4fe86bb4aaa",'goodsTag'=>10101),'u'=>1) );

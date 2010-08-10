@@ -34,7 +34,7 @@ if(!$irec){?>
 	if(!$irec['invalid']){
 		$gid = $irec['gift'];
 		if($gid){?>
-	<link rel="stylesheet" type="text/css" href="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/css/gift.css" />
+	<style>@IMPORT url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/cs/gift.css");</style>
 		<div class="padding_content center">
 		<div class="main_giftConfirm_cont">
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>

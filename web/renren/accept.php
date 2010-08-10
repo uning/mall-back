@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="static/css/gift.css" />
 <?php
 require_once('config.php');
 require_once('pop/freeGift.php');
@@ -16,7 +15,7 @@ if(!$irec || !$fromuser||!$touser){?>
 <xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>"/>
 <xn:else>
 <xn:redirect url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>"/>
- </xn:else>
+</xn:else>
 </xn:if-is-app-user>
 <?php 
 		exit ;
@@ -35,7 +34,28 @@ if(!$irec || !$fromuser||!$touser){?>
 	if(!$irec['invalid']){
 		$gid = $irec['gift'];
 		if($gid){?>
-		
+		<style type="text/css">
+.padding_content { padding: 8px; }
+ .center { text-align: center; }
+ .gift_img { padding: 17px 11px 0px 0px; text-align: center; }
+ .gift_name { margin: 5px 17px 0px 5px; color: #70461e; font-weight: bold; }
+ li.giftLocked .gift_name { color: #666666; }
+ .gift_name span { display: block; height: 30px; }
+ .giftIconImg { width: 75px; height: 75px; }
+ .main_gift_cont ul { list-style-type: none; }
+ .main_giftConfirm_cont { background: #ffffff url("http://assets.frontierville.zynga.com/production/R.0.8.001.19073/assets/images/gift/gift_confirm_box.png") no-repeat scroll left top; width: 744px; height: 265px; }
+ .main_giftConfirm_cont h3 { color: #559890; font-size: 18px; padding-top: 15px; }
+ .gift_box_holder { padding: 34px 150px; }
+ .gift_box_cont { background: #ffffff url("http://assets.frontierville.zynga.com/production/R.0.8.001.19073/assets/images/gift/gift_confirm_gift.png") no-repeat scroll left top; width: 152px; height: 151px; padding-top: 20px; float: left; }
+ .gift_from { padding: 55px 0px 0px 62px; float: left; }
+ .gift_box_cont .giftConfirm_img { height: 115px; }
+ .gift_box_cont .giftConfirm_name { color: #559890; font-weight: bold; }
+ .from_box_cont { background: #ffffff url("http://assets.frontierville.zynga.com/production/R.0.8.001.19073/assets/images/gift/gift_confirm_user.png") no-repeat scroll left top; width: 117px; height: 115px; padding-left: 1px; padding-top: 23px; float: right; margin-top: 15px; }
+ .giftFrom_img img { height: 50px; }
+ .giftFrom_name { padding-top: 20px; }
+ .giftFrom_name a:link,  .giftFrom_name a:visited { color: #3b5998; font-weight: bold; text-decoration: underline; }
+ .giftFrom_name a:hover,  .giftFrom_name a:active { color: #559890; text-decoration: none; }
+		</style>
 		<div class="padding_content center">
 		<div class="main_giftConfirm_cont">
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
@@ -60,7 +80,7 @@ if(!$irec || !$fromuser||!$touser){?>
 		$irec['invalid'] =  true;
 		$tw->updateo($irec);
 		if(!$gid){?>
-		<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>"/>
+		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
 		<?php }
 		}
 		?>

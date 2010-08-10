@@ -27,7 +27,8 @@ class ItemController {
 		$ids=array();
 		$tu = new TTUser($uid);
 		$pop = 0 ;
-		$shop_num  = 0;		
+		$shop_num  = 0;
+		$now = time();
 		foreach($params['d'] as $index=>$row){
 			$tag = $row['tag'];
 			$num = 1;
@@ -52,7 +53,7 @@ class ItemController {
 				$row['id']=$tu->getdid(false,TT::ITEM_GROUP);//other
 			}
 			if( $row['tag'] == '60102' ){//电影院买后立即可播放电影
-//			    $row['']
+			    $row['ctime'] = $now;
 			}
 			$pop += $item['pop'];
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 

@@ -1,10 +1,10 @@
 Array
 (
-    [linkid] => :4c5fb580b2202
-    [gift] => 71105
+    [linkid] => 202150436:4c5fe77fdbd4b
+    [gift] => 
     [ids] => Array
         (
-            [0] => 202150436
+            [0] => 45182749
         )
 
 )

@@ -63,7 +63,7 @@ class TTUser extends TTUDB
 		$goods_obj['pos']['y'] = $shop_id;
 		$this->puto( $goods_obj,TT::GOODS_GROUP );
 
-		//初始化库存的Ｒｏｓｅ，Ｃｏｆｆｅｅ等各５箱，共１５箱
+		//初始化库存的rose，coffee等各5箱，共15箱
 		for( $i=10106;$i<10109;$i++ ){
 			$inventory_obj['tag'] = $i;
 			$inventory_obj['pos'] = 's';

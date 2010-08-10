@@ -96,7 +96,7 @@ if(!$irec){?>
 .giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
 		</style>
 		<div align="center">
-			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" >~游戏去~</a>
+			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
 		</div>
 		<?php }?>
 <xn:else>

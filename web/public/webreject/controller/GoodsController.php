@@ -273,7 +273,7 @@ class GoodsController extends BaseController
 		$popu = $params[TT::POPU];
 		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-		//		$ret['ua'] = $ua;
+		$ret['ua'] = $ua;
 		$shop_num = $params['shop_num'];
 		$ret['bshopnum'] = $shop_num;
 		/*
@@ -291,6 +291,8 @@ class GoodsController extends BaseController
 		    $shop_num = 0;
 			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
+			$ret['item'][] = $item;
+			$ret['gridwidth'][] = $item['gridwidth'];
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;

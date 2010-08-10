@@ -36,10 +36,10 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 }
 */
 //dotest( 'UserController.get_items',$p = array('u'=>21));
-//dotest( 'Tool.clean',$p = array('u'=>21));
+//dotest( 'Tool.clean',$p = array('u'=>48));
 //dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));
-//dotest('GoodsController.checkout',$p=array('u'=>1));
+dotest('GoodsController.checkout',$p=array('u'=>48));
 //dotest( 'Tool.showids',$p = array('u'=>1));
 //dotest( 'Tool.genusers',$p = array('u'=>1));
 //dotest('CarController.go_goods',$p = Array('c'=>Array('id'=>"23:c:4c4fe86bb4aaa",'goodsTag'=>10101),'u'=>1) );

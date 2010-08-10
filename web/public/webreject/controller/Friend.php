@@ -218,6 +218,5 @@ class Friend{
 		return $ret;
 	}
 
-
 }
 

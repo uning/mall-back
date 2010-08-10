@@ -437,21 +437,22 @@ class UserController extends BaseController
 		$uid = $params['u'];
 		$ups = $params['ups'];
 		$tu = new TTUser( $uid );
+        $data = array();
 		foreach ($ups as $k=>$v){
 		    if( $v )
-				$tu->putf($k,$v);
+				$data[$k] = $v;
 		}
+		$tu->mputf( $data );
 		$ret['s'] = 'OK';
 		return $ret;
 	}
 
 
 	/**
-	 * 把顾客强行拖进电影院
+	 * 把顾客强行拖进电影院，目前进一个提前１分钟结算时间
 	 * @param $params
 	 *   require  u               -- 玩家id
 	 *            cid             -- cinema id
-	 *            values          -- 值数组
 	 * @return 
 	 *            s         --  OK
 	 */	
@@ -465,7 +466,48 @@ class UserController extends BaseController
 	        $ret['s'] = 'notexsit';
 	        return $ret;
 	    }
+	    if( $cinema_obj['lock'] == '1' ){
+	        $ret['s'] = 'lock';
+	        return $ret;
+	    }
+	    $cinema_obj['ctime'] -= 60;
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}
+
+	
+	/**
+	 * 捡钱
+	 * @param $params
+	 *   require  u               -- 玩家id
+	 *            sid             -- shop id 不仅限于cinema
+	 * @return 
+	 *            s         --  OK
+	 */	
+	public function pickup_money( $params )
+	{
+	    $uid = $params['u'];
+	    $sid = $params['sid'];
+	    $now = time();
+	    $tu = new TTUser( $uid );
+	    $shop_obj = $tu->getbyid( $sid );
+	    if( !$shop_obj ){
+	        $ret['s'] = 'notexist';
+	        return $ret;
+	    }
+	    if( $shop_obj['lock'] == '0' ){
+	        $ret['s'] = 'cantpick';
+	        return $ret;
+	    }
+	    if( $shop_obj['money'] ){
+	        $tu->numch( TT::MONEY_STAT,$shop_obj['money'] );
+	        $shop_obj['money'] = 0;
+	    }
+	    $shop_obj['lock'] = '0';
+	    $shop_obj['ctime'] = $now;//捡钱后可以播放
+	    $tu->puto( $shop_obj );
+	    $ret['s'] = 'OK';
+	    return $ret;
+	}	
+
 }

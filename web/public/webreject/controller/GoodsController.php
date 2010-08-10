@@ -115,7 +115,7 @@ class GoodsController extends BaseController
 				//$ret['s'] = 'max';
 				//return $ret;
 			}
-			$shop_obj['goods'][$goods['id']]=$now+$index;
+//			$shop_obj['goods'][$goods['id']]=$now+$index;  //没必要
 //			$goods['stime'] =  $now + $index;
             $goods['stime'] =  $now + $goods['pos']['x']; //对同一商店同一时间上架的货物，按出售顺序将上架时间轻微调整以方便处理
 			$goods['num'] =  $item['unitcout'];//todo:read the unit count
@@ -240,7 +240,7 @@ class GoodsController extends BaseController
 		$min_gap = 0;
 		//获取人气和宣传值
 		$params = $tu->getf( array(TT::POPU,TT::COMPUTE_PONIT,TT::SHOP_NUM,TT::EXP_STAT) );
-//		$ret['params'] = $params;
+		$ret['params'] = $params;
 
 		$status = $tu->getf( array(TT::MONEY_STAT,TT::GEM_STAT) );
 		if( !$params['shop_num'] ){
@@ -271,27 +271,39 @@ class GoodsController extends BaseController
 		}
 //		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
-//		$ret['bpopu'] = $popu;
+		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-		//		$ret['ua'] = $ua;
+		$ret['ua'] = $ua;
 		$shop_num = $params['shop_num'];
-//		$ret['bshopnum'] = $shop_num;
+		$ret['bshopnum'] = $shop_num;
+		/*
 		if( !$shop_num ){//处理店面格数为零的异常情况
 			$shops = $tu->get( TT::SHOP_GROUP );
 			foreach( $shops as $shop ){
-//				$ret['shop_num_shop'][] = $shop;
+				$ret['shop_num_shop'][] = $shop;
 				$item = ItemConfig::getItem( $shop['tag'] );
 				$shop_num += $item['gridWidth'];
 			}
 		}
-//		$ret['ashopnum'] = $shop_num;
+		*/
+		$shops = $tu->get( TT::SHOP_GROUP );
+		$shop_num = 0;
+		foreach( $shops as $shop ){
+//			$ret['shop_num_shop'][] = $shop;
+			$item = ItemConfig::getItem( $shop['tag'] );
+//			$ret['item'][] = $item;
+//			$ret['gridWidth'][] = $item['gridWidth'];
+			$shop_num += $item['gridWidth'];
+		}		
+		$ret['ashopnum'] = $shop_num;
 		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
+//		if( $popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
 			$popu = $shop_num*15;//此时忽略了厕所等人气加成
 		}
 		if( $popu > $ua['maxpopu'] ){
-			$popu > $ua['maxpopu'];
+			$popu = $ua['maxpopu'];
 		}		
-//		$ret['apopu'] = $popu;
+		$ret['apopu'] = $popu;
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
@@ -307,8 +319,19 @@ class GoodsController extends BaseController
 			$sconfig = ItemConfig::getItem( $shopids[$s] );
 			//			$ret['sconfig'][$s] = $sconfig;
 			//			$ret['before_gs'][] = $gs;
-			array();
-			if( 0 ){//对电影院等特殊商店加入结算时间
+			if( $sconfig['tag'] == '60102' ){//对电影院加入结算时间，并上锁
+			    $cinema_obj = $tu->getbyid( $s );
+			    if( !$cinema_obj ){
+			        //写入日志
+			        continue;
+			    }
+			    if( $cinema_obj['ctime'] > $now - 7200 ){
+			        continue;
+			    }
+			    $cinema_obj['money'] = 3000;//暂时给3000块钱
+			    $cinema_obj['ctime'] = $now;
+			    $cinema_obj['lock'] = '1';
+			    $tu->puto( $cinema_obj,TT::ITEM_GROUP );
 			}
 			ksort($gs);
 			//          $ret['after_gs'][] = $gs;
@@ -329,20 +352,20 @@ class GoodsController extends BaseController
 				$gaps = array();
 				if( $used_advert ){
 					$tmp = self::getTimeRates( $tu,$gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-					//			            $ret['advertisement'][$s][$t] = $tmp;
+//			            $ret['advertisement'][$s][$t] = $tmp;
 				}
 				else{
 					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
 				}					
-//				$ret['gaps'][$s][$t] = $gaps;
+				$ret['gaps'][$s][$t] = $gaps;
 				//				    foreach($gaps as $gr){
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
 					if( $sconfig['gridWidth'] )					
-						$pertime = $gr[1]*$gconfig['selltime']/$sconfig['gridWidth'];
+						$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
 					if( $pertime )
 						$snum = floor( $stime/$pertime );
-//					$ret['pertime'][$s][$t][$k] = $pertime;
+					$ret['pertime'][$s][$t][$k] = $pertime;
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}

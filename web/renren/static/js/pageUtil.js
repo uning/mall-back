@@ -235,7 +235,7 @@ var innerIFramePoller = function() {
 			
 			var height = innerDoc.outerHeight();
 			if (height != lastHeight|| height ==0) {
-				iframe.height(height);
+				iframe.height(height+10);
 				lastHeight = height;
 			}
 		}
@@ -268,7 +268,7 @@ var navigateTo = function(url) {
               nurl = url+'?&pid='+query_json.xn_sig_user;
 	}
 	console.log('navigateTo',nurl);
-	iframe.attr('src', nurl);
+	iframe.attr('src', nurl);     
 	innerDoc = null; lastHeight = 0;
 	interval = setInterval(innerIFramePoller, 500);
 };

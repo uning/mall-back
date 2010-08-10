@@ -287,12 +287,12 @@ class GoodsController extends BaseController
 		}
 		*/
 		$shops = $tu->get( TT::SHOP_GROUP );
+		$shop_num = 0;
 		foreach( $shops as $shop ){
-		    $shop_num = 0;
 			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
-			$ret['item'][] = $item;
-			$ret['gridWidth'][] = $item['gridWidth'];
+//			$ret['item'][] = $item;
+//			$ret['gridWidth'][] = $item['gridWidth'];
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;

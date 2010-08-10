@@ -32,7 +32,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$linkid = $pid.':'.uniqid();
 	$width = '760px';
 	if($gid!=NULL&&$gid!=''){
-		 $accept_gift_url = RenrenConfig::$canvas_url."accept_gift.php?linkid=$linkid";
+		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
 		$content = '我在购物天堂送给你个'.$gift[$gid]['name'].',快来领取吧!'.'这个可是要达到'.$gift[$gid]['level'].'级才可以获得的哦'
 		.'&lt;xn:req-choice url=&quot;'.$accept_gift_url.'&quot; label=&quot;领取礼物&quot;&gt;&lt;xn:req-choice url=&quot;'.$accept_url.' &quot; label=&quot;试试再说&quot;&gt;';
 		echo '<tr><td align="center">';

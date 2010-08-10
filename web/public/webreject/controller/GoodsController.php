@@ -296,8 +296,8 @@ class GoodsController extends BaseController
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;
-//		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
-		if( $popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
+		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
+//		if( $popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
 			$popu = $shop_num*15;//此时忽略了厕所等人气加成
 		}
 		if( $popu > $ua['maxpopu'] ){

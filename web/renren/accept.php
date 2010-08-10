@@ -10,7 +10,7 @@ if($linkid){
 }
 $fromuser = $irec['pid'];	
 $touser = $_REQUEST['xn_sig_user'];	
-if(!$irec || !$fromuser||!$touser){?>
+if(!$irec){?>
 <xn:if-is-app-user>
 <xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>"/>
 <xn:else>

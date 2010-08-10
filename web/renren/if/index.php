@@ -90,8 +90,8 @@ function install_swf(pid){
    <div id="tabs">
     <ul class="clearfix tcenter">       
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" >游戏</a></li>
-        <li class="freegift"><a href="../pop/gift.php?pid=<?php echo $pid;?>" id="freeGift" >免费礼物</a></li>
-        <li class="invite" ><a href="../pop/invite/invite.php?pid=<?php echo $pid;?>" id="invite" >邀请好友</a></li>
+        <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
+        <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
         <li class="forum"><a  href="javascript:alert('暂未开放');"  class="fullpage">讨论群</a></li>
         <li class="payment" ><a  href="javascript:alert('暂未开放');"   id ="pay">充值</a></li>

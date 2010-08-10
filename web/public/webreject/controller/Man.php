@@ -143,8 +143,8 @@ Array
 				foreach($items as $item){
 					$config = ItemConfig::getItem( $item['tag'] );
 					$idp = $item['idp'];
-					unset($idp);
 					$item['id']=$uid.$idp;
+					unset( $item['idp'] );
 					if( $config['group'] == 'g' ){
 						$item['num'] = $config['unitcout'];
 					}
@@ -179,8 +179,8 @@ Array
 			foreach($items as $item){
 				$config = ItemConfig::getItem( $item['tag'] );
 				$idp = $item['idp'];
-				unset($idp);
 				$item['id']=$uid.$idp;
+				unset( $item['idp'] );
 				if( $config['group'] == 'g' ){
 					$item['num'] = $config['unitcout'];
 				}

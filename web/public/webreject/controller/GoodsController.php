@@ -325,10 +325,14 @@ class GoodsController extends BaseController
 			        //写入日志
 			        continue;
 			    }
-			    if( $cinema_obj['ctime'] > $now - 7200 ){
+			    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
+			    if( $cinema_obj['lock'] != '2' ){//还未上映或有钱未捡
 			        continue;
+			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
+			            continue;
+			        }
 			    }
-			    $cinema_obj['money'] = 3000;//暂时给3000块钱
+			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱
 			    $cinema_obj['ctime'] = $now;
 			    $cinema_obj['lock'] = '1';
 			    $tu->puto( $cinema_obj,TT::ITEM_GROUP );

@@ -5,7 +5,7 @@ $linkid = $_REQUEST['linkid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
-
+echo '<script type="text/javascript">alert(1);</script>';
 if($pid &&$ids && $linkid){
 	$tw = TT::TTWeb();
 	$_REQUEST['id']=$linkid;

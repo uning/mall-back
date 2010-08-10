@@ -76,6 +76,7 @@ function install_swf(pid){
 			flash_width, flash_height, 
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);
+	alert(1);
 	
 } 
 </script>

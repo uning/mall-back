@@ -40,7 +40,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 		echo '</td></tr>';
 	}
 	$content.="&quot;&gt;"; 
-	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid";
+	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
 <tr>

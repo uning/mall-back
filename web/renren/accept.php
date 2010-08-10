@@ -75,7 +75,7 @@ if(!$irec){?>
 		</div>
 		</div>
 		<div align="center">
-			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;"/>
+			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="window.location=<?php echo RenrenConfig::$canvas_url;?>"/>
 		</div>
 		<?php 
 		}

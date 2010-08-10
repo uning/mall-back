@@ -269,7 +269,7 @@ class GoodsController extends BaseController
 			$ret['s']='nogoods';
 			return $ret;
 		}
-		$ret['condata'] = $condata;
+//		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
 		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
@@ -289,14 +289,15 @@ class GoodsController extends BaseController
 		$shops = $tu->get( TT::SHOP_GROUP );
 		$shop_num = 0;
 		foreach( $shops as $shop ){
-			$ret['shop_num_shop'][] = $shop;
+//			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
 //			$ret['item'][] = $item;
 //			$ret['gridWidth'][] = $item['gridWidth'];
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;
-		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
+//		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
+		if( $popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
 			$popu = $shop_num*15;//此时忽略了厕所等人气加成
 		}
 		if( $popu > $ua['maxpopu'] ){
@@ -351,7 +352,7 @@ class GoodsController extends BaseController
 				$gaps = array();
 				if( $used_advert ){
 					$tmp = self::getTimeRates( $tu,$gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-			            $ret['advertisement'][$s][$t] = $tmp;
+//			            $ret['advertisement'][$s][$t] = $tmp;
 				}
 				else{
 					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
@@ -371,7 +372,7 @@ class GoodsController extends BaseController
 					else{
 						$asnum = $snum;
 					}
-					$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
+//					$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
 					$ret['sell'][$g['tag']] += $asnum;
 					$sale_count += $asnum;//记录销售份数，成就用
 					//					    $curtime += ( $asnum * $pertime );

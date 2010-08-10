@@ -21,6 +21,7 @@ if(!$irec){?>
 		exit ;
 }
 ?>
+
 <xn:if-is-app-user>
 <?php
 	$fsess = TTGenid::getbypid($fromuser);	
@@ -75,9 +76,13 @@ if(!$irec){?>
 		</div>
 		</div>
 		<div align="center">
-			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="window.location=<?php echo RenrenConfig::$canvas_url;?>"/>
+			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
 		</div>
 		<?php 
+			$id = $ttu->getdid( '',TT::GIFT_GROUP );
+			$data['gtag'] = $gid;
+			$data['id'] = $id;
+			$ttu->puto( $data ); 
 		}
 		$irec['invalid'] =  true;
 		$tw->updateo($irec);
@@ -85,7 +90,15 @@ if(!$irec){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
 		<?php }
 		}
-		?>
+		else{?>
+		<style type="text/css">
+.giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
+.giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
+		</style>
+		<div align="center">
+			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
+		</div>
+		<?php }?>
 <xn:else>
 <xn:redirect url="<?php 
 $next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 

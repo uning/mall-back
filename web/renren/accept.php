@@ -21,14 +21,14 @@ if(!$irec){?>
 		exit ;
 }
 ?>
-<<script type="text/javascript">
+<script type="text/javascript">
 <!--
 function goToPlay(){ 
 window.location="http://apps.renren.com/livemall";
 }
 //-->
 </script>
-<<style type="text/css">
+<style type="text/css">
 <!--
 .giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
 .giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }

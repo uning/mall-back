@@ -78,6 +78,10 @@ if(!$irec){?>
 			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="window.location=<?php echo RenrenConfig::$canvas_url;?>"/>
 		</div>
 		<?php 
+			$id = $ttu->getdid( '',TT::GIFT_GROUP );
+			$data['gtag'] = $gid;
+			$data['id'] = $id;
+			$ttu->puto( $data ); 
 		}
 		$irec['invalid'] =  true;
 		$tw->updateo($irec);
@@ -85,7 +89,11 @@ if(!$irec){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
 		<?php }
 		}
-		?>
+		else{?>
+		<div align="center">
+			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="window.location=<?php echo RenrenConfig::$canvas_url;?>"/>
+		</div>
+		<?php }?>
 <xn:else>
 <xn:redirect url="<?php 
 $next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 

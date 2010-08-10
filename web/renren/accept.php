@@ -21,6 +21,13 @@ if(!$irec){?>
 		exit ;
 }
 ?>
+<<script type="text/javascript">
+<!--
+function goToPlay(){ 
+window.location="http://apps.renren.com/livemall";
+}
+//-->
+</script>
 <xn:if-is-app-user>
 <?php
 	$fsess = TTGenid::getbypid($fromuser);	
@@ -91,7 +98,7 @@ if(!$irec){?>
 		}
 		else{?>
 		<div align="center">
-			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="window.location=<?php echo RenrenConfig::$canvas_url;?>"/>
+			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="goToPlay()"/>
 		</div>
 		<?php }?>
 <xn:else>

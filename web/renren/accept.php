@@ -21,19 +21,7 @@ if(!$irec){?>
 		exit ;
 }
 ?>
-<script type="text/javascript">
-<!--
-function goToPlay(){ 
-window.location="http://apps.renren.com/livemall";
-}
-//-->
-</script>
-<style type="text/css">
-<!--
-.giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
-.giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
--->
-</style>
+
 <xn:if-is-app-user>
 <?php
 	$fsess = TTGenid::getbypid($fromuser);	
@@ -68,7 +56,8 @@ window.location="http://apps.renren.com/livemall";
  .giftFrom_name { padding-top: 20px; }
  .giftFrom_name a:link,  .giftFrom_name a:visited { color: #3b5998; font-weight: bold; text-decoration: underline; }
  .giftFrom_name a:hover,  .giftFrom_name a:active { color: #559890; text-decoration: none; }
-
+.giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
+.giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
 	</style>
 		<div class="padding_content center">
 		<div class="main_giftConfirm_cont">
@@ -102,8 +91,12 @@ window.location="http://apps.renren.com/livemall";
 		<?php }
 		}
 		else{?>
+		<style type="text/css">
+.giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
+.giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
+		</style>
 		<div align="center">
-			<input type="button" name="skip" value="~游戏去~" class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" onclick="goToPlay()"/>
+			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat"  style="cursor: pointer;" >~游戏去~</a>
 		</div>
 		<?php }?>
 <xn:else>

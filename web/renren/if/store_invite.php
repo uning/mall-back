@@ -14,7 +14,7 @@ if($pid &&$ids && $linkid){
 }
 file_put_contents('store_invite2.txt',print_r($_REQUEST,true));
 header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
-//echo "<pre>\n";
-//print_r($_REQUEST);
+echo "<pre>\n";
+print_r($_REQUEST);
 	
 

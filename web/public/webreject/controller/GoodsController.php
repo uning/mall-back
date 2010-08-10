@@ -321,10 +321,16 @@ class GoodsController extends BaseController
 			if( $sconfig['tag'] == '60102' ){//对电影院加入结算时间，并上锁
 			    $cinema_obj = $tu->getbyid( $s );
 			    if( !$cinema_obj ){
+			        //写入日志
 			        continue;
 			    }
-			    if( $cinema_obj['ctime'] ){
+			    if( $cinema_obj['ctime'] > $now - 7200 ){
+			        continue;
 			    }
+			    $cinema_obj['money'] = 3000;//暂时给3000块钱
+			    $cinema_obj['ctime'] = $now;
+			    $cinema_obj['lock'] = '1';
+			    $tu->puto( $cinema_obj,TT::ITEM_GROUP );
 			}
 			ksort($gs);
 			//          $ret['after_gs'][] = $gs;

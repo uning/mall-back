@@ -51,6 +51,9 @@ class ItemController {
 			else{
 				$row['id']=$tu->getdid(false,TT::ITEM_GROUP);//other
 			}
+			if( $row['tag'] == '60102' ){//电影院买后立即可播放电影
+//			    $row['']
+			}
 			$pop += $item['pop'];
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 
 		}

@@ -292,7 +292,7 @@ class GoodsController extends BaseController
 			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
 			$ret['item'][] = $item;
-			$ret['gridwidth'][] = $item['gridwidth'];
+			$ret['gridWidth'][] = $item['gridWidth'];
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;

@@ -437,10 +437,12 @@ class UserController extends BaseController
 		$uid = $params['u'];
 		$ups = $params['ups'];
 		$tu = new TTUser( $uid );
+        $data = array();
 		foreach ($ups as $k=>$v){
 		    if( $v )
-				$tu->putf($k,$v);
+				$data[$k] = $v;
 		}
+		$tu->mputf( $data );
 		$ret['s'] = 'OK';
 		return $ret;
 	}

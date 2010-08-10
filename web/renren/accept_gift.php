@@ -1,8 +1,4 @@
-<html>
-<head>
 <link rel="stylesheet" type="text/css" href="static/css/gift.css" />
-</head>
-<body>
 <?php
 require_once('config.php');
 require_once('pop/freeGift.php');
@@ -37,7 +33,10 @@ exit ;
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
 	$tudata=$ftu->getf(array('name','icon'));
-	
+	$f = $_REQUEST['f'];
+	if($f){
+		$ftu->numch('invite_num',1);
+	}
 	if($irec){
 		$gid = $irec['gift'];
 		if($gid){?>
@@ -55,7 +54,7 @@ exit ;
 					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"></div>
 					<div class="giftFrom_name"><span><?php echo $tudata['name'];?></span></div>
 				</div>
-				<input type="button" name="acc" value="进入游戏"></input>
+				<input type="button" name="acc" value="进入游戏" style="background-color: blue;" onclick=""></input>
 			</div>
 		</div>
 		
@@ -68,5 +67,3 @@ $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=
 echo $rurl;?>"/>
  </xn:else>
 </xn:if-is-app-user>
-</body>
-</html>

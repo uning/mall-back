@@ -34,13 +34,13 @@ if(!$irec){?>
 	if(!$irec['invalid']){
 		$gid = $irec['gift'];
 		if($gid){?>
-	<link rel="stylesheet" type="text/css" href="static/css/gift.css" />
+	<link rel="stylesheet" type="text/css" href="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/css/gift.css" />
 		<div class="padding_content center">
 		<div class="main_giftConfirm_cont">
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
 			<div class="gift_box_holder">
 				<div class="gift_box_cont">
-					<div class="giftConfirm_img"><img src="static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></div>
+					<div class="giftConfirm_img"><img src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></div>
 					<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
 				</div>
 				<div class="gift_from"><h3>From</h3></div>

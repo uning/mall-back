@@ -21,7 +21,7 @@ class Gift{
 		$uid = $params['u'];
 		$fid = $params['fid'];
 		$gid = $params['gid'];
-		if(!$uid || !$gid || $fid){
+		if(!$uid || !$gid || !$fid){
 			$ret['s'] = 'param';
 			return $ret;
 		}

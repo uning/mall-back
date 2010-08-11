@@ -15,9 +15,11 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
+dotest('Tool.addgoods',$p= array('u'=>144));
+//dotest('Tool.reset_cinema',$p= array('u'=>119));
 /*
-for( $i=1;$i<140;$i++ ){
-    dotest('Tool.resetpop',$p= array('u'=>$i));
+for( $i=1;$i<151;$i++ ){
+    dotest('Tool.reset_cinema',$p= array('u'=>$i));
 }
 */
 //dotest('Achieve.get',$p= array('u'=>192));
@@ -40,7 +42,7 @@ for($i=1;$i<100;$i++){
 dotest( 'Tool.clean',$p = array('u'=>$i));
 }
 */
-//dotest( 'UserController.get_items',$p = array('u'=>21));
+//dotest( 'UserController.get_items',$p = array('u'=>19));
 //dotest( 'Tool.clean',$p = array('u'=>48));
 //dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));
@@ -49,7 +51,7 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 //dotest( 'Tool.genusers',$p = array('u'=>1));
 //dotest('CarController.go_goods',$p = Array('c'=>Array('id'=>"23:c:4c4fe86bb4aaa",'goodsTag'=>10101),'u'=>1) );
 //dotest('UserController.set_advert',$p=array('u'=>1,'tag'=>1));
-//dotest('UserController.cheat',$p=array('u'=>13,'money'=>100000,'gem'=>100,'exp'=>10000));
+//dotest('UserController.cheat',$p=array('u'=>48,'money'=>100000,'gem'=>100,'exp'=>10000));
 //dotest('ItemController.buy',$p = array('d' => Array('0' => Array('pos' => Array('y' => 48,'x' => 0),'havePop' => 1,'tag' => 60003,'isShop' => 1),'1' => Array('pos' => Array('y' => 50,'x' => 0),'havePop' => 1,'tag' =>60003,'isShop' => 1)),'u' => 20));
 //dotest('CarController.buy',$p=array('u'=>2,'c'=>array( array('tag'=>92702,'pos'=>array('x'=>0,'y'=>0),'t'=>0) ) ) );
 //dotest('TaskController.get_award',$p = array('u'=>'27','tid'=>'27:t:4c4a968aeb924:o') );

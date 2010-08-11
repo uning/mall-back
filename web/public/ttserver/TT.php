@@ -23,6 +23,7 @@ class TT{
 	const INFO_GROUP='i';
 	const ITEM_GROUP='o';
 	const SHOP_GROUP='o:s';
+	const CINEMA_GROUP='o:m';
 	const OTHER_GROUP='#';
 	const ADVERT_GROUP='v';
 

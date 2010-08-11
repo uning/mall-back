@@ -81,10 +81,10 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="background: url('../static/images/back.png') no-repeat;overflow-x: hidden;overflow-y: hidden;" >
+<body style="overflow-x: hidden;overflow-y: hidden;" >
 
 
-
+<div style="background: url('../static/images/back.png') no-repeat;">
 <div id="header">
     <div id="navga">
     <div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
@@ -132,23 +132,7 @@ version of Flash. Please do so by clicking <a
 </div>
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
-
-
-
-<!--div style="text-align: center; margin-bottom: 10px"><?php echo get_lang('Having trouble to load game');?>? <?php echo get_lang('Please');?> <a
-	href='http://get.adobe.com/flashplayer/' target="_blank"><?php echo get_lang('update your flash player'); ?></a> <?php echo('by clicking');?> <a
-	href='http://get.adobe.com/flashplayer/' target="_blank"><?php echo get_lang('Here');?></a>.</div-->
-
-
-
-<script type="text/javascript">
-
-
-
-
-
-
-</script>
+</div>
 </body>
 </html>
 <script type="text/javascript">

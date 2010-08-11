@@ -80,7 +80,7 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="width=100%;height:100%;overflow: hidden;background: url('../static/images/back.png') no-repeat;" >
+<body style="width=100%;height:100%;overflow: hidden;" >
  <div class="topbar" style='width:798px;height:20px;background-color:#FFFFE1;
 border:1px solid #E0E1E5;
 color:#FF0000;
@@ -96,7 +96,7 @@ padding:10px 5px;'>
  <div style="clear:both"></div>
 
 
-
+<div style="background: url('../static/images/back.png') no-repeat;">
 <div id="header">
     <div id="navga">
 	<div class="logo"><a href="<?php echo RenrenConfig::$canvas_url.'?from=bar_logo';?>" target="_top" title="开始游戏!">logo</a></div>
@@ -144,23 +144,7 @@ version of Flash. Please do so by clicking <a
 </div>
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
-
-
-
-<!--div style="text-align: center; margin-bottom: 10px"><?php echo get_lang('Having trouble to load game');?>? <?php echo get_lang('Please');?> <a
-	href='http://get.adobe.com/flashplayer/' target="_blank"><?php echo get_lang('update your flash player'); ?></a> <?php echo('by clicking');?> <a
-	href='http://get.adobe.com/flashplayer/' target="_blank"><?php echo get_lang('Here');?></a>.</div-->
-
-
-
-<script type="text/javascript">
-
-
-
-
-
-
-</script>
+</div>
 </body>
 </html>
 <script type="text/javascript">

@@ -106,7 +106,7 @@ img,a .img{border:0}
 #navga ul li a {
     display: block;
     text-indent: -9999px;
-    background: url("../images/nav.png?v=1") no-repeat left top;
+    background: url("../images/nav.png") no-repeat left top;
     width: 95px;
     height: 32px;
 
@@ -133,7 +133,7 @@ img,a .img{border:0}
 	outline:none;
 	blr:expression(this.onFocus=this.blur());
 }
-/*faq
+
 #navga ul li.invite a {
     background-position: 0 -176px;
 }
@@ -141,7 +141,7 @@ img,a .img{border:0}
 #navga ul li.invite a.active, #navga ul li.invite a:hover {
     background-position: 0 -221px;
 }
-*/
+
 /*payment*/
 #navga ul li.faq a {
     background-position: 0 -263px;
@@ -175,7 +175,7 @@ img,a .img{border:0}
     margin-top: -11px;
     position:relative;
 }*/
-
+/*
 #navga ul li.invite a {
     background-position: 0 -534px;
 }
@@ -184,7 +184,7 @@ img,a .img{border:0}
     background-position: 0 -581px;
     outline:none;
 	blr:expression(this.onFocus=this.blur());
-}
+}*/
 
 
 

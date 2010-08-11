@@ -62,7 +62,7 @@ function install_swf(pid){
 	params.bgcolor = "#F0F8FF";
 	params.allowscriptaccess = "always";  // must be always since html is different domain from swf :(
 	params.allowfullscreen = "true";
-	params.wmode = "opaque";//opaque
+	params.wmode = "window";//opaque
 	params.flashvars = flashvars;
 	var attributes = {};
 	attributes.id = "flash_run_id";

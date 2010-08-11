@@ -15,9 +15,9 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-//dotest('Tool.reset_cinema',$p= array('u'=>48));
+//dotest('Tool.reset_cinema',$p= array('u'=>119));
 /*
-for( $i=1;$i<140;$i++ ){
+for( $i=1;$i<151;$i++ ){
     dotest('Tool.reset_cinema',$p= array('u'=>$i));
 }
 */
@@ -41,7 +41,7 @@ for($i=1;$i<100;$i++){
 dotest( 'Tool.clean',$p = array('u'=>$i));
 }
 */
-dotest( 'UserController.get_items',$p = array('u'=>48));
+dotest( 'UserController.get_items',$p = array('u'=>19));
 //dotest( 'Tool.clean',$p = array('u'=>48));
 //dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));

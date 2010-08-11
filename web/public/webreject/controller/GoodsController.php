@@ -248,7 +248,7 @@ class GoodsController extends BaseController
 			return $ret;
 		}
 		$goods = $tu->get( TT::GOODS_GROUP );
-//		$ret['goods'] = $goods;
+		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();
@@ -289,7 +289,7 @@ class GoodsController extends BaseController
 		$shops = $tu->get( TT::SHOP_GROUP );
 		$shop_num = 0;
 		foreach( $shops as $shop ){
-//			$ret['shop_num_shop'][] = $shop;
+			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
 //			$ret['item'][] = $item;
 //			$ret['gridWidth'][] = $item['gridWidth'];

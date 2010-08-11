@@ -57,7 +57,7 @@ class TT{
 				'type'=>'TTExtend',
 				'procs'=>array(
 					array(
-						array('host'=>'127.0.0.1','port'=>'15000')
+						array('host'=>'122.11.61.27','port'=>'15000')
 					     ),
 					)
 				),
@@ -66,7 +66,7 @@ class TT{
 				'type'=>'TTExtend',
 				'procs'=>array(
 					array(
-						array('host'=>'127.0.0.1','port'=>'15002')
+						array('host'=>'122.11.61.27','port'=>'15002')
 					     ),
 					),
 				),
@@ -75,7 +75,7 @@ class TT{
 				'type'=>'TTExtend',
 				'procs'=>array(
 					array(
-						array('host'=>'127.0.0.1','port'=>'15004')
+						array('host'=>'122.11.61.27','port'=>'15004')
 					     ),
 					),
 				),
@@ -84,7 +84,7 @@ class TT{
 					'type'=>'TTExtend',
 					'procs'=>array(
 						array(
-							array('host'=>'127.0.0.1','port'=>'16000')
+							array('host'=>'122.11.61.27','port'=>'16000')
 						     ),
 						),
 				     ),
@@ -96,7 +96,7 @@ class TT{
 					'procs'=>
 					array(
 						array(
-							array('host'=>'127.0.0.1','port'=>'16004')
+							array('host'=>'122.11.61.27','port'=>'16004')
 						     ),
 					     )
 					),
@@ -105,7 +105,7 @@ class TT{
 					'type'=>'TTable',
 					'procs'=>array(
 						array(
-							array('host'=>'127.0.0.1','port'=>'16002')
+							array('host'=>'122.11.61.27','port'=>'16002')
 						     ),
 						),
 				     ),
@@ -114,7 +114,7 @@ class TT{
 					'procs'=>
 					array(
 						array(
-							array('host'=>'127.0.0.1','port'=>'16000')
+							array('host'=>'122.11.61.27','port'=>'16000')
 						     ),
 					     )
 				       ),
@@ -123,7 +123,7 @@ class TT{
 					'type'=>'TTable',
 					'procs'=>array(
 						array(
-							array('host'=>'127.0.0.1','port'=>'16006')
+							array('host'=>'122.11.61.27','port'=>'16006')
 						     ),
 						),
 				      ),
@@ -131,7 +131,7 @@ class TT{
 					'type'=>'TTable',
 					'procs'=>array(
 						array(
-							array('host'=>'127.0.0.1','port'=>'16008')
+							array('host'=>'122.11.61.27','port'=>'16008')
 						     ),
 						),
 				       ),

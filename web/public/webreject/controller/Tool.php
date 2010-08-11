@@ -119,4 +119,23 @@ class Tool
 	    $tlog = new TTLog();
 	    return $ret;
 	}
+
+	public function addgoods( $params )
+	{
+		$uid = $params['u'];
+		$tu = new TTUser( $uid );
+$ret['h'] = "haha";
+		for( $tag = 10101;$i<10113;$i++ ){ 
+			for( $j=0;$j<5;$j++ ){
+				if( isset( $goods_obj['id'] ) )
+					unset( $goods_obj['id'];
+    		    $goods = ItemConfig::getItem( $tag );
+		    	$goods_obj['num'] = $goods['unitcout'];
+	    		$goods_obj['tag'] = $tag;
+    			$goods_obj['pos'] = 's';
+			}
+		}
+		$ret['s'] = 'OK';
+		return $ret;
+	}
 }

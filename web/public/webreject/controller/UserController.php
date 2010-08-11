@@ -478,6 +478,7 @@ class UserController extends BaseController
 	    $cinema_obj['ctime'] -= $less_time;
 	    $ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
 	    $ret['acinemaobj'] = $cinema_obj;  //for debug
+	    $tu->puto( $cinema_obj,TT::CINEMA_GROUP );
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}
@@ -514,6 +515,7 @@ class UserController extends BaseController
 	    $cinema_obj['ctime'] = $now - 30*$item['selltime'];
 	    $ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
 	    $ret['acinemaobj'] = $cinema_obj;  //for debug
+	    $tu->puto( $cinema_obj,TT::CINEMA_GROUP );
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}	
@@ -549,7 +551,7 @@ class UserController extends BaseController
 	    }
 	    $shop_obj['lock'] = '0';
 	    $shop_obj['ctime'] = $now;//捡钱后可以重新进人
-	    $tu->puto( $shop_obj );
+	    $tu->puto( $shop_obj,TT::CINEMA_GROUP );
 	    $ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );
 	    $ret['ashopobj'] = $shop_obj;  //for debug
 	    $ret['s'] = 'OK';

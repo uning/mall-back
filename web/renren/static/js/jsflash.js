@@ -149,7 +149,6 @@ var PF = {
 	},
 	
 	popUpFeed: function (id,data){
-		alert(data);
 		console.log('popUpFeed');
 		popUpFeed(data,function(response){
 			PF.flashapp.onfb_playcrab(id,response);

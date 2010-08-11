@@ -248,7 +248,7 @@ class GoodsController extends BaseController
 			return $ret;
 		}
 		$goods = $tu->get( TT::GOODS_GROUP );
-		//		$ret['goods'] = $goods;
+		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();
@@ -289,17 +289,15 @@ class GoodsController extends BaseController
 		$shops = $tu->get( TT::SHOP_GROUP );
 		$shop_num = 0;
 		foreach( $shops as $shop ){
-//			$ret['shop_num_shop'][] = $shop;
+			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
 //			$ret['item'][] = $item;
 //			$ret['gridWidth'][] = $item['gridWidth'];
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;
-		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
-//		if( $popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
-			$popu = $shop_num*15;//此时忽略了厕所等人气加成
-		}
+		$shop_popu = $shop_num*15;//只算店面人气
+		$popu += $shop_popu;
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		
@@ -326,11 +324,15 @@ class GoodsController extends BaseController
 			        continue;
 			    }
 			    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
-			    if( $cinema_obj['lock'] != '2' ){//还未上映或有钱未捡
+			    if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
 			        continue;
-			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
-			            continue;
-			        }
+			    }
+			    if( $cinema_obj['lock'] == '1'){//有钱未捡，不用结算
+			        continue;
+			    }
+			    if( $cinema_obj['lock'] == '0' ){//未触发上映或有钱未捡
+			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从开始进人算起，电影未放映完
+			            continue;			            
 			    }
 			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱
 			    $cinema_obj['ctime'] = $now;

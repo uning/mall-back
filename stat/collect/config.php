@@ -3,7 +3,9 @@
 $myloc = dirname(__FILE__);
 require_once($myloc.'/../../web/public/base.php');
 require_once LIB_ROOT.'DBModel.php';
-$gtt =TT::get_tt('genid');//,0,'slave'); 
+
+$gtt =TT::get_tt('genid',0,'slave'); 
+
 $dbconfig=array(
 		'host' => '122.11.61.28',
 		'username' => 'admin',

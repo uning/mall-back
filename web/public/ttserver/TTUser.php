@@ -31,7 +31,7 @@ class TTUser extends TTUDB
 		$this->numch(TT::EXP_STAT,0);
 		$this->numch(TT::COMPUTE_PONIT,0);
 		$this->numch(TT::SHOP_NUM,2);
-		$this->numch(TT::POPU,30);
+		$this->numch(TT::POPU,0);
 		$this->numch(TT::GARAGE_STAT,1);
 		$this->numch('lastawardtime',0);
 		$this->numch('continued',0);

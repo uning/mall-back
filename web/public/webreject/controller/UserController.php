@@ -469,7 +469,8 @@ class UserController extends BaseController
 	        return $ret;
 	    }
 	    $item = ItemConfig::getItem( $cinema_obj['tag'] );
-	    $less_time = $item['selltime'];
+		$less_time = $item['selltime'];
+		$ret['lesstime'] = $less_time;
 	    if( $cinema_obj['lock'] != '0' ){//有钱未捡或正在上映
 	        $ret['s'] = 'lock';
 	        return $ret;

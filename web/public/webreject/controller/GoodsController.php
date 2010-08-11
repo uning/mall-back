@@ -249,7 +249,7 @@ class GoodsController extends BaseController
 	 * @return 
 	 */
 	protected function compute( &$tu )
-	{	    
+	{/*	    
 		$now = time();
 		//		$ret['now'] = $now;
 		//$min_gap = 120;
@@ -260,7 +260,7 @@ class GoodsController extends BaseController
 		$cinemas = $tu->get( TT::CINEMA_GROUP );
 		if( $cinemas ){
 		    foreach( $cinemas as $cinema ){
-		        self::check_cinema( $tu,$cinema,$now );
+//		        self::check_cinema( $tu,$cinema,$now );
 	    	}
     	}
 		$goods = $tu->get( TT::GOODS_GROUP );
@@ -380,18 +380,13 @@ class GoodsController extends BaseController
 			$adv['use'] = $used_advert;
 		}
 		$adv['id'] = $aid;
-/*		
-		$adv = $tu->getbyid( $aid );
-		$used_advert = $adv['use'];
-		$ret['advert'] = $adv;		
-*/
 	    //$ret['aaaadv'] = $adv;
 		$tu->puto( $adv,TT::ADVERT_GROUP,false );
 //        $tu->puto( $adv );
 		//总销售份数
 		$now_sale_count = $tu->numch( 'total_count',$sale_count );
 		//总销售额
-		$now_total_sale = $tu->numch( 'total_sale',$income );
+		$now_total_sale = $tu->numch( 'total_sale',$income );*/
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
 		$ret['money']  = $tu->numch('money',$income);

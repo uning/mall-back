@@ -74,4 +74,20 @@ class Tool
 		$ret['aadverts'] = $tu->getbyid( $aid );	
 		return $ret;
 	}
+	
+	public function resetpop( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	    $ret['bpop'] = $tu->numch( TT::POPU,0 );
+	    return $ret;
+	}
+	
+	public function testops( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	    $tlog = new TTLog();
+	    return $ret;
+	}
 }

@@ -62,7 +62,7 @@ function install_swf(pid){
 	params.bgcolor = "#F0F8FF";
 	params.allowscriptaccess = "always";  // must be always since html is different domain from swf :(
 	params.allowfullscreen = "true";
-	params.wmode = "opaque";//opaque
+	params.wmode = "window";//opaque
 	params.flashvars = flashvars;
 	var attributes = {};
 	attributes.id = "flash_run_id";
@@ -81,13 +81,13 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="overflow: auto;background: url('../static/images/back.png') no-repeat;" >
+<body style="background: url('../static/images/back.png') no-repeat;overflow-x: hidden;overflow-y: hidden;" >
 
 
 
 <div id="header">
     <div id="navga">
-    <div class="logo"><a href="http://apps.renren.com/happyfarmtwo/" target="_top" title="开始游戏!">logo</a></div>
+    <div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" >游戏</a></li>
@@ -95,7 +95,8 @@ function install_swf(pid){
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
         <li class="forum"><a  href="javascript:alert('暂未开放');"  class="fullpage">讨论群</a></li>
-        <li class="payment" ><a  href="javascript:alert('暂未开放');"   id ="pay">充值</a></li>
+		<li class="payment" ><a  href="javascript:popUpFeed();"   id ="pay" claass="fullpage">充值</a></li>
+		<li><input type="button"  onclick="popUpFeed();" value="feed"></li>
 	</ul>
 	</div>
     </div>

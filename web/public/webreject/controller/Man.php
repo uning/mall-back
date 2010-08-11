@@ -88,7 +88,6 @@ Array
 		if(!$v && !$d){
 			$ret['s']='noaction';	
 			return $ret;
-
 		}
 		if(!$conf){
 			$ret['s']='noconf';	
@@ -143,13 +142,16 @@ Array
 				foreach($items as $item){
 					$config = ItemConfig::getItem( $item['tag'] );
 					$idp = $item['idp'];
-					$item['id']=$uid.$idp;
+//					$item['id']=$uid.$idp;
 					unset( $item['idp'] );
+					$item['pos'] = 's';
 					if( $config['group'] == 'g' ){
 						$item['num'] = $config['unitcout'];
+						$tu->puto( $item,TT::GOODS_GROUP );
 					}
-					$item['pos'] = 's';
-					$tu->puto($item);
+					else{
+					    $tu->puto( $item,TT::ITEM_GROUP );
+					}
 					$award['items'][]=$item;
 				}
 			}
@@ -176,19 +178,22 @@ Array
 		}
 		$items = $conf['d_items'];
 		if($items){
-			foreach($items as $item){
-				$config = ItemConfig::getItem( $item['tag'] );
-				$idp = $item['idp'];
-				$item['id']=$uid.$idp;
-				unset( $item['idp'] );
-				if( $config['group'] == 'g' ){
-					$item['num'] = $config['unitcout'];
-				}
-				$item['pos'] = 's';
-				$tu->puto($item);
-				$award['items'][]=$item;
+		    foreach($items as $item){
+			    $config = ItemConfig::getItem( $item['tag'] );
+			    $idp = $item['idp'];
+//			    $item['id']=$uid.$idp;
+			    unset( $item['idp'] );
+			    $item['pos'] = 's';
+			    if( $config['group'] == 'g' ){
+				    $item['num'] = $config['unitcout'];
+				    $tu->puto( $item,TT::GOODS_GROUP );
+			    }
+			    else{
+			        $tu->puto( $item,TT::ITEM_GROUP );
+			    }
+			    $award['items'][]=$item;
 			}
-		}	
+		}
 		$tu->puto($mano);
 		$ret['s'] = 'OK';
 		$ret['award'] = $award;

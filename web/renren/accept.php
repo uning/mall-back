@@ -44,14 +44,14 @@ if(!$irec){?>
  .gift_name span { display: block; height: 30px; }
  .giftIconImg { width: 75px; height: 75px; }
  .main_gift_cont ul { list-style-type: none; }
- .main_giftConfirm_cont { background: #ffffff url("http://assets.frontierville.zynga.com/production/R.0.8.001.19073/assets/images/gift/gift_confirm_box.png") no-repeat scroll left top; width: 744px; height: 265px; }
+ .main_giftConfirm_cont { background: #ffffff url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_box.png") no-repeat scroll left top; width: 744px; height: 265px; }
  .main_giftConfirm_cont h3 { color: #559890; font-size: 18px; padding-top: 15px; }
  .gift_box_holder { padding: 34px 150px; }
- .gift_box_cont { background: #ffffff url("http://assets.frontierville.zynga.com/production/R.0.8.001.19073/assets/images/gift/gift_confirm_gift.png") no-repeat scroll left top; width: 152px; height: 151px; padding-top: 20px; float: left; }
+ .gift_box_cont { background: #ffffff url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_gift.png") no-repeat scroll left top; width: 152px; height: 151px; padding-top: 20px; float: left; }
  .gift_from { padding: 55px 0px 0px 62px; float: left; }
  .gift_box_cont .giftConfirm_img { height: 115px; }
  .gift_box_cont .giftConfirm_name { color: #559890; font-weight: bold; }
- .from_box_cont { background: #ffffff url("http://assets.frontierville.zynga.com/production/R.0.8.001.19073/assets/images/gift/gift_confirm_user.png") no-repeat scroll left top; width: 117px; height: 115px; padding-left: 1px; padding-top: 23px; float: right; margin-top: 15px; }
+ .from_box_cont { background: #ffffff url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_user.png") no-repeat scroll left top; width: 117px; height: 115px; padding-left: 1px; padding-top: 23px; float: right; margin-top: 15px; }
  .giftFrom_img img { height: 50px; }
  .giftFrom_name { padding-top: 20px; }
  .giftFrom_name a:link,  .giftFrom_name a:visited { color: #3b5998; font-weight: bold; text-decoration: underline; }
@@ -59,7 +59,7 @@ if(!$irec){?>
 .giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
 .giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
 	</style>
-		<div class="padding_content center">
+		<div class="padding_content center" style="overflow: hidden;">
 		<div class="main_giftConfirm_cont">
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
 			<div class="gift_box_holder">

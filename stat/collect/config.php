@@ -3,26 +3,35 @@
 $myloc = dirname(__FILE__);
 require_once($myloc.'/../../web/public/base.php');
 require_once LIB_ROOT.'DBModel.php';
-$gtt =TT::get_tt('genid');//,0,'slave'); 
+
+$gtt =TT::get_tt('genid',0,'slave'); 
+
 $dbconfig=array(
-		'host' => '127.0.0.1',
-		'username' => 'root',
-		'password' => '',
+		'host' => '122.11.61.28',
+		'username' => 'admin',
+		'password' => '123456',
 		'port'     =>'3307',
 		'charset'     =>'utf8',
 		'dbname'   => 'mall_stat');
+$cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
+if($dbconfig['password']){
+  $cmd.=" -p'{$dbconfig['password']}'";
+}
+echo "$cmd\n";
 $db = ServerConfig::connect_mysql($dbconfig);
+
 
 function getModel($name){
 	global $db;
 	$m = new DBModel($name,false);
 	$m->setDb($db); 
+	$m->useCache(false);
 	return $m;
 }
 
 $dgm = getModel('daily_general');
-$dgfs = $dgm->getTableFields('daily_general');
-print_r($dgfs);
+//$dgfs = $dgm->getTableFields('daily_general');
+//print_r($dgfs);
 $now = time();
 $date = date('Y-m-d',$now);
 

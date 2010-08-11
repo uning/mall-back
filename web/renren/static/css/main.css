@@ -82,7 +82,7 @@ img,a .img{border:0}
 #header .logo {
     width: 100px;
     height: 46px;
-    background: url("../images/logo.png") no-repeat center;
+    background: url("../images/logo.png?v=1") no-repeat center;
     text-indent: -9999px;
     float: left;
 }
@@ -133,7 +133,7 @@ img,a .img{border:0}
 	outline:none;
 	blr:expression(this.onFocus=this.blur());
 }
-/*faq
+
 #navga ul li.invite a {
     background-position: 0 -176px;
 }
@@ -141,7 +141,7 @@ img,a .img{border:0}
 #navga ul li.invite a.active, #navga ul li.invite a:hover {
     background-position: 0 -221px;
 }
-*/
+
 /*payment*/
 #navga ul li.faq a {
     background-position: 0 -263px;
@@ -175,7 +175,7 @@ img,a .img{border:0}
     margin-top: -11px;
     position:relative;
 }*/
-
+/*
 #navga ul li.invite a {
     background-position: 0 -534px;
 }
@@ -184,7 +184,7 @@ img,a .img{border:0}
     background-position: 0 -581px;
     outline:none;
 	blr:expression(this.onFocus=this.blur());
-}
+}*/
 
 
 

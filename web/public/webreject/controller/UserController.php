@@ -462,7 +462,7 @@ class UserController extends BaseController
 	    $cid = $params['cid'];
 	    $tu = new TTUser( $uid );
 	    $cinema_obj = $tu->getbyid( $cid );
-	    $ret['cinemaobj'] = $cinema_obj;
+	    $ret['bcinemaobj'] = $cinema_obj;  //for debug
 	    if( !$cinema_obj ){
 	        $ret['s'] = 'notexsit';
 	        return $ret;
@@ -474,6 +474,7 @@ class UserController extends BaseController
 	        return $ret;
 	    }
 	    $cinema_obj['ctime'] -= $less_time;
+	    $ret['acinemaobj'] = $cinema_obj;  //for debug
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}
@@ -495,6 +496,7 @@ class UserController extends BaseController
 	    $now = time();
 	    $tu = new TTUser( $uid );
 	    $cinema_obj = $tu->getbyid( $cid );
+	    $ret['bcinemaobj'] = $cinema_obj;  //for debug
 	    if( !$cinema_obj ){
 	        $ret['s'] = 'notexsit';
 	        return $ret;
@@ -506,6 +508,7 @@ class UserController extends BaseController
 	    }
 	    $cinema_obj['lock'] = '2';
 	    $cinema_obj['ctime'] = $now - 30*$item['selltime'];
+	    $ret['acinemaobj'] = $cinema_obj;  //for debug
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}	
@@ -525,6 +528,7 @@ class UserController extends BaseController
 	    $now = time();
 	    $tu = new TTUser( $uid );
 	    $shop_obj = $tu->getbyid( $sid );
+	    $ret['bshopobj'] = $shop_obj;  //for debug
 	    if( !$shop_obj ){
 	        $ret['s'] = 'notexist';
 	        return $ret;
@@ -540,6 +544,7 @@ class UserController extends BaseController
 	    $shop_obj['lock'] = '0';
 	    $shop_obj['ctime'] = $now;//捡钱后可以重新进人
 	    $tu->puto( $shop_obj );
+	    $ret['ashopobj'] = $shop_obj;  //for debug
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}	

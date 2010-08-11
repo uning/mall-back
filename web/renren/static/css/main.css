@@ -173,7 +173,7 @@ img,a .img{border:0}
     background-position: 0 -530px;
 }
 
-#navga ul li.problem a.active, #navga ul li.problem a:hover {
+#navga ul li.problem a.active, #navga ul li.problem  a:hover {
     background-position: 0 -575px;
     outline:none;
 	blr:expression(this.onFocus=this.blur());

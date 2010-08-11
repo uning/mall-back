@@ -59,7 +59,7 @@ if(!$irec){?>
 .giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
 .giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
 	</style>
-		<div class="padding_content center">
+		<div class="padding_content center" style="overflow: hidden;">
 		<div class="main_giftConfirm_cont">
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
 			<div class="gift_box_holder">

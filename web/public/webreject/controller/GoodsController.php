@@ -248,7 +248,7 @@ class GoodsController extends BaseController
 			return $ret;
 		}
 		$goods = $tu->get( TT::GOODS_GROUP );
-		$ret['goods'] = $goods;
+//		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();

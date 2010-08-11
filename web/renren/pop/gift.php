@@ -17,13 +17,12 @@
 	<body>
 	<center><h1 style="font-size:22px; font-family: tahoma; color: #4880d7;">为你的朋友选择个礼物!</h1></center>
 	<form action="invite/invite.php?" method="post">
-	<div style="width: 700px; text-align: right;">
+	<div style="width: 700px; text-align: center;">
 			
 			<input type="submit" name="send_gift" value="选好了，去选朋友吧 >>>" class="giftformsubmit giftButtonFloat" style="cursor: pointer;"/>
 			<input type="button" name="skip" value="跳过" class="giftformsubmit giftButtonFloat" onclick="toFlash()" style="cursor: pointer;"/>
 			
 	</div>
-	<br style="clear:both" />
 	<div class="main_gift_cont">
 	<ul class="items">
 <?php
@@ -69,8 +68,6 @@
 ?>
 </ul>
 </div>
-
-<br></br>
 		<br style="clear:both" />
 		<div style="width: 700px; text-align: right;" >
 			<input type="hidden" name="pid" value="<?php echo $_REQUEST['pid']?>">

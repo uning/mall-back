@@ -30,7 +30,7 @@
   .main_gift_cont h2.title_generalgift span,   .main_gift_cont h2.title_collectiongift span { display: none; }
   .main_gift_cont ul { list-style-type: none; }
   .main_gift_cont li { background: #ffffff none no-repeat scroll left top; width: 143px; height: 159px; float: left; position: relative; text-align: center; }
-  .main_gift_cont li.giftLocked { background: #ffffff none no-repeat scroll left top; }
+  .main_gift_cont li.giftLocked { }
   .main_gift_cont li.giftCollection { background: #ffffff none no-repeat scroll left top; position: relative; }
   .main_gift_cont .gift_img { padding: 0px 11px 12px 0px; height: 80px; }
   .main_gift_cont .gift_img span { margin: 0pt auto; display: block; height: 80px; width: 75px; }
@@ -82,7 +82,7 @@
   .main_gift_cont li.giftResource { background-image: url("../images/css/gift_box_resource.png"); }
   .main_gift_cont li.giftEnergy { background-image: url("../images/css/gift_box_energy.png"); }
   .main_gift_cont li.giftSchoolSupplies { background-image: url("../images/css/gift_box_school.png"); }
-  .main_gift_cont li.giftLocked { background-image: url("../images/css/gift_box_locked.png"); }
+  .main_gift_cont li.giftLocked { background: url("../images/css/gift_box_locked.png") no-repeat 0 0; }
   .main_gift_cont li.giftLiWide { background-image: url("../images/css/gift_box_open_wide.png"); }
   .main_gift_cont li.giftLockedWide { background-image: url("../images/css/gift_box_locked_wide.png"); }
   .main_giftWide_cont li { background: #ffffff none no-repeat scroll left top; }

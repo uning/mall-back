@@ -100,15 +100,15 @@ var cached_publish_stream = false;
 
 var param;
 var feedCall;
-/*var d = {
+var d = {
 		picture:'http://hdn.xnimg.cn/photos/hdn321/20100519/2235/tiny_Wx1k_67280c019118.jpg',
 		name : '是我的马甲',
 		caption:'曾经黄小虎就站在我面前'
-}*/
+}
 function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
-	XN.Connect.showFeedDialog(prepareParams(data));
+	XN.Connect.showFeedDialog(prepareParams(d));
 }
 
 function prepareParams(data){
@@ -120,7 +120,7 @@ function prepareParams(data){
 	  			template_bundle_id: 1,
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'pop/feed_back.php?id=202150436&fid='+feedId}
+	                            href:'pop/feed_back.php?fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  

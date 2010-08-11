@@ -95,7 +95,8 @@ function install_swf(pid){
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
         <li class="forum"><a  href="javascript:alert('暂未开放');"  class="fullpage">讨论群</a></li>
-        <li class="payment" ><a  href="javascript:alert('暂未开放');"   id ="pay">充值</a></li>
+		<li class="payment" ><a  href="javascript:popUpFeed();"   id ="pay" claass="fullpage">充值</a></li>
+		<li><input type="button"  onclick="popUpFeed();" value="feed"></li>
 	</ul>
 	</div>
     </div>

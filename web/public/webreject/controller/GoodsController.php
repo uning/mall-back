@@ -239,14 +239,8 @@ class GoodsController extends BaseController
 		//$min_gap = 120;
 		$min_gap = 0;
 		//获取人气和宣传值
-		$params = $tu->getf( array(TT::POPU,TT::COMPUTE_PONIT,TT::SHOP_NUM,TT::EXP_STAT) );
+		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$ret['params'] = $params;
-
-		$status = $tu->getf( array(TT::MONEY_STAT,TT::GEM_STAT) );
-		if( !$params['shop_num'] ){
-			$ret['s'] = 'noshopexist';
-			return $ret;
-		}
 		$goods = $tu->get( TT::GOODS_GROUP );
 //		$ret['goods'] = $goods;
 		$shopids = array();
@@ -264,40 +258,26 @@ class GoodsController extends BaseController
 				$condata[$sid][$stime] = $row; //for unique time index
 			}
 		}
-		//		$ret['shopids'] = $shopids;
+//		$ret['shopids'] = $shopids;
 		if(!$condata){
 			$ret['s']='nogoods';
 			return $ret;
 		}
-//		$ret['condata'] = $condata;
+		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
 		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
 		$ret['ua'] = $ua;
-		$shop_num = $params['shop_num'];
-		$ret['bshopnum'] = $shop_num;
-		/*
-		if( !$shop_num ){//处理店面格数为零的异常情况
-			$shops = $tu->get( TT::SHOP_GROUP );
-			foreach( $shops as $shop ){
-				$ret['shop_num_shop'][] = $shop;
-				$item = ItemConfig::getItem( $shop['tag'] );
-				$shop_num += $item['gridWidth'];
-			}
-		}
-		*/
 		$shops = $tu->get( TT::SHOP_GROUP );
-		$shop_num = 0;
 		foreach( $shops as $shop ){
-//			$ret['shop_num_shop'][] = $shop;
+			$ret['shop_num_shop'][] = $shop;
 			$item = ItemConfig::getItem( $shop['tag'] );
 //			$ret['item'][] = $item;
 //			$ret['gridWidth'][] = $item['gridWidth'];
 			$shop_num += $item['gridWidth'];
 		}		
-		$ret['ashopnum'] = $shop_num;
-		$shop_popu = $shop_num*15;//只算店面人气
-		$popu += $shop_popu;
+		$ret['shopnum'] = $shop_num;
+		$popu += $shop_num*15;
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		
@@ -324,11 +304,15 @@ class GoodsController extends BaseController
 			        continue;
 			    }
 			    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
-			    if( $cinema_obj['lock'] != '2' ){//还未上映或有钱未捡
+			    if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
 			        continue;
-			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
-			            continue;
-			        }
+			    }
+			    if( $cinema_obj['lock'] == '1'){//有钱未捡，不用结算
+			        continue;
+			    }
+			    if( $cinema_obj['lock'] == '0' ){//未触发上映或有钱未捡
+			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从开始进人算起，电影未放映完
+			            continue;			            
 			    }
 			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱
 			    $cinema_obj['ctime'] = $now;

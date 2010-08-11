@@ -79,7 +79,8 @@ class Tool
 	{
 	    $uid = $params['u'];
 	    $tu = new TTUser( $uid );
-	    $ret['bpop'] = $tu->numch( TT::POPU,0 );
+		$ret['bpop'] = $tu->numch( TT::POPU,0 );
+		$ret['apop'] = $tu->numch( TT::POPU,0-$ret['bpop'] );
 	    return $ret;
 	}
 	

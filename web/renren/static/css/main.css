@@ -82,7 +82,7 @@ img,a .img{border:0}
 #header .logo {
     width: 100px;
     height: 46px;
-    background: url("../images/logo.png") no-repeat center;
+    background: url("../images/logo.png?v=1") no-repeat center;
     text-indent: -9999px;
     float: left;
 }
@@ -106,7 +106,7 @@ img,a .img{border:0}
 #navga ul li a {
     display: block;
     text-indent: -9999px;
-    background: url("../images/nav.png") no-repeat left top;
+    background: url("../images/nav.png?v=1") no-repeat left top;
     width: 95px;
     height: 32px;
 

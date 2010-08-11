@@ -324,11 +324,15 @@ class GoodsController extends BaseController
 			        continue;
 			    }
 			    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
-			    if( $cinema_obj['lock'] != '2' ){//还未上映或有钱未捡
+			    if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
 			        continue;
-			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
-			            continue;
-			        }
+			    }
+			    if( $cinema_obj['lock'] == '1'){//有钱未捡，不用结算
+			        continue;
+			    }
+			    if( $cinema_obj['lock'] == '0' ){//未触发上映或有钱未捡
+			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从
+			            continue;			            
 			    }
 			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱
 			    $cinema_obj['ctime'] = $now;

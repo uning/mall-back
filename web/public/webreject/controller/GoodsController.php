@@ -331,7 +331,7 @@ class GoodsController extends BaseController
 			        continue;
 			    }
 			    if( $cinema_obj['lock'] == '0' ){//未触发上映或有钱未捡
-			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从
+			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从开始进人算起，电影未放映完
 			            continue;			            
 			    }
 			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱

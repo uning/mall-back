@@ -88,6 +88,30 @@ class Tool
 	    return $ret;
 	}
 	
+	public function reset_cinema( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	    $items = $tu->get( TT::ITEM_GROUP );
+	    if( !$items ){
+	        $ret['s'] = 'empty';
+	        return $ret;
+	    }
+	    $rids = array();
+	    foreach( $items as $item ){
+	        if( $item['tag'] == '60102' ){
+	            $rids[] = $item['id'];
+	            $id = $tu->getdid( false,TT::CINEMA_GROUP );
+	            $new = $item;
+	            $new['id'] = $id;
+	            $tu->puto($new,TT::ITEM_GROUP,false);
+	        }
+	    }
+	    $tu->remove( $rids );
+	    $ret['s'] = 'OK';
+	    return $ret;
+	}
+	
 	public function testops( $params )
 	{
 	    $uid = $params['u'];

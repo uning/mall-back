@@ -248,7 +248,7 @@ class GoodsController extends BaseController
 			return $ret;
 		}
 		$goods = $tu->get( TT::GOODS_GROUP );
-		//		$ret['goods'] = $goods;
+		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();
@@ -296,10 +296,8 @@ class GoodsController extends BaseController
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['ashopnum'] = $shop_num;
-		if( !$popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
-//		if( $popu ){//处理人气为零的异常情况，先按店面格数算的固有人气值，再和该等级对应的最大人气值比较
-			$popu = $shop_num*15;//此时忽略了厕所等人气加成
-		}
+		$shop_popu = $shop_num*15;//只算店面人气
+		$popu += $shop_popu;
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		

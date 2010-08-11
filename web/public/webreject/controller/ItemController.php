@@ -46,22 +46,23 @@ class ItemController {
 				return $buy_ret;
 			}	
 			if( $item['type'] == "ro" ){
-			    $shop_num += $item['gridWidth'];
+//			    $shop_num += $item['gridWidth'];
 				$row['id']=$tu->getdid(false,TT::SHOP_GROUP);//shop id
 			}
 			else{
 				$row['id']=$tu->getdid(false,TT::ITEM_GROUP);//other
+				$pop += $item['pop'];
 			}
 			if( $row['tag'] == '60102' ){//电影院买后立即可播放电影
 			    $row['ctime'] = $now;
 			    $row['lock'] = '0';
 			}
-			$pop += $item['pop'];
+//			$pop += $item['pop'];
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 
-		}
+		}/*
 		if($shop_num){
 			$tu->numch(TT::SHOP_NUM,$shop_num);           
-		}
+		}*/
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$ret['s'] = 'OK';
@@ -101,7 +102,7 @@ class ItemController {
 				$ret['index'] = $index;
 				$ret['msg'] = "the $index item in the array";
 				return $ret;
-			}
+			}/*
 			if($row['pos']!='s'){
 			    if( $item['type'] == "ro" )
 				    $shop_num += $item['gridWidth'];
@@ -110,12 +111,20 @@ class ItemController {
 			    if( $item['type'] == "ro" )
 				    $shop_num -= $item['gridWidth'];
 				$pop -= $item['pop'];
+			}*/
+			if( $item['type'] != 'ro' ){//改为不计算店面的人气
+			    if( $row['pos'] != 's' ){
+			        $pop += $item['pop'];
+			    }
+			    else{
+			        $pop -= $item['pop'];
+			    }
 			}
 			$ids[] = $tu->puto($row);
-		}
+		}/*
 		if($shop_num){
 			$tu->numch(TT::SHOP_NUM,$shop_num);           
-		}
+		}*/
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$ret['s'] = 'OK';

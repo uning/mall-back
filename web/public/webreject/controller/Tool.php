@@ -80,7 +80,7 @@ class Tool
 	    $uid = $params['u'];
 	    $tu = new TTUser( $uid );
 	    $ret['bshopnum'] = $tu->numch( TT::SHOP_NUM,0 );
-//	    $ret['ashopnum'] = $tu->numch( TT::SHOP_NUM,$ret['bshopnum'] );
+	    $ret['ashopnum'] = $tu->numch( TT::SHOP_NUM,0-$ret['bshopnum'] );
 	    /*
 		$ret['bpop'] = $tu->numch( TT::POPU,0 );
 		$ret['apop'] = $tu->numch( TT::POPU,0-$ret['bpop'] );

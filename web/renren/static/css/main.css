@@ -169,6 +169,15 @@ img,a .img{border:0}
     outline:none;
 	blr:expression(this.onFocus=this.blur());
 }
+#navga ul li.problem a {
+    background-position: 0 -530px;
+}
+
+#navga ul li.problem a.active, #navga ul li.problem a:hover {
+    background-position: 0 -575px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
 /*#navga ul li.freegift a,#navga ul li.freegift a.active, #navga ul li.freegift a:hover {
     background-position: 0 -639px;
     height: 45px;

@@ -71,8 +71,8 @@
   .main_gift_cont li.giftAnimal,   .main_gift_cont li.giftBuilding,   .main_gift_cont li.giftTree,   .main_gift_cont li.giftBuildingResource { width: 143px; height: 166px; }
   .main_gift_cont li.giftResource,   .main_gift_cont li.giftEnergy { width: 143px; height: 166px; }
   .main_gift_cont li.giftLiWide,   .main_gift_cont li.giftLockedWide { width: 175px; height: 166px; }
-  .main_gift_cont li { background: #ffffff none no-repeat scroll left top; }
-  .main_gift_cont li.giftLi { background-image: url("../images/css/gift_box_open.png"); }
+  .main_gift_cont li {  }
+  .main_gift_cont li.giftLi { background: url("../images/css/gift_box_open.png") no-repeat 0 0; }
   .main_gift_cont li.giftLe { background-image: url("../images/css/gift_box_le.png"); }
   .main_gift_cont li.giftCollectible { background-image: url("../images/css/gift_box_collectible.png"); }
   .main_gift_cont li.giftAnimal { background-image: url("../images/css/gift_box_animal.png"); }

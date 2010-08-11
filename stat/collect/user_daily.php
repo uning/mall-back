@@ -54,19 +54,12 @@ if($old){
 }else{
 	$dgm->insert($dgr);
 }
-/*
-$sql = get_insert_sql('daily_general',$dgfs,$dgr);
-echo "$sql\n";
-exit;
-$db->query($sql);
-*/
-$cmd = "mysql -uroot -P{$dbconfig['port']}  -h{$dbconfig['host']} {$dbconfig['dbname']}";
+$cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
 if($dbconfig['password']){
-  $cmd.=" -p'{$dbconfig['password']}'";
+  $cmd.=" -p'{$dbconfig['password']}' ";
 }
+$cmd .= $dbconfig['dbname'];
 $cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE user_history  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         
-EOF;
-
 echo $cmd;
 system($cmd);
 fclose($uhf);

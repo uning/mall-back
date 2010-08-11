@@ -15,6 +15,9 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
+for( $i=1;$i<2;$i++ ){
+    dotest('Tool.resetpop',$p= array('u'=>$i));
+}
 //dotest('Achieve.get',$p= array('u'=>192));
 //dotest('Achieve.finish',$p= array('u'=>1,'tag'=>1001));
 //dotest('Achieve.get',$p= array('u'=>1));

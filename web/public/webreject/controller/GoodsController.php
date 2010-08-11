@@ -238,13 +238,14 @@ class GoodsController extends BaseController
 //			continue;
 		}
 	    if( $cinema_obj['lock'] == '0' ){//前端未触发上映
-			if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从开始进人算起，电影未放映完
+			if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) {
+			}//从开始进人算起，电影未放映完
 //			    continue;			            
-			}
 		$cinema_obj['money'] = $cinema['sellmoney'];
 		$cinema_obj['ctime'] = $now;
 		$cinema_obj['lock'] = '1';
 		$tu->puto( $cinema_obj,TT::ITEM_GROUP );
+	    }
 	}
 	/**
 	 * 结算收益

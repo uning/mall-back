@@ -262,10 +262,12 @@ class GoodsController extends BaseController
 		//获取人气和宣传值
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$ret['params'] = $params;
-/*		$cinemas = $tu->get( TT::CINEMA_GROUP );
-		foreach( $cinemas as $cinema ){
-//		    self::check_cinema( $tu,$cinema,$now );
-		}*/
+		$cinemas = $tu->get( TT::CINEMA_GROUP );
+		if( $cinemas ){
+		    foreach( $cinemas as $cinema ){
+//		        self::check_cinema( $tu,$cinema,$now );
+	    	}
+    	}
 		$goods = $tu->get( TT::GOODS_GROUP );
 //		$ret['goods'] = $goods;
 		$shopids = array();

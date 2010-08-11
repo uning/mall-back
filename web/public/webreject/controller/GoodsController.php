@@ -242,7 +242,7 @@ class GoodsController extends BaseController
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$ret['params'] = $params;
 		$goods = $tu->get( TT::GOODS_GROUP );
-		$ret['goods'] = $goods;
+//		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();
@@ -263,7 +263,7 @@ class GoodsController extends BaseController
 			$ret['s']='nogoods';
 			return $ret;
 		}
-//		$ret['condata'] = $condata;
+		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
 		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
@@ -277,7 +277,7 @@ class GoodsController extends BaseController
 			$shop_num += $item['gridWidth'];
 		}		
 		$ret['shopnum'] = $shop_num;
-		$popu += $$shop_num*15;
+		$popu += $shop_num*15;
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		

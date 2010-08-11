@@ -230,11 +230,16 @@ class GoodsController extends BaseController
 	protected function check_cinema ( &$tu,&$cinema_obj,$now )
 	{
 	    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
+	    if($cinema_obj['lock']=='0'&&$now-$cinema['selltime']*60>$cinema_obj['ctime']>$now-$cinema['selltime']*30){
+	        $cinema_obj['lock'] == '2';
+	        $cinema_obj['ctime'] += $cinema['selltime']*30;
+	        $tu->puto( $cinema_obj,TT::CINEMA_GROUP );
+	    }
 	    if(($cinema_obj['lock']=='0' && $cinema_obj['ctime']>$now-$cinema['selltime']*60 )||($cinema_obj['lock']=='2'&&$cinema_obj['ctime']>$now-$cinema['selltime']*30)){
     		$cinema_obj['money'] = $cinema['sellmoney'];
 	    	$cinema_obj['ctime'] = $now;
     		$cinema_obj['lock'] = '1';
-	    	$tu->puto( $cinema_obj,TT::ITEM_GROUP );
+	    	$tu->puto( $cinema_obj,TT::CINEMA_GROUP );
 	    }
 	}
 	/**

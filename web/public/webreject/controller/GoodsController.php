@@ -230,21 +230,11 @@ class GoodsController extends BaseController
 	protected function check_cinema ( &$tu,&$cinema_obj,$now )
 	{
 	    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
-	    if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
-			//			continue;
-//			break;
-		}
-		if( $cinema_obj['lock'] == '1'){//有钱未捡，不用结算
-//			continue;
-		}
-	    if( $cinema_obj['lock'] == '0' ){//前端未触发上映
-			if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) {
-			}//从开始进人算起，电影未放映完
-//			    continue;			            
-		$cinema_obj['money'] = $cinema['sellmoney'];
-		$cinema_obj['ctime'] = $now;
-		$cinema_obj['lock'] = '1';
-		$tu->puto( $cinema_obj,TT::ITEM_GROUP );
+	    if(($cinema_obj['lock']=='0' && $cinema_obj['ctime']>$now-$cinema['selltime']*60 )||($cinema_obj['lock']=='2'&&$cinema_obj['ctime']>$now-$cinema['selltime']*30)){
+    		$cinema_obj['money'] = $cinema['sellmoney'];
+	    	$cinema_obj['ctime'] = $now;
+    		$cinema_obj['lock'] = '1';
+	    	$tu->puto( $cinema_obj,TT::ITEM_GROUP );
 	    }
 	}
 	/**
@@ -265,7 +255,7 @@ class GoodsController extends BaseController
 		$cinemas = $tu->get( TT::CINEMA_GROUP );
 		if( $cinemas ){
 		    foreach( $cinemas as $cinema ){
-//		        self::check_cinema( $tu,$cinema,$now );
+		        self::check_cinema( $tu,$cinema,$now );
 	    	}
     	}
 		$goods = $tu->get( TT::GOODS_GROUP );

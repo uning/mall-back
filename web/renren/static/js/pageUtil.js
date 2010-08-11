@@ -120,7 +120,7 @@ function prepareParams(data){
 	  			template_bundle_id: 1,
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://www.renren.com/profile.do?id=202150436&fid='+feedId}
+	                            href:'pop/feed_back.php?id=202150436&fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  

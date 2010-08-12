@@ -244,11 +244,11 @@ class GoodsController extends BaseController
 
 		$status = $tu->getf( array(TT::MONEY_STAT,TT::GEM_STAT) );
 		if( !$params['shop_num'] ){
-			$ret['s'] = 'noshopexist';
-			return $ret;
+    		$ret['s'] = 'noshopexist';
+ // 		return $ret;
 		}
 		$goods = $tu->get( TT::GOODS_GROUP );
-		$ret['goods'] = $goods;
+//		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();
@@ -269,7 +269,7 @@ class GoodsController extends BaseController
 			$ret['s']='nogoods';
 			return $ret;
 		}
-//		$ret['condata'] = $condata;
+		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
 		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );

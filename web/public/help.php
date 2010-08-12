@@ -23,19 +23,19 @@ if($m){
 		$show_all = true;
 if($c==null){
 		$show_all = false;
-	     JsonServer::registerController('Achieve');
-	     JsonServer::registerController('Advert');
-	     JsonServer::registerController('Cinema');
-	     JsonServer::registerController('Gift');
-	     JsonServer::registerController('Man');
-	     JsonServer::registerController('UserController');
-	     JsonServer::registerController('ItemController');
-	     JsonServer::registerController('CarController');
-	     JsonServer::registerController('GoodsController');
-         JsonServer::registerController('TaskController');
-         JsonServer::registerController('Friend');
-         JsonServer::registerController('Tool');
-         JsonServer::registerController('DataS');
+		JsonServer::registerController('Achieve');
+		JsonServer::registerController('Advert');
+		JsonServer::registerController('Cinema');
+		JsonServer::registerController('Gift');
+		JsonServer::registerController('Man');
+		JsonServer::registerController('UserController');
+		JsonServer::registerController('ItemController');
+		JsonServer::registerController('CarController');
+		JsonServer::registerController('GoodsController');
+		JsonServer::registerController('TaskController');
+		JsonServer::registerController('Friend');
+		JsonServer::registerController('Tool');
+		JsonServer::registerController('DataS');
          
 //	     JsonServer::registerController('Test');
 }else{
@@ -45,6 +45,8 @@ if($m==null ){
 	   $allms = JsonServer::getAllMethod();
 	   foreach($allms as $m){
 	   	$ca=explode('.',$m);
+		 //echo "'$m'=>1,\n";
+		 //continue;
 	   	$c = $ca[0];
 	   	echo "<a href='?&c=$c'>$c</a>  <a href='?m=$m'>$m</a>\n";
 	   	//echo "<h2> <a href='?&c=$c'>$c</a>  <a href='?m=$m'>$m</a></h2>\n";

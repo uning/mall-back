@@ -15,7 +15,7 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-dotest('Cinema.enter',$p= array('u'=>1,'cid'=>''));
+dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
 //dotest('Tool.addgoods',$p= array('u'=>144));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
 /*
@@ -52,7 +52,7 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 //dotest( 'Tool.genusers',$p = array('u'=>1));
 //dotest('CarController.go_goods',$p = Array('c'=>Array('id'=>"23:c:4c4fe86bb4aaa",'goodsTag'=>10101),'u'=>1) );
 //dotest('UserController.set_advert',$p=array('u'=>1,'tag'=>1));
-//dotest('UserController.cheat',$p=array('u'=>48,'money'=>100000,'gem'=>100,'exp'=>10000));
+//dotest('UserController.cheat',$p=array('u'=>157,'money'=>100000,'gem'=>100,'exp'=>10000));
 //dotest('ItemController.buy',$p = array('d' => Array('0' => Array('pos' => Array('y' => 48,'x' => 0),'havePop' => 1,'tag' => 60003,'isShop' => 1),'1' => Array('pos' => Array('y' => 50,'x' => 0),'havePop' => 1,'tag' =>60003,'isShop' => 1)),'u' => 20));
 //dotest('CarController.buy',$p=array('u'=>2,'c'=>array( array('tag'=>92702,'pos'=>array('x'=>0,'y'=>0),'t'=>0) ) ) );
 //dotest('TaskController.get_award',$p = array('u'=>'27','tid'=>'27:t:4c4a968aeb924:o') );

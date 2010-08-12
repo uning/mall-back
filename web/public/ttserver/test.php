@@ -24,6 +24,13 @@ record_time($st);
 //require_once('TTt.php');
 require_once('TT.php');
 
+$logt = TT::get_tt('log');
+$str = '$logt->num()';
+echo "$str=";record_time($st);eval('print_r(  ' .$str.');');record_time($st,$str);echo "\n";
+$str = '$logt->get(2)';
+echo "$str=";record_time($st);eval('print_r(  ' .$str.');');record_time($st,$str);echo "\n";
+
+
 $tw = TT::TTWeb();
 $key = '12323';
 $data['id']=$key;

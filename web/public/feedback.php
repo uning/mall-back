@@ -19,8 +19,10 @@ if($_POST['message']){
 	
 	foreach($_FILES as $f=>$v){
 		if($v['tmp_name']){
-			@$mail->AddAttachment($v['tmp_name'],"$f.jpg");
-			//move_uploaded_file($v['tmp_name'],$upload_path."$f.jpg"); 
+			$file = $upload_path.uniqid().'.jpg';
+			move_uploaded_file($v['tmp_name'],$file);
+			@$mail->AddAttachment($file,"$f.jpg");
+			//@$mail->AddAttachment($v['tmp_name'],"$f.jp);
 		}
 	}
 	//@$mail->AddAttachment($upload_path.'0.jpg',"att.jpg");

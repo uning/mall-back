@@ -24,7 +24,7 @@ class GoodsController extends BaseController
 		$tu = new TTUser($uid);
 		$ids = array();
 		foreach ( $params['d'] as $goods){
-            $ret['goods'] = $goods;
+//            $ret['goods'] = $goods;
 			$item = ItemConfig::getItem($goods['tag']);
 			if( !$item ){
 				//写入日志
@@ -240,7 +240,7 @@ class GoodsController extends BaseController
 		$min_gap = 0;
 		//获取人气和宣传值
 		$params = $tu->getf( array(TT::POPU,TT::COMPUTE_PONIT,TT::EXP_STAT) );
-		$ret['params'] = $params;
+//		$ret['params'] = $params;
 		$goods = $tu->get( TT::GOODS_GROUP );
 //		$ret['goods'] = $goods;
 		$shopids = array();
@@ -263,13 +263,13 @@ class GoodsController extends BaseController
 			$ret['s']='nogoods';
 			return $ret;
 		}
-		$ret['condata'] = $condata;
+//		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
-		$ret['bpopu'] = $popu;
+//		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-		$ret['ua'] = $ua;
+//		$ret['ua'] = $ua;
 		$shop_num = $params['shop_num'];
-		$ret['bshopnum'] = $shop_num;
+//		$ret['bshopnum'] = $shop_num;
 		/*
 		if( !$shop_num ){//处理店面格数为零的异常情况
 			$shops = $tu->get( TT::SHOP_GROUP );
@@ -283,7 +283,7 @@ class GoodsController extends BaseController
 		$shops = $tu->get( TT::SHOP_GROUP );
 		$shop_num = 0;
 		foreach( $shops as $shop ){
-			$ret['shop_num_shop'][] = $shop;
+//			$ret['shop_num_shop'][] = $shop;
 			if( $shop['pos'] != 's' ){
 			    $item = ItemConfig::getItem( $shop['tag'] );
 //			    $ret['item'][] = $item;
@@ -291,7 +291,7 @@ class GoodsController extends BaseController
 			    $shop_num += $item['gridWidth'];
 			}
 		}		
-		$ret['ashopnum'] = $shop_num;
+//		$ret['ashopnum'] = $shop_num;
 		if( !$shop_num ){
 			$ret['s'] = 'noshopexist';
 			return $ret;
@@ -301,7 +301,7 @@ class GoodsController extends BaseController
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		
-		$ret['apopu'] = $popu;
+//		$ret['apopu'] = $popu;
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
@@ -365,7 +365,7 @@ class GoodsController extends BaseController
 				else{
 					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
 				}					
-				$ret['gaps'][$s][$t] = $gaps;
+//				$ret['gaps'][$s][$t] = $gaps;
 				//				    foreach($gaps as $gr){
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
@@ -373,7 +373,7 @@ class GoodsController extends BaseController
 						$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
 					if( $pertime )
 						$snum = floor( $stime/$pertime );
-					$ret['pertime'][$s][$t][$k] = $pertime;
+//					$ret['pertime'][$s][$t][$k] = $pertime;
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}

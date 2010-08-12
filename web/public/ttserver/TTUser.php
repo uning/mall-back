@@ -517,12 +517,12 @@ class TTUser extends TTUDB
 					break;//跳出时间段循环，继续卖同一商店下一个上架时间的货物（在同一商店，同一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
 				}
 			}
-			$this->puto( $shop_obj,TT::SHOP_GROUP );
 			if( $g['num']!= 0 ){
 				$this->puto( $g,TT::GOODS_GROUP );//未卖完的商品需要保存回库，继续卖同一商店下一个上架时间的货物（在同一商店，一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
 				break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算
 			}
 		}
+		$this->puto( $shop_obj,TT::SHOP_GROUP );
 //删除使用过的广告队列
 		unset( $adv['use'] );
 		if( $used_advert ){//如果是空数组
@@ -534,12 +534,18 @@ class TTUser extends TTUDB
 		$now_sale_count = $this->numch( 'total_count',$sale_count );
 		//总销售额
 		$now_total_sale = $this->numch( 'total_sale',$income );
-		$ret['s'] = 'OK';
-		$ret['income'] = $income;
-		$ret['money']  = $this->numch('money',$income);
-		$ret['t'] = $now;
+//		$ret['income'] = $income;
+//		$ret['money']  = $this->numch('money',$income);
+        $this->numch('money',$income);
+//		$ret['t'] = $now;
 		$this->remove( $selloutids );
-		$this->putf( TT::COMPUTE_PONIT,$now );
+//		$this->putf( TT::COMPUTE_PONIT,$now );
+        if( $shop_obj['goods'] ){
+            $ret['s'] = 'notempty';
+        }
+        else{
+            $ret['s'] = 'OK';
+        }
 		return $ret;
 	}	
 	

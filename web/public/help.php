@@ -25,17 +25,18 @@ if($c==null){
 		$show_all = false;
 	     JsonServer::registerController('Achieve');
 	     JsonServer::registerController('Advert');
+	     JsonServer::registerController('Cinema');
 	     JsonServer::registerController('Gift');
 	     JsonServer::registerController('Man');
-	     JsonServer::registerController('DataS');
 	     JsonServer::registerController('UserController');
 	     JsonServer::registerController('ItemController');
-	     JsonServer::registerController('Friend');
 	     JsonServer::registerController('CarController');
 	     JsonServer::registerController('GoodsController');
          JsonServer::registerController('TaskController');
+         JsonServer::registerController('Friend');
          JsonServer::registerController('Tool');
-         JsonServer::registerController('Cinema');
+         JsonServer::registerController('DataS');
+         
 //	     JsonServer::registerController('Test');
 }else{
 	 JsonServer::registerController($c);

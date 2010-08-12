@@ -15,7 +15,8 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-dotest('Tool.addgoods',$p= array('u'=>144));
+dotest('Cinema.enter',$p= array('u'=>1,'cid'=>''));
+//dotest('Tool.addgoods',$p= array('u'=>144));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
 /*
 for( $i=1;$i<151;$i++ ){

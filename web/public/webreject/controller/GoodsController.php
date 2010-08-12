@@ -226,22 +226,6 @@ class GoodsController extends BaseController
 		//删除已使用广告队列
 		return $ret;
 	}
-	
-	protected function check_cinema ( &$tu,&$cinema_obj,$now )
-	{
-	    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
-	    if($cinema_obj['lock']=='0'&&$now-$cinema['selltime']*60>$cinema_obj['ctime']>$now-$cinema['selltime']*30){
-	        $cinema_obj['lock'] == '2';
-	        $cinema_obj['ctime'] += $cinema['selltime']*30;
-	        $tu->puto( $cinema_obj,TT::CINEMA_GROUP );
-	    }
-	    if(($cinema_obj['lock']=='0' && $cinema_obj['ctime']>$now-$cinema['selltime']*60 )||($cinema_obj['lock']=='2'&&$cinema_obj['ctime']>$now-$cinema['selltime']*30)){
-    		$cinema_obj['money'] = $cinema['sellmoney'];
-	    	$cinema_obj['ctime'] = $now;
-    		$cinema_obj['lock'] = '1';
-	    	$tu->puto( $cinema_obj,TT::CINEMA_GROUP );
-	    }
-	}
 	/**
 	 * 结算收益
 	 * 取出每个店面所有上架商品
@@ -249,20 +233,14 @@ class GoodsController extends BaseController
 	 * @return 
 	 */
 	protected function compute( &$tu )
-	{/*	    
+	{	    
 		$now = time();
 		//		$ret['now'] = $now;
 		//$min_gap = 120;
 		$min_gap = 0;
 		//获取人气和宣传值
-		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
+		$params = $tu->getf( array(TT::POPU,TT::COMPUTE_PONIT,TT::EXP_STAT) );
 		$ret['params'] = $params;
-		$cinemas = $tu->get( TT::CINEMA_GROUP );
-		if( $cinemas ){
-		    foreach( $cinemas as $cinema ){
-//		        self::check_cinema( $tu,$cinema,$now );
-	    	}
-    	}
 		$goods = $tu->get( TT::GOODS_GROUP );
 //		$ret['goods'] = $goods;
 		$shopids = array();
@@ -280,15 +258,7 @@ class GoodsController extends BaseController
 				$condata[$sid][$stime] = $row; //for unique time index
 			}
 		}
-//		$ret['shopids'] = $shopids;
-		$shops = $tu->get( TT::SHOP_GROUP );
-		foreach( $shops as $shop ){
-		    $shops[] = $shop;
-			$item = ItemConfig::getItem( $shop['tag'] );
-			$shop_num += $item['gridWidth'];
-		}		
-		$ret['allshops'] = $shops;
-		$ret['shopnum'] = $shop_num;
+		//		$ret['shopids'] = $shopids;
 		if(!$condata){
 			$ret['s']='nogoods';
 			return $ret;
@@ -298,7 +268,36 @@ class GoodsController extends BaseController
 		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
 		$ret['ua'] = $ua;
-		$popu += $shop_num*15;
+		$shop_num = $params['shop_num'];
+		$ret['bshopnum'] = $shop_num;
+		/*
+		if( !$shop_num ){//处理店面格数为零的异常情况
+			$shops = $tu->get( TT::SHOP_GROUP );
+			foreach( $shops as $shop ){
+				$ret['shop_num_shop'][] = $shop;
+				$item = ItemConfig::getItem( $shop['tag'] );
+				$shop_num += $item['gridWidth'];
+			}
+		}
+		*/
+		$shops = $tu->get( TT::SHOP_GROUP );
+		$shop_num = 0;
+		foreach( $shops as $shop ){
+			$ret['shop_num_shop'][] = $shop;
+			if( $shop['pos'] != 's' ){
+			    $item = ItemConfig::getItem( $shop['tag'] );
+//			    $ret['item'][] = $item;
+//			    $ret['gridWidth'][] = $item['gridWidth'];
+			    $shop_num += $item['gridWidth'];
+			}
+		}		
+		$ret['ashopnum'] = $shop_num;
+		if( !$shop_num ){
+			$ret['s'] = 'noshopexist';
+			return $ret;
+		}		
+		$shop_popu = $shop_num*15;//只算店面人气
+		$popu += $shop_popu;
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		
@@ -306,14 +305,42 @@ class GoodsController extends BaseController
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
+		//		$ret['bbbbbadvert'] = $adv;
+		$computetime = $params[TT::COMPUTE_PONIT];
+		//		$ret['now'] = date( TM_FORMAT,$now );
+		//		$ret['lastcomputetime'] = date( TM_FORMAT,$computetime );
 		$selloutids = array();
 		$income = 0;
+		$special = 0; //特殊商店的收入
 		$sale_count = 0; //销售份数
 		foreach( $condata as $s=>$gs ){
 			$sconfig = ItemConfig::getItem( $shopids[$s] );
 			//			$ret['sconfig'][$s] = $sconfig;
 			//			$ret['before_gs'][] = $gs;
-
+			/*
+			if( $sconfig['tag'] == '60102' ){//对电影院加入结算时间，并上锁
+			    $cinema_obj = $tu->getbyid( $s );
+			    if( !$cinema_obj ){
+			        //写入日志
+			        continue;
+			    }
+			    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
+			    if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
+			        continue;
+			    }
+			    if( $cinema_obj['lock'] == '1'){//有钱未捡，不用结算
+			        continue;
+			    }
+			    if( $cinema_obj['lock'] == '0' ){//未触发上映或有钱未捡
+			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从开始进人算起，电影未放映完
+			            continue;			            
+			    }
+			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱
+			    $cinema_obj['ctime'] = $now;
+			    $cinema_obj['lock'] = '1';
+			    $tu->puto( $cinema_obj,TT::ITEM_GROUP );
+			}
+			*/
 			ksort($gs);
 			//          $ret['after_gs'][] = $gs;
 			$curtime = 0;//可以售卖新商品时间
@@ -342,7 +369,7 @@ class GoodsController extends BaseController
 				//				    foreach($gaps as $gr){
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
-					if( $sconfig['gridWidth'] )
+					if( $sconfig['gridWidth'] )					
 						$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
 					if( $pertime )
 						$snum = floor( $stime/$pertime );
@@ -380,13 +407,18 @@ class GoodsController extends BaseController
 			$adv['use'] = $used_advert;
 		}
 		$adv['id'] = $aid;
+/*		
+		$adv = $tu->getbyid( $aid );
+		$used_advert = $adv['use'];
+		$ret['advert'] = $adv;		
+*/
 	    //$ret['aaaadv'] = $adv;
 		$tu->puto( $adv,TT::ADVERT_GROUP,false );
 //        $tu->puto( $adv );
 		//总销售份数
 		$now_sale_count = $tu->numch( 'total_count',$sale_count );
 		//总销售额
-		$now_total_sale = $tu->numch( 'total_sale',$income );*/
+		$now_total_sale = $tu->numch( 'total_sale',$income );
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
 		$ret['money']  = $tu->numch('money',$income);

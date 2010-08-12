@@ -122,11 +122,8 @@ class GoodsController extends BaseController
 	protected function compute( &$tu )
 	{	    
 		$now = time();
-		//		$ret['now'] = $now;
-		//$min_gap = 120;
-		$min_gap = 0;
 		//获取人气和宣传值
-		$params = $tu->getf( array(TT::POPU,TT::COMPUTE_PONIT,TT::EXP_STAT) );
+		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$ret['params'] = $params;
 		$goods = $tu->get( TT::GOODS_GROUP );
 //		$ret['goods'] = $goods;
@@ -145,7 +142,7 @@ class GoodsController extends BaseController
 				$condata[$sid][$stime] = $row; //for unique time index
 			}
 		}
-		//		$ret['shopids'] = $shopids;
+//		$ret['shopids'] = $shopids;
 		if(!$condata){
 			$ret['s']='nogoods';
 			return $ret;
@@ -153,15 +150,13 @@ class GoodsController extends BaseController
 		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
 		$ret['bpopu'] = $popu;
-		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
+		$ua = UpgradeConfig::getUpgradeNeed( $params[TT::EXP_STAT] );
 		$ret['ua'] = $ua;
 		$shops = $tu->get( TT::SHOP_GROUP );
 		foreach( $shops as $shop ){
 			$ret['shop_num_shop'][] = $shop;
 			if( $shop['pos'] != 's' ){
 			    $item = ItemConfig::getItem( $shop['tag'] );
-//			    $ret['item'][] = $item;
-//			    $ret['gridWidth'][] = $item['gridWidth'];
 			    $shop_num += $item['gridWidth'];
 			}
 		}		
@@ -179,13 +174,8 @@ class GoodsController extends BaseController
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
-		//		$ret['bbbbbadvert'] = $adv;
-		$computetime = $params[TT::COMPUTE_PONIT];
-		//		$ret['now'] = date( TM_FORMAT,$now );
-		//		$ret['lastcomputetime'] = date( TM_FORMAT,$computetime );
 		$selloutids = array();
 		$income = 0;
-		$special = 0; //特殊商店的收入
 		$sale_count = 0; //销售份数
 		foreach( $condata as $s=>$gs ){
 			$sconfig = ItemConfig::getItem( $shopids[$s] );
@@ -205,18 +195,17 @@ class GoodsController extends BaseController
 				if( $curtime< $ctime )
 					$curtime = $ctime;
 				$g['ctime'] = $now;  //　忽略之　　//结算时间不宜在此赋值，这样会把一些诸如在待售队列中本没有算
-				//				    $ret['tloop'][$s][$t] = date( TM_FORMAT,$curtime );
+//				$ret['tloop'][$s][$t] = date( TM_FORMAT,$curtime );
 				$gaps = array();
 				if( $used_advert ){
-//					$tmp = self::getTimeRates( $tu,$gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
                     $tmp = $tu->getTimeRates( $tu,$gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-//			            $ret['advertisement'][$s][$t] = $tmp;
+//			        $ret['advertisement'][$s][$t] = $tmp;
 				}
 				else{
 					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
 				}					
 				$ret['gaps'][$s][$t] = $gaps;
-				//				    foreach($gaps as $gr){
+//				foreach($gaps as $gr){
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
 					if( $sconfig['gridWidth'] )					
@@ -233,8 +222,6 @@ class GoodsController extends BaseController
 //					$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
 					$ret['sell'][$g['tag']] += $asnum;
 					$sale_count += $asnum;//记录销售份数，成就用
-					//					    $curtime += ( $asnum * $pertime );
-					//                        $curtime += $k;
 					$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
 					$g['num'] -= $asnum;
 					//					    $g['scount'] += $asnum;
@@ -259,14 +246,7 @@ class GoodsController extends BaseController
 			$adv['use'] = $used_advert;
 		}
 		$adv['id'] = $aid;
-/*		
-		$adv = $tu->getbyid( $aid );
-		$used_advert = $adv['use'];
-		$ret['advert'] = $adv;		
-*/
-	    //$ret['aaaadv'] = $adv;
 		$tu->puto( $adv,TT::ADVERT_GROUP,false );
-//        $tu->puto( $adv );
 		//总销售份数
 		$now_sale_count = $tu->numch( 'total_count',$sale_count );
 		//总销售额
@@ -276,7 +256,6 @@ class GoodsController extends BaseController
 		$ret['money']  = $tu->numch('money',$income);
 		$ret['t'] = $now;
 		$tu->remove( $selloutids );
-//		$tu->putf( TT::COMPUTE_PONIT,$now );
 		return $ret;
 	}	
 	

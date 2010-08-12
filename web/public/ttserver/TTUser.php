@@ -457,14 +457,9 @@ class TTUser extends TTUDB
 	    
 		$aid = $this->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $this->getbyid( $aid );
-		$used_advert = $adv['use'];
-		//		$ret['bbbbbadvert'] = $adv;
-		$computetime = $params[TT::COMPUTE_PONIT];
-		//		$ret['now'] = date( TM_FORMAT,$now );
-		//		$ret['lastcomputetime'] = date( TM_FORMAT,$computetime );	    
+		$used_advert = $adv['use'];    
 		$selloutids = array();
 		$income = 0;
-		$special = 0; //特殊商店的收入
 		$sale_count = 0; //销售份数
 		$now = time();
 		$sconfig = ItemConfig::getItem( $shop_obj['tag'] );
@@ -534,12 +529,8 @@ class TTUser extends TTUDB
 		$now_sale_count = $this->numch( 'total_count',$sale_count );
 		//总销售额
 		$now_total_sale = $this->numch( 'total_sale',$income );
-//		$ret['income'] = $income;
-//		$ret['money']  = $this->numch('money',$income);
         $this->numch('money',$income);
-//		$ret['t'] = $now;
 		$this->remove( $selloutids );
-//		$this->putf( TT::COMPUTE_PONIT,$now );
         if( $shop_obj['goods'] ){
             $ret['s'] = 'notempty';
         }

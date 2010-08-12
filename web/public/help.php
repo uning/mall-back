@@ -35,6 +35,7 @@ if($c==null){
 	     JsonServer::registerController('GoodsController');
          JsonServer::registerController('TaskController');
          JsonServer::registerController('Tool');
+         JsonServer::registerController('Cinema');
 //	     JsonServer::registerController('Test');
 }else{
 	 JsonServer::registerController($c);

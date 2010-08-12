@@ -52,7 +52,7 @@ class ItemController {
 			elseif( $row['tag'] == '60102' ){//电影院买后立即可播放电影
 			    $row['id'] = $tu->getdid( false,TT::CINEMA_GROUP );
 			    $row['ctime'] = $now;
-			    $row['lock'] = '0';
+//			    $row['lock'] = '0';
 			}
 			else{//不维护店面人气，但厕所的人气需包含
 				$row['id'] = $tu->getdid( false,TT::ITEM_GROUP );//other

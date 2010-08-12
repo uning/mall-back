@@ -81,10 +81,10 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="background: url('../static/images/back.png') no-repeat;overflow-x: hidden;overflow-y: hidden;" >
+<body style="overflow-x: hidden;overflow-y: hidden;" >
 
 
-
+<div style="background: url('../static/images/back.png') no-repeat;">
 <div id="header">
     <div id="navga">
     <div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
@@ -94,8 +94,8 @@ function install_swf(pid){
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
-        <li class="forum"><a  href="javascript:alert('暂未开放');"  class="fullpage">讨论群</a></li>
-		<li class="payment" ><a  href="javascript:popUpFeed();"   id ="pay" claass="fullpage">充值</a></li>
+        <li class="problem"><a  href="javascript:alert('暂未开放');"  id="problem">问题反馈</a></li>
+		<li class="payment" ><a  href="javascript:popUpFeed();"   id ="pay" class="fullpage">充值</a></li>
 		<li><input type="button"  onclick="popUpFeed();" value="feed"></li>
 	</ul>
 	</div>
@@ -127,28 +127,12 @@ version of Flash. Please do so by clicking <a
 
 </div>
 
-<div id="htmlFrame" class="offscreen" style="width: 760px;">
+<div id="htmlFrame" class="offscreen" style="width: 760px;vertical-align: middle;">
 
 </div>
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
-
-
-
-<!--div style="text-align: center; margin-bottom: 10px"><?php echo get_lang('Having trouble to load game');?>? <?php echo get_lang('Please');?> <a
-	href='http://get.adobe.com/flashplayer/' target="_blank"><?php echo get_lang('update your flash player'); ?></a> <?php echo('by clicking');?> <a
-	href='http://get.adobe.com/flashplayer/' target="_blank"><?php echo get_lang('Here');?></a>.</div-->
-
-
-
-<script type="text/javascript">
-
-
-
-
-
-
-</script>
+</div>
 </body>
 </html>
 <script type="text/javascript">

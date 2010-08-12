@@ -101,16 +101,26 @@ var cached_publish_stream = false;
 var param;
 var feedCall;
 var d = {
-		picture:'http://hdn.xnimg.cn/photos/hdn321/20100519/2235/tiny_Wx1k_67280c019118.jpg',
-		name : '是我的马甲',
-		caption:'曾经黄小虎就站在我面前'
+		picture:'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
+		name : '礼物feed',
+		caption:'这里是内容'
 }
 function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
-	XN.Connect.showFeedDialog(prepareParams(d));
+	if(data)
+	XN.Connect.showFeedDialog(prepareParams(data));
+	else
+		XN.Connect.showFeedDialog(prepareParams(d));
+	
 }
-
+function stat(op)
+{
+	
+	if(gPageTracker){
+		  gPageTracker._trackEvent('Feed', op);
+	  }
+}
 function prepareParams(data){
 	console.log('data:',data);
 	param = data;
@@ -138,16 +148,22 @@ function prepareParams(data){
 
 function feedPublishCallback(response){
 	
-
+	
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
-	$.ajax({
-		type: 'POST',
-		url: '../pop/storeFeed.php',
-		data: 'type=' + param['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
-		dataType:'text',
-		success: feedCall
-	});
+	if(pub==0){
+		stat('Try');
+	}else if(pub==1){
+		stat('Ok');
+		$.ajax({
+			type: 'POST',
+			url: '../pop/storeFeed.php',
+			data: 'type=' + param['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
+			dataType:'text',
+			success: feedCall
+		});
+	}
+	
 	
 }
 

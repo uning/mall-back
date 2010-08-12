@@ -47,22 +47,19 @@ class ItemController {
 			}	
 			if( $item['type'] == "ro" ){
 //			    $shop_num += $item['gridWidth'];
-				$row['id']=$tu->getdid(false,TT::SHOP_GROUP);//shop id
+				$row['id'] = $tu->getdid( false,TT::SHOP_GROUP );//shop id
 			}
-			else{
-				$row['id']=$tu->getdid(false,TT::ITEM_GROUP);//other
-				$pop += $item['pop'];
-			}
-			if( $row['tag'] == '60102' ){//电影院买后立即可播放电影
+			elseif( $row['tag'] == '60102' ){//电影院买后立即可播放电影
+			    $row['id'] = $tu->getdid( false,TT::CINEMA_GROUP );
 			    $row['ctime'] = $now;
 			    $row['lock'] = '0';
 			}
-//			$pop += $item['pop'];
+			else{//不维护店面人气，但厕所的人气需包含
+				$row['id'] = $tu->getdid( false,TT::ITEM_GROUP );//other
+				$pop += $item['pop'];
+			}
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 
-		}/*
-		if($shop_num){
-			$tu->numch(TT::SHOP_NUM,$shop_num);           
-		}*/
+		}
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$ret['s'] = 'OK';

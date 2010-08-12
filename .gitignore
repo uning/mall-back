@@ -1,2 +1,7 @@
 web/public/tests/request/*
 data/*.csv
+web/public/upload/*
+\.*
+*.bak
+*.log
+*.tt

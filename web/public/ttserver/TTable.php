@@ -22,7 +22,7 @@ class TTable extends TokyoTyrantTable {
 		if(!$this->needSV || $data == null)
 			return;
 		foreach($data as $k=>$v){
-			if($v && substr_compare($v,'{',0,1,false)==0){
+			if($v && substr_compare($v,'{',0,1,false)== 0){
 				$nd = json_decode($v,true);
 				if($nd)
 				   $data[$k]=$v;

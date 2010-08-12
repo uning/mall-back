@@ -20,10 +20,11 @@ function ShareGift()
 			'gift' => $gift,
 			'clickTime' => 0,
 			'count' => 15,
+			'date' =>date('Ymd'),
 			'rcv' => array()
 		);
-	$tt = TT::TTWeb();
-	$tt -> puto($obj);
+	$tt = TT::LinkTT();
+	$tt->put(json_encode($obj));
 	changeUser();
 }
 function shareTask()
@@ -37,10 +38,11 @@ function shareTask()
 		'task' => $task,
 		'clickTime' => 0,
 		'count' => 0,
+		'date' =>date('Ymd'),
 		'rcv' => array()
 	);
-	$tt = TT::TTWeb();
-	$tt->puto($obj);
+	$tt = TT::LinkTT();
+	$tt->put(json_encode($obj));
 	changeUser();
 }
 function shareGoldCoin()
@@ -52,10 +54,11 @@ function shareGoldCoin()
 		'type' => 1,
 		'clickTime' => 0,
 		'count' => 0,
+		'date' =>date('Ymd'),
 		'rcv' => array()
 	);
-	$tt = TT::TTWeb();
-	$tt->puto($obj);
+	$tt = TT::LinkTT();
+	$tt->put($obj);
 	changeUser();
 }
 

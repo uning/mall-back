@@ -109,11 +109,11 @@ function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
 	XN.Connect.showFeedDialog(prepareParams(d));
-	popUpFeed.stat : function(op){
+	/*popUpFeed.stat : function(op){
 		if(gPageTracker){
 			  gPageTracker._trackEvent('Feed', op);
 		  }
-	};
+	};*/
 }
 
 function prepareParams(data){
@@ -147,9 +147,9 @@ function feedPublishCallback(response){
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
 	if(pub==0){
-		popUpFeed.stat('Try');
+		//popUpFeed.stat('Try');
 	}else if(pub==1){
-		popUpFeed.stat('Ok');
+		//popUpFeed.stat('Ok');
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',

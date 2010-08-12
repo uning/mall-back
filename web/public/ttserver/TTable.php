@@ -29,8 +29,6 @@ class TTable extends TokyoTyrantTable {
 			}
 		}
 	}
-
-
 	/**
 	 * 保存单条记录,返回id
 	 * @param $data

@@ -14,7 +14,7 @@ function ShareGift()
 	$gift = $_POST['gift'];
 	if(!$gift) return;
 	$obj = array(
-			'uid' => $_POST['uid'],
+			'uid' => $_POST['pid'],
 			'id' => $key,
 			'type' =>3,
 			'gift' => $gift,
@@ -32,7 +32,7 @@ function shareTask()
 	$key = $_POST['fid'];
 	$task = $_POST['task'];
 	$obj = array(
-		'uid' =>$_POST['uid'],
+		'uid' =>$_POST['pid'],
 		'id' => $key,
 		'type' => 2,
 		'task' => $task,
@@ -49,7 +49,7 @@ function shareGoldCoin()
 {
 	$key = $_POST['fid'];
 	$obj = array(
-		'uid'=> $_POST['uid'],
+		'uid'=> $_POST['pid'],
 		'id' => $key,
 		'type' => 1,
 		'clickTime' => 0,

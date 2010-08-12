@@ -115,7 +115,7 @@ CREATE TABLE `action_history` (
   `buy_num` int(11) default NULL COMMENT  '购买次数',
   `sale_num`  int(11) default '0' COMMENT '卖出次数',
   `gift_num` int(11) default '0' COMMENT '送礼次数'
-)  DEFAULT CHARSET=utf8;
+) ENGINE=BRIGHTHOUSE DEFAULT CHARSET=utf8;
 
 drop table  if exists `userops_history`;
 CREATE TABLE IF NOT EXISTS `userops_history` (

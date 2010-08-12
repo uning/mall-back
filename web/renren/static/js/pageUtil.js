@@ -108,14 +108,19 @@ var d = {
 function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
-	XN.Connect.showFeedDialog(prepareParams(d));
-	/*popUpFeed.stat : function(op){
-		if(gPageTracker){
-			  gPageTracker._trackEvent('Feed', op);
-		  }
-	};*/
+	if(data)
+	XN.Connect.showFeedDialog(prepareParams(data));
+	else
+		XN.Connect.showFeedDialog(prepareParams(d));
+	
 }
-
+function stat(op)
+{
+	
+	if(gPageTracker){
+		  gPageTracker._trackEvent('Feed', op);
+	  }
+}
 function prepareParams(data){
 	console.log('data:',data);
 	param = data;
@@ -147,9 +152,9 @@ function feedPublishCallback(response){
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
 	if(pub==0){
-		//popUpFeed.stat('Try');
+		stat('Try');
 	}else if(pub==1){
-		//popUpFeed.stat('Ok');
+		stat('Ok');
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',

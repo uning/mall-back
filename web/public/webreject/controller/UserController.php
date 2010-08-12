@@ -435,14 +435,17 @@ class UserController extends BaseController
 	public function update_profile( $params )
 	{
 		$uid = $params['u'];
+		/*
 		$ups = $params['ups'];
+		//comment by tingkun
 		$tu = new TTUser( $uid );
-        $data = array();
+		$data = array();
 		foreach ($ups as $k=>$v){
-		    if( $v )
+			if( $v )
 				$data[$k] = $v;
 		}
 		$tu->mputf( $data );
+		*/
 		$ret['s'] = 'OK';
 		return $ret;
 	}

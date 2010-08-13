@@ -3,15 +3,15 @@
 class Man{
 
 	static $_config=array(
-			1=>array('d_money'=>5000,'d_items'=>array(
+			1=>array('d_money'=>5000,'d_exp'=>'150','d_items'=>array(
 					array('tag'=>'10101','idp'=>':g')))			
-			,2=>array('d_money'=>5000,'d_items'=>array(
+			,2=>array('d_money'=>5000,'d_exp'=>'150','d_items'=>array(
 					array('tag'=>'10106','idp'=>':g')))
-			,3=>array('d_money'=>5000,'d_items'=>array(
+			,3=>array('d_money'=>5000,'d_exp'=>'150','d_items'=>array(
 					array('tag'=>'10111','idp'=>':g')))
-			,4=>array('d_money'=>5000,'d_items'=>array(
+			,4=>array('d_money'=>5000,'d_exp'=>'150','d_items'=>array(
 					array('tag'=>'71110','idp'=>':o')))
-			,5=>array('d_money'=>50000,'d_gem'=>5)
+			,5=>array('d_money'=>50000,'d_exp'=>'150','d_gem'=>5)
 	);
 		    
 	static private function getAwardConf($step)

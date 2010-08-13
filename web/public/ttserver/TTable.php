@@ -29,8 +29,6 @@ class TTable extends TokyoTyrantTable {
 			}
 		}
 	}
-
-
 	/**
 	 * 保存单条记录,返回id
 	 * @param $data
@@ -61,7 +59,7 @@ class TTable extends TokyoTyrantTable {
 	 * @param $data
 	 * @return unknown_type
 	 */
-	public function  muput($datas)
+	public function  mput($datas)
 	{
 		foreach($datas as $k=>$data){
 			$id[$k] = $this->put($data,$uid,$t);
@@ -103,9 +101,27 @@ class TTable extends TokyoTyrantTable {
 	public function getbyidx($idxname,$idxvalue)
 	{
 		$q=$this->getQuery();
-                $q->setLimit(100000);
+        $q->setLimit(10000);
 		$q->addCond($idxname,TokyoTyrant::RDBQC_STREQ,$idxvalue);
 		$res = $q->search();
-                return $res;
+		
+        return $res;
+	}
+	
+	/**
+	 *按索引查询
+	 *
+	 */
+	public function getbyuidx($idxname,$idxvalue)
+	{
+		$q=$this->getQuery();
+        $q->setLimit(1);
+		$q->addCond($idxname,TokyoTyrant::RDBQC_STREQ,$idxvalue);
+		$res = $q->search();
+		foreach($res as $k=>$v){
+		  $v['id']=$k;
+		  return $v;
+		}
+        return $res;
 	}
 }

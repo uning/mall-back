@@ -60,17 +60,17 @@ class CarController {//extends BaseController{
 		    $car_obj = $tu->getbyid($id);
 		    if( !$car_obj ){
 			    $ret['s'] = 'notexist';
-			    $ret['msg'] = "the $index item in the array";
+			    $ret['index'] = $index;
 			    return $ret;
 		    }
 		    $sale_ret = $tu->saleItem( $car_obj);
 		    if( $sale_ret['s'] != 'OK' ){
-		        $sale_ret['msg'] = "the $index item in the array";
+		        $sale_ret['index'] = $index;
 			    return $sale_ret;
 		    }
-		    $tu->remove( $id );
 		    $index++;
 		}
+		$tu->remove( $params['d'] );
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -96,15 +96,15 @@ class CarController {//extends BaseController{
 		    $car_obj = $tu->getbyid( $row['id']);
 		    if( !$car_obj ){
 			    $ret['s'] = 'notexist';
-			    $ret['msg'] = "the $index item in the array";
+			    $ret['index'] = $index;
 			    return $ret;
 		    }
 		    if( $car_obj['t'] != 0 ){
 			    $ret['s'] = 'go_goods';
-			    $ret['msg'] = "the $index item in the array";
+			    $ret['index'] = $index;
 			    return $ret;
 		    }
-		    $ids[] = $tu->puto($row,TT::CAR_GROUP,true);
+		    $tu->puto($row,TT::CAR_GROUP,true);
 		    $index++;
         }
 		$ret['s'] = 'OK';
@@ -126,25 +126,26 @@ class CarController {//extends BaseController{
 	public function go_goods($params)
 	{
 		$uid = $params['u'];
-		$pcar = $params['c'];
+		$goodsTag = $params['c']['goodsTag'];
+		$cid = $params['c']['id'];
 		$tu = new TTUser($uid);
-		$car_obj = $tu->getbyid( $pcar['id']);
+		$car_obj = $tu->getbyid( $cid );
 		if( !$car_obj ){
 			$ret['s'] = 'notexist';
 			return $ret;
 		}
 		if( $car_obj['t'] != 0 ){
 			$ret['s'] = 'doing';
-			return $ret;		    
+			return $ret;
 		}
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
-			$ret['s'] = 'notexist';
+			$ret['s'] = 'caritemnotexist';
 			return $ret;
 		}			
-		$goods = ItemConfig::getItem( $pcar['goodsTag'] );
+		$goods = ItemConfig::getItem( $goodsTag );
 		if( !$goods ){
-			$ret['s'] = 'notexist';
+			$ret['s'] = 'goodsitemnotexist';
 			return $ret;
 		}
 		$buy_ret = $tu->buyItem( $goods['tag'],$car['goodsNumber']);
@@ -152,19 +153,13 @@ class CarController {//extends BaseController{
 			return $buy_ret;
 		}
 		$add_exp = $goods['exp']*$car['goodsNumber'];
-		if( $add_exp > 0 ){
-			$tu->addExp( $add_exp );
-		}
+		$tu->addExp( $add_exp );
 		$now = time();
-		$params['c']['t'] = $now;
-		$tu->puto( $params['c'] );
-		
-		//派遣卡车次数
+		$car_obj['t'] = $now;
+		$tu->puto( $car_obj,TT::CAR_GROUP );
 		$gogoods_count = $tu->numch( 'gogoods_count',1 );
-
 		$ret['s'] = 'OK';
-		$car_ret = $tu->getbyid( $pcar['id'] );
-		$ret['c'] = $car_ret;
+		$ret['c'] = $car_obj;
 		return $ret;
 	}
 
@@ -175,7 +170,6 @@ class CarController {//extends BaseController{
 	 * require  c  -- car to be unload  包含goodsTag
 	 *             id        -- id of the car
 	 *             goodsTag   -- goods type the car can unload
-	 *             t          -- the time
 	 * @return
 	 * s   -- OK
 	 * c   -- car status
@@ -184,74 +178,49 @@ class CarController {//extends BaseController{
 	public function  get_goods($params)
 	{
 		$uid = $params['u'];
-		$pcar = $params['c'];
+		$cid = $params['c']['id'];
+		$goodsTag = $params['c']['goodsTag'];
 		$tu = new TTUser($uid);
-		$now_time = time();
-		$car_obj = $tu->getbyid( $pcar['id']);
+		$now = time();
+		$car_obj = $tu->getbyid( $cid );
 		if( !$car_obj ){
-			$ret['s'] = 'car_objnotexist';
+			$ret['s'] = 'carobjnotexist';
 			return $ret;
 		}
-		$last_time = $car_obj['t'];
-		$car = ItemConfig::getItem($car_obj['tag']);
+		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
-			$ret['s'] = 'notexist';
+			$ret['s'] = 'caritemnotexist';
 			return $ret;
 		}
-		if( $car_obj['goodsTag'] != $pcar['goodsTag']){
-			$ret['s'] = 'goodsTagincorrect';
-			return $ret;
-		}
-		$goods = ItemConfig::getItem( $pcar['goodsTag'] );
+		$goods = ItemConfig::getItem( $goodsTag );
 		if( !$goods ){
-			$ret['s'] = 'goods_typenotexist';
+			$ret['s'] = 'goodstypenotexist';
 			return $ret;
-		}		
-		if( $now_time - $last_time + $car['time_off'] < $goods['buy_time'] ){//卡车可能会有时间减免
+		}
+		if( $car_obj['goodsTag'] != $goodsTag ){
+			$ret['s'] = 'goodstagincorrect';
+			return $ret;
+		}
+        if( $now - $car_obj['t'] < ( 1- 0.01*$car['reduceTime'] )* $goods['buytime'] ){//时间减免改为百分比
 			$ret['s'] = 'timeleft';
 			return $ret;
 		}
-		$pcar['t'] = 0;
-		$tu->puto($pcar,TT::CAR_GROUP);
-//		$num = $car['goodsNumber']*$goods['unitcout'];
+		$car_obj['t'] = 0;
+		$tu->puto( $car_obj,TT::CAR_GROUP );
         $num = $car['goodsNumber'];
 		$goods_data['pos'] = 's';
-		$goods_data['tag'] = $pcar['goodsTag'];
+		$goods_data['tag'] = $goodsTag;
 		$ids = array();
 		for( $i=0;$i<$num;$i++ ){
 			if( isset( $goods_data['id'] ) )
 				unset($goods_data['id']);
-			$ids[$i]= $tu->puto($goods_data,TT::GOODS_GROUP);
+			$ids[$i]= $tu->puto( $goods_data,TT::GOODS_GROUP );
 		}
 		$add_exp = $goods['exp']*$num;//乘以载重箱
-		if( $add_exp > 0 ){
-		    $tu->addExp( $add_exp );
-		}
+		$tu->addExp( $add_exp );
 		$ret['s'] = 'OK';
-		$ret['c'] = $tu->getbyid($pcar['id']);
+		$ret['c'] = $car_obj;
 		$ret['g'] = $ids;
-		return $ret;
-	}
-	
-	/**
-	 *车库扩容
-	 *@param $params
-	 *   require   u      -- user id
-	 *             g      -- 车库容量，格数
-	 *@return
-	 *   s      -- OK
-	 */
-	public function enlarge_garage( $params )
-	{
-		$uid = $params['u'];
-		$tu = new TTUser( $uid );
-		$ua = $tu->getf( array( TT::GARAGE_STAT,TT::EXP_STAT ) );
-		$g = $params['g'];
-		
-		if( 0 ){//判断是否达到扩容条件
-		}
-	    $tu->putf(TT::GARAGE_STAT,$g );
-		$ret['s'] = 'OK';
 		return $ret;
 	}
 

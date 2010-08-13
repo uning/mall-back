@@ -2,6 +2,19 @@
 require_once (dirname(__FILE__).'/base.php');
 require_once (LIB_ROOT.'/JsonServer.php');
 
+function record_time(&$start,$usage="",$unit=0)
+{
+    $end  = microtime(true);
+    $cost=$end-$start;
+    $cost=ceil(1000000*$cost);
+    if($unit>0){
+        $cost = ceil($cost/$unit);
+    }
+    if($usage)
+        echo "$usage use time $cost us\n";
+    $start = $end;
+}
+
 
 function dotest($m,$p=null)
 {
@@ -12,13 +25,12 @@ function dotest($m,$p=null)
         echo "The params are these as follow:\n";
         print_r( $p );
         echo "The response are these as follow:\n";
+	record_time($st);
         print_r($server->doRequest($m,$p));      
+	record_time($st," $m ");
         echo "===============================================\n\n";
 }
 
-dotest('Friend.get');
-dotest('Friend.get',array('u'=>7));
-return;
 
 dotest('ItemController.buy');
 return;

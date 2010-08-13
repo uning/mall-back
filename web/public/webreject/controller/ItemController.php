@@ -52,7 +52,7 @@ class ItemController {
 			elseif( $row['tag'] == '60102' ){//电影院买后立即可播放电影
 			    $row['id'] = $tu->getdid( false,TT::CINEMA_GROUP );
 			    $row['ctime'] = $now;
-			    $row['lock'] = '0';
+//			    $row['lock'] = '0';
 			}
 			else{//不维护店面人气，但厕所的人气需包含
 				$row['id'] = $tu->getdid( false,TT::ITEM_GROUP );//other
@@ -97,7 +97,6 @@ class ItemController {
 			if ( !$item ){
 				$ret['s'] = 'notexsit';
 				$ret['index'] = $index;
-				$ret['msg'] = "the $index item in the array";
 				return $ret;
 			}/*
 			if($row['pos']!='s'){
@@ -117,7 +116,17 @@ class ItemController {
 			        $pop -= $item['pop'];
 			    }
 			}
-			$ids[] = $tu->puto($row);
+			else{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
+			    if( $item_obj['goods'] ){
+			        $shop_ret = $tu->checkshop( $item_obj['id'] );
+			        if( $shop_ret['s'] == 'notempty' ){
+			            $ret['s'] = 'notempty';
+			            $ret['index'] = $index;
+			            return $ret;
+			        }
+			    }
+			}
+		    $tu->puto($row);
 		}/*
 		if($shop_num){
 			$tu->numch(TT::SHOP_NUM,$shop_num);           
@@ -170,14 +179,16 @@ class ItemController {
 				return $sale_ret;
 			}
 			if( $item_obj['pos']!='s' ){
-				$shop_num  -=  $item['gridWidth'];
+//				$shop_num  -=  $item['gridWidth'];
 				$pop       -=  $item['pop'];
 			}
 //			$tu->remove( $id );
 		}
+		/*
 		if($shop_num){
 			$tu->numch(TT::SHOP_NUM,$shop_num);           
 		}
+		*/
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$tu->remove( $params['d'] );

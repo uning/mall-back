@@ -7,16 +7,18 @@
 require_once 'freeGift.php';
 print_r($_REQUEST);
 $key = $_GET['key'];
-$tt = TT::TTWeb();
-$value = $tt->get($key);
+$tt = TT::LinkTT();
+$value = $tt->getbyuidx('fid',$key);
 $type = $value['type'];
 $uid = $_POST['uid'];
 $user = new TTUser($uid);
 if($type==2&&$value['count']>0):
 		{
+			$value['clicktime']+=1;
 			echo '<script type="text/javacsript">';
 			echo 'wodows.location = "http://apps.renren.com/livemall/";';
 			echo '</script>';
+			$tt->put($value['id'],$value);
 		}
  	  elseif($type==1&&$value['count']>0):
  	   {
@@ -26,10 +28,10 @@ if($type==2&&$value['count']>0):
  	  			$value['count'] = $value['count']-1;
  	  			$value['clickTime'] +=1;
  	  			$value['rcv'][]=$uid;
- 	  			$tt->puto($value);
  	  			echo '<script type="text/javacsript">';
 				echo 'wodows.location = "http://apps.renren.com/livemall/";';
 				echo '</script>';
+				$tt->put($value['id'],$value);
  	  		}
  	   }
 ?>
@@ -51,6 +53,8 @@ if($type==2&&$value['count']>0):
 		</div>
 		
 	</div>
-<?php endif;?>
+<?php 
+$tt->put($value['id'],$value);
+endif;?>
 </body>
 </html>

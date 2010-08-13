@@ -146,14 +146,12 @@ function prepareParams(data){
 }
 
 function feedPublishCallback(response){
-	
-	
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
 	if(pub==0){
-		stat('Try');
+		stat('Try '+param['type']);
 	}else if(pub==1){
-		stat('Ok');
+		stat('Ok '+param['type']);
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',

@@ -24,7 +24,7 @@ class GoodsController
 		$tu = new TTUser($uid);
 		$ids = array();
 		foreach ( $params['d'] as $goods){
-//            $ret['goods'] = $goods;
+//          $ret['goods'] = $goods;
 			$item = ItemConfig::getItem($goods['tag']);
 			if( !$item ){
 				//写入日志
@@ -42,24 +42,6 @@ class GoodsController
 		$ret['s'] = 'OK';
 		$ret['ids'] = $ids;
 		return $ret;
-	}
-
-	/* @param $params
-	 *  require   u     -- uid
-	 *  require   d     -- item id array
-	 * @return 
-	 *  s     --OK
-	 */	
-	public function remove( $params )
-	{
-	    $uid = $params['u'];
-	     $tu = new TTUser($uid);
-	    $index = 1;
-	    foreach( $params['d'] as $row ){
-	        $tu->remove($row['id']);
-	    }
-	    $ret['s'] = 'OK';
-	    return $ret;
 	}
 	
 	/**
@@ -88,7 +70,7 @@ class GoodsController
                 $shop_obj = $tu->getbyid( $sid );
 			if( !$shop_obj ){
 				$ret['s'] = 'noshop';
-				$ret['msg'] = "the $index item in the array";
+				$ret['index'] = $index;
 				return $ret;
 			}
 			$sconfig = & $shopconfs[$shop_obj['tag'] ];
@@ -96,7 +78,7 @@ class GoodsController
 				$sconfig =  ItemConfig::getItem( $shop_obj['tag'] ); 
 			if( !$sconfig ){
 				$ret['s'] = 'noshop';
-				$ret['msg'] = " $index config not find invalid data";
+				$ret['index'] = $index;
 				return $ret;
 			}
 			$goods_obj = $tu->getbyid( $goods['id'] );
@@ -115,14 +97,11 @@ class GoodsController
 				//$ret['s'] = 'max';
 				//return $ret;
 			}
-//			$shop_obj['goods'][$goods['id']]=$now+$index;  //没必要
-//			$goods['stime'] =  $now + $index;
+			$shop_obj['goods'][$goods['id']]=$now + $goods['pos']['x'];  //没必要
             $goods['stime'] =  $now + $goods['pos']['x']; //对同一商店同一时间上架的货物，按出售顺序将上架时间轻微调整以方便处理
-			$goods['num'] =  $item['unitcout'];//todo:read the unit count
+			$goods['num'] =  $item['unitcout'];
 			$goods['stag']  =  $shop_obj['tag'];//商店类型
 			$tu->puto($goods,GOODS_GROUP);
-//			$ret['goods'][] = $goods;
-//			$ret['item'][] = $item;
 		}
 		foreach($shops as $s){
 			$tu->puto($s);
@@ -202,28 +181,26 @@ class GoodsController
 			$curtime = 0;//可以售卖新商品时间
 			$cgoods = array();
 			foreach( $gs as $t=>$g ){
-				//			    if( $g['pos']['x'] == $order ){
-				//				    $ret['before_g'][$s][$t] = $g;
 				$gconfig = ItemConfig::getItem($g['tag']);
-				//				    $ret['gconfig'][$s][$t] = $gconfig;
+//				$ret['gconfig'][$s][$t] = $gconfig;
 				$ctime = $g['ctime'];//上次结算时间
 				if($curtime < $t)
 					$curtime = $t; //上架时间
 				if( $curtime< $ctime )
 					$curtime = $ctime;
 				$g['ctime'] = $now;  //　忽略之　　//结算时间不宜在此赋值，这样会把一些诸如在待售队列中本没有算
-				//				    $ret['tloop'][$s][$t] = date( TM_FORMAT,$curtime );
+//				$ret['tloop'][$s][$t] = date( TM_FORMAT,$curtime );
 				$gaps = array();
 				if( $used_advert ){
 					$tmp = $tu->getTimeRates( $gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-//			            $ret['advertisement'][$s][$t] = $tmp;
+//			        $ret['advertisement'][$s][$t] = $tmp;
 				}
 				else{
 					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
 				}					
 //				$ret['gaps'][$s][$t] = $gaps;
-				//				    foreach($gaps as $gr){
-				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
+				foreach($gaps as $gr){
+//				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
 					if( $sconfig['gridWidth'] )					
 						$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
@@ -239,11 +216,8 @@ class GoodsController
 //					$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
 					$ret['sell'][$g['tag']] += $asnum;
 					$sale_count += $asnum;//记录销售份数，成就用
-					//					    $curtime += ( $asnum * $pertime );
-					//                        $curtime += $k;
 					$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
 					$g['num'] -= $asnum;
-					//					    $g['scount'] += $asnum;
 					if( $g['num']==0 ){//当前时间段卖光此箱货物，继续卖下一个货物
 						$cgoods[]=$g;
 						$selloutids[] = $g['id'];
@@ -293,8 +267,6 @@ class GoodsController
 		$uid = $params['u'];
 		$sids= $params['sids'];
 		$tu = new TTUser( $uid );
-//		return $tu->compute($sids);
-//		return $tu->compute( $tu );
         return self::compute( $tu );
 	}
 }

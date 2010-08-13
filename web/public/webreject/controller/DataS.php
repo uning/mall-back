@@ -15,7 +15,7 @@ class DataS{
 	public function put($params)
 	{
 		$uid = $params['u'];
-		$tm = new TTDS($u);
+		$tm = new TTDS($uid);
 		$ret['id'] = $tm->puto($params['d'],$uid);
 		$ret['s'] = 'OK';
 		return $ret;
@@ -36,7 +36,7 @@ class DataS{
 	public function get($params)
 	{
 		$uid = $params['u'];
-		$tm = new TTDS($u);
+		$tm = new TTDS($uid);
                 $ret['d'] = $tm->getbyids($params['ids'],$uid);
 		$ret['s'] = 'OK';
 		return $ret;
@@ -49,7 +49,7 @@ class DataS{
 	public function getAll($params)
 	{
 		$uid = $params['u'];
-		$tm = new TTDS($u);
+		$tm = new TTDS($uid);
                 $ret['d'] = $tm->getAll();
 		$ret['s'] = 'OK';
 		return $ret;

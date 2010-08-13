@@ -22,7 +22,7 @@ class Achieve
 		$id = $tu->getoid( 'achieves',TT::OTHER_GROUP );
 		$achieves = $tu->getbyid( $id );
 		$aparams = $tu->getf( array('popu','invite_count','gogoods_count','total_count','total_sale') );
-		$ret['aparams'] = $aparams;
+//		$ret['aparams'] = $aparams;
 /*		if( !$achieves ){
 			$ret['s'] = 'empty';
 			return $ret;
@@ -32,11 +32,11 @@ class Achieve
 		foreach( AchieveConfig::$_config as $tag=>$conf){
 			if($achieves[$tag]){
 				$ret['a'][]=array('tag'=>$tag,'is_done'=>1);
-				$ret['test'][$tag]=array('tag'=>$tag,'is_done'=>1);
+//				$ret['test'][$tag]=array('tag'=>$tag,'is_done'=>1);
 			}	
 			else {//if($aparams[$conf['group']]>=$conf['aimNum']){
 				$ret['a'][]=array('tag'=>$tag,'is_done'=>0,'finish_num'=>$aparams[$conf['group']]);
-				$ret['test'][$tag]=array('tag'=>$tag,'is_done'=>0);
+//				$ret['test'][$tag]=array('tag'=>$tag,'is_done'=>0);
 			}
 		}	
 		$ret['s'] = 'ok';
@@ -77,7 +77,7 @@ class Achieve
 		}
         
 		$achieves['id'] = $id;
-		$ret['b'] = $achieves;
+//		$ret['b'] = $achieves;
 		$tu->puto( $achieves );
 		$ret['a'] = $tu->getbyid( $id );
 		$ret['s'] = 'OK';

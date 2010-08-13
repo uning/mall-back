@@ -36,13 +36,12 @@ class ItemController {
 			if ( !$item ){
 				$ret['s'] = 'notexsit';
 				$ret['index'] = $index;
-				$ret['msg'] = "the $index item in the array";
 				return $ret;
 			}
 			
 			$buy_ret = $tu->buyItem( $tag,$num );
 			if( $buy_ret['s'] != 'OK' ){
-				$buy_ret['msg'] = "the $index item in the array";
+				$buy_ret['index'] = $index;
 				return $buy_ret;
 			}	
 			if( $item['type'] == "ro" ){
@@ -80,7 +79,7 @@ class ItemController {
 	 *				      gem
 	 */
 	public function move($params)
-	{//todo:根据物品属性,人气增减
+	{
 		$uid = $params['u'];
 		$tu = new TTUser($uid);
 		$index = 1;
@@ -90,7 +89,7 @@ class ItemController {
 			$item_obj = $tu->getbyid( $row['id'] );
 			if( !$item_obj ){
 				$ret['s'] = 'notexsit';
-				$ret['msg'] = "the $index item in the array";
+				$ret['index'] = $index;
 				return $ret;
 			}
 			$item = ItemConfig::getItem( $item_obj['tag'] );
@@ -127,10 +126,12 @@ class ItemController {
 			    }
 			}
 		    $tu->puto($row);
-		}/*
+		}
+		/*
 		if($shop_num){
 			$tu->numch(TT::SHOP_NUM,$shop_num);           
-		}*/
+		}
+		*/
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$ret['s'] = 'OK';
@@ -163,19 +164,18 @@ class ItemController {
 			$item_obj = $tu->getbyid( $id);
 			if( !$item_obj ){
 				$ret['s'] =  'notexsit';
-				$ret['msg'] = "the $index item in the array";
+				$ret['index'] = $index;
 				return $ret;
 			}
 			$item = ItemConfig::getItem( $item_obj['tag'] );
 			if ( !$item ){
 				$ret['s'] = 'notexsit';
 				$ret['index'] = $index;
-				$ret['msg'] = "the $index item in the array";
 				return $ret;
 			}
 			$sale_ret = $tu->saleItem( $item_obj );
 			if( $sale_ret['s'] != 'OK' ){
-				$sale_ret['msg'] = "the $index item in the array";
+				$sale_ret['index'] = $index;
 				return $sale_ret;
 			}
 			if( $item_obj['pos']!='s' ){
@@ -192,7 +192,7 @@ class ItemController {
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$tu->remove( $params['d'] );
-		$ret['remain'] = $tu->get( TT::ITEM_GROUP );
+//		$ret['remain'] = $tu->get( TT::ITEM_GROUP ); for debug
 		$ret['s'] = 'OK';
 		return $ret;
 	}

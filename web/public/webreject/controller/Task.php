@@ -76,8 +76,8 @@ class Task
 					$tu->puto($data,TT::TASK_GROUP);
 				}
 			}
-			$ret['num'] = $num;
-			$ret['total_num'] = $total_num;
+//			$ret['num'] = $num;
+//			$ret['total_num'] = $total_num;
 		}
 		$ret['s'] = 'OK';
 		$ret['t'] = $tu->get(TT::TASK_GROUP);
@@ -145,14 +145,12 @@ class Task
 			$ret['s'] = 'fiderror';
 			return $ret;
 		}
+		$ftu =  new TTUser($fid);
+		$ftask_obj = $ftu->getbyid( $tid);
 		if( !$ftask_obj ){
 			$ret['s'] = 'notexsit';
 			return $ret;
 		}
-		//$tu  = new TTUser( $uid );
-		$ftu =  new TTUser($fid);
-		$ftask_obj = $ftu->getbyid( $tid);
-
 		if( $ftask_obj['s'] != '0' ){
 			$ret['s'] = 'cantrequest';
 			return $ret;
@@ -240,10 +238,9 @@ class Task
 					return $ret;		        
 				}
 			}
-
 			$task_obj = $ftask_obj;
 			$ftask_obj['ac'] += 1;
-			$ftu>puto( $ftask_obj ,TT::TASK_GROUP);
+			$ftu->puto( $ftask_obj ,TT::TASK_GROUP);
 			//新任务需改为从tag生成		    
 			unset($task_obj['id']);
 			$task_obj['s'] = '1';

@@ -233,8 +233,6 @@ class TTUser extends TTUDB
 		}
 
 		$cnum = floor($disc*$item[$currency]*$num);
-		//		$ret['currency'] = $currency;
-		//		$ret['cnum'] = $cnum;
 		$rnum = $this->change($currency,-$cnum);
 		if($rnum<0){//钱不够
 			$ret['s']   = $currency;
@@ -282,15 +280,6 @@ class TTUser extends TTUDB
 				$num = floor($num * $item['money']*0.3);
 			$rnum = $this->numch($currency,$num);
 		}
-
-		//暂无售出经验设定
-		/*
-		   $exp = $num;
-		   if($item['sale_exp']>0){
-		   $exp = $item['sale_exp']*$num;
-		   $ret['exp'] = $this->addExp($exp);
-		   }
-		 */
 		$tusys = new TTUser(0);
 		$statid = 'usalenum_'.$item['tag'];
 		$saled = $tusys->numch($statid,$num);//记录系统回购每种商品总数
@@ -427,21 +416,21 @@ class TTUser extends TTUDB
 	        $goods_obj = $this->getbyid( $goods_id );
 	        $condata[$stime] = $goods_obj;
 	    }
-		$ret['condata'] = $condata;
+//		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
-		$ret['bpopu'] = $popu;
+//		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params[TT::EXP_STAT] );
-		$ret['ua'] = $ua;	    
+//		$ret['ua'] = $ua;	    
 //算人气
 		$shops = $this->get( TT::SHOP_GROUP );
 		foreach( $shops as $shop ){
-			$ret['shop_num_shop'][] = $shop;
+//			$ret['shop_num_shop'][] = $shop;
 			if( $shop['pos'] != 's' ){
 			    $item = ItemConfig::getItem( $shop['tag'] );
 			    $shop_num += $item['gridWidth'];
 			}
 		}		
-		$ret['ashopnum'] = $shop_num;
+//		$ret['shopnum'] = $shop_num;
 		if( !$shop_num ){
 			$ret['s'] = 'noshopexist';
 			return $ret;
@@ -451,7 +440,7 @@ class TTUser extends TTUDB
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}	
-		$ret['apopu'] = $popu;
+//		$ret['apopu'] = $popu;
 	    
 		$aid = $this->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $this->getbyid( $aid );
@@ -461,7 +450,7 @@ class TTUser extends TTUDB
 		$sale_count = 0; //销售份数
 		$now = time();
 		$sconfig = ItemConfig::getItem( $shop_obj['tag'] );
-			//			$ret['sconfig'][$s] = $sconfig;
+//		$ret['sconfig'][$s] = $sconfig;
 		ksort($condata);
 		$curtime = 0;//可以售卖新商品时间
 		$cgoods = array();
@@ -473,16 +462,16 @@ class TTUser extends TTUDB
 			if( $curtime< $ctime )
 				$curtime = $ctime;
 			$g['ctime'] = $now;
-			$ret['tloop'][$t] = date( TM_FORMAT,$curtime );
+//			$ret['tloop'][$t] = date( TM_FORMAT,$curtime );
 			$gaps = array();
 			if( $used_advert ){
 				$tmp = self::getTimeRates( $gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-//			            $ret['advertisement'][$s][$t] = $tmp;
+//			    $ret['advertisement'][$s][$t] = $tmp;
 			}
 			else{
 				$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
 			}					
-			$ret['gaps'][$t] = $gaps;
+//			$ret['gaps'][$t] = $gaps;
 //			foreach($gaps as $gr){
 			foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 				$stime = $gr[0];
@@ -490,7 +479,7 @@ class TTUser extends TTUDB
 					$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
 				if( $pertime )
 					$snum = floor( $stime/$pertime );
-				$ret['pertime'][$t][$k] = $pertime;
+//				$ret['pertime'][$t][$k] = $pertime;
 				if($snum >= $g['num']){//卖完了
 					$asnum = $g['num'];
 				}
@@ -498,7 +487,7 @@ class TTUser extends TTUDB
 					$asnum = $snum;
 				}
 //				$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
-				$ret['sell'][$g['tag']] += $asnum;
+//				$ret['sell'][$g['tag']] += $asnum;
 				$sale_count += $asnum;//记录销售份数，成就用
 				$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
 				$g['num'] -= $asnum;

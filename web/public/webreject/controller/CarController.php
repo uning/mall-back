@@ -24,12 +24,12 @@ class CarController
 		    $car = ItemConfig::getItem( $row['tag']);
 		    if( !$car ){
 			    $ret['s'] = 'notexsit';
-			    $ret['msg'] = "the $index item in the array";
+			    $ret['index'] = $index;
 			    return $ret;
 		    }
 		    $buy_ret = $tu->buyItem($car['tag']);
 		    if( $buy_ret['s'] != 'OK' ){
-		        $ret['msg'] = "the $index item in the array";
+		        $ret['index'] = $index;
 			    return $buy_ret;
 		    }
 		    $row['t'] = 0;
@@ -187,12 +187,10 @@ class CarController
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
 		}
-	
 		if( !$car_obj['goodsTag'] ){
 			$car_obj['goodsTag'] = 10101;// 暂时解决不能取货
 			$goodsTag = 10101;
-		}
-		
+		}		
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
 			$ret['s'] = 'caritemnotexist';

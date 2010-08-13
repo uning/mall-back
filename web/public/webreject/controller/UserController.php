@@ -58,7 +58,7 @@ class UserController
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 
-		$ret['bdata'] = $tu->getdata(); 
+//		$ret['bdata'] = $tu->getdata(); //for debug
 		$now = time();
 		$today_start = strtotime ( date( TM_FORMAT,strtotime( date("Y-m-d",$now) ) ) );
 		$yesterday_start = strtotime( date( TM_FORMAT,strtotime( date("Y-m-d",$now-86400) ) ) );
@@ -94,7 +94,7 @@ class UserController
 			$tu->puto( $adv,TT::ADVERT_GROUP,false );
 //            $tu->puto( $adv );		
 		}
-		$ret['adata'] = $tu->getdata();
+//		$ret['adata'] = $tu->getdata(); //for debug
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
 		return $ret;				
@@ -137,6 +137,7 @@ class UserController
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 		$fids = $params['fids'];
+		$ret = array();
 		if( !$fids ){//传参为空，返回存储的好友
 			//给出几个假数据
 			//			$fids = $tu->getf( TT::FRIEND_STAT );

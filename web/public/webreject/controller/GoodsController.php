@@ -315,34 +315,7 @@ class GoodsController
 		$sale_count = 0; //销售份数
 		foreach( $condata as $s=>$gs ){
 			$sconfig = ItemConfig::getItem( $shopids[$s] );
-			//			$ret['sconfig'][$s] = $sconfig;
-			//			$ret['before_gs'][] = $gs;
-			/*
-			if( $sconfig['tag'] == '60102' ){//对电影院加入结算时间，并上锁
-			    $cinema_obj = $tu->getbyid( $s );
-			    if( !$cinema_obj ){
-			        //写入日志
-			        continue;
-			    }
-			    $cinema = ItemConfig::getItem( $cinema_obj['tag'] );
-			    if( $cinema_obj['ctime'] > $now - $cinema['selltime']*30 ){//电影未放映完
-			        continue;
-			    }
-			    if( $cinema_obj['lock'] == '1'){//有钱未捡，不用结算
-			        continue;
-			    }
-			    if( $cinema_obj['lock'] == '0' ){//未触发上映或有钱未捡
-			        if( $cinema_obj['ctime'] > $now - $cinema['selltime']*60 ) //从开始进人算起，电影未放映完
-			            continue;			            
-			    }
-			    $cinema_obj['money'] = $cinema['sellmoney'];//暂时给3000块钱
-			    $cinema_obj['ctime'] = $now;
-			    $cinema_obj['lock'] = '1';
-			    $tu->puto( $cinema_obj,TT::ITEM_GROUP );
-			}
-			*/
 			ksort($gs);
-			//          $ret['after_gs'][] = $gs;
 			$curtime = 0;//可以售卖新商品时间
 			$cgoods = array();
 			foreach( $gs as $t=>$g ){

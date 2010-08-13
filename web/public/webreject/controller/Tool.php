@@ -139,4 +139,22 @@ class Tool
 		$ret['s'] = 'OK';
 		return $ret;
 	}
+	
+	public function test_condition( $params )
+	{
+		$uid = $params['u'];
+		$con = $params['con'];
+		$tu = new TTUser( $uid );
+		$data = array();
+		foreach ($con as $k=>$v){
+			if( $v )
+				$data[$k] = $v;
+		}
+		$tu->mputf( $data );
+		foreach( $con as $k=>$v ){
+		    $ret['data'][$k] = $tu->getf( $k );
+		}
+		$ret['s'] = 'OK';
+		return $ret;
+	}
 }

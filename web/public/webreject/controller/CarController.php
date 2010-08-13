@@ -16,8 +16,6 @@ class CarController
 	 */    
 	public function buy($params)
 	{
-		//todo:添加购买验证逻辑
-		//购买多个支持
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 		$ids = array();
@@ -225,5 +223,20 @@ class CarController
 		$ret['g'] = $ids;
 		return $ret;
 	}
+	
+	/**
+	 * 买副驾驶
+	 * @param $params
+	 * require  u  -- user_id
+	 * @return
+	 * s   -- OK
+	 * c   -- car status
+	 * g   -- goods ids
+	 */
+	public function buy_copilot( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	}	
 
 }

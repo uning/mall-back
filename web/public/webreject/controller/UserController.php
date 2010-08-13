@@ -1,5 +1,5 @@
 <?php
-class UserController extends BaseController
+class UserController 
 {
 	/**
 	 * 登录游戏

@@ -309,7 +309,7 @@ class TTUser extends TTUDB
 	 * @param $g
 	 * @return unknown_type
 	 */
-	public function getTimeRates( &$tu,&$gaps,&$used,$computetime,$popu,$max_popu,$now,$shop_num )
+	public function getTimeRates( &$gaps,&$used,$computetime,$popu,$max_popu,$now,$shop_num )
 	{//如果已使用广告队列不为空，按宣传时间排序,结算完后删除广告队列
 		//		$ret['bused'] = $used;
 		$adlist = array();
@@ -476,7 +476,7 @@ class TTUser extends TTUDB
 			$ret['tloop'][$t] = date( TM_FORMAT,$curtime );
 			$gaps = array();
 			if( $used_advert ){
-				$tmp = self::getTimeRates( $this,$gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
+				$tmp = self::getTimeRates( $gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
 //			            $ret['advertisement'][$s][$t] = $tmp;
 			}
 			else{

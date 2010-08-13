@@ -3,6 +3,7 @@
 class Man{
 
 	static $_config=array(
+
 			1=>array('d_money'=>5000,'d_exp'=>'150','d_items'=>array(
 					array('tag'=>'10101','idp'=>':g')))			
 			,2=>array('d_money'=>5000,'d_exp'=>'150','d_items'=>array(

@@ -9,8 +9,9 @@ if(!class_exists('TokyoTyrant')){
 	};
 }
 
+
 define('USERNUM_PERTTDB','2000000');#one database user num
-class TT{
+class TTG{
 	//如果需要索引，则直接加在这里
 	const GOODS_GROUP='g';
 	const GIFT_GROUP='gi';
@@ -52,94 +53,6 @@ class TT{
 	//系统信息，人气等
 	const SYS_USER  = 'sys';
 
-	public static $ttservers = array(
-			'main'=> array(
-				'type'=>'TTExtend',
-				'procs'=>array(
-					array(
-						array('host'=>'122.11.61.27','port'=>'15000')
-					     ),
-					)
-				),
-			//前台用数据
-			'data'=> array(
-				'type'=>'TTExtend',
-				'procs'=>array(
-					array(
-						array('host'=>'122.11.61.27','port'=>'15002')
-					     ),
-					),
-				),
-			//邀请，送礼等存储数据
-			'other'=> array(
-				'type'=>'TTExtend',
-				'procs'=>array(
-					array(
-						array('host'=>'122.11.61.27','port'=>'15004')
-					     ),
-					),
-				),
-			//页面端暂存数据
-			'web'=> array(
-					'type'=>'TTExtend',
-					'procs'=>array(
-						array(
-							array('host'=>'122.11.61.27','port'=>'16000')
-						     ),
-						),
-				     ),
-
-			//========================================table===========================
-			//id 增长
-			'genid' => array(
-					'type'=>'TokyoTyrantTable',
-					'procs'=>
-					array(
-						array(
-							array('host'=>'122.11.61.27','port'=>'16004')
-						     ),
-					     )
-					),
-
-			'log'=> array(
-					'type'=>'TTable',
-					'procs'=>array(
-						array(
-							array('host'=>'122.11.61.27','port'=>'16002')
-						     ),
-						),
-				     ),
-			'stat' => array(
-					'type'=>'TTable',
-					'procs'=>
-					array(
-						array(
-							array('host'=>'122.11.61.27','port'=>'16000')
-						     ),
-					     )
-				       ),
-
-			'link'=> array(
-					'type'=>'TTable',
-					'procs'=>array(
-						array(
-							array('host'=>'122.11.61.27','port'=>'16006')
-						     ),
-						),
-				      ),
-			'order'=> array(
-					'type'=>'TTable',
-					'procs'=>array(
-						array(
-							array('host'=>'122.11.61.27','port'=>'16008')
-						     ),
-						),
-				       ),
-			);
-
-
-
-
 	static public function get_tt($name,$uid=0,$type='master')
 	{
 		static $inst;
@@ -149,8 +62,8 @@ class TT{
 		if( $ret )
 			return $ret;
 
-		$obj = self::$ttservers[$name]['type'];
-		$config = &self::$ttservers[$name]['procs'];
+		$obj = TT::$ttservers[$name]['type'];
+		$config = &TT::$ttservers[$name]['procs'];
 
 		if($type=='master'){
 			$r = 0;

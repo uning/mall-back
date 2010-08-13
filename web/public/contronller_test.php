@@ -32,6 +32,7 @@ function dotest($m,$p=null)
 }
 
 
+/*
 dotest('ItemController.buy');
 return;
 dotest('Advert.get');
@@ -45,8 +46,8 @@ echo "new = $new\n";
 print_r($data=TTGenid::genid(array('pid'=>'dfs1','gender'=>1,'name'=>"wahaha"),$new));
 echo "new = $new\n";
 return;
-dotest('UserController.login',$data);
-dotest('UserController.login',$data);
+*/
+dotest('UserController.login');
 dotest('UserController.get_achieves');
 otest('UserController.showids');
 dotest('UserController.genusers');

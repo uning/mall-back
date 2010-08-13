@@ -1,4 +1,5 @@
 <?php
+//require_once dirname(__FILE__)."/../../AchieveConfig.php";
 class Achieve
 {    
 	static $_config=array(1001=>array('type'=>'total_sale','aimNum'=>'1000','levelNeed'=>'1','rewardMoney'=>'1000','rewardRep'=>'100','tag'=>'1001',)

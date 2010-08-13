@@ -1,6 +1,89 @@
 <?php
-class TaskController
-{	
+require_once dirname(__FILE__)."/../../TaskConfig.php";
+class Task
+{
+    
+
+	/**
+	 * 获取当天任务
+	 * @param $params
+	 *  require    u      --  userid
+	 * @return
+	 *   s                --  OK,others fail
+	 *   t   tasks        --        任务
+	 *                    id        --  任务id
+	 *                    tag       --  任务种类
+	 *                    ct        --  任务生成时间
+	 *                    at        --  任务接受时间
+	 *                    ut        --  更新时间
+	 *                    s         --　任务状态，0为未接受未共享，1为接受，2为完成未领取奖励，3为分享给好友，4为完成后领取了奖励
+	 *                    proc      --  记录任务进度
+	 *                    sc        --  记录任务来源，自己的任务为0,否则是分享来的母任务id，以防重复领取任务以及//计算奖励
+	 *                    wc        --  记录希望该任务被分享的好友数
+	 *                    ac        --  记录接受该分享任务的好友数
+	 *                    gc        --  记录领取该分享任务的奖励份数                 
+	 */
+	public function get_tasks ( $params )
+	{
+		$uid = $params['u'];
+		$tu = new TTUser( $uid );
+		$oldtasks = $tu->get(TT::TASK_GROUP);
+		if ( !$oldtasks ){//如果任务列表为空，产生3个任务返回
+			for($i=0;$i<3;$i++){
+			    $tag = rand( 300,311 );
+				$task = TaskConfig::getTask( $tag );
+				if( !$task ){
+				    $ret['s'] = 'genfailed';
+				    return $ret;
+				}
+				$data = array('tag'=>$tag,'ct'=>time(),'s'=>0,'sc'=>0);
+				$tu->puto($data,TT::TASK_GROUP);
+			}
+		}
+		else{//否则删除不是当天产生的任务，并产生当天的任务
+			$now = time();
+			$today_start = strtotime (date( 'Y-m-d',$now ) );
+			$total_num = 0;
+			$num = 0;
+			//num用来记录不是当天自己产生的，且非接受状态或完成未领取奖励状态的任务	    
+			foreach ( $oldtasks as $oldtask ){
+				if( $oldtask['sc'] == '0'){
+					if( $oldtask['ct'] < $today_start ){
+						if( $oldtask['s'] != '2' && $oldtask['s'] != '1' ){
+							$tu->remove($oldtask['id']);
+							$num++;
+						}
+					}
+					$total_num++;                    
+				}
+				/*
+				   else{//从好友处领取的任务，只显示正在进行的(1)和完成后未领取奖励的(2)
+				   if( $oldtask['s'] == '4' ){
+				   $to->remove($uid,$oldtask);
+				   }
+				   }
+				 */
+			}
+			if( ($total_num - $num) < 3 ){//如果剩下的任务数少于3，则补充到3个任务
+				for($i=0;$i<3-($total_num - $num);$i++){
+			        $tag = rand( 300,311 );
+				    $task = TaskConfig::getTask( $tag );
+					if( !$task ){
+				        $ret['s'] = 'genfailed';
+				        return $ret;
+				    }				    
+					$data = array('tag'=>$tag,'ct'=>time(),'s'=>0,'sc'=>0);
+					$tu->puto($data,TT::TASK_GROUP);
+				}
+			}
+			$ret['num'] = $num;
+			$ret['total_num'] = $total_num;
+		}
+		$ret['s'] = 'OK';
+		$ret['t'] = $tu->get(TT::TASK_GROUP);
+		return $ret;
+	}    
+    
 	/**
 	 * 分享任务给所有好友
 	 *   

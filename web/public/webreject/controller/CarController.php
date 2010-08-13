@@ -156,6 +156,7 @@ class CarController
 		$add_exp = $goods['exp']*$car['goodsNumber'];
 		$tu->addExp( $add_exp );
 		$now = time();
+		$car_obj['goodsTag'] = $goodsTag;
 		$car_obj['t'] = $now;
 		$tu->puto( $car_obj,TT::CAR_GROUP );
 		$gogoods_count = $tu->numch( 'gogoods_count',1 );

@@ -10,8 +10,6 @@ require_once LIB_ROOT.'Logger.php';
 
 require_once "ttserver/test_config.php";
 require_once "ItemConfig.php";
-require_once "AchieveConfig.php";
-require_once "TaskConfig.php";
 require_once "AdvertConfig.php";
 require_once "UpgradeConfig.php";
 require_once "AchieveUpdate.php";

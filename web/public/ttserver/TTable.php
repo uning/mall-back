@@ -104,7 +104,6 @@ class TTable extends TokyoTyrantTable {
         $q->setLimit(10000);
 		$q->addCond($idxname,TokyoTyrant::RDBQC_STREQ,$idxvalue);
 		$res = $q->search();
-		
         return $res;
 	}
 	

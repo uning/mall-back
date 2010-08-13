@@ -84,7 +84,7 @@ function install_swf(pid){
 <body style="overflow-x: hidden;overflow-y: hidden;" >
 
 
-<div style="background: url('../static/images/back.png') no-repeat;">
+
 <div id="header">
     <div id="navga">
     <div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
@@ -102,7 +102,7 @@ function install_swf(pid){
     </div>
 </div>
 
-
+<div style="background: url('../static/images/back.png') no-repeat;">
 <div id="appFrame" class="flashVisible">
 <div id="flashFrame"
 	style="background: url('../static/images/back.png') no-repeat; margin-top: 0px; padding: 0px">

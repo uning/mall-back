@@ -15,7 +15,7 @@ function ShareGift()
 	if(!$gift) return;
 	$obj = array(
 			'uid' => $_POST['pid'],
-			'id' => $key,
+			'fid' => $key,
 			'type' =>3,
 			'gift' => $gift,
 			'clickTime' => 0,
@@ -24,7 +24,7 @@ function ShareGift()
 			'rcv' => array()
 		);
 	$tt = TT::LinkTT();
-	$tt->put(json_encode($obj));
+	$tt->put($obj);
 	changeUser();
 }
 function shareTask()
@@ -33,7 +33,7 @@ function shareTask()
 	$task = $_POST['task'];
 	$obj = array(
 		'uid' =>$_POST['pid'],
-		'id' => $key,
+		'fid' => $key,
 		'type' => 2,
 		'task' => $task,
 		'clickTime' => 0,
@@ -42,7 +42,7 @@ function shareTask()
 		'rcv' => array()
 	);
 	$tt = TT::LinkTT();
-	$tt->put(json_encode($obj));
+	$tt->put($obj);
 	changeUser();
 }
 function shareGoldCoin()
@@ -50,7 +50,7 @@ function shareGoldCoin()
 	$key = $_POST['fid'];
 	$obj = array(
 		'uid'=> $_POST['pid'],
-		'id' => $key,
+		'fid' => $key,
 		'type' => 1,
 		'clickTime' => 0,
 		'count' => 0,

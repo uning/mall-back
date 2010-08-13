@@ -155,6 +155,7 @@ class CarController {//extends BaseController{
 		$add_exp = $goods['exp']*$car['goodsNumber'];
 		$tu->addExp( $add_exp );
 		$now = time();
+		$car_obj['goodsTag'] = $goodsTag;
 		$car_obj['t'] = $now;
 		$tu->puto( $car_obj,TT::CAR_GROUP );
 		$gogoods_count = $tu->numch( 'gogoods_count',1 );
@@ -186,6 +187,10 @@ class CarController {//extends BaseController{
 		if( !$car_obj ){
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
+		}
+		if( !$car_obj['goodsTag'] ){
+			$car_obj['goodsTag'] = 10101;// 鏆傛椂瑙ｅ喅涓嶈兘鏀惰揣鐨勯棶棰?
+			$goodsTag = 10101;
 		}
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){

@@ -15,9 +15,10 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-//dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
-//dotest('Tool.addgoods',$p= array('u'=>144));
+dotest( 'Tool.showids',$p = array('u'=>1));
+//dotest('Tool.test_condition',$p= array('u'=>48,'con'=>array( 'audio'=>0 ) ));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
+//dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
 /*
 for( $i=1;$i<151;$i++ ){
     dotest('Tool.reset_cinema',$p= array('u'=>$i));
@@ -48,7 +49,6 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 //dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>101));
-dotest( 'Tool.showids',$p = array('u'=>1));
 //dotest( 'Tool.genusers',$p = array('u'=>1));
 //dotest('CarController.go_goods',$p = Array('c'=>Array('id'=>"23:c:4c4fe86bb4aaa",'goodsTag'=>10101),'u'=>1) );
 //dotest('UserController.set_advert',$p=array('u'=>1,'tag'=>1));

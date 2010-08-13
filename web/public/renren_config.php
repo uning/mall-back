@@ -12,4 +12,3 @@ require_once "ttserver/renren_config.php";
 require_once "ItemConfig.php";
 require_once "AdvertConfig.php";
 require_once "UpgradeConfig.php";
-require_once "AchieveUpdate.php";

@@ -1,5 +1,5 @@
 <?php
-class TaskController extends BaseController
+class TaskController
 {	
 	/**
 	 * 分享任务给所有好友

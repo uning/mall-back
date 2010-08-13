@@ -1,6 +1,7 @@
 <?php
 
-class CarController {//extends BaseController{    
+class CarController
+{
 	/**
 	 * 购买卡车
 	 * @param $params

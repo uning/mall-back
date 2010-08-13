@@ -11,6 +11,8 @@
 	 *   selloutids - 卖完删除的id
 	 *   goods   --数量有辩护的商品列表
 	 */
+class Bak
+{
 	public function checkshop( $params )
 	{
 	    $uid = $params['u'];
@@ -143,4 +145,5 @@
 		$tu->remove( $selloutids );
 		$tu->putf( TT::COMPUTE_PONIT,$now );
 		return $ret;
-	}	
+	}
+}

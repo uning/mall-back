@@ -1,5 +1,5 @@
 <?php
-class GoodsController extends BaseController
+class GoodsController
 {
 	/**
 	 * 直接购买物品到商店　——仅供测试用

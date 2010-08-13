@@ -21,7 +21,7 @@ while(!feof($f)){
 	if(!$d){
 		continue;
 	}
-	unset( $d['name'] );
+//	unset( $d['name'] );
 	unset( $d['description'] );
 	unset( $d['guestname'] );
 	unset( $d['star'] );

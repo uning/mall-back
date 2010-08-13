@@ -170,11 +170,11 @@ img,a .img{border:0}
 	blr:expression(this.onFocus=this.blur());
 }
 #navga ul li.problem a {
-    background-position: 0 -530px;
+    background-position: 0 -533px;
 }
 
 #navga ul li.problem a.active, #navga ul li.problem a:hover {
-    background-position: 0 -575px;
+    background-position: 0 -579px;
     outline:none;
 	blr:expression(this.onFocus=this.blur());
 }

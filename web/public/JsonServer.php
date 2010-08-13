@@ -226,7 +226,8 @@ class JsonServer{
 		}
 		if($ret['s']=='OK'){
 			if(array_key_exists($method,$log_method)){
-				TTLog::record(array('m'=>$method,'p'=>json_encode($params)));
+				$tm = $_SERVER['REQUEST_TIME'];
+				TTLog::record(array('m'=>$method,'tm'=>$tm,'p'=>json_encode($params)));
 			}
 		}
 		return $ret;

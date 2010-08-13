@@ -9,6 +9,7 @@ set_include_path(ZEND_ROOT.PATH_SEPARATOR.get_include_path());
 require_once LIB_ROOT.'Logger.php';
 
 require_once "ttserver/test_config.php";
+require_once CONTROLLER_ROOT."BaseController.php";
 require_once "ItemConfig.php";
 require_once "AdvertConfig.php";
 require_once "UpgradeConfig.php";

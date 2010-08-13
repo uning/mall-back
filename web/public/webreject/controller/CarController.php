@@ -187,6 +187,10 @@ class CarController
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
 		}
+		if( !$car_obj['goodsTag'] ){
+			$car_obj['goodsTag'] = 10101;// 鏆傛椂瑙ｅ喅涓嶈兘鏀惰揣鐨勯棶棰?
+			$goodsTag = 10101;
+		}
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
 			$ret['s'] = 'caritemnotexist';

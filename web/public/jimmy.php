@@ -15,8 +15,8 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-dotest( 'Tool.showids',$p = array('u'=>1));
-//dotest('Tool.test_condition',$p= array('u'=>48,'con'=>array( 'audio'=>0 ) ));
+//dotest( 'Tool.showids',$p = array('u'=>1));
+dotest('Tool.test_condition',$p= array('u'=>10,'con'=>array( 'audio'=>'0' ) ));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
 //dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
 /*

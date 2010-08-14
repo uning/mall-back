@@ -122,7 +122,7 @@ class ItemController {
 			        if( $shop_ret['s'] == 'notempty' ){
 			            $ret['s'] = 'notempty';
 			            $ret['index'] = $index;
-			            return $ret;
+			           // return $ret;
 			        }
 			    }
 			}

@@ -22,7 +22,7 @@ while(!feof($f)){
 		continue;
 	}
 	unset( $d['type'] );
-	unset( $d['name'] );
+//	unset( $d['name'] );
 	unset( $d['uiShowType'] );
 	unset( $d['functionType'] );
 	unset( $d['discription'] );

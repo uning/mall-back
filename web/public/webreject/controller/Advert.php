@@ -53,7 +53,7 @@ class Advert
 		$advbag['id']=$id;
 		$tu->puto( $advbag,TT::ADVERT_GROUP,false);
 //		$ret['advbag'] = $advbag; //for debug
-                $ret['s'] = 'OK';
+        $ret['s'] = 'OK';
 		$ret['tag'] =  $adv_tag;
 		$ret['num'] =  $num;
 		$ret[$type[0]] =  $tgem;
@@ -94,9 +94,7 @@ class Advert
 		$now = time();
 		$advbag['use'][$now]=$adv_tag;
 		$advbag['bag'][$adv_tag] -=1;
-
-//                $ret['advbag'] = $advbag;//for debug
-
+//      $ret['advbag'] = $advbag;//for debug
 	    //使用广告次数
 		$advert_count = $tu->numch( 'advert_count',1 );
 		
@@ -125,7 +123,7 @@ class Advert
 		$tu = new TTUser($uid);
 		$id = $tu->getoid('advert',TT::OTHER_GROUP);
 		$advbag = $tu->getbyid($id);
-//                $ret['advbag'] = $advbag;
+//      $ret['advbag'] = $advbag;
 		if( !$advbag['bag'] && !$advbag['use']){
 			$ret['s']='notexsit';
 			return $ret;

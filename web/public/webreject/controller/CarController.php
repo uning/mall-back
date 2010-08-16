@@ -1,6 +1,7 @@
 <?php
 
-class CarController {//extends BaseController{    
+class CarController
+{
 	/**
 	 * 购买卡车
 	 * @param $params
@@ -15,8 +16,6 @@ class CarController {//extends BaseController{
 	 */    
 	public function buy($params)
 	{
-		//todo:添加购买验证逻辑
-		//购买多个支持
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 		$ids = array();
@@ -25,12 +24,12 @@ class CarController {//extends BaseController{
 		    $car = ItemConfig::getItem( $row['tag']);
 		    if( !$car ){
 			    $ret['s'] = 'notexsit';
-			    $ret['msg'] = "the $index item in the array";
+			    $ret['index'] = $index;
 			    return $ret;
 		    }
 		    $buy_ret = $tu->buyItem($car['tag']);
 		    if( $buy_ret['s'] != 'OK' ){
-		        $ret['msg'] = "the $index item in the array";
+		        $ret['index'] = $index;
 			    return $buy_ret;
 		    }
 		    $row['t'] = 0;
@@ -155,6 +154,7 @@ class CarController {//extends BaseController{
 		$add_exp = $goods['exp']*$car['goodsNumber'];
 		$tu->addExp( $add_exp );
 		$now = time();
+		$car_obj['goodsTag'] = $goodsTag;
 		$car_obj['t'] = $now;
 		$tu->puto( $car_obj,TT::CAR_GROUP );
 		$gogoods_count = $tu->numch( 'gogoods_count',1 );
@@ -187,6 +187,10 @@ class CarController {//extends BaseController{
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
 		}
+		if( !$car_obj['goodsTag'] ){
+			$car_obj['goodsTag'] = 10101;// 暂时解决不能取货
+			$goodsTag = 10101;
+		}		
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
 			$ret['s'] = 'caritemnotexist';
@@ -223,5 +227,20 @@ class CarController {//extends BaseController{
 		$ret['g'] = $ids;
 		return $ret;
 	}
+	
+	/**
+	 * 买副驾驶
+	 * @param $params
+	 * require  u  -- user_id
+	 * @return
+	 * s   -- OK
+	 * c   -- car status
+	 * g   -- goods ids
+	 */
+	public function buy_copilot( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	}	
 
 }

@@ -4,17 +4,19 @@ class Tool
 	public function showids( $params )
 	{
 		$begin_id = 1;
+		$ret = array();
 		for( $i=$begin_id;$i<150;$i++ ){
 			$data['id'] = $i;
 			$info = TTGenid::update($data);
 			$ret['info'][$i] = $info;
-                        CrabTools::myprint($info,RES_DATA_ROOT."/showids.$i");
+//          CrabTools::myprint($info,RES_DATA_ROOT."/showids.$i");
 		}
 		return $ret;
 	}
 
 	public function genusers( )
 	{
+	    $ret = array();
 		for( $i=1;$i<10;$i++){
 			$user['pid'] = "quest0$i";
 			$user['name'] = "crab$i";
@@ -111,17 +113,10 @@ class Tool
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}
-	
-	public function testops( $params )
-	{
-	    $uid = $params['u'];
-	    $tu = new TTUser( $uid );
-	    $tlog = new TTLog();
-	    return $ret;
-	}
 
 	public function addgoods( $params )
 	{
+	    $goods_obj = array();
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 		for( $tag = 10101;$tag<10113;$tag++ ){ 
@@ -135,6 +130,25 @@ class Tool
     			$goods_obj['pos'] = 's';
     			$tu->puto( $goods_obj,TT::GOODS_GROUP );
 			}
+		}
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+	
+	public function test_condition( $params )
+	{
+		$uid = $params['u'];
+		$con = $params['con'];
+		$tu = new TTUser( $uid );
+		$data = array();
+		$ret = array();
+		foreach ($con as $k=>$v){
+			if( $v )
+				$data[$k] = $v;
+		}
+		$tu->mputf( $data );
+		foreach( $con as $k=>$v ){
+		    $ret['data'][$k] = $tu->getf( $k );
 		}
 		$ret['s'] = 'OK';
 		return $ret;

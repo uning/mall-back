@@ -32,7 +32,7 @@ if($c==null){
 		JsonServer::registerController('ItemController');
 		JsonServer::registerController('CarController');
 		JsonServer::registerController('GoodsController');
-		JsonServer::registerController('TaskController');
+		JsonServer::registerController('Task');
 		JsonServer::registerController('Friend');
 		JsonServer::registerController('Tool');
 		JsonServer::registerController('DataS');

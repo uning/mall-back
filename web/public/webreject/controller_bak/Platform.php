@@ -1,5 +1,5 @@
 <?php
-class Platform extends BaseController
+class Platform
 {    
 	/**
 	 * 赠送礼物，暂只支持赠送已有物品

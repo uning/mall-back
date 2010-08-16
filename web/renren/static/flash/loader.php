@@ -60,7 +60,7 @@ document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
 <script type="text/javascript" src="../js/loader.js"></script>
 <script type="text/javascript">
 
-PL.js(['http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js','../js/loadSwf.js'],function(){
+PL.js(['http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'],function(){
 		//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
 		swfVersionStr = "0.0.0";
@@ -77,7 +77,7 @@ PL.js(['http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js','../js/
 		flashvars[hash[0]] = hash[1];
 		console.log('query:'+hash[0]+'='+hash[1]);
 		}
-		flashvars.platform_id = '<?php echo  $p;?>';//flashvars.fb_sig_user;
+		flashvars.platform_id = '<?php echo  $pid;?>';//flashvars.fb_sig_user;
 		flashvars.pconf = '0_mall_config.xml';
 		flashvars.languagetype = "0";
 		flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
@@ -91,6 +91,7 @@ params.bgcolor = "#F0F8FF";
 params.allowscriptaccess = "always";  // must be always since html is different domain from swf :(
 params.allowfullscreen = "true";
 params.wmode = "opaque";
+params.wmode = "window";
 params.flashvars = flashvars;
 var attributes = {};
 attributes.id = "flash_run_id";
@@ -109,7 +110,7 @@ swfobject.embedSWF(
 swfobject.createCSS("flashContainer", "display:block;text-align:left;");
 });
 var config = {
-fbd : 1,//init fb debug? 
+     //fbd : 1,//init fb debug? 
       logcb : function(r){//log init callback
 	      console.log('log callback' +  window.location.href);
       },
@@ -124,11 +125,11 @@ before_fbinit : function(){//after FB.init callback
 			console.log('in loader before_fbinit');    
 		},
 cb:function(){//after config callback
-	   PL.js(['fb_jsflash.js','pageUtil.js']);
+	   PL.js(['jsflash.js','pageUtil.js']);
    }
 }
 
-PL.init('../js/fb_config.js',config);
+PL.init('../js/config.js',config);
 </script>
 
 

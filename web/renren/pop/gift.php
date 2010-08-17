@@ -25,7 +25,7 @@
 			
 	</div>
 	-->
-	<div class="main_gift_cont" style="text-align: center;padding-top: 10px;border: 1;border-color: gray">
+	<div class="main_gift_cont" style="text-align: center;padding-top: 10px;border:gray solid 1px;">
 	<ul class="items">
 <?php
  

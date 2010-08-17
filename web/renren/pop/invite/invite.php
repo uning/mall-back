@@ -39,9 +39,9 @@ xmlns="http://www.w3.org/1999/xhtml"
 	if($feed)
 	{
 		$arr = $feed['ids'];
-		print_r($feed);
-		foreach($arr as $uid)
-		$exclude.=$uid.',';
+		//print_r($feed);
+		//foreach($arr as $uid)
+		//$exclude.=$uid.',';
 		$linkid = $feed['linkid'];
 	}
 	else
@@ -49,7 +49,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$linkid = $pid.':'.uniqid();
 	}
 	$width = '760px';
-	print_r($exclude);
+	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
 		$content = '我在购物天堂送给你个'.$gift[$gid]['name'].',快来领取吧!'.'这个可是要达到'.$gift[$gid]['level'].'级才可以获得的哦'
@@ -68,7 +68,7 @@ xmlns="http://www.w3.org/1999/xhtml"
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="5"  exclude_ids="<?php echo $exclude;?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="5"  exclude_ids="<?php //echo $exclude;?>"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

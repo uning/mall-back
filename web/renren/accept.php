@@ -2,7 +2,6 @@
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-$irec = false;
 $tw = TT::LinkTT();
 if($linkid){
 	
@@ -84,8 +83,8 @@ if(!$irec){?>
 			$data['id'] = $id;
 			$ttu->puto( $data ); 
 		}
-		$irec['invalid'] =  true;
-		$tw->updateo($irec);
+		$irec['invalid'] =  1;
+		$tw->put($irec);
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
 		<?php }

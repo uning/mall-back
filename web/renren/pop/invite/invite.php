@@ -43,13 +43,14 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$ids = $_REQUEST['ids'];
 	$linkid = $pid.':'.uniqid();
 	$width = '760px';
+	print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
 		$content = '我在购物天堂送给你个'.$gift[$gid]['name'].',快来领取吧!'.'这个可是要达到'.$gift[$gid]['level'].'级才可以获得的哦'
 		.'&lt;xn:req-choice url=&quot;'.$accept_gift_url.'&quot; label=&quot;领取礼物&quot;&gt;&lt;xn:req-choice url=&quot;'.$accept_url.' &quot; label=&quot;试试再说&quot;&gt;';
 		echo '<tr><td align="center">';
 		echo '<img src="../../static/images/giftIcon/'.$gift[$gid]['icon'].'"/>';
-		print_r($feed['ids']);
+		
 		echo '</td></tr>';
 	}
 	$content.="&quot;&gt;"; 

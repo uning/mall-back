@@ -26,7 +26,6 @@ if($c==null){
 		JsonServer::registerController('Achieve');
 		JsonServer::registerController('Advert');
 		JsonServer::registerController('Cinema');
-		JsonServer::registerController('Copilot');
 		JsonServer::registerController('Gift');
 		JsonServer::registerController('Man');
 		JsonServer::registerController('UserController');

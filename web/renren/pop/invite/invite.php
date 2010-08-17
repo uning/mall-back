@@ -29,7 +29,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$us = TTGenid::getbypid($pid);
 	$exclude ="";	
 	$user = new TTUser($us['id']);
-	$mode = "all";
+	$mode = 'all';
 	if(!$gid){
 		$mode= 'naf';
 	}
@@ -38,8 +38,10 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$feed = $tt->getbyuidx('udate',$key);
 	if($feed)
 	{
-		foreach ($feed['ids'] as $uid)
-		$exclude.=$uid.',';
+		$arr = $feed['ids'];
+		//print_r($feed);
+		//foreach($arr as $uid)
+		//$exclude.=$uid.',';
 		$linkid = $feed['linkid'];
 	}
 	else
@@ -47,7 +49,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$linkid = $pid.':'.uniqid();
 	}
 	$width = '760px';
-	print_r($exclude);
+	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
 		$content = '我在购物天堂送给你个'.$gift[$gid]['name'].',快来领取吧!'.'这个可是要达到'.$gift[$gid]['level'].'级才可以获得的哦'
@@ -66,7 +68,7 @@ xmlns="http://www.w3.org/1999/xhtml"
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="5"  exclude_ids="<?php echo $exclude;?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo 'af';?>"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

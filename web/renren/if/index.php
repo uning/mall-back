@@ -103,7 +103,7 @@ function install_swf(pid){
     </div>
 </div>
 
-<div style="background: url('../static/images/back.png') no-repeat;">
+<div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
 <div id="appFrame" class="flashVisible">
 <div id="flashFrame"
 	style="background: url('../static/images/back.png') no-repeat; margin-top: 0px; padding: 0px">

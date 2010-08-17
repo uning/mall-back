@@ -2,7 +2,6 @@
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-$irec = false;
 $tw = TT::LinkTT();
 if($linkid){
 	
@@ -79,13 +78,13 @@ if(!$irec){?>
 			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
 		</div>
 		<?php 
-			$id = $ttu->getdid( '',TT::GIFT_GROUP );
+			$id = $ttu->getdid( '',$gift[$gid]['group'] );
 			$data['gtag'] = $gid;
 			$data['id'] = $id;
 			$ttu->puto( $data ); 
 		}
-		$irec['invalid'] =  true;
-		$tw->updateo($irec);
+		$irec['invalid'] =  1;
+		$tw->put($irec);
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
 		<?php }

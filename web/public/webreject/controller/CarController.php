@@ -187,10 +187,12 @@ class CarController
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
 		}
+/*
 		if( !$car_obj['goodsTag'] ){
 			$car_obj['goodsTag'] = 10101;// 暂时解决不能取货
 			$goodsTag = 10101;
-		}		
+		}
+*/
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
 			$ret['s'] = 'caritemnotexist';
@@ -205,13 +207,18 @@ class CarController
 			$ret['s'] = 'goodstagincorrect';
 			return $ret;
 		}
-        if( $now - $car_obj['t'] < ( 1- 0.01*$car['reduceTime'] )* $goods['buytime'] ){//时间减免改为百分比
-			$ret['s'] = 'timeleft';
-			return $ret;
+		if( $car_obj['recall'] != '1' ){
+            if( $now - $car_obj['t'] < ( 1- 0.01*$car['reduceTime'] )* $goods['buytime'] ){//时间减免改为百分比
+			    $ret['s'] = 'timeleft';
+			    return $ret;
+		    }
 		}
 		$car_obj['t'] = 0;
 		$tu->puto( $car_obj,TT::CAR_GROUP );
         $num = $car['goodsNumber'];
+        if( $car_obj['addgoods'] ){
+            $num += $car_obj['addgoods'];
+        }
 		$goods_data['pos'] = 's';
 		$goods_data['tag'] = $goodsTag;
 		$ids = array();
@@ -227,20 +234,4 @@ class CarController
 		$ret['g'] = $ids;
 		return $ret;
 	}
-	
-	/**
-	 * 买副驾驶
-	 * @param $params
-	 * require  u  -- user_id
-	 * @return
-	 * s   -- OK
-	 * c   -- car status
-	 * g   -- goods ids
-	 */
-	public function buy_copilot( $params )
-	{
-	    $uid = $params['u'];
-	    $tu = new TTUser( $uid );
-	}	
-
 }

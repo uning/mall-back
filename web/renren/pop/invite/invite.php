@@ -29,7 +29,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$us = TTGenid::getbypid($pid);
 	$exclude ="";	
 	$user = new TTUser($us['id']);
-	$mode = "";
+	$mode = "all";
 	if(!$gid){
 		$mode= 'naf';
 	}
@@ -49,7 +49,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 		.'&lt;xn:req-choice url=&quot;'.$accept_gift_url.'&quot; label=&quot;领取礼物&quot;&gt;&lt;xn:req-choice url=&quot;'.$accept_url.' &quot; label=&quot;试试再说&quot;&gt;';
 		echo '<tr><td align="center">';
 		echo '<img src="../../static/images/giftIcon/'.$gift[$gid]['icon'].'"/>';
-		echo $exclude;
+		print_f($exclude);
 		echo '</td></tr>';
 	}
 	$content.="&quot;&gt;"; 

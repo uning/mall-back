@@ -21,9 +21,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <tr>
 <?php 
 	require_once '../freeGift.php';
-	
-    	$accept_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
-    
+    $accept_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
 	$content = '我正在玩购物天堂，推荐你也来玩一把，在这里白手起家 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;赶快行动&quot;&gt;';
 	
 	$gid = $_REQUEST["gift"];
@@ -31,7 +29,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$us = TTGenid::getbypid($pid);
 	$exclude ="";	
 	$user = new TTUser($us['id']);
-	$mode = "all";
+	$mode = "af";
 	if(!$gid){
 		$mode= 'naf';
 	}
@@ -63,7 +61,7 @@ xmlns="http://www.w3.org/1999/xhtml"
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="5" mode="<?php echo $mode;?>" exclude_ids=<?php echo $exclude;?>/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="5" mode="<?php echo $mode;?>" exclude_ids="<?php echo $exclude;?>"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

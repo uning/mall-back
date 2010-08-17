@@ -28,6 +28,20 @@ xmlns="http://www.w3.org/1999/xhtml"
 	
 	$gid = $_REQUEST["gift"];
 	$pid = $_REQUEST['pid'];
+	$us = TTGenid::getbypid($pid);
+	$exclude ="";	
+	$user = new TTUser($us['id']);
+	$mode = "af";
+	if(!$gid){
+		$mode= 'naf';
+	}
+	$key  = date().$pid;
+	$tt = TT::LinkTT();
+	$feed = $tt->getbyuidx('udate',$key);
+	if($feed)
+	{
+		$exclude.=$feed['ids'];
+	}
 	$ids = $_REQUEST['ids'];
 	$linkid = $pid.':'.uniqid();
 	$width = '760px';
@@ -37,6 +51,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 		.'&lt;xn:req-choice url=&quot;'.$accept_gift_url.'&quot; label=&quot;领取礼物&quot;&gt;&lt;xn:req-choice url=&quot;'.$accept_url.' &quot; label=&quot;试试再说&quot;&gt;';
 		echo '<tr><td align="center">';
 		echo '<img src="../../static/images/giftIcon/'.$gift[$gid]['icon'].'"/>';
+		echo $exclude;
 		echo '</td></tr>';
 	}
 	$content.="&quot;&gt;"; 
@@ -48,7 +63,7 @@ xmlns="http://www.w3.org/1999/xhtml"
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="5" mode="a"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="5" mode="<?php echo $mode;?>" exclude_ids=<?php echo $exclude;?>/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

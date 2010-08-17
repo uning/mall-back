@@ -4,9 +4,10 @@ $linkid = $_REQUEST['linkid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
+$key  = date().$pid;
 if($pid &&$ids && $linkid){
 	$tw = TT::LinkTT();
-	$value = $tw->getbyuidx('fid',$key);
+	$value = $tw->getbyuidx('udate',$key);
 	if(!$value){
 		$_REQUEST['id']=$linkid;
 		$_REQUEST['udate'] = date('Ymd').$pid;

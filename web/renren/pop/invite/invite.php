@@ -39,7 +39,8 @@ xmlns="http://www.w3.org/1999/xhtml"
 	if($feed)
 	{
 		$arr = $feed['ids'];
-		foreach ($arr as $uid)
+		print_r($feed);
+		foreach($arr as $uid)
 		$exclude.=$uid.',';
 		$linkid = $feed['linkid'];
 	}

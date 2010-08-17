@@ -29,6 +29,7 @@ class ItemController {
 		$pop = 0 ;
 		$shop_num  = 0;
 		$now = time();
+		$ret['bmoney'] = $tu->getf( TT::MONEY_STAT );  //for debug
 		foreach($params['d'] as $index=>$row){
 			$tag = $row['tag'];
 			$num = 1;
@@ -61,6 +62,7 @@ class ItemController {
 		}
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
+        $ret['amoney'] = $tu->getf( TT::MONEY_STAT );  //for debug			
 		$ret['s'] = 'OK';
 		return $ret;
 	}

@@ -62,7 +62,7 @@ xmlns="http://www.w3.org/1999/xhtml"
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="5" mode="<?php echo $mode;?>" exclude_ids="<?php echo $exclude;?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="5"  exclude_ids="<?php echo $exclude;?>"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

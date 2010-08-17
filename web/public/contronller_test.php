@@ -31,6 +31,8 @@ function dotest($m,$p=null)
         echo "===============================================\n\n";
 }
 
+dotest('Gift.accept');
+return;
 dotest('ItemController.buy');
 return;
 $now = time();

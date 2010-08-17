@@ -191,6 +191,7 @@ class Man{
 	 * @return 
 	 *  s   -- OK ,or other fail
                    max,超出限制
+                   notype,超出限制
          *  money  -- total money
          *  exp    -- total exp 
 	 *  award 
@@ -200,11 +201,17 @@ class Man{
 	 */
 	public function satisfy($params)
 	{
-		$type2exp=array(
-                1=>array('money'=>10,'exp'=>2));
+		static $type2award=array(
+				1=>array('money'=>10,'exp'=>2)
+			      );
 		$uid = $params['u'];
 		$type  = $params['type'];
-		$type  = 1;
+		$award = $type2award[$type];
+		//$type  = 1;
+		if(!$award ){
+			$ret['s']='notype';
+			return $ret;
+		}
 
 		$tu = new TTUser($uid);
 		$id = $tu->getoid('satisfy',TT::OTHER_GROUP);
@@ -215,17 +222,18 @@ class Man{
 		
 		if($data['date']!=$now_date){
                    $data['r']=array();
+		   $data['date']=$now_date;
 		}
 		if(++$data['r'][$type]>10){
 			$ret['s'] = 'max';
 			return $ret;
 		}
-		$award = $type2award[$type];
 		$ret['award']=$award;
 		foreach($award as $k=>$v){
-			$tu->numch($k,$v);
+			$ret[$k] = $tu->numch($k,$v);
 		}
 		$ret['d']=$data;
+		$ret['s']='OK';
 		$tu->puto($data,'',false);
 		return $ret;
 	}

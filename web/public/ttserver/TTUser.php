@@ -59,7 +59,7 @@ class TTUser extends TTUDB
 		$goods = ItemConfig::getItem( $goods_obj['tag'] );
 		$goods_obj['num'] = $goods['unitcout'];
 		$goods_obj['stag'] = $shop_obj['tag'];
-		$goods_obj['stime'] = $now;
+		$goods_obj['stime'] = $now - 100;
 		$goods_obj['pos']['x'] = 0;
 		$goods_obj['pos']['y'] = $shop_id;
 		$this->puto( $goods_obj,TT::GOODS_GROUP );
@@ -292,101 +292,6 @@ class TTUser extends TTUDB
 		return $ret;
 	}
 
-
-	/**
-	 * 返回
-	 * array(时间长度，卖出速率)
-	 * @param $param
-	 * @param $shop_idle_time
-	 * @param $g
-	 * @return unknown_type
-	 */
-	public function getTimeRates( &$gaps,&$used,$computetime,$popu,$max_popu,$now,$shop_num )
-	{//如果已使用广告队列不为空，按宣传时间排序,结算完后删除广告队列
-		//		$ret['bused'] = $used;
-		$adlist = array();
-		$ret = array();
-		$length = 0;
-		foreach( $used as $time=>$tag ){
-			$adlist[$length]['time'] = $time;
-			$adlist[$length]['tag'] = $tag;
-			$length++;
-		}
-		//		$ret['adlist'] = $adlist;
-		$endpoint = $computetime;
-		//		$ret['endpoint'] = $endpoint;
-		for( $i=0;$i<$length;$i++ ){
-			$adv = AdvertConfig::getAdvert( $adlist[$i]['tag'] );
-			//			$ret['advinfor'][$i] = $adv;
-			$add_advpopu = $popu + $adv['popularity'];			
-			$max_addadvpopu = $max_popu + $adv['maxpopular'];
-			if( $add_advpopu > $max_addadvpopu ){
-				$add_advpopu = $max_addadvpopu;
-			}
-			//			$ret['max_addadvpopu'][$i] = $max_addadvpopu;
-			//			$ret['add_advpop'][$i] = $add_advpopu; 
-			//			$ret['max_popu'][$i] = $max_popu;
-			//第一段宣传需要单独处理(之前未单独处理，当只有一个广告且宣传时间小于结算时间时，直接被当成最后一段宣传处理，导致瞬间卖光货物)
-			if( $adlist[$i]['time'] < $endpoint ){//只会在第一个宣传段出现，其余都是　$adlist[$i]['time'] = $endpoint	    
-				if( $length == 1 ){//仅有一段宣传时间，单独处理后跳出循环
-					if( $now - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效 且可能之后有间断
-						$gaps[] = array( $adv['allTime'] -( $endpoint - $adlist[$i]['time'] ),$add_advpopu/( $shop_num*15 ) );
-						$gaps[] = array( $now - ( $adlist[$i]['time'] + $adv['allTime'] ),$popu/( $shop_num*15 ) );
-					}
-					else{//返回未失效的部分
-						$gaps[] = array( $now - $endpoint,$add_advpopu/( $shop_num*15 ) );
-						$used = array( $adlist[$i]['time']=>$adlist[$i]['tag'] );
-						//   		                $ret['1use'] = $used;
-					} 			       
-					break;
-				}
-				else{//之后还有宣传段，处理第一个宣传时间段
-					if( $adlist[$i+1]['time'] - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效 且可能之后有间断
-						$gaps[] = array( $adv['allTime'] -( $endpoint - $adlist[$i]['time'] ),$add_advpopu/( $shop_num*15 ) );
-						$gaps[] = array( $adlist[$i+1]['time'] - ( $adlist[$i]['time'] + $adv['allTime'] ),$popu/( $shop_num*15 ) );
-					}
-					else{//替换失效
-						$gaps[] = array( $adlist[$i+1]['time'] - $endpoint,$add_advpopu/( $shop_num*15 ) );
-					}
-					continue;
-				}
-			}
-			//若只在登录时调用，则不可能出现第一段宣传的起始时间大于结算时间的情况
-			/*
-			   if( $adlist[$i]['time'] > $endpoint ){//第一个宣传前有间断
-			   $gaps[] = array( $adlist[$i]['time']-$endpoint,1 );
-			   $endpoint = $adlist[$i]['time'];
-			   }
-			 */
-			if( $i<$length-1){//避免越界，逻辑上也需要单独处理最后一段宣传
-				if( $adlist[$i+1]['time'] - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效
-					$gaps[] = array( $adv['allTime'],$add_advpopu/( $shop_num*15 ) );
-					$endpoint += $adv['allTime'];
-					if( $endpoint < $adlist[$i+1]['time'] ){//自然失效后，离下一段宣传开始前有段无宣传时间
-						$gaps[] = array( $adlist[$i+1]['time'] - $endpoint,$popu/( $shop_num*15 ) );
-						$endpoint = $adlist[$i+1];
-					}
-				}
-				else{//非自然失效，替换失效，中间不存在无宣传时间段
-					$gaps[] = array( $adlist[$i+1]['time'] - $adlist[$i]['time'],$add_advpopu/( $shop_num*15 ) );
-					$endpoint = $adlist[$i+1]['time'];
-				}
-			}
-			else{//单独处理最后一段宣传
-				if( $now - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效
-					$gaps[] = array( $adv['allTime'],$add_advpopu/( $shop_num*15 ) );
-					$gaps[] = array( $now - $adlist[$i]['time'] - $adv['allTime'],$popu/( $shop_num*15 ) );
-				}
-				else{//最后一段广告不存在替换失效，返回未失效的部分
-					$gaps[] = array( $now - $adlist[$i]['time'],$add_advpopu/( $shop_num*15 ) );
-					$used = array( $adlist[$i]['time']=>$adlist[$i]['tag'] );
-					//					$ret['mused'] = $used;
-				}
-			}
-		}
-		//删除已使用广告队列
-		return $ret;
-	}
 
 
 }

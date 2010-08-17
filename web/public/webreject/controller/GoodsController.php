@@ -366,9 +366,18 @@ class GoodsController
 
 
 	/**
-	 *
-	 */
-	public function checkout($params)
+	 * 结算卖货
+	 * @param $params
+	 *   u   - userid
+         *   sids  - shop ids
+	 * @return 
+	 *   s  - OK,noneed(短期内没有需要结算的商品),busy(太快)
+	 *   income  - 获得金币
+	 *   money   - 总金币
+	 *   selloutids - 卖完删除的id
+	 *   goods   --数量有辩护的商品列表
+	 */  
+	static public function checkout($params)
 	{
 		$uid = $params['u'];
 		$sids= $params['sids'];
@@ -376,8 +385,9 @@ class GoodsController
 		$tu = new TTUser( $uid );
 		if(!$now)
 			$now = time();
+		else
+                     $debug = true;
 		//获取人气和宣传值
-		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$shops = $tu->get( TT::SHOP_GROUP);
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
@@ -391,7 +401,7 @@ class GoodsController
 						$condata[$shop['id']]['goods']= &$gs['g'];
 						$total_width += $item['gridWidth'];
 					}else{
-						$shop['goods']=array();
+						unset($shop['goods']);//=array();
 						$tu->puto($shop);	
 					}
 				}
@@ -403,6 +413,7 @@ class GoodsController
 			$ret['s']='nogoods';
 			return $ret;
 		}
+		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$popu = $params[TT::POPU];
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
                 $maxpopu = $ua['maxpopu'];
@@ -411,12 +422,23 @@ class GoodsController
 		$used_advert = $adv['use'];
 		if(!$used_advert)
                    $used_advert = array();
+		
+		//处理广告
 		foreach($used_advert as $k=>$v){
 			$adv = AdvertConfig::getAdvert( $tag );
 			if($start  + $adv['allTime'] < $now)
 				continue;
-			
+			$savead[$k]= $v;
 		}
+
+		if($savead){
+			$adv['use']=$savead;
+			$tu->puto($adv);
+		}else if($used_advert){
+			unset($adv['use']);
+			$tu->puto($adv);
+		}
+
 		$selloutids = array();
 		$income = 0;
 		$sale_count = 0; //销售份数
@@ -454,12 +476,14 @@ class GoodsController
 						$asnum = $snum;
 					}
 
-					$ret[$s][$g['id']][$k]['sell_num']=$asnum;
-					$ret[$s][$g['id']][$k]['curtime']=$curtime;
-					$ret[$s][$g['id']][$k]['gap']=$gr[0];
-					$ret[$s][$g['id']][$k]['ratio']=$gr[1];
-					$ret[$s][$g['id']][$k]['basespertime']=$gconfig['selltime'];
-					$ret[$s][$g['id']][$k]['shopwidth']=$sconfig['gridWidth'];
+					if($debug){
+						$ret[$s][$g['id']][$k]['sell_num']=$asnum;
+						$ret[$s][$g['id']][$k]['curtime']=$curtime;
+						$ret[$s][$g['id']][$k]['gap']=$gr[0];
+						$ret[$s][$g['id']][$k]['ratio']=$gr[1];
+						$ret[$s][$g['id']][$k]['basespertime']=$gconfig['selltime'];
+						$ret[$s][$g['id']][$k]['shopwidth']=$sconfig['gridWidth'];
+					}
 
 					$ret['sell'][$g['tag']] += $asnum;
 					$sale_count += $asnum;//记录销售份数，成就用
@@ -476,32 +500,38 @@ class GoodsController
 					$ret[$s][$g['id']][$k]['shop']=$shop;
 				}
 				if( $g['num']!= 0 ){
-					$tu->puto( $g,TT::GOODS_GROUP );
+					if(!$debug)
+						$tu->puto( $g,TT::GOODS_GROUP );
 					break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算
 				}
 			}//foreach goods
 			if($shop_changed){
-				$tu->puto($shop);
+				if(!$debug)
+					$tu->puto($shop);
 			}
 		}//foreach shop
 
 
 
-		$adv['id'] = $aid;
-		$ret['total_width'] = $total_width;
-		$ret['popu']   = $popu;
-		$ret['params']   = $params;
+		if($debug){
+			$ret['total_width'] = $total_width;
+			$ret['popu']   = $popu;
+			$ret['maxpopu']   = $maxpopu;
+			$ret['params']   = $params;
+		}
 
 
 		//总销售份数
 		$now_sale_count = $tu->numch( 'total_count',$sale_count );
 		//总销售额
 		$now_total_sale = $tu->numch( 'total_sale',$income );
+
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
 		$ret['money']  = $tu->numch('money',$income);
 		$ret['t'] = $now;
-		$tu->remove( $selloutids );
+		if(!$debug)
+			$tu->remove( $selloutids );
 		return $ret;
 	}
 }

@@ -78,7 +78,7 @@ if(!$irec){?>
 			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
 		</div>
 		<?php 
-			$id = $ttu->getdid( '',TT::GIFT_GROUP );
+			$id = $ttu->getdid( '',$gift[$gid]['group'] );
 			$data['gtag'] = $gid;
 			$data['id'] = $id;
 			$ttu->puto( $data ); 

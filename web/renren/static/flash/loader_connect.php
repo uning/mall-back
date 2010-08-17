@@ -103,50 +103,46 @@ function install_swf( pid)
 		swfobject.createCSS("flashContainer", "display:block;text-align:left;");
 }
 
+
 var config = {
-	//fbd : 1,//init fb debug? 
-	log : 1,//init fb debug? 
-	fb : 1,//init fb debug? 
-logcb : function(r){//log init callback
+     fbd : 1,//init fb debug? 
+      logcb : function(r){//log init callback
 	      console.log('log callback' +  window.location.href);
       },
 after_fbinit : function(){//before FB.init callback
-    	  console.log('in loader after_fbinit');
-      
-  		   pid = PL.conf('pid');
-  		  
-  		   if(!pid){
-  			   var getpid = function(r){
-  				   pid = r.uid;
-  				   PL.conf('pid',pid);
-  				   console.log(pid)
-    			   install_swf(pid)
-  				   
-  			   }
-  			   XN.Main.get_sessionState().waitUntilReady(
-  					   function(){
-  						   XN.Main.apiClient.users_getLoggedInUser(getpid);
-  					   });
-  			   
-  		   }else{
-   			  install_swf(pid)
-  		   }
-  		   PF.set_page_ok()	  
-	     },
+		       console.log('in loader after_fbinit');
+			       pid = PL.conf('pid')||query_json.xn_sig_user;
+		       if(!pid){
+			       var getpid = function(r){
+				       pid = r.uid;
+				       PL.conf('pid',pid);
+				       console.log(pid)
+					       install_swf(pid)
+
+			       }
+			       XN.Main.get_sessionState().waitUntilReady(
+					       function(){
+					       XN.Main.apiClient.users_getLoggedInUser(getpid);
+					       });
+
+		       }else{
+			       install_swf(pid)
+		       }
+		       PF.set_page_ok();
+
+	       },
 before_fbinit : function(){//after FB.init callback
-	    	 console.log('in loader before_fbinit');   
-	    	  install_swf(pid) 
-	},
+			console.log('in loader before_fbinit');    
+		},
 cb:function(){//after config callback
-		 pid = PL.conf('pid');
-		 if(pid){
-			  install_swf(pid)
-		 }
-		 PL.js(['fb_jsflash.js']);
+	   PL.js(['jsflash.js']);
+	   pid = PL.conf('pid')||query_json.xn_sig_user;
+	   install_swf(pid)
    }
 }
 
-PL.init('../js/fb_config.js',config);
+
+PL.init('../js/config.js',config);
 </script>
 
 

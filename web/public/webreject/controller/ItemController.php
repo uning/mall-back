@@ -97,16 +97,12 @@ class ItemController {
 				$ret['s'] = 'notexsit';
 				$ret['index'] = $index;
 				return $ret;
-			}/*
-			if($row['pos']!='s'){
-			    if( $item['type'] == "ro" )
-				    $shop_num += $item['gridWidth'];
-				$pop += $item['pop'];
-			}else{
-			    if( $item['type'] == "ro" )
-				    $shop_num -= $item['gridWidth'];
-				$pop -= $item['pop'];
-			}*/
+			}
+			if( $item['type'] == 'ro' && $row['pos']=='s'){
+				//todo $tu 结算	
+				require_once 'GoodsController.php';
+                                GoodsController::checkout($params);
+			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
 			    if( $row['pos'] != 's' ){
 			        $pop += $item['pop'];
@@ -125,6 +121,7 @@ class ItemController {
 			        }
 			    }
 			}
+		    $ret[$row['id']]=$item;
 		    $tu->puto($row);
 		}
 		/*

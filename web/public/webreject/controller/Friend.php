@@ -218,5 +218,143 @@ class Friend{
 		return $ret;
 	}
 
+	/**
+	 * 拜访
+	 * @param $params
+	 *  require  u           --  user id
+	 *           f         --  friend id
+	 * @return 
+	 *           s           --  OK
+                                 --  visited,已经拜访过
+                                 --  nofriend,不是朋友
+                  award        
+                     exp         --奖励经验
+                     money       --奖励金钱 
+	 */
+	public function visit($params)
+	{
+		$uid = $params['u'];
+		$nid = $params['f'];
+
+
+		$tu = new TTUser( $uid );
+		$ftu = new TTUser( $nid);
+		$fdid = $tu->getdid($nid,'fr');
+
+		$now = time();
+                $now_date = date('Ymd',$now);
+		$fdata = $tu->getbyid($fdid);
+		if(!$fdata ){
+			$ret['s']='nofriend'; 
+			return $ret;
+		}
+
+		$vt = $fdata['vt'];
+                $vt_date = date('Ymd',$vt);
+		if($vt_date == $now_date){
+			$ret['s']='visited';
+			return $ret;
+		}
+		$flevel = $ftu->getLevel();
+		$exp = 1 + $flevel*4;
+		$money = 50 + $flevel*50;
+		$ret['money'] = $tu->chMoney($money);
+		$ret['exp']  = $tu->addExp($exp);
+		
+		$ret['award']['money']=$money;
+		$ret['award']['exp']=$exp;
+               
+		$fdata['vt']=$now;
+		$tu->puto($fdata,'fr',false);
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+	/**
+	  五，增加好友箱数：						
+
+	  说明：	货车出发之后，放进仓库之前，好友均可点击，点击会增加货物箱数。				
+	  按钮问题：好友帮助加箱数的按钮，在货车运货过程中和货车回来都有。而当货车回来，但是没有放进仓库时，只有到好友家才有按钮，自己的副驾驶功能消失。				
+	  限制：	每人每日可帮一个好友一次。				
+	  级别越高增加的箱数越多。					
+	  级别：	箱数：				
+	  1	1				
+	  20	2				
+	  40	3				
+	  被帮助者奖励：	礼物为一箱货物。				
+	  帮助者奖励：	获得所进货物经验（进货+取货的经验和）相等的经验。	
+	 * @param $params
+	 *  require  u           --  user id
+	 *           f         --  friend id
+	 *           cid         --  car id
+	 * @return 
+	 *           s           --  OK
+                                 --  helped,已经拜访过
+                                 --  nofriend,不是朋友
+                  award        
+                     exp         --奖励经验
+                     money       --奖励金钱 
+	
+	 */
+	public function help_car($params)
+	{
+		$uid = $params['u'];
+		$nid = $params['f'];
+		$carid = $params['cid'];
+
+
+		$tu = new TTUser( $uid );
+		$ftu = new TTUser( $nid);
+		$fdid = $tu->getdid($nid,'fr');
+
+		$now = time();
+                $now_date = date('Ymd',$now);
+		$fdata = $tu->getbyid($fdid);
+		if(!$fdata ){
+			$ret['s']='nofriend'; 
+			return $ret;
+		}
+
+		$vt = $fdata['ht'];
+                $vt_date = date('Ymd',$vt);
+		if($vt_date == $now_date){
+			$ret['s']='helped';
+			return $ret;
+		}
+
+		$car = $ftu->getbyid($carid);	
+		if(!$car){
+			$ret['s']='nocar';
+			return $ret;
+		}
+		if(count($car['help'])>5){
+			$ret['s']='max';
+			return $ret;
+		}
+		$goodsid = $car['goodsTag'];
+		$gconfig = ItemConfig::getItem($goodsid);
+		$add_exp = $gconfig['exp']*$num;
+		if(!$add_exp){
+			$ret['s']='nocar';
+			return $ret;
+		}
+		$level = $tu->getLevel();
+		$num = 1;
+		if($level >19) 
+			$num = 2;
+		if($level >39) 
+			$num = 3;
+		$mydata = TTGenid::getbyid($uid); 
+		$car['help'][$uid] =  array('name'=>$mydata['name'],'icon'=>$mydata['icon'],'pid'=>$mydata['pid'],'dbid'=>$uid,'num'=>$num);
+		$flevel = $ftu->getLevel();
+		$exp = 1 + $flevel*4;
+		$money = 50 + $flevel*40;
+		$ret['exp']  = $tu->addExp($add_exp);
+		$ret['award']['exp']=$add_exp;
+		$fdata['ht']=$now;
+		$tu->puto($fdata,'fr',false);
+		$ftu->puto($car,'',false);
+		$ret['s'] = 'OK';
+		return $ret;
+	}
 }
 

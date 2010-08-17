@@ -202,11 +202,6 @@ class TTUDB{
 	public function getbyids($ids,$raw=false)
 	{
 		return $this->_t->getbyids($ids,$raw);
-		//print_r($ids);
-		$ret = $this->_t->getbyids($ids);
-		//print_r($ret);
-		return $ret;
-		//return $this->_t->getbyids($ids);
 
 	}
 

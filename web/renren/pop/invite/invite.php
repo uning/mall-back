@@ -38,10 +38,14 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$feed = $tt->getbyuidx('udate',$key);
 	if($feed)
 	{
-		$exclude=$feed['ids'];
+		foreach ($feed['ids'] as $uid)
+		$exclude.=$uid.',';
+		$linkid = $feed['linkid'];
 	}
-	$ids = $_REQUEST['ids'];
+	else
+	{
 	$linkid = $pid.':'.uniqid();
+	}
 	$width = '760px';
 	print_r($exclude);
 	if($gid!=NULL&&$gid!=''){

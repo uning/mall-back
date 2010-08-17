@@ -25,7 +25,7 @@
 			
 	</div>
 	-->
-	<div class="main_gift_cont" style="height:700px;text-align: center;padding-top: 10px;border:gray solid 1px;">
+	<div class="main_gift_cont" style="height:600px;text-align: center;padding-top: 10px;border:gray solid 1px;">
 	<ul class="items">
 <?php
  
@@ -69,6 +69,7 @@
 	}
 ?>
 </ul>
+<br/>
 <br style="clear:both" />
 		<div style="width: 700px; text-align: center;" >
 			<input type="hidden" name="pid" value="<?php echo $_REQUEST['pid']?>">

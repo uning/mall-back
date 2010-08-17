@@ -38,7 +38,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$feed = $tt->getbyuidx('udate',$key);
 	if($feed)
 	{
-		$exclude.=$feed['ids'];
+		$exclude=$feed['ids'];
 	}
 	$ids = $_REQUEST['ids'];
 	$linkid = $pid.':'.uniqid();

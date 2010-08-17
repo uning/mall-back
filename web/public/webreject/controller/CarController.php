@@ -248,11 +248,10 @@ class CarController
         if( $car_obj['addgoods'] ){
             $num += $car_obj['addgoods'];
         }
-//      $car['help'][$uid] =  array('name'=>$mydata['name'],'icon'=>$mydata['icon'],'pid'=>$mydata['pid'],'dbid'=>$uid,'num'=>$num);
+//      $car_obj['help'][$uid] =  array('name'=>$mydata['name'],'icon'=>$mydata['icon'],'pid'=>$mydata['pid'],'dbid'=>$uid,'num'=>$num);
         if( $car_obj['help'] ){
             foreach( $car_obj['help'] as $data ){
-                if( $data['num'] )
-                    $num += $data['num'];
+                $num += $data['num'];
             }
             unset( $car_obj['help'] );
         }

@@ -19,19 +19,19 @@ class GoodsController
 	public function buy( $params )
 	{
 		$uid = $params['u'];
-        $now = time();
+		$now = time();
 		//$num = 1;//$item['unitcout'];
 		$tu = new TTUser($uid);
 		$ids = array();
 		foreach ( $params['d'] as $goods){
-//          $ret['goods'] = $goods;
+			//          $ret['goods'] = $goods;
 			$item = ItemConfig::getItem($goods['tag']);
 			if( !$item ){
 				//写入日志
 				continue;
 			}
 			if( isset( $goods['id'] ) ){
-			    unset( $goods['id']);
+				unset( $goods['id']);
 			}
 			$shop = $tu->getbyid( $goods['pos']['y'] );
 			$goods['stag'] = $shop['tag']; 
@@ -43,7 +43,7 @@ class GoodsController
 		$ret['ids'] = $ids;
 		return $ret;
 	}
-	
+
 	/**
 	 * 上架,在shop记录里记录商品id
 	 * @param $params
@@ -54,7 +54,7 @@ class GoodsController
 	 *    s     --OK
 	 *    s     --nogood ,商品不存在
 	 *    s     --noshop ,商品不存在
-                      max,已经放满
+	 max,已经放满
 	 */
 	public function exhibit_goods( $params )
 	{
@@ -66,8 +66,8 @@ class GoodsController
 		foreach ( $params['d'] as $index => $goods ){
 			$sid =  $goods['pos']['y'];
 			$shop_obj = & $shops[$sid]; 
-            if(!$shop_obj)
-                $shop_obj = $tu->getbyid( $sid );
+			if(!$shop_obj)
+				$shop_obj = $tu->getbyid( $sid );
 			if( !$shop_obj ){
 				$ret['s'] = 'noshop';
 				$ret['index'] = $index;
@@ -83,8 +83,8 @@ class GoodsController
 			}
 			$goods_obj = $tu->getbyid( $goods['id'] );
 			if( !$goods_obj ){
-			    $ret['s'] = 'goodsnotexsit';
-			    return $ret;
+				$ret['s'] = 'goodsnotexsit';
+				return $ret;
 			}
 			$item = ItemConfig::getItem( $goods_obj['tag'] );
 			//if( !$item ){
@@ -98,7 +98,7 @@ class GoodsController
 				//return $ret;
 			}
 			$shop_obj['goods'][$goods['id']]=$now + $goods['pos']['x'];  //没必要
-            $goods['stime'] =  $now + $goods['pos']['x']; //对同一商店同一时间上架的货物，按出售顺序将上架时间轻微调整以方便处理
+			$goods['stime'] =  $now + $goods['pos']['x']; //对同一商店同一时间上架的货物，按出售顺序将上架时间轻微调整以方便处理
 			$goods['num'] =  $item['unitcout'];
 			$goods['stag']  =  $shop_obj['tag'];//商店类型
 			$tu->puto($goods,GOODS_GROUP);
@@ -121,9 +121,9 @@ class GoodsController
 		$now = time();
 		//获取人气和宣传值
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
-//		$ret['params'] = $params;
+		$ret['params'] = $params;
 		$goods = $tu->get( TT::GOODS_GROUP );
-//		$ret['goods'] = $goods;
+		//		$ret['goods'] = $goods;
 		$shopids = array();
 		//按时间排序
 		$condata = array();
@@ -139,26 +139,26 @@ class GoodsController
 				$condata[$sid][$stime] = $row; //for unique time index
 			}
 		}
-//		$ret['shopids'] = $shopids;
+		//		$ret['shopids'] = $shopids;
 		if(!$condata){
 			$ret['s']='nogoods';
 			return $ret;
 		}
-//		$ret['condata'] = $condata;
+		//		$ret['condata'] = $condata;
 		$popu = $params[TT::POPU];
-//		$ret['bpopu'] = $popu;
+		//		$ret['bpopu'] = $popu;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-//		$ret['ua'] = $ua;
+		//		$ret['ua'] = $ua;
 		$shop_num = $params['shop_num'];
 		$shops = $tu->get( TT::SHOP_GROUP );
 		foreach( $shops as $shop ){
-//			$ret['shop_num_shop'][] = $shop;
+			//			$ret['shop_num_shop'][] = $shop;
 			if( $shop['pos'] != 's' ){
-			    $item = ItemConfig::getItem( $shop['tag'] );
-			    $shop_num += $item['gridWidth'];
+				$item = ItemConfig::getItem( $shop['tag'] );
+				$shop_num += $item['gridWidth'];
 			}
 		}		
-//		$ret['shopnum'] = $shop_num;
+		//		$ret['shopnum'] = $shop_num;
 		if( !$shop_num ){
 			$ret['s'] = 'noshopexist';
 			return $ret;
@@ -168,8 +168,8 @@ class GoodsController
 		if( $popu > $ua['maxpopu'] ){
 			$popu = $ua['maxpopu'];
 		}		
-//		$ret['apopu'] = $popu;
-		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
+		//		$ret['apopu'] = $popu;
+		$aid = $tu->getoid('advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
 		$selloutids = array();
@@ -182,38 +182,38 @@ class GoodsController
 			$cgoods = array();
 			foreach( $gs as $t=>$g ){
 				$gconfig = ItemConfig::getItem($g['tag']);
-//				$ret['gconfig'][$s][$t] = $gconfig;
+				//				$ret['gconfig'][$s][$t] = $gconfig;
 				$ctime = $g['ctime'];//上次结算时间
 				if($curtime < $t)
 					$curtime = $t; //上架时间
 				if( $curtime< $ctime )
 					$curtime = $ctime;
 				$g['ctime'] = $now;  //　忽略之　　//结算时间不宜在此赋值，这样会把一些诸如在待售队列中本没有算
-//				$ret['tloop'][$s][$t] = date( TM_FORMAT,$curtime );
+				//				$ret['tloop'][$s][$t] = date( TM_FORMAT,$curtime );
 				$gaps = array();
 				if( $used_advert ){
 					$tmp = $tu->getTimeRates( $gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-//			        $ret['advertisement'][$s][$t] = $tmp;
+					//			        $ret['advertisement'][$s][$t] = $tmp;
 				}
 				else{
 					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
 				}					
-//				$ret['gaps'][$s][$t] = $gaps;
+				//				$ret['gaps'][$s][$t] = $gaps;
 				foreach($gaps as $gr){
-//				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
+					//				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$stime = $gr[0];
 					if( $sconfig['gridWidth'] )					
 						$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
 					if( $pertime )
 						$snum = floor( $stime/$pertime );
-//					$ret['pertime'][$s][$t][$k] = $pertime;
+					//					$ret['pertime'][$s][$t][$k] = $pertime;
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}
 					else{
 						$asnum = $snum;
 					}
-//					$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
+					//					$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
 					$ret['sell'][$g['tag']] += $asnum;
 					$sale_count += $asnum;//记录销售份数，成就用
 					$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
@@ -231,7 +231,7 @@ class GoodsController
 				//			    }
 			}
 		}
-			//删除使用过的广告队列
+		//删除使用过的广告队列
 		unset( $adv['use'] );
 		if( $used_advert ){//如果是空数组
 			$adv['use'] = $used_advert;
@@ -249,12 +249,12 @@ class GoodsController
 		$tu->remove( $selloutids );
 		return $ret;
 	}	
-	
+
 	/**
 	 * 结算卖货
 	 * @param $params
 	 *   u   - userid
-         *   sids  - shop ids
+	 *   sids  - shop ids
 	 * @return 
 	 *   s  - OK,noneed(短期内没有需要结算的商品),busy(太快)
 	 *   income  - 获得金币
@@ -267,6 +267,6 @@ class GoodsController
 		$uid = $params['u'];
 		$sids= $params['sids'];
 		$tu = new TTUser( $uid );
-        return self::compute( $tu );
+		return self::compute( $tu );
 	}
 }

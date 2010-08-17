@@ -213,6 +213,8 @@ class Friend{
 			$rids = array_keys($infos);
                         $tu->remove($rids);
 		}
+		$rinfos[]=array('name'=>'GM','icon'=>'http://hdn.xnimg.cn/photos/hdn121/20100807/1345/h_tiny_WtRB_190e0000358b2f75.jpg',
+			'pid'=>'293293079','exp'=>'10000','dbid'=>4);//GM
 		$ret['infos'] = &$rinfos;
 		$ret['s'] = 'OK';
 		return $ret;

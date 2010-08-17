@@ -48,15 +48,18 @@ function install_swf(pid){
 	//<!-- To use express install, set to playerProductInstall.swf, otherwise the empty string. -->
 		var xiSwfUrlStr = "playerProductInstall.swf";
 
+	var flash_width = 760;
+	var flash_height = 700;
 	//get query to it
 	var flashvars = PL.query_json();
 	flashvars.platform_id = pid;
 	flashvars.pconf = '../static/flash/o_0_mall_config.xml';
 	flashvars.languagetype = "0";
+	flashvars.gaIsDebug = 0;
+	flashvars.gaTrackKeys = 'UA-11480477-8';
+	flashvars.STAGE_WIDTH = flash_width;
 	//flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
 	flashvars.platform = "renren";
-	var flash_width = 760;
-	var flash_height = 700;
 	var params = {};
 	params.quality = "high";
 	params.bgcolor = "#F0F8FF";
@@ -151,7 +154,7 @@ version of Flash. Please do so by clicking <a
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
 var config = {
-		useparent:false,
+	useparent:false,
 		//log:1,//init log? server can force debug, just for develop
 		fb:1,//init fb?
 		//fbd:1,//init fb debug? 

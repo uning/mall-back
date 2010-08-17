@@ -26,52 +26,29 @@ class Gift{
 			return $ret;
 		}
 		$tu = new TTUser($uid);
-		$r = $tu->getbyid($gid);
-		if(!$r){
+		$gift_obj = $tu->getbyid($gid);
+		if(!$gift_obj){
 			$ret['s'] = 'nothave';
 			return $ret;
 		}
+		$item = ItemConfig::getItem( $gift_obj['tag'] );
+		if( !$item || $item['can_gift'] != 'true' ){
+		    $ret['s'] = 'cantgift';
+		    return $ret;
+		}
 		$tu->remove($gid);
-		$params['gtag']=$r['tag'];
+		$params['gtag'] = $gift_obj['tag'];
 		$ftu = new TTUser($fid);
 		$id = $ftu->getdid('',TT::GIFT_GROUP);
 		$params['id']=$id;
-		$ftu->puto($params);
+		$params['fid'] = $uid;
+		unset( $params['gid'] );
+		unset( $params['u'] );
+		$ftu->puto( $params );
 		$ret['s'] = 'OK';
 		return $ret;
 	}
 
-	/**
-	 * 获得一个礼物
-	 * @param $params
-	 *  require u  -- user id
-	 *  require fid  -- friend id
-	 *  require gtag  -- gift type
-	 *  optional  fname  -- friendname
-	 *  optional  fpic  -- friendname
-	 *  optional  gid  -- gift 对应rcord id
-	 *
-	 * @return 
-	 *  s   -- OK ,or other fail
-	 *  d  -- the man obj
-	 step=>(vtime,dtime)
-	 */
-	public function get($params)
-	{
-		$uid = $params['u'];
-		$fid = $params['fid'];
-		$gid = $params['gtag'];
-		if(!$uid || !$gid || !$fid){
-			$ret['s'] = 'param';
-			return $ret;
-		}
-		$tu = new TTUser($uid);
-		$id = $tu->getdid('',TT::GIFT_GROUP);
-		$params['id']=$id;
-		$tu->puto($params);
-		$ret['s'] = 'OK';
-		return $ret;
-	}
 
 	/**
 	 * 查看礼物
@@ -94,22 +71,41 @@ class Gift{
 	/**
 	 * 收取礼物
 	 * @param $params
-	 *  require u  -- user id
-	 *  require d  -- 礼物数据(数组)
-	 array(array(id,tag,otherdata));//前端按记录准备好的数据
-	 id   礼物对应record id
-
+	 *  require         u        -- user id
+	 *                  gid      -- gift id
+	 *                  fid      -- friend id
 	 * @return 
 	 *  s   -- OK ,or other fail
-	 *  d  -- map of old id to new ids; 
-
 	 */
 	public function accept($params)
 	{
 		$uid = $params['u'];
-		$tu = new TTUser($uid);
+        $fid = $params['fid'];
+        $gid = $params['gid'];	
+		$tu = new TTUser( $uid );
+		$gift_obj = $tu->getbyid( $gid );
+		if( !$gift_obj ){
+		    $ret['s'] = 'notexsit';
+            return $ret;			
+		}
+		$tag = $gift_obj['gtag'];
+		$item = ItemConfig::getItem( $tag );
+		if( !$item ){
+		    $ret['s'] = 'itemnotexsit';
+			return $ret;
+		}
+		$obj['pos'] = 's';
+		$obj['tag'] = $tag;
+		if( $item['group'] == 'o' ){
+		    $tu->puto( $obj,TT::ITEM_GROUP );
+		}
+		if( $item['group'] == 'g' ){
+		    $tu->puto( $obj,TT::GOODS_GROUP );
+		}
+		$tu->remove( $gid );
+		$ret['s'] = 'OK';
+/*		
 		$gifts = $params['d'];
-
 		$datas = $tu->get(TT::GIFT_GROUP,false);
 		foreach($gifts as $d){
 			$oid = $d['id'];
@@ -132,6 +128,7 @@ class Gift{
 		$tu->remove($rids);
 		$ret['s'] = 'OK';
 		$ret['d'] = $id2id;
+*/		
 		return $ret;
 	}
 	

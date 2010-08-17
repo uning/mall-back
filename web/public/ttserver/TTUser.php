@@ -231,7 +231,8 @@ class TTUser extends TTUDB
 		}
 
 		$currency = TT::MONEY_STAT;
-		if( $usegem || $item['onlygem'] ){
+//		if( $usegem || $item['onlygem'] ){
+		if( $usegem || $item['onlygem'] == 'true' ){//前端把excel中此字段为空的加上false,但未及时通知后端，导致此处逻辑错误
 			$currency = TT::GEM_STAT;
 		}
 

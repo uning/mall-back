@@ -9,7 +9,7 @@ var $config = {
     canvas_url: "http://apps.renren.com/livemall/",
 	reciever_url:'/work/mall/backend/web/renren/xd.html',
 	jsfiles : [ 
-	        [ 'fb_jsflash.js', 1 ],
+	        [ 'jsflash.js', 1 ],
 	        [ 'delegator.js', 1 ],
 			[ 'jquery.boxy.js', 1 ],
 			[ 'jsDump-1.0.0.js', 1 ], 

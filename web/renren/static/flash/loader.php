@@ -91,7 +91,10 @@ params.bgcolor = "#F0F8FF";
 params.allowscriptaccess = "always";  // must be always since html is different domain from swf :(
 params.allowfullscreen = "true";
 params.wmode = "opaque";
-params.wmode = "window";
+flashvars.gaIsDebug = 0;
+flashvars.gaTrackKeys = 'UA-11480477-8';
+flashvars.STAGE_WIDTH = flash_width;
+//params.wmode = "window";//chinese input
 params.flashvars = flashvars;
 var attributes = {};
 attributes.id = "flash_run_id";
@@ -116,8 +119,8 @@ var config = {
       },
 after_fbinit : function(){//before FB.init callback
 		       console.log('in loader after_fbinit');
-			       PF.set_page_ok();
 			       PF.get_pid();
+			       PF.set_page_ok();
 			       PF.get_friends();
 
 	       },
@@ -125,7 +128,7 @@ before_fbinit : function(){//after FB.init callback
 			console.log('in loader before_fbinit');    
 		},
 cb:function(){//after config callback
-	   PL.js(['jsflash.js','pageUtil.js']);
+	   PL.js(['jsflash.js']);
    }
 }
 

@@ -35,7 +35,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	if(!$gid){
 		$mode= 'naf';
 	}
-	$key  = date().$pid;
+	$key  = date('Ymd').$pid;
 	$tt = TT::LinkTT();
 	$feed = $tt->getbyuidx('udate',$key);
 	if($feed)

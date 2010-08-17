@@ -12,6 +12,7 @@ if($pid &&$ids && $linkid){
 		//$_REQUEST['linkid']=$linkid;
 		$_REQUEST['udate'] = date('Ymd').$pid;
 		$_REQUEST['invalid'] = 0;
+		$_REQUEST['geted'] = array();
 		$tw->put($_REQUEST);
 	}
 	else {

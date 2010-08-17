@@ -79,8 +79,9 @@ if(!$irec){?>
 		</div>
 		<?php 
 			$id = $ttu->getdid( '',$gift[$gid]['group'] );
-			$data['gtag'] = $gid;
+			$data['tag'] = $gid;
 			$data['id'] = $id;
+			$data['pos']='s';
 			$ttu->puto( $data ); 
 		}
 		$irec['invalid'] =  1;

@@ -97,7 +97,6 @@ function install_swf(pid){
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
         <li class="problem"><a  href="javascript:alert('暂未开放');"  id="problem">问题反馈</a></li>
 		<li class="payment" ><a  href="javascript:popUpFeed();"   id ="pay" class="fullpage">充值</a></li>
-		<li><input type="button"  onclick="popUpFeed();" value="feed"></li>
 	</ul>
 	</div>
     </div>

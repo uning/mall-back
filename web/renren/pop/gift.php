@@ -35,7 +35,7 @@
 	
 	function levelEnoughShow($k,$xml)
 	{
-		echo '<li class="giftLi" style="padding-bottom: 0px; margin-bottom: 0px;">';
+		echo '<li class="giftLi">';
 		echo '<div class="gift_img">';
 		echo '<label for="radiobucket">';
 		echo '<img src="../static/images/giftIcon/'.getAttr('icon',$xml).'" class="giftIconImg" style="width: 90px; margin-left: 0px;"/></label></div>';		

@@ -31,7 +31,13 @@ function dotest($m,$p=null)
         echo "===============================================\n\n";
 }
 
-
+dotest('GoodsController.checkout');
+return ;
+$now = time();
+dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
+$now += 60;
+	dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
+return ;
 /*
 dotest('ItemController.buy');
 return;

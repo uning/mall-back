@@ -92,9 +92,7 @@ class UserController
 			$adv['bag'][1] += 1;//连续登录5天，奖励商业广告一 1个
 			$adv['id'] = $id;
 			$tu->puto( $adv,TT::ADVERT_GROUP,false );
-//            $tu->puto( $adv );		
 		}
-//		$ret['adata'] = $tu->getdata(); //for debug
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
 		return $ret;				

@@ -97,7 +97,12 @@ class ItemController {
 				$ret['s'] = 'notexsit';
 				$ret['index'] = $index;
 				return $ret;
-			}/*
+			}
+			if( $item['type'] == 'ro' && $row['pos']=='s'){
+				//todo $tu 结算	
+			}
+			/*
+
 			if($row['pos']!='s'){
 			    if( $item['type'] == "ro" )
 				    $shop_num += $item['gridWidth'];
@@ -125,6 +130,7 @@ class ItemController {
 			        }
 			    }
 			}
+		    $ret[$row['id']]=$item;
 		    $tu->puto($row);
 		}
 		/*

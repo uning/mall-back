@@ -46,12 +46,15 @@ class TTUser extends TTUDB
 		$this->puto( $car_obj,TT::CAR_GROUP );
 
 		//初始化一个两格的店面
+		$gid = $this->getoid('init',TT::GOODS_GROUP);
 		$shop_obj['tag'] = 60002;
 		$shop_obj['pos']['x'] = 0;
 		$shop_obj['pos']['y'] = 50;
+		$shop_obj['goods'][$gid]=$now;
 		$shop_id = $this->puto( $shop_obj,TT::SHOP_GROUP );
 
 		//初始化一箱酒
+		$goods_obj['id'] = $gid;
 		$goods_obj['tag'] = 10103;
 		$goods = ItemConfig::getItem( $goods_obj['tag'] );
 		$goods_obj['num'] = $goods['unitcout'];
@@ -74,7 +77,7 @@ class TTUser extends TTUDB
 				$this->puto( $inventory_obj,TT::GOODS_GROUP );
 			}
 		}
-		
+
 		//初始化楼体
 		$bb_obj['tag'] = 99505;
 		$bb_obj['pos']['x'] = 0;
@@ -85,26 +88,26 @@ class TTUser extends TTUDB
 		$root_obj['pos']['x'] = 0;
 		$root_obj['pos']['y'] = "roo"; 
 		$this->puto( $root_obj,TT::ITEM_GROUP );
-		
+
 		//两个电梯
 		$ver_obj['tag'] = 99001;
 		$ver_obj['pos']['x'] = 0;
-	    for( $i=0;$i<2;$i++ ){
-	        if( isset($ver_obj['id'] ) )
-	            unset( $ver_obj['id'] );
-	        $ver_obj['pos']['y'] = "ver".$i;
-	        $this->puto( $ver_obj,TT::ITEM_GROUP );
-	    }		
+		for( $i=0;$i<2;$i++ ){
+			if( isset($ver_obj['id'] ) )
+				unset( $ver_obj['id'] );
+			$ver_obj['pos']['y'] = "ver".$i;
+			$this->puto( $ver_obj,TT::ITEM_GROUP );
+		}		
 		//两个地板装饰物
 		$fl_obj['tag'] = 96003;
 		$fl_obj['pos']['x'] = 0;
-	    for( $i=0;$i<2;$i++ ){
-	        if( isset($fl_obj['id'] ) )
-	            unset( $fl_obj['id'] );
-	        $fl_obj['pos']['y'] = 50-$i;
-	        $this->puto( $fl_obj,TT::ITEM_GROUP );
-	    } 		
-		
+		for( $i=0;$i<2;$i++ ){
+			if( isset($fl_obj['id'] ) )
+				unset( $fl_obj['id'] );
+			$fl_obj['pos']['y'] = 50-$i;
+			$this->puto( $fl_obj,TT::ITEM_GROUP );
+		} 		
+
 		//初始化四个出售牌装饰物
 		$item_obj['tag'] = 71105;
 		$item_obj['pos']['y'] = 50;
@@ -288,7 +291,7 @@ class TTUser extends TTUDB
 		$ret[$currency] = $rnum;
 		return $ret;
 	}
-	
+
 
 	/**
 	 * 返回
@@ -384,147 +387,6 @@ class TTUser extends TTUDB
 		//删除已使用广告队列
 		return $ret;
 	}
-	
-	
-	/**
-	 * 单个店结算卖货
-	 * @param $params
-	 *            u           - userid
-                  sids        - shop ids
-	 * @return 
-	 *   s  - OK,noneed(短期内没有需要结算的商品),busy(太快)
-	 *   income  - 获得金币
-	 *   money   - 总金币
-	 *   selloutids - 卖完删除的id
-	 *   goods   --数量有辩护的商品列表
-	 */
-	public function checkshop( $sid )
-	{
-	    $params = $this->getf( array(TT::POPU,TT::EXP_STAT) );
-	    $shop_obj = $this->getbyid( $sid );
-	    if( !$shop_obj ){
-	        $ret['s'] = 'notexsit';
-	        return $ret;
-	    }
-	    $goods_list = $shop_obj['goods'];
-	    $condata = array();
-	    if( !$goods_list ){
-	        $ret['s'] = 'nogoods';
-	        return $ret;
-	    }
-		foreach( $goods_list as $goods_id=>$stime ){
-	        $goods_obj = $this->getbyid( $goods_id );
-	        $condata[$stime] = $goods_obj;
-	    }
-//		$ret['condata'] = $condata;
-		$popu = $params[TT::POPU];
-//		$ret['bpopu'] = $popu;
-		$ua = UpgradeConfig::getUpgradeNeed( $params[TT::EXP_STAT] );
-//		$ret['ua'] = $ua;	    
-//算人气
-		$shops = $this->get( TT::SHOP_GROUP );
-		foreach( $shops as $shop ){
-//			$ret['shop_num_shop'][] = $shop;
-			if( $shop['pos'] != 's' ){
-			    $item = ItemConfig::getItem( $shop['tag'] );
-			    $shop_num += $item['gridWidth'];
-			}
-		}		
-//		$ret['shopnum'] = $shop_num;
-		if( !$shop_num ){
-			$ret['s'] = 'noshopexist';
-			return $ret;
-		}		
-		$shop_popu = $shop_num*15;//只算店面人气
-		$popu += $shop_popu;
-		if( $popu > $ua['maxpopu'] ){
-			$popu = $ua['maxpopu'];
-		}	
-//		$ret['apopu'] = $popu;
-	    
-		$aid = $this->getoid( 'advert',TT::OTHER_GROUP );
-		$adv = $this->getbyid( $aid );
-		$used_advert = $adv['use'];    
-		$selloutids = array();
-		$income = 0;
-		$sale_count = 0; //销售份数
-		$now = time();
-		$sconfig = ItemConfig::getItem( $shop_obj['tag'] );
-//		$ret['sconfig'][$s] = $sconfig;
-		ksort($condata);
-		$curtime = 0;//可以售卖新商品时间
-		$cgoods = array();
-		foreach( $condata as $t=>$g ){
-			$gconfig = ItemConfig::getItem($g['tag']);
-			$ctime = $g['ctime'];//上次结算时间
-			if($curtime < $t)
-				$curtime = $t; //上架时间
-			if( $curtime< $ctime )
-				$curtime = $ctime;
-			$g['ctime'] = $now;
-//			$ret['tloop'][$t] = date( TM_FORMAT,$curtime );
-			$gaps = array();
-			if( $used_advert ){
-				$tmp = self::getTimeRates( $gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-//			    $ret['advertisement'][$s][$t] = $tmp;
-			}
-			else{
-				$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
-			}					
-//			$ret['gaps'][$t] = $gaps;
-//			foreach($gaps as $gr){
-			foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
-				$stime = $gr[0];
-				if( $sconfig['gridWidth'] )					
-					$pertime = $gconfig['selltime']/( $sconfig['gridWidth'] * $gr[1] );
-				if( $pertime )
-					$snum = floor( $stime/$pertime );
-//				$ret['pertime'][$t][$k] = $pertime;
-				if($snum >= $g['num']){//卖完了
-					$asnum = $g['num'];
-				}
-				else{
-					$asnum = $snum;
-				}
-//				$ret['asnum'][$s][$t][$k][$g['tag'] ] = $asnum;
-//				$ret['sell'][$g['tag']] += $asnum;
-				$sale_count += $asnum;//记录销售份数，成就用
-				$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
-				$g['num'] -= $asnum;
-//				$g['scount'] += $asnum;
-				if( $g['num']==0 ){//当前时间段卖光此箱货物，继续卖下一个货物
-					$cgoods[]=$g;
-					$selloutids[] = $g['id'];
-					unset( $shop_obj['goods'][$g['id']] );
-					break;//跳出时间段循环，继续卖同一商店下一个上架时间的货物（在同一商店，同一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
-				}
-			}
-			if( $g['num']!= 0 ){
-				$this->puto( $g,TT::GOODS_GROUP );//未卖完的商品需要保存回库，继续卖同一商店下一个上架时间的货物（在同一商店，一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
-				break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算
-			}
-		}
-		$this->puto( $shop_obj,TT::SHOP_GROUP );
-//删除使用过的广告队列
-		unset( $adv['use'] );
-		if( $used_advert ){//如果是空数组
-			$adv['use'] = $used_advert;
-		}
-		$adv['id'] = $aid;
-		$this->puto( $adv,TT::ADVERT_GROUP,false );
-		//总销售份数
-		$now_sale_count = $this->numch( 'total_count',$sale_count );
-		//总销售额
-		$now_total_sale = $this->numch( 'total_sale',$income );
-        $this->numch('money',$income);
-		$this->remove( $selloutids );
-        if( $shop_obj['goods'] ){
-            $ret['s'] = 'notempty';
-        }
-        else{
-            $ret['s'] = 'OK';
-        }
-		return $ret;
-	}	
-	
+
+
 }

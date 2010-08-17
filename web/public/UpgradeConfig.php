@@ -1,7 +1,7 @@
 <?php
 class UpgradeConfig
 {
-    static $_upgrade=array(1=>array('id'=>'1','level'=>'1','needexp'=>'0','maxpopu'=>'90','garage'=>'1','shopheight'=>'2','shopwidth'=>'3',)
+static $_upgrade=array(1=>array('id'=>'1','level'=>'1','needexp'=>'0','maxpopu'=>'90','garage'=>'1','shopheight'=>'2','shopwidth'=>'3',)
 ,2=>array('id'=>'2','level'=>'2','needexp'=>'100','maxpopu'=>'90','garage'=>'3','shopheight'=>'3','shopwidth'=>'3',)
 ,3=>array('id'=>'3','level'=>'3','needexp'=>'200','maxpopu'=>'90','garage'=>'4','shopheight'=>'3','shopwidth'=>'3',)
 ,4=>array('id'=>'4','level'=>'4','needexp'=>'500','maxpopu'=>'150','garage'=>'4','shopheight'=>'3','shopwidth'=>'3',)

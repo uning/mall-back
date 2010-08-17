@@ -26,25 +26,17 @@ class Gift{
 			return $ret;
 		}
 		$tu = new TTUser($uid);
-		$gift_obj = $tu->getbyid($gid);
-		if(!$gift_obj){
+		$r = $tu->getbyid($gid);
+		if(!$r){
 			$ret['s'] = 'nothave';
 			return $ret;
 		}
-		$item = ItemConfig::getItem( $gift_obj['tag'] );
-		if( !$item || $item['can_gift'] != 'true' ){
-		    $ret['s'] = 'cantgift';
-		    return $ret;
-		}
 		$tu->remove($gid);
+		$params['gtag']=$r['tag'];
 		$ftu = new TTUser($fid);
 		$id = $ftu->getdid('',TT::GIFT_GROUP);
-		$obj['gtag'] = $gift_obj['tag'];
-		$obj['id']=$id;
-		$obj['fid'] = $uid;
-		if( $params['msg'] )
-		    $obj['msg'] = $params['msg'];
-		$ftu->puto( $obj );
+		$params['id']=$id;
+		$ftu->puto($params);
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -73,7 +65,7 @@ class Gift{
 	 * @param $params
 	 *  require         u        -- user id
 	 *                  gid      -- gift id
-	 *                  fid      -- friend id
+	 *                  fid      -- 送礼人 id
 	 * @return 
 	 *  s   -- OK ,or other fail
 	 */

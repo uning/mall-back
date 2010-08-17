@@ -9,7 +9,7 @@ if($pid &&$ids && $linkid){
 	$tw = TT::LinkTT();
 	$value = $tw->getbyuidx('udate',$key);
 	if(!$value){
-		$_REQUEST['id']=$linkid;
+		//$_REQUEST['linkid']=$linkid;
 		$_REQUEST['udate'] = date('Ymd').$pid;
 		$_REQUEST['invalid'] = false;
 		$tw->put($_REQUEST);

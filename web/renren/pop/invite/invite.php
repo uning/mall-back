@@ -29,7 +29,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$us = TTGenid::getbypid($pid);
 	$exclude ="";	
 	$user = new TTUser($us['id']);
-	$mode = "af";
+	$mode = "";
 	if(!$gid){
 		$mode= 'naf';
 	}

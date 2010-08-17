@@ -3,10 +3,10 @@ require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
 $irec = false;
-$tw = TT::TTWeb();
+$tw = TT::LinkTT();
 if($linkid){
 	
-	$irec = $tw->getbyid($linkid);
+	$irec = $tw->getbyuidx('linkid',$linkid);
 }
 $fromuser = $irec['pid'];	
 $touser = $_REQUEST['xn_sig_user'];	

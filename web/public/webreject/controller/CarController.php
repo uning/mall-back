@@ -185,6 +185,11 @@ class CarController
 		$gogoods_count = $tu->numch( 'gogoods_count',1 );
 		$ret['s'] = 'OK';
 		$ret['c'] = $car_obj;
+/*      $ret['c']['id'] = $car_obj['id'];
+        $ret['c']['tag'] = $car_obj['tag'];
+        $ret['c']['t'] = $car_obj['t'];
+        $ret['c']['goodsTag'] = $car_obj['goodsTag'];
+*/        
 		return $ret;
 	}
 
@@ -243,6 +248,14 @@ class CarController
         if( $car_obj['addgoods'] ){
             $num += $car_obj['addgoods'];
         }
+//      $car['help'][$uid] =  array('name'=>$mydata['name'],'icon'=>$mydata['icon'],'pid'=>$mydata['pid'],'dbid'=>$uid,'num'=>$num);
+        if( $car_obj['help'] ){
+            foreach( $car_obj['help'] as $data ){
+                if( $data['num'] )
+                    $num += $data['num'];
+            }
+            unset( $car_obj['help'] );
+        }
 		$goods_data['pos'] = 's';
 		$goods_data['tag'] = $goodsTag;
 		$ids = array();
@@ -266,9 +279,12 @@ class CarController
 		            $tu->numch( TT::GEM_STAT,1 );
 		    }
 		}		
-		$tu->addExp( $add_exp );
 		$ret['s'] = 'OK';
 		$ret['c'] = $car_obj;
+/*
+        $ret['c']['id'] = $car_obj['id'];
+        $ret['c']['goodsTag'] = $car_obj['goodsTag'];
+*/        
 		$ret['g'] = $ids;
 		return $ret;
 	}

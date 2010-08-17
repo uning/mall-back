@@ -69,14 +69,14 @@
 	}
 ?>
 </ul>
-</div>
-		<br style="clear:both" />
+<br style="clear:both" />
 		<div style="width: 700px; text-align: center;" >
 			<input type="hidden" name="pid" value="<?php echo $_REQUEST['pid']?>">
 			<input type="submit" name="send_gift" value="选好了，去选朋友吧 >>>" class="giftformsubmit giftButtonFloat" style="cursor: pointer;"/>
 			<input type="button" name="skip" value="跳过" class="giftformsubmit giftButtonFloat" onclick="toFlash()" style="cursor: pointer;"/>
 		</div>
 		<br style="clear:both" />
+</div>
 </form>
 </body>
 </html>

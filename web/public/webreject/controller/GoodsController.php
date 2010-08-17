@@ -9,89 +9,65 @@ class GoodsController
 	 * @param $g
 	 * @return unknown_type
 	 */
-	static protected function getTimeRates( &$gaps,&$used,$computetime,$popu,$max_popu,$now )
+	static protected function getTimeRates(&$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
 	{
 
-		$adlist = array();
-		$ret = array();
-		$length = 0;
-		foreach( $used as $time=>$tag ){
-			$adlist[$length]['time'] = $time;
-			$adlist[$length]['tag'] = $tag;
-			$length++;
-		}
-		for( $i=0;$i<$length;$i++ ){
-			$adv = AdvertConfig::getAdvert( $adlist[$i]['tag'] );
-			//			$ret['advinfor'][$i] = $adv;
+		$pratio = 0;
+		$plong = 0;
+		if($popu > $max_popu)
+                   $popu = $max_popu;
+		$old_ratio = $popu/15/$gridWidth;
+		foreach( $advert as $start=>$tag ){
+			if($start > $now)
+			    continue;
+			$adv = AdvertConfig::getAdvert( $tag );
+			if($start  + $adv['allTime'] < $computetime)
+				continue;
+
+			if($pratio && $plong){
+				$gap = $start -$computetime; 
+				if($gap <$plong){
+					$ret[]=array($gap ,$pratio);
+				}
+				else{
+					$ret[]=array($plong,$pratio);
+					$ret[]=array($gap -$plong ,$old_ratio);
+				}
+				$computetime = $start;
+
+			}
+			if($computetime < $start){
+				$ret[]=array($start - $computetime,$old_ratio);
+				$computetime = $start;
+			}
 			$add_advpopu = $popu + $adv['popularity'];			
 			$max_addadvpopu = $max_popu + $adv['maxpopular'];
 			if( $add_advpopu > $max_addadvpopu ){
 				$add_advpopu = $max_addadvpopu;
 			}
-			//			$ret['max_addadvpopu'][$i] = $max_addadvpopu;
-			//			$ret['add_advpop'][$i] = $add_advpopu; 
-			//			$ret['max_popu'][$i] = $max_popu;
-			//第一段宣传需要单独处理(之前未单独处理，当只有一个广告且宣传时间小于结算时间时，直接被当成最后一段宣传处理，导致瞬间卖光货物)
-			if( $adlist[$i]['time'] < $endpoint ){//只会在第一个宣传段出现，其余都是　$adlist[$i]['time'] = $endpoint	    
-				if( $length == 1 ){//仅有一段宣传时间，单独处理后跳出循环
-					if( $now - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效 且可能之后有间断
-						$gaps[] = array( $adv['allTime'] -( $endpoint - $adlist[$i]['time'] ),$add_advpopu/( $shop_num*15 ) );
-						$gaps[] = array( $now - ( $adlist[$i]['time'] + $adv['allTime'] ),$popu/( $shop_num*15 ) );
-					}
-					else{//返回未失效的部分
-						$gaps[] = array( $now - $endpoint,$add_advpopu/( $shop_num*15 ) );
-						$used = array( $adlist[$i]['time']=>$adlist[$i]['tag'] );
-						//   		                $ret['1use'] = $used;
-					} 			       
-					break;
-				}
-				else{//之后还有宣传段，处理第一个宣传时间段
-					if( $adlist[$i+1]['time'] - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效 且可能之后有间断
-						$gaps[] = array( $adv['allTime'] -( $endpoint - $adlist[$i]['time'] ),$add_advpopu/( $shop_num*15 ) );
-						$gaps[] = array( $adlist[$i+1]['time'] - ( $adlist[$i]['time'] + $adv['allTime'] ),$popu/( $shop_num*15 ) );
-					}
-					else{//替换失效
-						$gaps[] = array( $adlist[$i+1]['time'] - $endpoint,$add_advpopu/( $shop_num*15 ) );
-					}
-					continue;
-				}
-			}
-			//若只在登录时调用，则不可能出现第一段宣传的起始时间大于结算时间的情况
-			/*
-			   if( $adlist[$i]['time'] > $endpoint ){//第一个宣传前有间断
-			   $gaps[] = array( $adlist[$i]['time']-$endpoint,1 );
-			   $endpoint = $adlist[$i]['time'];
-			   }
-			 */
-			if( $i<$length-1){//避免越界，逻辑上也需要单独处理最后一段宣传
-				if( $adlist[$i+1]['time'] - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效
-					$gaps[] = array( $adv['allTime'],$add_advpopu/( $shop_num*15 ) );
-					$endpoint += $adv['allTime'];
-					if( $endpoint < $adlist[$i+1]['time'] ){//自然失效后，离下一段宣传开始前有段无宣传时间
-						$gaps[] = array( $adlist[$i+1]['time'] - $endpoint,$popu/( $shop_num*15 ) );
-						$endpoint = $adlist[$i+1];
-					}
-				}
-				else{//非自然失效，替换失效，中间不存在无宣传时间段
-					$gaps[] = array( $adlist[$i+1]['time'] - $adlist[$i]['time'],$add_advpopu/( $shop_num*15 ) );
-					$endpoint = $adlist[$i+1]['time'];
-				}
-			}
-			else{//单独处理最后一段宣传
-				if( $now - $adlist[$i]['time'] >= $adv['allTime'] ){//自然失效
-					$gaps[] = array( $adv['allTime'],$add_advpopu/( $shop_num*15 ) );
-					$gaps[] = array( $now - $adlist[$i]['time'] - $adv['allTime'],$popu/( $shop_num*15 ) );
-				}
-				else{//最后一段广告不存在替换失效，返回未失效的部分
-					$gaps[] = array( $now - $adlist[$i]['time'],$add_advpopu/( $shop_num*15 ) );
-					$used = array( $adlist[$i]['time']=>$adlist[$i]['tag'] );
-					//					$ret['mused'] = $used;
-				}
-			}
+			$plong  =  $adv['allTime'];
+			$pratio =  1 + $add_advpopu/$gridWidth/15;
 		}
-		//删除已使用广告队列
+		$start = $now;
+		if($pratio && $plong){
+			$gap = $start -$computetime; 
+			if($gap <$plong){
+				$ret[]=array($gap ,$pratio);
+			}
+			else{
+				$ret[]=array($plong,$pratio);
+				$ret[]=array($gap -$plong ,$old_ratio);
+			}
+			$computetime = $start;
+		}
+		if($computetime < $start){
+			$ret[] = array($start - $computetime,$old_ratio);
+			$computetime = $start;
+		}
 		return $ret;
 	}
+
+
 	
 	/**
 	 * 直接购买物品到商店　——仅供测试用
@@ -111,25 +87,26 @@ class GoodsController
 	public function buy( $params )
 	{
 		$uid = $params['u'];
-        $now = time();
+		$now = time();
 		//$num = 1;//$item['unitcout'];
 		$tu = new TTUser($uid);
 		$ids = array();
 		foreach ( $params['d'] as $goods){
-//          $ret['goods'] = $goods;
 			$item = ItemConfig::getItem($goods['tag']);
 			if( !$item ){
 				//写入日志
 				continue;
 			}
-			if( isset( $goods['id'] ) ){
-			    unset( $goods['id']);
-			}
 			$shop = $tu->getbyid( $goods['pos']['y'] );
 			$goods['stag'] = $shop['tag']; 
 			$goods['stime'] = $now + $goods['pos']['x'];
 			$goods['num'] = $item['unitcout'];
-			$ids[] = $tu->puto($goods,TT::GOODS_GROUP);
+			$gid = $tu->getdid('',TT::GOODS_GROUP);
+			$goods['id'] = $gid;
+			$tu->puto($goods,TT::GOODS_GROUP);
+			$ids[] = $gid ; 
+			$shop['goods'][$gid] = $now ;
+			$tu->puto($shop);
 		}
 		$ret['s'] = 'OK';
 		$ret['ids'] = $ids;
@@ -158,8 +135,8 @@ class GoodsController
 		foreach ( $params['d'] as $index => $goods ){
 			$sid =  $goods['pos']['y'];
 			$shop_obj = & $shops[$sid]; 
-            if(!$shop_obj)
-                $shop_obj = $tu->getbyid( $sid );
+			if(!$shop_obj)
+				$shop_obj = $tu->getbyid( $sid );
 			if( !$shop_obj ){
 				$ret['s'] = 'noshop';
 				$ret['index'] = $index;
@@ -175,8 +152,8 @@ class GoodsController
 			}
 			$goods_obj = $tu->getbyid( $goods['id'] );
 			if( !$goods_obj ){
-			    $ret['s'] = 'goodsnotexsit';
-			    return $ret;
+				$ret['s'] = 'goodsnotexsit';
+				return $ret;
 			}
 			$item = ItemConfig::getItem( $goods_obj['tag'] );
 			//if( !$item ){
@@ -386,6 +363,11 @@ class GoodsController
 		return self::compute( $tu,$now );
 	}
 
+
+
+	/**
+	 *
+	 */
 	public function checkout($params)
 	{
 		$uid = $params['u'];
@@ -396,18 +378,10 @@ class GoodsController
 			$now = time();
 		//获取人气和宣传值
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
-		$shopids = array();
-
-		//if($sids)
-		//	$shops = $tu->getbyids($sids);
-		//else
-
 		$shops = $tu->get( TT::SHOP_GROUP);
 		foreach( $shops as $shop ){
-			//			$ret['shop_num_shop'][] = $shop;
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
-				$total_width += $item['gridWidth'];
 				$gids = @array_keys($shop['goods']);
 				if($gids){
 					$gs  = $tu->getbyids($gids);
@@ -415,6 +389,7 @@ class GoodsController
 						$condata[$shop['id']]['sconfig']= $item;
 						$condata[$shop['id']]['shop']= $shop;
 						$condata[$shop['id']]['goods']= &$gs['g'];
+						$total_width += $item['gridWidth'];
 					}else{
 						$shop['goods']=array();
 						$tu->puto($shop);	
@@ -424,21 +399,28 @@ class GoodsController
 		}
 
 
-		if(!$condata){
+		if(!$condata || !$total_width){
 			$ret['s']='nogoods';
 			return $ret;
 		}
 		$popu = $params[TT::POPU];
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
+                $maxpopu = $ua['maxpopu'];
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
+		if(!$used_advert)
+                   $used_advert = array();
+		foreach($used_advert as $k=>$v){
+			$adv = AdvertConfig::getAdvert( $tag );
+			if($start  + $adv['allTime'] < $now)
+				continue;
+			
+		}
 		$selloutids = array();
 		$income = 0;
 		$sale_count = 0; //销售份数
-		if($total_width)
-			$apopu = $params[TT::POPU]/$total_width/15;
-
+		$popu +=15*$total_width;
 		foreach( $condata as $s=>$vvv ){
 			$sconfig = &$vvv['sconfig'];
 			$gs  = &$vvv['goods'];
@@ -446,7 +428,6 @@ class GoodsController
 
 			$curtime = 0;//可以售卖新商品时间
 			$cgoods = array();
-				
 			$shop_changed=false;
 			foreach( $gs as $t=>$g ){
 				$gconfig = ItemConfig::getItem($g['tag']);
@@ -462,17 +443,8 @@ class GoodsController
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
 				$g['ctime'] = $now;  
-				$gaps = array();
-				/*
-				if( $used_advert ){
-					$tmp = $tu->getTimeRates( $gaps,$used_advert,$curtime,$popu,$ua['maxpopu'],$now,$shop_num );
-					$ret['advertisement'][$s][$t] = $tmp;
-				}
-				else{
-					$gaps = array( array( $now-$curtime,$popu/( $shop_num*15 ) ));
-				}*/					
-				$gaps = array( array( $now-$curtime, 1 + $apopu ) );
-
+				$gaps = $tmp = self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				//$gaps = array( array( $now-$curtime, 1 + $apopu ) );
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
 					if($snum >= $g['num']){//卖完了
@@ -481,6 +453,7 @@ class GoodsController
 					else{
 						$asnum = $snum;
 					}
+
 					$ret[$s][$g['id']][$k]['sell_num']=$asnum;
 					$ret[$s][$g['id']][$k]['curtime']=$curtime;
 					$ret[$s][$g['id']][$k]['gap']=$gr[0];
@@ -512,10 +485,7 @@ class GoodsController
 			}
 		}//foreach shop
 
-		unset( $adv['use'] );
-		if( $used_advert ){//如果是空数组
-			$adv['use'] = $used_advert;
-		}
+
 
 		$adv['id'] = $aid;
 		$ret['total_width'] = $total_width;

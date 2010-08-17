@@ -15,8 +15,12 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
+
+//dotest('UserController.get_cars',$p=array('u'=>9));
+//dotest( 'Copilot.buy',$p = array( 'u'=>9,'tag'=>6,'num'=>10 ) );
+//dotest( 'Copilot.apply',$p = array( 'u'=>9,'tag'=>5,'cid'=>'9:c:4c64b6c5ec396' ) );
 //dotest( 'Tool.showids',$p = array('u'=>1));
-dotest('Tool.test_condition',$p= array('u'=>10,'con'=>array( 'audio'=>'0' ) ));
+//dotest('Tool.test_condition',$p= array('u'=>10,'con'=>array( 'audio'=>'0' ) ));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
 //dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
 /*
@@ -29,8 +33,7 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Achieve.get',$p= array('u'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>1));
 //dotest('UserController.enlarge_mall',$p = array('u'=>47));
-//dotest('UserController.login',$p = array('pid'=>'45597666'));
-//dotest('UserController.login',$p = array('pid'=>'JimmyChou840720'));
+//dotest('UserController.login',$p = array('pid'=>'302268025'));
 //dotest('Advert.get',$p= array('u'=>1));
 //dotest( 'UserController.precheckout',$p = array('u'=>1));
 //dotest('Advert.get',$p= array('u'=>189));
@@ -46,7 +49,6 @@ dotest( 'Tool.clean',$p = array('u'=>$i));
 */
 //dotest( 'UserController.get_items',$p = array('u'=>19));
 //dotest( 'Tool.clean',$p = array('u'=>48));
-//dotest( 'UserController.get_items',$p = array('u'=>1));
 //dotest( 'GoodsController.before_checkout',$p = array('u'=>1,'goodstag'=>10101,'shoptag'=>60001,'adverttag'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>101));
 //dotest( 'Tool.genusers',$p = array('u'=>1));

@@ -29,7 +29,7 @@ class Copilot
 	        return $ret;
 	    }
 	    $ret['copi'] = $copi;  // for debug
-	    $gem = $tu->change( $copi['gem'][$num] );
+	    $gem = $tu->change( 'gem',$copi['gem'][$num] );
 	    if( $gem< 0 ){
 	        $ret['s'] = 'gem';
 	        return $ret;
@@ -67,8 +67,8 @@ class Copilot
 	        return $ret;
 	    }
 	    $tu = new TTUser( $uid );
-        $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
-        $copilot = $tu->getbyid( $id );
+            $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
+            $copilot = $tu->getbyid( $id );
 	    if( !$copilot ){
 	        $ret['s'] = 'notexsit';
 	        return $ret;
@@ -86,9 +86,9 @@ class Copilot
 	    $copilot['id'] = $id;
 	    $tu->puto( $copilot );
 	    if( $copi['addgoods'] ){
-	        $car_obj['addgoods'] = $copi['addgoods'];
+	        $car_obj['addgoods'] += $copi['addgoods'];
 	    }
-	    if( $copi['accelerate'] ){
+	    if( $copi['accelerate'] && $car_obj['t'] > 0 ){
 	        $car_obj['t'] -= $copi['accelerate'];
 	    }
 	    if( $copi['recall'] == '1' ){
@@ -99,12 +99,3 @@ class Copilot
 	    return $ret;
 	}
 }
-
-$c = new Copilot();
-$params1 = array( 'u'=>9,'tag'=>1,'num'=>30 );
-$buy_ret = $c->buy( $params1 );
-print_r( $buy_ret );
-/*
-$params2 = array( 'u'=>9,'tag'=>1,'cid'=>'');
-$apply_ret = $c->apply( $params2 );
-*/

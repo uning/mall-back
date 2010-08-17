@@ -218,5 +218,58 @@ class Friend{
 		return $ret;
 	}
 
+	/**
+	 * 拜访
+	 * @param $params
+	 *  require  u           --  user id
+	 *           f         --  friend id
+	 * @return 
+	 *           s           --  OK
+                                 --  visited,已经拜访过
+                                 --  nofriend,不是朋友
+                  award        
+                     exp         --奖励经验
+                     money       --奖励金钱 
+	 */
+	public function visit($params)
+	{
+		$uid = $params['u'];
+		$nid = $params['f'];
+
+
+		$tu = new TTUser( $uid );
+		$ftu = new TTUser( $nid);
+		$fdid = $tu->getdid($nid,'fr');
+
+		$now = time();
+                $now_date = date('Ymd',$now);
+		$fdata = $tu->getbyid($fdid);
+		if(!$fdata ){
+			$ret['s']='nofriend'; 
+			return $ret;
+		}
+
+		$vt = $fdata['vt'];
+                $vt_date = date('Ymd',$vt);
+		if($vt_date == $now_date){
+			$ret['s']='visited';
+			return $ret;
+		}
+		$flevel = $ftu->getLevel();
+		$exp = 1 + $flevel*4;
+		$money = 50 + $flevel*50;
+		$ret['money'] = $tu->chMoney($money);
+		$ret['exp']  = $tu->addExp($exp);
+		
+		$ret['award']['money']=$money;
+		$ret['award']['exp']=$money;
+               
+		$fdata['vt']=$now;
+		$tu->puto($fdata,'fr',false);
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+
+
 }
 

@@ -145,7 +145,7 @@ static $_upgrade=array(1=>array('id'=>'1','level'=>'1','needexp'=>'0','maxpopu'=
             return $row["level"]-1; 
         } 
     }
-    static function getUpgradeNeed( $exp )
+    static function getUpgradeNeed($exp)
     { 
         if( $exp == 0 )
             return self::$_upgrade[1];

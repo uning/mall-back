@@ -43,24 +43,6 @@ class Man{
 
 	/**
          * update
-Array
-(
-    [maxlevel=>] => 5
-    [do_money] => 100
-    [v_money] => 10
-    [do_exp] => 100
-    [v_exp] => 1
-    [do_items] => Array
-        (
-            [0] => Array
-                (
-                    [tag] => shop
-                    [idp] => :o:shop:o
-                )
-
-        )
-
-)
 	 * @param $params
 	 *  require u        -- user 
 	 *                    step  -- 新手步数
@@ -198,8 +180,55 @@ Array
 		$tu->puto($mano);
 		$ret['s'] = 'OK';
 		$ret['award'] = $award;
-		$ret['all'] = $tu->getf();
 		return $ret;
 	}
+
+	/**
+         * update
+	 * @param $params
+	 *  require u        -- user 
+	 *          type     -- 满足type
+	 * @return 
+	 *  s   -- OK ,or other fail
+                   max,超出限制
+         *  money  -- total money
+         *  exp    -- total exp 
+	 *  award 
+                 money
+                 exp
+	 *  d   --新的对象
+	 */
+	public function satisfy($params)
+	{
+		$type2exp=array(
+                1=>array('money'=>10,'exp'=>2));
+		$uid = $params['u'];
+		$type  = $params['type'];
+		$type  = 1;
+
+		$tu = new TTUser($uid);
+		$id = $tu->getoid('satisfy',TT::OTHER_GROUP);
+		$data = $tu->getbyid($id);
+		$data['id'] = $id;
+		$now = time();
+                $now_date = date('Ymd',$now);
+		
+		if($data['date']!=$now_date){
+                   $data['r']=array();
+		}
+		if(++$data['r'][$type]>10){
+			$ret['s'] = 'max';
+			return $ret;
+		}
+		$award = $type2award[$type];
+		$ret['award']=$award;
+		foreach($award as $k=>$v){
+			$tu->numch($k,$v);
+		}
+		$ret['d']=$data;
+		$tu->puto($data,'',false);
+		return $ret;
+	}
+	
 }
 

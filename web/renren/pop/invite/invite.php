@@ -49,7 +49,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 		.'&lt;xn:req-choice url=&quot;'.$accept_gift_url.'&quot; label=&quot;领取礼物&quot;&gt;&lt;xn:req-choice url=&quot;'.$accept_url.' &quot; label=&quot;试试再说&quot;&gt;';
 		echo '<tr><td align="center">';
 		echo '<img src="../../static/images/giftIcon/'.$gift[$gid]['icon'].'"/>';
-		print_r($exclude);
+		print_r($feed['ids']);
 		echo '</td></tr>';
 	}
 	$content.="&quot;&gt;"; 

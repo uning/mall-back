@@ -101,7 +101,7 @@ class ItemController {
 			if( $item['type'] == 'ro' && $row['pos']=='s'){
 				//todo $tu 结算	
 				require_once 'GoodsController.php';
-                                GoodsController::checkout($params);
+				GoodsController::checkout($params);
 			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
 			    if( $row['pos'] != 's' ){
@@ -113,7 +113,6 @@ class ItemController {
 			}
 			else{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
 			    if( $item_obj['goods'] ){
-			        $shop_ret = $tu->checkshop( $item_obj['id'] );
 			        if( $shop_ret['s'] == 'notempty' ){
 			            $ret['s'] = 'notempty';
 			            $ret['index'] = $index;

@@ -65,7 +65,7 @@ function install_swf(pid){
 	params.bgcolor = "#F0F8FF";
 	params.allowscriptaccess = "always";  // must be always since html is different domain from swf :(
 	params.allowfullscreen = "true";
-	params.wmode = "opaque";//opaque
+	params.wmode = "window";//opaque
 	params.flashvars = flashvars;
 	var attributes = {};
 	attributes.id = "flash_run_id";
@@ -99,7 +99,7 @@ padding:10px 5px;'>
  <div style="clear:both"></div>
 
 
-<div style="background: url('../static/images/back.png') no-repeat;">
+
 <div id="header">
     <div id="navga">
 	<div class="logo"><a href="<?php echo RenrenConfig::$canvas_url.'?from=bar_logo';?>" target="_top" title="开始游戏!">logo</a></div>
@@ -117,7 +117,7 @@ padding:10px 5px;'>
     </div>
 </div>
 
-
+<div style="background: url('../static/images/back.png') no-repeat;">
 <div id="appFrame" class="flashVisible">
 <div id="flashFrame"
 	style="background: url('../static/images/back.png') no-repeat; margin-top: 0px; padding: 0px">
@@ -139,7 +139,6 @@ version of Flash. Please do so by clicking <a
 </div>
 </div>
 </div>
-
 </div>
 
 <div id="htmlFrame" class="offscreen" style="width: 760px;">

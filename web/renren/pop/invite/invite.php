@@ -9,12 +9,43 @@ xmlns="http://www.w3.org/1999/xhtml"
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+ ul
+{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+li {
+    list-style: none;
+	
+}
+ul li
+{
+	margin:0;
+	padding:0;
+	float:left;
+	list-style-type:none;
+}
+ul li a
+{
+	display:block;
+	padding:6px 8px
+}
+</style>
 <script type="text/javascript">
 		function toFlash()
 		{
 			window.parent.switchToFlash(); 
 		}
-		</script>
+		function changeTab(id,hide)
+		{
+			var hide = document.getElementById(hide);
+			hide.style.display = 'none';
+			var tab = document.getElementById(id);
+			tab.style.display = 'block';
+		}
+</script>
 </head>
 <body>
 <table>
@@ -63,15 +94,19 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
+
 <tr>
 <td>
+<div  id="recm">
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo 'af';?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 
+</div>
+
 </td>
 </tr>
 </table>

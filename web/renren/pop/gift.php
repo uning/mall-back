@@ -12,9 +12,10 @@
 		
 	</head>
 	<body>
+	<form action="invite/invite.php?" method="post">
 	<!--
 	<center><h1 style="font-size:22px; font-family: tahoma; color: #4880d7;">为你的朋友选择个礼物!</h1></center>
-	<form action="invite/invite.php?" method="post">
+	
 	<div style="width: 700px; text-align: center;">
 			
 			<input type="submit" name="send_gift" value="选好了，去选朋友吧 >>>" class="giftformsubmit giftButtonFloat" style="cursor: pointer;"/>
@@ -47,7 +48,7 @@
 		echo '<li class="giftLocked"><div class="gift_img">';
 		echo '<img src="../static/images/giftIcon/'.getAttr('icon',$xml).'" class="giftIconImg" style="width: 90px; margin-left: 0px;"/>';
 		echo '<div class="gift_name"><strong><span>'.getAttr('name',$xml).'</span></strong></div>';
-		echo '<div class="gift_action">Level: '.getAttr('level',$xml).'</div></li>';
+		echo '<div class="gift_action">'.getAttr('level',$xml).'级后可赠送</div></li>';
 	}
 	
 	function getUserLevel()

@@ -7,6 +7,7 @@ class JsonServerExecption extends Exception
 class JsonServer{
 
 	protected  $_req     = array() ;/*struct req*/
+	protected  $_raw_reg ; 
 	protected  $_do_auth = false;
 
 	protected  $_debug   = true;/* when in debug mod ,result contain the request*/
@@ -102,8 +103,8 @@ class JsonServer{
 	{
 		if($this->_req)
 			return $this->_req;
-		$jsonstr = file_get_contents('php://input');
-		$this->_req = json_decode($jsonstr,true);
+		$this->_raw_reg = file_get_contents('php://input');
+		$this->_req = json_decode($this->_raw_reg,true);
 		if(!$this->_req||!isset($this->_req['m'])){
 			throw new JsonServerExecption( 'params error no method:'.$jsonstr);
 		}		
@@ -227,7 +228,7 @@ class JsonServer{
 		if($ret['s']=='OK'){
 			if(array_key_exists($method,$log_method)){
 				$tm = $_SERVER['REQUEST_TIME'];
-				TTLog::record(array('m'=>$method,'tm'=>$tm,'p'=>json_encode($params)));
+				TTLog::record(array('m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 			}
 		}
 		return $ret;

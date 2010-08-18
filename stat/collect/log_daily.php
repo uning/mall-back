@@ -3,8 +3,11 @@ $myloc = dirname(__FILE__);
 require_once($myloc.'/config.php');
 
 $logt = TT::get_tt('log');
+$num = $logt->num();
+echo "lognum = $num\n";
+print_r($logt->get($num));
 $tq = $logt->getQuery();
-$tq->setLimit(10);
+$tq->setLimit(1);
 $r = $tq->search();
 foreach($r as $k=>$v)
 {

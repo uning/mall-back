@@ -1,17 +1,15 @@
-<html>
-<head>
-</head>
-<body>
+
 <?php
-//require_once '../config.php';
+require_once '../config.php';
 require_once 'freeGift.php';
-print_r($_REQUEST);
+//print_r($_REQUEST);
 $key = $_GET['key'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('fid',$key);
 $type = $value['type'];
-$uid = $_POST['uid'];
-$user = new TTUser($uid);
+$uid = $_POST['xn_sig_user'];
+$session = TTGenid::getbypid($uid);
+$user = new TTUser($session['id']);
 if($type==2&&$value['count']>0):
 		{
 			$value['clicktime']+=1;
@@ -56,5 +54,3 @@ if($type==2&&$value['count']>0):
 <?php 
 $tt->put($value['id'],$value);
 endif;?>
-</body>
-</html>

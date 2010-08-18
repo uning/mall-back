@@ -111,7 +111,7 @@ function popUpFeed(data,callBack){
 	if(data)
 	XN.Connect.showFeedDialog(prepareParams(data));
 	else
-		XN.Connect.showFeedDialog(prepareParams(d));
+	XN.Connect.showFeedDialog(prepareParams(d));
 	
 }
 function stat(op)
@@ -129,12 +129,12 @@ function prepareParams(data){
 	  			template_bundle_id: 1,
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'pop/feed_back.php?fid='+feedId}
+	                            href:'http://apps.renren.com/livemall/pop/feed_back.php?fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
 	                              ,xnuid:PL.conf('pid')
-	                              ,action:'pop/feed_back.php?fid='+feedId
+	                              ,action:'pop/feed_back.php?&fid='+feedId
 	                              },
 	  			body_general: '',
 	  			callback: feedPublishCallback,

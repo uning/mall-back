@@ -31,7 +31,8 @@ if(!$irec){?>
 	if(!$irec['invalid']){
 		$ftu->numch('invite_num',1);
 	}
-	if(!$irec['invalid']){
+	$getted = $irec['geted'];
+	if(!$getted[$touser]){
 		$gid = $irec['gift'];
 		if($gid){?>
 	<style type="text/css">
@@ -63,12 +64,12 @@ if(!$irec){?>
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
 			<div class="gift_box_holder">
 				<div class="gift_box_cont">
-					<div class="giftConfirm_img"><img src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></div>
+					<div class="giftConfirm_img"><img src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"/></div>
 					<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
 				</div>
 				<div class="gift_from"><h3>From</h3></div>
 				<div class="from_box_cont">
-					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"></div>
+					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"/></div>
 					<div class="giftFrom_name"><span><?php echo $tudata['name'];?></span></div>
 				</div>
 			</div>
@@ -84,7 +85,9 @@ if(!$irec){?>
 			$data['pos']='s';
 			$ttu->puto( $data ); 
 		}
-		$irec['invalid'] =  1;
+		//$irec['invalid'] =  1;
+		$getted[$touser] = 1;
+		$irec['geted'] = $getted;
 		$tw->put($irec);
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
@@ -92,8 +95,8 @@ if(!$irec){?>
 		}
 		else{?>
 		<style type="text/css">
-.giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
-.giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
+	.giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
+	.giftButtonFloat { float:center; margin-top: 1px; margin-bottom: 12px; }
 		</style>
 		<div align="center">
 			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>

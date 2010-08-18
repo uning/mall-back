@@ -11,7 +11,7 @@ class TTUser extends TTUDB
 	}
 
 
-	public function getdata($f=array(TT::GEM_STAT,TT::MONEY_STAT,TT::EXP_STAT,'looks','sex'))
+	public function getdata($f=array(TT::GEM_STAT,TT::MONEY_STAT,TT::EXP_STAT,'musicon','audioon','looks','sex'))
 	{
 		if($f==null || is_array($f)){
 			$this->_data = $this->getf($f);

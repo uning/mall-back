@@ -32,7 +32,6 @@ class UserController
 		$ret['a'] = $tu->getdata();
 		$ret['s'] = 'OK';
 		$ret['t'] = time();
-		$ret['all'] = $tu->getAll();
 		return $ret;
 	}
 

@@ -266,7 +266,7 @@ class CarController
         $car_obj['addgoods'] = 0;
         $car_obj['recall'] = 0;
         $tu->puto( $car_obj,TT::CAR_GROUP );		
-		$add_exp = $goods['exp']*$num;//乘以载重箱
+		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){
 		    $last_exp = $tu->getf( TT::EXP_STAT );
 		    $cur_exp = $tu->addExp( $add_exp );

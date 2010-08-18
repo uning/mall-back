@@ -1,7 +1,4 @@
-<html>
-<head>
-</head>
-<body>
+
 <?php
 require_once '../config.php';
 require_once 'freeGift.php';
@@ -56,5 +53,3 @@ if($type==2&&$value['count']>0):
 <?php 
 $tt->put($value['id'],$value);
 endif;?>
-</body>
-</html>

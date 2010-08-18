@@ -161,16 +161,16 @@ img,a .img{border:0}
     background-position: 0 -397px;
 }
 #navga ul li.payment a {
-    background-position: 0 -441px;
+    background-position: 0 -440px;
 }
 
 #navga ul li.payment a.active, #navga ul li.payment a:hover {
-    background-position: 0 -486px;
+    background-position: 0 -487px;
     outline:none;
 	blr:expression(this.onFocus=this.blur());
 }
 #navga ul li.problem a {
-    background-position: 0 -533px;
+    background-position: 0 -532px;
 }
 
 #navga ul li.problem a.active, #navga ul li.problem a:hover {

@@ -288,6 +288,28 @@ class CarController
 		return $ret;
 	}
 	
+	/**
+	 * 获取副驾驶
+	 * @param $params
+	 * require          u             --   user_id
+	 * @return
+	 *                  s             --   OK
+	 *                  copi          --   副驾驶道具
+	 */
+	public function get_copolit( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	    $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
+	    $copilot = $tu->getbyid( $id );
+	    if( !$copilot ){
+	        $ret['s'] = 'notexsit';
+	        return $ret;
+	    }
+	    $ret['s'] = 'OK';
+	    $ret['copi'] = $copilot;
+	    return $ret;
+	}	
 	
 	/**
 	 * 买副驾驶

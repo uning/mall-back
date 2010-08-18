@@ -2,8 +2,93 @@
 require_once('config.php');
     include "./header.php";
 ?> 
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?2" />
+ <style>  
+#navga ul { 
+    margin: 0 0 5px 0px;
+    padding-top: 14px;
+}
 
+#navga ul li {
+    float: left;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+#navga ul li a {
+    display: block;
+    text-indent: -9999px;
+    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/nav.png") no-repeat left top;
+    width: 95px;
+    height: 32px; 
+} 
+#navga ul li.game a {
+    background-position: 0 -1px;
+}
+
+
+#navga ul li.game a.active, #navga ul li.game a:hover {
+    background-position: 0 -45px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+	
+}
+
+#navga ul li.freegift a {
+    background-position: 0 -88px;
+}
+
+#navga ul li.freegift a.active, #navga ul li.freegift a:hover {
+    background-position: 0 -133px;
+	outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+
+#navga ul li.invite a {
+    background-position: 0 -176px;
+}
+
+#navga ul li.invite a.active, #navga ul li.invite a:hover {
+    background-position: 0 -221px;
+}
+
+/*payment*/
+#navga ul li.faq a {
+    background-position: 0 -263px;
+}
+
+#navga ul li.faq a.active, #navga ul li.faq a:hover {
+    background-position: 0 -308px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+
+#navga ul li.forum a {
+    background-position: 0 -352px;
+}
+
+#navga ul li.forum a.active, #navga ul li.forum a:hover {
+    background-position: 0 -397px;
+}
+#navga ul li.payment a {
+    background-position: 0 -440px;
+}
+
+#navga ul li.payment a.active, #navga ul li.payment a:hover {
+    background-position: 0 -487px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+#navga ul li.problem a {
+    background-position: 0 -532px;
+}
+
+#navga ul li.problem a.active, #navga ul li.problem a:hover {
+    background-position: 0 -579px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+
+ </style>
   
 <div id='is_install'></div>	
 

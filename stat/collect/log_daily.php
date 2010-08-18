@@ -30,9 +30,13 @@ for($i=$start;;++$i){
 	$method = $data['m'];
 	$p = json_decode($data['p'],true);
 	$dgr[$method]++;
-	if($method=='UserController.login'){
-		
-	}else{
+	if($method == 'UserController.login'){
+		$sp1=$p['pid'];
+	}
+	else if($m == 'Advert.buy'){
+
+	}
+	else{
 
 	}
 	$uid = $p['u'];

@@ -14,7 +14,14 @@ xmlns="http://www.w3.org/1999/xhtml"
 		{
 			window.parent.switchToFlash(); 
 		}
-		</script>
+		function changeTab(id,hide)
+		{
+			var hide = document.getElementById(hide);
+			hide.style.display = 'none';
+			var tab = document.getElementById(id);
+			tab.style.display = 'block';
+		}
+</script>
 </head>
 <body>
 <table>
@@ -63,15 +70,38 @@ xmlns="http://www.w3.org/1999/xhtml"
 	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
+<?php if($gid){?>
 <tr>
 <td>
+<ul style="list-style-type:none;padding: 0;margin: 0;">
+<li><a onclick="changeTab('recm','neibor')">推荐好友</a></li>
+
+<li><a onclick="changeTab('neibor','recm')">我的邻居</a></li>
+
+</ul>
+</td>
+</tr>
+<?php }?>
+<tr>
+<td>
+<div style="display:block;" id="recm">
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo 'af';?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="naf"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 
+</div>
+<div style="display:none;" id="neibor">
+	 <xn:serverxnml style="width:<?php echo $width;?>;">
+   <script type="text/xnml">
+ 	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="af"/> 
+	</xn:request-form> 
+ </script>
+</xn:serverxnml> 
+</div>
 </td>
 </tr>
 </table>

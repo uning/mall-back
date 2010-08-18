@@ -1,7 +1,7 @@
 <?php
 function changeUser()
 {
-	$pid = $_POST['pid'];
+	$pid = $_REQUEST['pid'];
 	$session = TTgenid::getbypid($pid);
 	$uid = $session['id'];
 	$tu = new TTUser($uid);
@@ -10,11 +10,11 @@ function changeUser()
 }
 function ShareGift()
 {
-	$key =$_POST['fid'];
-	$gift = $_POST['gift'];
+	$key =$_REQUEST['fid'];
+	$gift = $_REQUEST['gift'];
 	if(!$gift) return;
 	$obj = array(
-			'uid' => $_POST['pid'],
+			'uid' => $_REQUEST['pid'],
 			'fid' => $key,
 			'type' =>3,
 			'gift' => $gift,
@@ -29,10 +29,10 @@ function ShareGift()
 }
 function shareTask()
 {
-	$key = $_POST['fid'];
-	$task = $_POST['task'];
+	$key = $_REQUEST['fid'];
+	$task = $_REQUEST['task'];
 	$obj = array(
-		'uid' =>$_POST['pid'],
+		'uid' =>$_REQUEST['pid'],
 		'fid' => $key,
 		'type' => 2,
 		'task' => $task,
@@ -47,7 +47,7 @@ function shareTask()
 }
 function shareGoldCoin()
 {
-	$key = $_POST['fid'];
+	$key = $_REQUEST['fid'];
 	$obj = array(
 		'uid'=> $_POST['pid'],
 		'fid' => $key,
@@ -62,8 +62,8 @@ function shareGoldCoin()
 	changeUser();
 }
 
-$feedId = $_POST['fid'];
-$type   = $_POST['type'];
+$feedId = $_REQUEST['fid'];
+$type   = $_REQUEST['type'];
 
 switch ($type){
 
@@ -75,6 +75,7 @@ switch ($type){
 		ShareGift();break;
 	default:break;
 }
+file_put_contents('stroefeed.txt',$_REQUEST);
 echo 'i,m hered';
 
 

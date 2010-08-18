@@ -93,7 +93,11 @@ xmlns="http://www.w3.org/1999/xhtml"
  </script>
 </xn:serverxnml> 
 </div>
-<div style="display:block;width: 96%" id="neibor">
+
+</td>
+</tr>
+</table>
+<div style="display:none;width: 96%" id="neibor">
 	 <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
@@ -102,9 +106,6 @@ xmlns="http://www.w3.org/1999/xhtml"
  </script>
 </xn:serverxnml> 
 </div>
-</td>
-</tr>
-</table>
 </body>
 <script type="text/javascript">
 var config = {

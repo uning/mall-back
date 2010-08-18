@@ -23,18 +23,18 @@ function callback(responseItem){
 	var params = responseItem.getData();
 	var msg;
 	if (errCode == Payment.ResponseCode.OK) {
-		msg = "³É¹¦ÁË¡£";
+		msg = "æˆåŠŸäº†ã€‚";
 	}
 	else if (errCode == Payment.ResponseCode.USER_CANCELLED) {
-		msg = "ÓÃ»§È¡ÏûÁËÏû·Ñ¡£";
+		msg = "ç”¨æˆ·å–æ¶ˆäº†æ¶ˆè´¹ã€‚";
 	}
 	else {
-		msg = "ÓÉÓÚÄ³ÖÖÔ­ÒòÃ»Ö§¸¶³É¹¦¡£";
+		msg = "ç”±äºæŸç§åŸå› æ²¡æ”¯ä»˜æˆåŠŸã€‚";
 	}
-	msg += "Æ½Ì¨·µ»Ø ´íÎóÏûÏ¢Îª£º" + errMsg;
+	msg += "å¹³å°è¿”å› é”™è¯¯æ¶ˆæ¯ä¸ºï¼š" + errMsg;
 	var alert_dialog = new Dialog(
 			Dialog.DIALOG_ALERT, 
-			{message: msg,title: 'ÌáÊ¾¿ò±êÌâ' }
+			{message: msg,title: 'æç¤ºæ¡†æ ‡é¢˜' }
 	);
 }
 
@@ -62,7 +62,7 @@ function requestPayment() {
 	itemParams1[Payment.BillingItem.COUNT] = 2; 
 	itemParams1[Payment.BillingItem.DESCRIPTION] = 'demo description red flower'; 
 	params[Payment.Field.ITEMS] = [itemParams1];
-	//¿ÉÒÔÓĞ¶à¸öitem¹¹³ÉÒ»¸ö¹ºÎï³µ
+	//å¯ä»¥æœ‰å¤šä¸ªitemæ„æˆä¸€ä¸ªè´­ç‰©è½¦
 	Payment.requestPayment(callback,params);
 }
 
@@ -76,38 +76,38 @@ function requestPayment() {
 h2 {margin-left:3px;margin-top:20px;font-size:24px}
 a {padding: 10px;font-size:18px}
 </style>
-    <h2>ÈËÈËµ¯¿òÖ§¸¶Ò³Ãæ</h2>
+    <h2>äººäººå¼¹æ¡†æ”¯ä»˜é¡µé¢</h2>
     <br/>
-    <a target="_top" href="${requestScope.appHome}">»Øµ½Ê×Ò³</a>
+    <a target="_top" href="${requestScope.appHome}">å›åˆ°é¦–é¡µ</a>
     <br/>
     <br/>
 
-	<label for="amount">Ö§¸¶ÈËÈË¶¹Êı¶î</label>
+	<label for="amount">æ”¯ä»˜äººäººè±†æ•°é¢</label>
 	<input id="amount" type="text" value="1" />
     <br/>
-	<label for="message">¹ºÂòÉÌÆ·Ãû³Æ</label>
-	<input id="message" type="text" value="15ÓÎÏ·±Ò" />
+	<label for="message">è´­ä¹°å•†å“åç§°</label>
+	<input id="message" type="text" value="15æ¸¸æˆå¸" />
     <br/>
-    <p>Ñ¡ÔñÖ§¸¶ÀàĞÍ</p>
+    <p>é€‰æ‹©æ”¯ä»˜ç±»å‹</p>
 	<input id="paymentType" name="pt" type="radio" />
-	<label for="paymentType">ÆÕÍ¨Ö§¸¶</label>
+	<label for="paymentType">æ™®é€šæ”¯ä»˜</label>
 	<input id="presentType" name="pt" type="radio" checked="checked" />
-	<label for="presentType">ÔùËÍºÃÓÑ</label>
+	<label for="presentType">èµ é€å¥½å‹</label>
 	<input id="creditType" name="pt" type="radio" />
-	<label for="creditType">Ö±³ä</label>
+	<label for="creditType">ç›´å……</label>
 	<input id="peerType" name="pt" type="radio" />
-	<label for="peerType">Ë÷ÒªÖ§¸¶</label>
+	<label for="peerType">ç´¢è¦æ”¯ä»˜</label>
     <br/>
-    <p>ÊÇ·ñÉ³Ïä»·¾³£¿</p>
+    <p>æ˜¯å¦æ²™ç®±ç¯å¢ƒï¼Ÿ</p>
 	<input id="sandbox" name="case" type="radio" checked="checked" />
-	<label for="sandbox">É³Ïä»·¾³</label>
+	<label for="sandbox">æ²™ç®±ç¯å¢ƒ</label>
 	<input id="real" name="case" type="radio" />
-	<label for="real">ÕæÊµ»·¾³</label>
+	<label for="real">çœŸå®ç¯å¢ƒ</label>
     <br/>
     <br/>
     <br/>
     <br/>
-    <a href="#" onclick="requestPayment();return false">µã»÷µ÷³öµ¯²ãÔùËÍÖ§¸¶</a>
+    <a href="#" onclick="requestPayment();return false">ç‚¹å‡»è°ƒå‡ºå¼¹å±‚èµ é€æ”¯ä»˜</a>
 
 
 </body>

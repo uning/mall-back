@@ -39,7 +39,7 @@ class Gift{
 		$tu->remove($gid);
 		$ftu = new TTUser($fid);
 		$id = $ftu->getdid(null,TT::GIFT_GROUP);
-		$obj['tag'] = $gift_obj['tag'];
+		$obj['gtag'] = $gift_obj['tag'];
 		$obj['id']=$id;
 		$obj['fid'] = $uid;
 		if( $params['msg'] )

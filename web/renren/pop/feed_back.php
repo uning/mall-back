@@ -7,8 +7,9 @@ $key = $_GET['key'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('fid',$key);
 $type = $value['type'];
-$uid = $_POST['uid'];
-$user = new TTUser($uid);
+$uid = $_POST['xn_sig_user'];
+$session = TTGenid::getbypid($uid);
+$user = new TTUser($session['id']);
 if($type==2&&$value['count']>0):
 		{
 			$value['clicktime']+=1;

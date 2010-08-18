@@ -3,7 +3,7 @@
 </head>
 <body>
 <?php
-//require_once '../config.php';
+require_once '../config.php';
 require_once 'freeGift.php';
 print_r($_REQUEST);
 $key = $_GET['key'];

@@ -111,7 +111,7 @@ function popUpFeed(data,callBack){
 	if(data)
 	XN.Connect.showFeedDialog(prepareParams(data));
 	else
-		XN.Connect.showFeedDialog(prepareParams(d));
+	XN.Connect.showFeedDialog(prepareParams(d));
 	
 }
 function stat(op)

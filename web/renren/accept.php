@@ -64,12 +64,12 @@ if(!$irec){?>
 			<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
 			<div class="gift_box_holder">
 				<div class="gift_box_cont">
-					<div class="giftConfirm_img"><img src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></div>
+					<div class="giftConfirm_img"><img src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"/></div>
 					<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
 				</div>
 				<div class="gift_from"><h3>From</h3></div>
 				<div class="from_box_cont">
-					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"></div>
+					<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>"/></div>
 					<div class="giftFrom_name"><span><?php echo $tudata['name'];?></span></div>
 				</div>
 			</div>

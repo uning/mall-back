@@ -38,7 +38,7 @@ class Gift{
 		}
 		$tu->remove($gid);
 		$ftu = new TTUser($fid);
-		$id = $ftu->getdid('',TT::GIFT_GROUP);
+		$id = $ftu->getdid(null,TT::GIFT_GROUP);
 		$obj['gtag'] = $gift_obj['tag'];
 		$obj['id']=$id;
 		$obj['fid'] = $uid;
@@ -72,63 +72,44 @@ class Gift{
 	 * 收取礼物
 	 * @param $params
 	 *  require         u        -- user id
-	 *                  gid      -- gift id
-	 *                  fid      -- 送礼人 id
+	 *                  gids      -- gift ids
 	 * @return 
-	 *  s   -- OK ,or other fail
+	 *  s       -- OK ,or other fail
+	 *  id2id   -- 新旧ids映射
 	 */
 	public function accept($params)
 	{
 		$uid = $params['u'];
-        $fid = $params['fid'];
-        $gid = $params['gid'];	
 		$tu = new TTUser( $uid );
-		$gift_obj = $tu->getbyid( $gid );
-		if( !$gift_obj ){
-		    $ret['s'] = 'notexsit';
-            return $ret;			
-		}
-		$tag = $gift_obj['gtag'];
-		$item = ItemConfig::getItem( $tag );
-		if( !$item ){
-		    $ret['s'] = 'itemnotexsit';
-			return $ret;
-		}
-		$obj['pos'] = 's';
-		$obj['tag'] = $tag;
-		if( $item['group'] == 'o' ){
-		    $tu->puto( $obj,TT::ITEM_GROUP );
-		}
-		if( $item['group'] == 'g' ){
-		    $tu->puto( $obj,TT::GOODS_GROUP );
-		}
-		$tu->remove( $gid );
-		$ret['s'] = 'OK';
-/*		
-		$gifts = $params['d'];
-		$datas = $tu->get(TT::GIFT_GROUP,false);
-		foreach($gifts as $d){
+		$gifts = $params['gids'];
+		foreach($gifts as $gid){
+			$d      = $tu->getbyid($gid);
 			$oid = $d['id'];
-			if($datas[$oid]){
-				$tag=$d['tag'];
+			if($d){
+				$tag=$d['gtag'];
+				if($tag)
+					$d['tag'] = $tag;
+				else
+                                    $tag = $d['tag'];
 				$conf = ItemConfig::getItem($tag);
 				if(!$conf)
 					continue;	
 				$g=$conf['group'];
 				if(!$g)
 					$g = TT::ITEM_GROUP;
-				$id = $tu->getdid('',$g);
-				$id2id[$oid] = $id;
+				$id = $tu->getdid(null,$g);
+				$id2id[$gid] = $id;
 				$d['id']=$id;
 				$tu->puto($d);
-			}
+			}else
+				$id2id[$gid] = null;
+
 			$rids[]=$oid;
 
 		}
 		$tu->remove($rids);
 		$ret['s'] = 'OK';
-		$ret['d'] = $id2id;
-*/		
+		$ret['id2id'] = $id2id;
 		return $ret;
 	}
 }

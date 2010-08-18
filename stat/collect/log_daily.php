@@ -2,13 +2,24 @@
 $myloc = dirname(__FILE__);
 require_once($myloc.'/config.php');
 
-$user_num = $gtt->num(); 
-echo "user_num = $user_num\n";
-$now = time();
+$logt = TT::get_tt('log');
+$num = $logt->num();
+echo "lognum = $num\n";
+print_r($logt->get($num));
+$tq = $logt->getQuery();
+$tq->setLimit(1);
+$r = $tq->search();
+foreach($r as $k=>$v)
+{
+	$start = $k;
+        break;	
+}
+print_r($r);
+exit;
 $gap=86400;
 
 
-$table = 'user_history';
+$table = 'user_actions';
 print_r($tfs);
 $uhfname = $myloc."/data/$table/$datestr.csv";
 $uhf=fopen($uhfname,'w') or die("open $uhfname failed");

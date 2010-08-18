@@ -5,9 +5,12 @@ require_once($myloc.'/../../web/public/base.php');
 require_once LIB_ROOT.'DBModel.php';
 
 $gtt =TT::get_tt('genid',0,'slave'); 
+$now = time();
+$datestr = date('Y-m-d',$now);
 
 $dbconfig=array(
-		'host' => '122.11.61.28',
+		//'host' => '122.11.61.28',
+		'host' => '127.0.0.1',
 		'username' => 'admin',
 		'password' => '123456',
 		'port'     =>'3307',
@@ -29,11 +32,25 @@ function getModel($name){
 	return $m;
 }
 
-$dgm = getModel('daily_general');
+$g_dgm = getModel('daily_varibles');
+function store_varible($pair)
+{
+	global $g_dgm,$datestr;
+	$data['date']=$datestr;
+	foreach($pair as $k=>$v){
+		if(!$v)
+		   $v = 0;
+		$data['name']=$k;
+		$data['value']=$v;
+try{
+		$g_dgm->insert($data);
+}catch(Exception  $e){
+	echo "exception : ".$e->getMessage()."\n";
+}
+	}
+}
 //$dgfs = $dgm->getTableFields('daily_general');
 //print_r($dgfs);
-$now = time();
-$date = date('Y-m-d',$now);
 
 function get_insert_sql($table,&$fields,&$data,$ignore='',$dup=' ON DUPLICATE KEY UPDATE')//update
 {

@@ -111,6 +111,7 @@ class ItemController {
 			        $pop -= $item['pop'];
 			    }
 			}
+			/*
 			else{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
 			    if( $item_obj['goods'] ){
 			        if( $shop_ret['s'] == 'notempty' ){
@@ -119,7 +120,7 @@ class ItemController {
 			           // return $ret;
 			        }
 			    }
-			}
+			}*/
 		    $ret[$row['id']]=$item;
 		    $tu->puto($row);
 		}

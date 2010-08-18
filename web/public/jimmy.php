@@ -16,6 +16,7 @@ function dotest($m,$p=null)
         echo "===============================================\n\n";
 }
 
+//dotest( 'Tool.test_feed',$p = array('u'=>21));
 //dotest('UserController.get_cars',$p=array('u'=>9));
 //dotest( 'Copilot.buy',$p = array( 'u'=>9,'tag'=>6,'num'=>10 ) );
 //dotest( 'Copilot.apply',$p = array( 'u'=>9,'tag'=>5,'cid'=>'9:c:4c64b6c5ec396' ) );
@@ -31,7 +32,7 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Achieve.get',$p= array('u'=>192));
 //dotest('Achieve.finish',$p= array('u'=>1,'tag'=>1001));
 //dotest('Achieve.get',$p= array('u'=>1));
-//dotest('GoodsController.checkout',$p=array('u'=>1));
+dotest('GoodsController.checkout',$p=array('u'=>16));
 //dotest('UserController.enlarge_mall',$p = array('u'=>47));
 //dotest('UserController.login',$p = array('pid'=>'302268025'));
 //dotest('Advert.get',$p= array('u'=>1));

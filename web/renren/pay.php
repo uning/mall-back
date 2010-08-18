@@ -4,6 +4,7 @@
     $platform_id = "renren".$renren->user;
     $session_key = $renren->session_key;
 ?>
+
 	<script type="text/javascript">
 	function IsInteger(sText)
 	{

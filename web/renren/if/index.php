@@ -96,7 +96,7 @@ function install_swf(pid){
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
         <li class="problem"><a  href="javascript:alert('暂未开放');"  id="problem">问题反馈</a></li>
-		<li class="payment" ><a  href="../pop/pay.php"   id ="pay">充值</a></li>
+		<li class="payment" ><a  href="http://apps.renren.com/livemall/pay.php"   id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>

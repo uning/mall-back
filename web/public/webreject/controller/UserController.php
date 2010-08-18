@@ -32,7 +32,7 @@ class UserController
 		$ret['a'] = $tu->getdata();
 		$ret['s'] = 'OK';
 		$ret['t'] = time();
-		$ret['all'] = $tu->getAll();
+		TTLog::record(array('m'=>'GoodsController.checkout','tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		return $ret;
 	}
 

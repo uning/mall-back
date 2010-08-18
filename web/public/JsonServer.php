@@ -183,7 +183,6 @@ class JsonServer{
 			}
 		}
 		$log_method=array(
-				'Achieve.get'=>1,
 				'Achieve.finish'=>1,
 				'Advert.buy'=>1,
 				'Advert.set'=>1,
@@ -192,7 +191,6 @@ class JsonServer{
 				'Gift.send'=>1,
 				'Gift.accept'=>1,
 				'Man.update'=>1,
-				'UserController.login'=>1,
 				'UserController.precheckout'=>1,
 				'UserController.update_friends'=>1,
 				'UserController.enlarge_mall'=>1,

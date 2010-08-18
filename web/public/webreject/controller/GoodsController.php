@@ -530,8 +530,12 @@ class GoodsController
 		$ret['income'] = $income;
 		$ret['money']  = $tu->numch('money',$income);
 		$ret['t'] = $now;
+		$ret['rids'] = $selloutids;
+		$ret['u'] = $uid;
+
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		if(!$debug)
-			$tu->remove( $selloutids );
+			$tu->remove( $selloutids);
 		return $ret;
 	}
 }

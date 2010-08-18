@@ -7,6 +7,8 @@ require_once LIB_ROOT.'DBModel.php';
 $gtt =TT::get_tt('genid',0,'slave'); 
 $now = time();
 $datestr = date('Y-m-d',$now);
+$weekday = date('N',$now);
+echo "$datestr $weekday\n";
 
 $dbconfig=array(
 		//'host' => '122.11.61.28',

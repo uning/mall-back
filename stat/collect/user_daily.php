@@ -10,7 +10,7 @@ $gap=86400;
 
 $table = 'user_history';
 print_r($tfs);
-$uhfname = $myloc."/data/$table/$datestr.csv";
+$uhfname = $myloc."/data/$table/$weekday.csv";
 $uhf=fopen($uhfname,'w') or die("open $uhfname failed");
 for($i=1;$i<=$user_num;++$i){
 	$ud = $gtt->get($i);		

@@ -74,9 +74,9 @@ xmlns="http://www.w3.org/1999/xhtml"
 <tr>
 <td>
 <ul style="list-style-type:none;padding: 0;margin: 0;">
-<li><a onclick="changeTab('recm','neibor')">推荐好友</a></li>
+<li style="outline-style:none;"><a onclick="changeTab('recm','neibor')">推荐好友</a></li>
 
-<li><a onclick="changeTab('neibor','recm')">我的邻居</a></li>
+<li style="outline-style:none;"><a onclick="changeTab('neibor','recm')">我的邻居</a></li>
 
 </ul>
 </td>
@@ -84,7 +84,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <?php }?>
 <tr>
 <td>
-<div style="display:block;" id="recm">
+<div style="display:block;width: 96%" id="recm">
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
@@ -93,7 +93,7 @@ xmlns="http://www.w3.org/1999/xhtml"
  </script>
 </xn:serverxnml> 
 </div>
-<div style="display:none;" id="neibor">
+<div style="display:block;width: 96%" id="neibor">
 	 <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 

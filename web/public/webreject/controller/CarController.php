@@ -2,11 +2,11 @@
 
 class CarController
 {
-    static $_config = array( 1=>array( 'addgoods'=>1,'gem'=>array( 1=>1,10=>9,30=>24,100=>70 ) )
-                            ,2=>array( 'addgoods'=>2,'gem'=>array( 1=>2,10=>18,30=>48,100=>120 ) ) 
-                            ,3=>array( 'accelerate'=>3600,'gem'=>array( 1=>1,10=>9,30=>24,100=>70 ) ) 
-                            ,4=>array( 'accelerate'=>21600,'gem'=>array( 1=>5,10=>40,30=>90,100=>250 ) ) 
-                            ,5=>array( 'recall'=>1,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) ) 
+    static $_config = array( 2001=>array( 'addgoods'=>1,'gem'=>array( 1=>1,10=>9,30=>24,100=>70 ) )
+                            ,2002=>array( 'addgoods'=>2,'gem'=>array( 1=>2,10=>18,30=>48,100=>120 ) ) 
+                            ,2003=>array( 'accelerate'=>3600,'gem'=>array( 1=>1,10=>9,30=>24,100=>70 ) ) 
+                            ,2004=>array( 'accelerate'=>21600,'gem'=>array( 1=>5,10=>40,30=>90,100=>250 ) ) 
+                            ,2005=>array( 'recall'=>1,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) ) 
                             );    
     protected function ischange( $last_level,$cur_level )
     {
@@ -266,7 +266,7 @@ class CarController
         $car_obj['addgoods'] = 0;
         $car_obj['recall'] = 0;
         $tu->puto( $car_obj,TT::CAR_GROUP );		
-		$add_exp = $goods['exp']*$num;//乘以载重箱
+		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){
 		    $last_exp = $tu->getf( TT::EXP_STAT );
 		    $cur_exp = $tu->addExp( $add_exp );
@@ -288,6 +288,28 @@ class CarController
 		return $ret;
 	}
 	
+	/**
+	 * 获取副驾驶
+	 * @param $params
+	 * require          u             --   user_id
+	 * @return
+	 *                  s             --   OK
+	 *                  copi          --   副驾驶道具
+	 */
+	public function get_copolit( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	    $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
+	    $copilot = $tu->getbyid( $id );
+	    if( !$copilot ){
+	        $ret['s'] = 'notexsit';
+	        return $ret;
+	    }
+	    $ret['s'] = 'OK';
+	    $ret['copi'] = $copilot;
+	    return $ret;
+	}	
 	
 	/**
 	 * 买副驾驶

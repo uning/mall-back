@@ -155,7 +155,7 @@ width: 50px;
 height: 50px;
 }
 .pay-form {
-padding:10px; 
+padding:10px 30px;
 border-top:medium none;
 }
 .pay-form h2 {
@@ -167,25 +167,32 @@ padding:10px 30px;
 text-indent:-9999px;
 }
 .pay-type li {
-background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
-float:left;
-height:210px;
-padding:0 17px;
-position:relative;
-text-align:center;
-width:160px;
+	background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
+	float:left;
+	height:210px;
+	padding:10px 20px;
+	position:relative;
+	text-align:center;
+	width:110px;
+}
+.pay-type li input {
+	bottom:15px;
+	display:inline-block;
+	position:absolute;
+	right:30px;
+	width:70px;
 }
 .pay-type li.gem-100 {
-background-position:center -166px;
+background-position: 0;
 }
 .pay-type li.gem-200 {
-background-position:center -166px;
+background-position: -126px;
 }
 .pay-type li.gem-500 {
-background-position:center -166px;
+background-position: -246px;
 }
 .pay-type li.gem-1000 {
-background-position:center -166px;
+background-position:  -366px;
 }
  </style>
 

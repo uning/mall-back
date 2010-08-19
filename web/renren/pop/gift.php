@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head> 
 		<link rel="stylesheet" type="text/css" href="../static/css/gift.css" />
+		
 		<script type="text/javascript">
 		function toFlash()
 		{
@@ -26,7 +27,7 @@
 	<div class="main_gift_cont" style="height:600px;text-align: center;padding-bottom: 5px;border:gray solid 1px;">
 	<table width="100%" style="padding-top: 0px;">
 <tr>
-<td align="right">X</td>
+<td align="right"><a class="close" onclick=""></a></td>
 </tr>
 </table>
 	<ul class="items">

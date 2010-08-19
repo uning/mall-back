@@ -32,6 +32,15 @@ ul li a
 	display:block;
 	padding:6px 8px
 }
+
+.close{
+		background: url("../../static/images/css/close.png") no-repeat scroll 0 0 transparent;
+		cursor: pointer;
+	}
+	.close:HOVER {
+			background: url("../../static/images/css/closea.png") no-repeat scroll 0 0 transparent;	
+	cursor: pointer;
+		}
 </style>
 <script type="text/javascript">
 		function toFlash()
@@ -51,7 +60,7 @@ ul li a
 <div style="width:100%;height:650px;border:gray solid 1px;">
 <table width="100%">
 <tr>
-<td align="right">X</td>
+<td align="right"><a class="close" onclick=""></a></td>
 </tr>
 </table>
 <table>

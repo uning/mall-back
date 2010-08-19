@@ -118,7 +118,7 @@ height:60px;
 margin:0 20px;
 padding:0 10px 10px 90px;
 }
-.user-info .avatar a{
+.user-info .avatar{
 -moz-border-radius:3px 3px 3px 3px;
 -moz-box-shadow:1px 1px 2px #CCCCCC;
 border:1px solid #B2B2B2;
@@ -127,6 +127,10 @@ float:left;
 height:50px;
 margin-left:-70px;
 padding:2px;
+}
+.user-info .avatar{
+width: 50px;
+height: 50px;
 }
 
  </style>

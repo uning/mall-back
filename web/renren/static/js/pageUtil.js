@@ -356,6 +356,13 @@ $(document).ready(
 			tabs.children('a').not('.fullpage').click(tabClick);
 			setupElements();
 		});
+		
+		$(function() {
+	      if(a!= undefined and a!=null){
+		    var link = $("#"+a);
+			navigateTo(link.attr('href'));
+		  }
+		});
 
 	})();
 

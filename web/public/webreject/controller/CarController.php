@@ -263,9 +263,9 @@ class CarController
 				unset($goods_data['id']);
 			$ids[$i]= $tu->puto( $goods_data,TT::GOODS_GROUP );
 		}
-        $car_obj['addgoods'] = 0;
-        $car_obj['recall'] = 0;
-        $car_obj['lock'] = 0;
+        unset( $car_obj['addgoods'] );
+        unset( $car_obj['recall'] );
+        unset( $car_obj['lock'] );
         $tu->puto( $car_obj,TT::CAR_GROUP );		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){

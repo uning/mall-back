@@ -1,11 +1,19 @@
 <?php
 require_once('config.php');
-    include "./header.php";
+include "./header.php";
+
+$pid =   $_REQUEST['xn_sig_user'];  
+$sess=TTGenid::getbypid($pid);
+$user = new TTUser($sess['id']);
+
+ 
 ?> 
 
  <style>  
+ 
 #content {
 height: 700px;
+font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 }
 #header .logo {
     width: 165px;
@@ -105,6 +113,31 @@ height: 700px;
 	blr:expression(this.onFocus=this.blur());
 }
 
+
+.user-info {
+border-bottom:1px dotted #CCCCCC;
+height:60px;
+margin:0 20px;
+padding:0 10px 10px 90px;
+}
+.user-info h2{
+text-align:left;
+}
+.user-info .avatar{
+-moz-border-radius:3px 3px 3px 3px;
+-moz-box-shadow:1px 1px 2px #CCCCCC;
+border:1px solid #B2B2B2;
+display:block;
+float:left;
+height:50px;
+margin-left:-70px;
+padding:2px;
+}
+.user-info .avatar img{
+width: 50px;
+height: 50px;
+}
+
  </style>
 
 <script type="text/javascript">
@@ -182,8 +215,13 @@ function requestPayment() {
 				</div>
 			</div>
 		
-		    <div id='pay-body'>
-				
+		    <div id='pay-body' style='height: 600px; border: 1px solid rgb(51, 153, 187); text-align: center;'>
+				<div class='user-info'>
+					<span class='avatar'>
+						<xn:profile-pic uid="<?php echo $pid;?>" linked="false" size="tiny" />
+					</span>
+					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" /></h2>
+				</div>
 				
 				<h2>人人弹框支付页面</h2>
 			 
@@ -213,10 +251,7 @@ function requestPayment() {
 				<br/>
 				<br/>
 				<br/>
-				<a href="#" onclick="requestPayment();return false">点击调出弹层赠送支付</a>
-
-
-				
+				<a href="#" onclick="requestPayment();return false">点击调出弹层赠送支付</a> 
 			</div>			 
 		
 		</div>

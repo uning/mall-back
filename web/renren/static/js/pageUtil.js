@@ -380,7 +380,7 @@ function sendNotifcation(ids,name,callBack,say)
 			window.alert("出错了，不好意思 " + ex.userData.error_msg);
 	  	  }
 		  else {
-			window.alert("notifications_send成功返回，通知成功发送，result.result = " + result.result);
+			window.alert(result.result);
 		  }
     });
 

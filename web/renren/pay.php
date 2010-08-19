@@ -163,6 +163,9 @@ font-size:14px;
 font-weight:normal;
 padding:10px 30px;
 }
+.pay-type{
+padding-left: 30px;
+}
 .pay-type li div {
 text-indent:-9999px;
 }
@@ -170,29 +173,33 @@ text-indent:-9999px;
 	background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
 	float:left;
 	height:210px;
-	padding:10px 20px;
+	padding:10px 40px;
 	position:relative;
 	text-align:center;
-	width:110px;
+	width:86px;
 }
 .pay-type li input {
-	bottom:15px;
-	display:inline-block;
-	position:absolute;
-	right:30px;
-	width:70px;
+background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
+border:0 none;
+bottom:24px;
+cursor:pointer;
+display:none;
+height:50px;
+position:absolute;
+right:26px;
+width:120px;
 }
 .pay-type li.gem-100 {
 background-position: 0;
 }
 .pay-type li.gem-200 {
-background-position: -126px;
+background-position:-166px 50%;
 }
 .pay-type li.gem-500 {
-background-position: -246px;
+background-position:-332px 50%;
 }
 .pay-type li.gem-1000 {
-background-position:  -366px;
+background-position:-496px 50%;
 }
  </style>
 
@@ -290,22 +297,22 @@ function requestPayment() {
 					<ul class="pay-type clearfix">
 						<li class="gem-100">
 							<div title="充值100个宝石">充值100个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),10,'您的“10人人豆换100宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),10,'您的“10人人豆换100宝石”的订单');" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">10</span>个人人豆</div>
 						</li>
 						<li class="gem-200">
 							<div title="充值200个宝石">充值200个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),20,'您的“20人人豆换200宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),20,'您的“20人人豆换200宝石”的订单');" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">20</span>个人人豆</div>
 						</li>
 						<li class="gem-500">
 							<div title="充值500个宝石">充值500个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
 						</li>
 						<li class="gem-500">
 							<div title="充值500个宝石">充值500个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
 						</li>
 					</ul>

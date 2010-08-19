@@ -373,3 +373,15 @@ $(document).ready(
 
 });
 
+function sendNotifcation(ids,name,callBack,say)
+{
+	XN.Main.apiClient.notifications_send(45182749, '李彦宾'+"在<a href=\"http://apps.renren.com/livemall/\">购物天堂</a>送给了你一件神秘礼物，并对你说:快来玩啊，真好玩啊，放松一下吧，呵呵"+say, function (result, ex) {
+		  if (ex) {
+			window.alert("出错了，不好意思 " + ex.userData.error_msg);
+	  	  }
+		  else {
+			window.alert("notifications_send成功返回，通知成功发送，result.result = " + result.result);
+		  }
+    });
+
+}

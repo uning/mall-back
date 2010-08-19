@@ -102,10 +102,5 @@ if(!$irec){?>
 			<a href="http://apps.renren.com/livemall"   class="giftformsubmit giftButtonFloat" >~游戏去~</a>
 		</div>
 		<?php }?>
-<xn:else>
-<xn:redirect url="<?php 
-$next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 
-$rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.urlencode($next);
-echo $rurl;?>"/>
- </xn:else>
+
 </xn:if-is-app-user>

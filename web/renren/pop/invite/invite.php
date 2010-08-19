@@ -94,25 +94,14 @@ ul li a
 	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
-<?php if($gid){?>
+
 <tr>
 <td>
-<ul style="list-style-type:none;padding: 0;margin: 0;">
-<li style="outline-style:none;"><a onclick="changeTab('recm','neibor')">推荐好友</a></li>
-
-<li style="outline-style:none;"><a onclick="changeTab('neibor','recm')">我的邻居</a></li>
-
-</ul>
-</td>
-</tr>
-<?php }?>
-<tr>
-<td>
-<div style="display:block;width: 96%" id="recm">
+<div  id="recm">
    <xn:serverxnml style="width:<?php echo $width;?>;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="naf"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 
@@ -121,15 +110,6 @@ ul li a
 </td>
 </tr>
 </table>
-<div style="display:none;width: 96%" id="neibor">
-	 <xn:serverxnml style="width:<?php echo $width;?>;">
-   <script type="text/xnml">
- 	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="af"/> 
-	</xn:request-form> 
- </script>
-</xn:serverxnml> 
-</div>
 </body>
 <script type="text/javascript">
 var config = {

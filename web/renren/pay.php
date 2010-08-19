@@ -118,7 +118,7 @@ height:60px;
 margin:0 20px;
 padding:0 10px 10px 90px;
 }
-.user-info a.avatar {
+.user-info .avatar a{
 -moz-border-radius:3px 3px 3px 3px;
 -moz-box-shadow:1px 1px 2px #CCCCCC;
 border:1px solid #B2B2B2;
@@ -211,7 +211,7 @@ function requestPayment() {
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $pid;?>" linked="false" size="tiny" />
 					</span>
-					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork=”false” /></h2>
+					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" /></h2>
 				</div>
 				
 				<h2>人人弹框支付页面</h2>

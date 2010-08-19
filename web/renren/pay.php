@@ -128,6 +128,10 @@ padding:10px 10px 10px 90px;
 .user-info h2{
 text-align:left;
 }
+.user-info p{
+padding:10px 0 0;
+text-align:left;
+}
 .user-info p label {
 background:url("../images/f-coin.gif") no-repeat scroll 5px center #FFF9D7;
 border:1px solid #E2C925;

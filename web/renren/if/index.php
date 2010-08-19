@@ -29,7 +29,7 @@ if($gflg){
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?2" />
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
-var a='<? php echo $_REQUEST['a']; ?>';
+var a='<?php echo $_REQUEST['a']; ?>';
 </script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
@@ -97,7 +97,7 @@ function install_swf(pid){
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" >游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
-        <li class="faq"><a id='faq'  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>
+        <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
         <li class="problem"><a href="javascript:alert('暂未开放');"  id="problem">问题反馈</a></li>
 		<li class="payment" ><a  class='fullpage' href="http://apps.renren.com/livemall/pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>

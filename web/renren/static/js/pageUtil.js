@@ -358,7 +358,7 @@ $(document).ready(
 		});
 		
 		$(function() {
-	      if(a!= undefined and a!=null){
+	      if(a!= undefined && a!=null){
 		    var link = $("#"+a);
 			navigateTo(link.attr('href'));
 		  }

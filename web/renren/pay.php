@@ -180,6 +180,7 @@ text-indent:-9999px;
 }
 .pay-type li input {
 background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
+ background-position: -19px -205px;
 border:0 none;
 bottom:24px;
 cursor:pointer;

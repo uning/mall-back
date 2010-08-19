@@ -308,22 +308,22 @@ function requestPayment(amount,price,message) {
 					<ul class="pay-type clearfix">
 						<li class="gem-100">
 							<div title="充值100个宝石">充值100个宝石</div>
-							<p><input type="button" onclick="requestPayment(100,10,"100个宝石");return false;" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(100,10,'100个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">10</span>个人人豆</div>
 						</li>
 						<li class="gem-200">
 							<div title="充值200个宝石">充值200个宝石</div>
-							<p><input type="button" onclick="requestPayment(200,20,"200个宝石");return false;" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(200,20,'200个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">20</span>个人人豆</div>
 						</li>
 						<li class="gem-500">
 							<div title="充值500个宝石">充值500个宝石</div>
-							<p><input type="button" onclick="requestPayment(500,50,"500个宝石");return false;" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(500,50,'500个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
 						</li>
 						<li class="gem-1000">
 							<div title="充值1000个宝石">充值1000个宝石</div>
-							<p><input type="button" onclick="requestPayment(1000,100,"1000个宝石");return false;" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(1000,100,'1000个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">100</span>个人人豆</div>
 						</li>
 					</ul>

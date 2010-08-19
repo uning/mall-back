@@ -335,7 +335,9 @@ $(document).ready(
 	/** Opens an overlaying iframe */
 	(function() {
 		
-		var goTo  = function(el,tabs){
+		var goTo  = function(el){
+			var	tabs = $('#tabs li');
+
 			if (!el.is('a')) {
 					el = el.parents('a');
 			}
@@ -347,10 +349,9 @@ $(document).ready(
 		}
 		
 		var tabClick = function(e) {
-	       var	tabs = $('#tabs li');
 			if (e && e.target) {
 				var el = $(e.target);
-				goTo(el, tabs);
+				goTo(el);
 			}
 		};
 
@@ -362,11 +363,10 @@ $(document).ready(
 			setupElements();
 		});
 		
-		$(function() {
-	   	 var tabs = $('#tabs li');
+		$(function() { 
 	      if(a!= undefined && a!=null && a!=''){
 		    var link = $("#"+a);
-			goTo(link, tabs);
+			goTo(link);
 		  }
 		});
 

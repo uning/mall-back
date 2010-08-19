@@ -24,7 +24,7 @@
 	</div>
 	-->
 	<div class="main_gift_cont" style="height:600px;text-align: center;padding-top: 10px;border:gray solid 1px;">
-	<table width="100%">
+	<table width="100%" style="padding-top: 0px;">
 <tr>
 <td align="right">X</td>
 </tr>

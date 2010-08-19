@@ -9,7 +9,7 @@ require_once('config.php');
 <div id='content'>
     <div class='container'>
         <div class='canvas'>
-	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php" height="855" width="760" frameborder="0"/>
+	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<? php echo $_REQUEST['a']; ?>" height="855" width="760" frameborder="0"/>
         </div> 
     </div>
 </div>

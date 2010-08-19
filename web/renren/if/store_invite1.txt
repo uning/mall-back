@@ -1,0 +1,17 @@
+Array
+(
+    [linkid] => 234801649:4c6c8cc073d3a
+    [gift] => 
+    [pid] => 234801649
+    [ids] => Array
+        (
+            [0] => 282996784
+        )
+
+    [udate] => 20100819234801649
+    [invalid] => 0
+    [geted] => Array
+        (
+        )
+
+)

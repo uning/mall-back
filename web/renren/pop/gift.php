@@ -27,7 +27,7 @@
 	<div class="main_gift_cont" style="height:600px;text-align: center;padding-bottom: 5px;border:gray solid 1px;">
 	<table width="100%" style="padding-top: 0px;">
 <tr>
-<td align="right"><a onclick="" class="close"><!--<img src="../static/images/css/close.png"/>--></a></td>
+<td align="right"><a onclick="" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
 </tr>
 </table>
 	<ul class="items">

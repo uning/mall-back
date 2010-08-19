@@ -9,6 +9,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <script type="text/javascript">
 		function toFlash()
 		{

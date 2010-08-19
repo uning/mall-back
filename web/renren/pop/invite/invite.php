@@ -60,7 +60,7 @@ ul li a
 <div style="width:100%;height:650px;border:gray solid 1px;">
 <table width="100%">
 <tr>
-<td align="right"><a class="close" onclick=""></a></td>
+<td align="right"><a  onclick=""><img src="../../static/images/css/close.png" border="0"/></a></td>
 </tr>
 </table>
 <table>

@@ -48,6 +48,12 @@ ul li a
 </script>
 </head>
 <body>
+<div style="height:650px;border:gray solid 1px;">
+<table width="100%">
+<tr>
+<td align="right">X</td>
+</tr>
+</table>
 <table>
 <tr>
 <?php 
@@ -110,6 +116,7 @@ ul li a
 </td>
 </tr>
 </table>
+</div>
 </body>
 <script type="text/javascript">
 var config = {

@@ -5,7 +5,8 @@ include "./header.php";
 $pid =   $_REQUEST['xn_sig_user'];  
 $sess=TTGenid::getbypid($pid);
 $user = new TTUser($sess['id']);
-
+$gem = $user->chGem(0);
+	
  
 ?> 
 
@@ -113,15 +114,28 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 	blr:expression(this.onFocus=this.blur());
 }
 
-
+#pay-body{
+ height: 600px; 
+ border: 1px solid #3399BB;
+ text-align: center;
+}
 .user-info {
 border-bottom:1px dotted #CCCCCC;
 height:60px;
 margin:0 20px;
-padding:0 10px 10px 90px;
+padding:10px 10px 10px 90px;
 }
 .user-info h2{
 text-align:left;
+}
+.user-info p label {
+background:url("../images/f-coin.gif") no-repeat scroll 5px center #FFF9D7;
+border:1px solid #E2C925;
+margin-right:10px;
+padding:5px 10px 5px 30px;
+}
+.user-info p label span {
+color:#336699;
 }
 .user-info .avatar{
 -moz-border-radius:3px 3px 3px 3px;
@@ -137,7 +151,37 @@ padding:2px;
 width: 50px;
 height: 50px;
 }
+.pay-form {
+padding:10px; 
+border-top:medium none;
+}
+.pay-form h2 {
+font-size:14px;
+font-weight:normal;
+padding:10px 30px;
+}
 
+.pay-type li {
+background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
+float:left;
+height:135px;
+padding:0 25px;
+position:relative;
+text-align:center;
+width:195px;
+}
+.pay-type li.gem-100 {
+background-position:center -166px;
+}
+.pay-type li.gem-200 {
+background-position:center -166px;
+}
+.pay-type li.gem-500 {
+background-position:center -166px;
+}
+.pay-type li.gem-1000 {
+background-position:center -166px;
+}
  </style>
 
 <script type="text/javascript">
@@ -215,12 +259,44 @@ function requestPayment() {
 				</div>
 			</div>
 		
-		    <div id='pay-body' style='height: 600px; border: 1px solid rgb(51, 153, 187); text-align: center;'>
+		    <div id='pay-body'>
 				<div class='user-info'>
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $pid;?>" linked="false" size="tiny" />
 					</span>
 					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" /></h2>
+					<p>
+						<label>
+							宝石余额: <span class='gem'><?php echo $gem; ?></span>
+						</label>
+					</p>
+				</div>
+				
+				<div class='pay-form'>
+					<h2>选择你要充值的面值</h2>
+					
+					<ul class="pay-type clearfix">
+						<li class="gem-100">
+							<div title="充值100个宝石">充值100个宝石</div>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),10,'您的“10人人豆换100宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<div>价格：<span style="font-weight: bold; color: #009900;">10</span>个人人豆</div>
+						</li>
+						<li class="gem-200">
+							<div title="充值200个宝石">充值200个宝石</div>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),20,'您的“20人人豆换200宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<div>价格：<span style="font-weight: bold; color: #009900;">20</span>个人人豆</div>
+						</li>
+						<li class="gem-500">
+							<div title="充值500个宝石">充值500个宝石</div>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
+						</li>
+						<li class="gem-500">
+							<div title="充值500个宝石">充值500个宝石</div>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value=" 兑 换 " class="btn-red"></p>
+							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
+						</li>
+					</ul>
 				</div>
 				
 				<h2>人人弹框支付页面</h2>

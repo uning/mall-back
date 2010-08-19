@@ -184,42 +184,36 @@ function requestPayment() {
 		
 		    <div id='pay-body'>
 				
-				<style type="text/css">
-h2 {margin-left:3px;margin-top:20px;font-size:24px}
-a {padding: 10px;font-size:18px}
-</style>
-    <h2>人人弹框支付页面</h2>
-    <br/>
-    <a target="_top" href="${requestScope.appHome}">回到首页</a>
-    <br/>
-    <br/>
+				
+				<h2>人人弹框支付页面</h2>
+			 
 
-	<label for="amount">支付人人豆数额</label>
-	<input id="amount" type="text" value="1" />
-    <br/>
-	<label for="message">购买商品名称</label>
-	<input id="message" type="text" value="15游戏币" />
-    <br/>
-    <p>选择支付类型</p>
-	<input id="paymentType" name="pt" type="radio" />
-	<label for="paymentType">普通支付</label>
-	<input id="presentType" name="pt" type="radio" checked="checked" />
-	<label for="presentType">赠送好友</label>
-	<input id="creditType" name="pt" type="radio" />
-	<label for="creditType">直充</label>
-	<input id="peerType" name="pt" type="radio" />
-	<label for="peerType">索要支付</label>
-    <br/>
-    <p>是否沙箱环境？</p>
-	<input id="sandbox" name="case" type="radio" checked="checked" />
-	<label for="sandbox">沙箱环境</label>
-	<input id="real" name="case" type="radio" />
-	<label for="real">真实环境</label>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <a href="#" onclick="requestPayment();return false">点击调出弹层赠送支付</a>
+				<label for="amount">支付人人豆数额</label>
+				<input id="amount" type="text" value="1" />
+				<br/>
+				<label for="message">购买商品名称</label>
+				<input id="message" type="text" value="15游戏币" />
+				<br/>
+				<p>选择支付类型</p>
+				<input id="paymentType" name="pt" type="radio" />
+				<label for="paymentType">普通支付</label>
+				<input id="presentType" name="pt" type="radio" checked="checked" />
+				<label for="presentType">赠送好友</label>
+				<input id="creditType" name="pt" type="radio" />
+				<label for="creditType">直充</label>
+				<input id="peerType" name="pt" type="radio" />
+				<label for="peerType">索要支付</label>
+				<br/>
+				<p>是否沙箱环境？</p>
+				<input id="sandbox" name="case" type="radio" checked="checked" />
+				<label for="sandbox">沙箱环境</label>
+				<input id="real" name="case" type="radio" />
+				<label for="real">真实环境</label>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<a href="#" onclick="requestPayment();return false">点击调出弹层赠送支付</a>
 
 
 				

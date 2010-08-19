@@ -361,6 +361,7 @@ class CarController
 	 *                  cid           --   car id
 	 * @return
 	 *                  s             --   OK
+	 *                  tag           --   副驾驶tag
 	 *                  car           --   测试信息
 	 *                  copi          --   测试信息
 	 */
@@ -404,6 +405,7 @@ class CarController
 	    }
 	    $tu->puto( $car_obj,TT::CAR_GROUP );
 	    $ret['s'] = 'OK';
+	    $ret['tag'] = $tag;
 	    $ret['car'] = $car_obj;
 	    $ret['copi'] = $copilot;
 	    return $ret;

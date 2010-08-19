@@ -293,15 +293,15 @@ function requestPayment(amount,price,message) {
 				
 				<div class='pay-form'>
 				    <h2>选择支付类型</h2>
-					 <div style='padding:10px;'>
-						<input id="paymentType" name="pt" type="radio" />
-						<label for="paymentType">普通支付</label>
-						<input id="presentType" name="pt" type="radio" checked="checked" />
-						<label for="presentType">赠送好友</label>
+					 <div style='padding:10px 30px'>
+						<input id="paymentType" name="pt" type="radio" checked="checked"  />
+						<label for="paymentType">普通支付      </label>
+						<input id="presentType" name="pt" type="radio" />
+						<label for="presentType">赠送好友      </label>
 						<input id="creditType" name="pt" type="radio" />
-						<label for="creditType">直充</label>
+						<label for="creditType">直充       </label>
 						<input id="peerType" name="pt" type="radio" />
-						<label for="peerType">索要支付</label>
+						<label for="peerType">索要支付     </label>
 			    	</div>
 					<h2>选择你要充值的面值</h2>
 					

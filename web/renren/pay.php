@@ -2,7 +2,21 @@
 require_once('config.php');
     include "./header.php";
 ?> 
+
  <style>  
+#header .logo {
+    width: 165px;
+    height: 46px;
+    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/logo.png?v=1") no-repeat center;
+    text-indent: -9999px;
+    float: left;
+}
+
+#header .logo  a {
+    display: block;
+    height: 36px;
+} 
+ 
 #navga ul { 
     margin: 0 0 5px 0px;
     padding-top: 14px;
@@ -100,7 +114,7 @@ require_once('config.php');
 				<div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
 			   <div id="tabs">
 				<ul class="clearfix tcenter">       
-					<li class="game" id="flashTab" ><a class="active" href="#switchToFlash" >游戏</a></li>
+					<li class="game" id="flashTab" ><a class="active" href="http://apps.renren.com/livemall" >游戏</a></li>
 					<li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
 					<li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
 					<li class="faq"><a  href="../static/help/teach.html" class="fullpage" target="_blank">常见问题</a></li>

@@ -10,8 +10,10 @@ $user = new TTUser($sess['id']);
 ?> 
 
  <style>  
+ 
 #content {
 height: 700px;
+font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 }
 #header .logo {
     width: 165px;
@@ -118,6 +120,9 @@ height:60px;
 margin:0 20px;
 padding:0 10px 10px 90px;
 }
+.user-info h2{
+text-align:left;
+}
 .user-info .avatar{
 -moz-border-radius:3px 3px 3px 3px;
 -moz-box-shadow:1px 1px 2px #CCCCCC;
@@ -128,7 +133,7 @@ height:50px;
 margin-left:-70px;
 padding:2px;
 }
-.user-info .avatar{
+.user-info .avatar img{
 width: 50px;
 height: 50px;
 }
@@ -210,7 +215,7 @@ function requestPayment() {
 				</div>
 			</div>
 		
-		    <div id='pay-body' style='height: 600px; overflow-y: scroll; border: 1px solid rgb(51, 153, 187); text-align: center;'>
+		    <div id='pay-body' style='height: 600px; border: 1px solid rgb(51, 153, 187); text-align: center;'>
 				<div class='user-info'>
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $pid;?>" linked="false" size="tiny" />

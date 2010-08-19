@@ -183,8 +183,7 @@ background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") 
  background-position: -19px -205px;
 border:0 none;
 bottom:24px;
-cursor:pointer;
-display:none;
+cursor:pointer; 
 height:50px;
 position:absolute;
 right:26px;
@@ -200,7 +199,7 @@ background-position:-166px 50%;
 background-position:-332px 50%;
 }
 .pay-type li.gem-1000 {
-background-position:-496px 50%;
+background-position:-498px 50%
 }
  </style>
 

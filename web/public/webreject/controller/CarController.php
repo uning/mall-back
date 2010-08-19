@@ -265,7 +265,7 @@ class CarController
 		}
         unset( $car_obj['addgoods'] );
         unset( $car_obj['recall'] );
-        unset( $car_obj['lock'] );
+        unset( $car_obj['copolitTag'] );
         $tu->puto( $car_obj,TT::CAR_GROUP );		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){
@@ -408,12 +408,12 @@ class CarController
 	    if( $copi['recall'] == 1 ){
 	        $car_obj['recall'] = 1;
 	    }
-	    $car_obj['lock'] = 1;
+	    $car_obj['copolitTag'] = $tag;
 	    $tu->puto( $car_obj,TT::CAR_GROUP );
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
-	    $ret['car'] = $car_obj;
-	    $ret['copi'] = $copilot;
+	    $ret['car'] = $car_obj;  // for debug
+	    $ret['copi'] = $copilot;  // for debug
 	    return $ret;
 	}	
 }

@@ -335,7 +335,7 @@ $(document).ready(
 	/** Opens an overlaying iframe */
 	(function() {
 		
-		var goTo  = function(el){
+		var goTo  = function(el,tabs){
 			if (!el.is('a')) {
 					el = el.parents('a');
 			}
@@ -347,24 +347,26 @@ $(document).ready(
 		}
 		
 		var tabClick = function(e) {
+	       var	tabs = $('#tabs li');
 			if (e && e.target) {
 				var el = $(e.target);
-				goTo(el);
+				goTo(el, tabs);
 			}
 		};
 
 		
 		$(function() {
-			tabs = $('#tabs li');
+			var tabs = $('#tabs li');
 			console.log(tabs.children('a'));
 			tabs.children('a').not('.fullpage').click(tabClick);
 			setupElements();
 		});
 		
 		$(function() {
+	   	 var tabs = $('#tabs li');
 	      if(a!= undefined && a!=null && a!=''){
 		    var link = $("#"+a);
-			goTo(link);
+			goTo(link, tabs);
 		  }
 		});
 

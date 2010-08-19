@@ -48,7 +48,7 @@ ul li a
 </script>
 </head>
 <body>
-<div style="height:650px;border:gray solid 1px;">
+<div style="width:100%;height:650px;border:gray solid 1px;">
 <table width="100%">
 <tr>
 <td align="right">X</td>
@@ -85,7 +85,7 @@ ul li a
 	{
 	$linkid = $pid.':'.uniqid();
 	}
-	$width = '760px';
+	$width = '740px';
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";

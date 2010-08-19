@@ -50,4 +50,11 @@
 	text-decoration:none;
 }giftButtonFloat
 	
-
+.close{
+		background: url("../images/css/close.png") no-repeat scroll 0 0 transparent;
+		cursor:  pointer;
+	}
+	.close:HOVER {
+			background: url("../images/css/closea.png") no-repeat scroll 0 0 transparent;	
+	cursor: pointer;
+		}

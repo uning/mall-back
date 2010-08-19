@@ -310,10 +310,10 @@ function requestPayment() {
 							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
 						</li>
-						<li class="gem-500">
-							<div title="充值500个宝石">充值500个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value="   " class="btn-red"></p>
-							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
+						<li class="gem-1000">
+							<div title="充值500个宝石">充值1000个宝石</div>
+							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),100,'您的“100人人豆换1000宝石”的订单');" value="   " class="btn-red"></p>
+							<div>价格：<span style="font-weight: bold; color: #009900;">100</span>个人人豆</div>
 						</li>
 					</ul>
 				</div>

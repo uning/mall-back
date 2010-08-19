@@ -319,6 +319,9 @@ class CarController
 	 *                  num           --   一次购买数量
 	 * @return
 	 *                  s             --   OK
+	 *                  tag           --   副驾驶tag
+	 *                  num           --   一次购买数量
+	 *                  copi          --   测试信息
 	 */
 	public function buy_copolit( $params )
 	{
@@ -332,7 +335,7 @@ class CarController
 	        return $ret;
 	    }
 	    $ret['copi'] = $copi;  // for debug
-	    $gem = $tu->change( 'gem',$copi['gem'][$num] );
+	    $gem = $tu->change( 'gem',0-$copi['gem'][$num] );
 	    if( $gem< 0 ){
 	        $ret['s'] = 'gem';
 	        return $ret;
@@ -358,6 +361,8 @@ class CarController
 	 *                  cid           --   car id
 	 * @return
 	 *                  s             --   OK
+	 *                  car           --   测试信息
+	 *                  copi          --   测试信息
 	 */
 	public function apply_copolit( $params )
 	{
@@ -399,6 +404,8 @@ class CarController
 	    }
 	    $tu->puto( $car_obj,TT::CAR_GROUP );
 	    $ret['s'] = 'OK';
+	    $ret['car'] = $car_obj;
+	    $ret['copi'] = $copilot;
 	    return $ret;
 	}	
 }

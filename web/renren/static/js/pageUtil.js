@@ -343,15 +343,15 @@ $(document).ready(
 			}
 			navigateTo(el.attr('href'));
 			tabs.children('a').removeClass('active');
-			el.addClass('active');
-			return false;
+			el.addClass('active'); 
 			
-		}
+		};
 		
 		var tabClick = function(e) {
 			if (e && e.target) {
 				var el = $(e.target);
 				goTo(el);
+				return false;
 			}
 		};
 
@@ -364,7 +364,7 @@ $(document).ready(
 		});
 		
 		$(function() { 
-	      if(a!= undefined && a!=null && a!=''){
+	      if(a=='invite' || a=='freeGift'){
 		    var link = $("#"+a);
 			goTo(link);
 		  }

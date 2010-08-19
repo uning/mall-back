@@ -201,6 +201,9 @@ background-position:-332px 50%;
 .pay-type li.gem-1000 {
 background-position:-498px 50%
 }
+.payment-type label{
+padding-right:20px;
+}
  </style>
 
 <script type="text/javascript">
@@ -293,15 +296,15 @@ function requestPayment(amount,price,message) {
 				
 				<div class='pay-form'>
 				    <h2>选择支付类型</h2>
-					 <div style='padding:10px 30px'>
+					 <div class='payment-type' style='padding:10px 30px'>
 						<input id="paymentType" name="pt" type="radio" checked="checked"  />
-						<label for="paymentType">普通支付      </label>
+						<label for="paymentType">普通支付</label>
 						<input id="presentType" name="pt" type="radio" />
-						<label for="presentType">赠送好友      </label>
+						<label for="presentType">赠送好友</label>
 						<input id="creditType" name="pt" type="radio" />
-						<label for="creditType">直充       </label>
+						<label for="creditType">直充</label>
 						<input id="peerType" name="pt" type="radio" />
-						<label for="peerType">索要支付     </label>
+						<label for="peerType">索要支付</label>
 			    	</div>
 					<h2>选择你要充值的面值</h2>
 					

@@ -85,7 +85,7 @@ ul li a
 	{
 	$linkid = $pid.':'.uniqid();
 	}
-	$width = '740px';
+	$width = '700px';
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";

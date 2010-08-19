@@ -335,17 +335,21 @@ $(document).ready(
 	/** Opens an overlaying iframe */
 	(function() {
 		
+		var goTo  = function(el){
+			if (!el.is('a')) {
+					el = el.parents('a');
+			}
+			navigateTo(el.attr('href'));
+			tabs.children('a').removeClass('active');
+			el.addClass('active');
+			return false;
+			
+		}
 		
 		var tabClick = function(e) {
 			if (e && e.target) {
 				var el = $(e.target);
-				if (!el.is('a')) {
-					el = el.parents('a');
-				}
-				navigateTo(el.attr('href'));
-				tabs.children('a').removeClass('active');
-				el.addClass('active');
-				return false;
+				goTo(el);
 			}
 		};
 
@@ -358,9 +362,9 @@ $(document).ready(
 		});
 		
 		$(function() {
-	      if(a!= undefined && a!=null){
+	      if(a!= undefined && a!=null && a!=''){
 		    var link = $("#"+a);
-			navigateTo(link.attr('href'));
+			goTo(link);
 		  }
 		});
 

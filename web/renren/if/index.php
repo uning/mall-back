@@ -130,7 +130,7 @@ version of Flash. Please do so by clicking <a
 
 </div>
 
-<div id="htmlFrame" class="offscreen" style="width: 760px;vertical-align: middle;">
+<div id="htmlFrame" class="offscreen" style="width: 760px;vertical-align: middle;text-align: center;overflow: auto;">
 
 </div>
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
@@ -156,8 +156,8 @@ var config = {
 	  			   var getpid = function(r){
 	  				   pid = r.uid;
 	  				   PL.conf('pid',pid);
-	  				   console.log(pid)
-	    			   install_swf(pid)
+	  				   console.log(pid);
+	    			   install_swf(pid);
 	  				   
 	  			   }
 	  			   XN.Main.get_sessionState().waitUntilReady(
@@ -166,9 +166,9 @@ var config = {
 	  					   });
 	  			   
 	  		   }else{
-	   			  install_swf(pid)
+	   			  install_swf(pid);
 	  		   }
-	  		   PF.set_page_ok()	  
+	  		   PF.set_page_ok();	  
 
 
 	},

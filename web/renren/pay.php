@@ -116,8 +116,7 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 
 #pay-body{
  height: 600px; 
- border: 1px solid #3399BB;
- text-align: center;
+ border: 1px solid #3399BB; 
 }
 .user-info {
 border-bottom:1px dotted #CCCCCC;
@@ -133,7 +132,7 @@ padding:10px 0 0;
 text-align:left;
 }
 .user-info p label {
-background:url("../images/f-coin.gif") no-repeat scroll 5px center #FFF9D7;
+background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/gem.png") no-repeat scroll 5px center #FFF9D7;
 border:1px solid #E2C925;
 margin-right:10px;
 padding:5px 10px 5px 30px;
@@ -164,15 +163,17 @@ font-size:14px;
 font-weight:normal;
 padding:10px 30px;
 }
-
+.pay-type li div {
+text-indent:-9999px;
+}
 .pay-type li {
 background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
 float:left;
-height:135px;
-padding:0 25px;
+height:210px;
+padding:0 17px;
 position:relative;
 text-align:center;
-width:195px;
+width:160px;
 }
 .pay-type li.gem-100 {
 background-position:center -166px;

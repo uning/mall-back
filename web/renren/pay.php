@@ -275,7 +275,7 @@ function requestPayment(amount,gem,message) {
 					<li class="freegift"><a href="http://apps.renren.com/livemall?a=freeGift" id="freeGift" >免费礼物</a></li>
 					<li class="invite" ><a href="http://apps.renren.com/livemall?a=invite" >邀请好友</a></li>
 					<li class="faq"><a id='faq'  href="http://apps.renren.com/livemall?a=faq" >常见问题</a></li>
-					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum">论坛</a></li>
+					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" target='_blank' id="forum">论坛</a></li>
 					<li class="payment" ><a  class="active" href="http://apps.renren.com/livemall/pay.php"   id ="pay">充值</a></li>
 				</ul>
 				</div>

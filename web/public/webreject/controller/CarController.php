@@ -307,7 +307,7 @@ class CarController
 	    $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
 	    $copilot = $tu->getbyid( $id );
 	    if( !$copilot ){
-	        $ret['s'] = 'notexsit';
+	        $ret['s'] = 'copilotnotexsit';
 	        return $ret;
 	    }
 	    $ret['s'] = 'OK';
@@ -335,7 +335,7 @@ class CarController
 	    $tu = new TTUser( $uid );
 	    $copi = self::$_config[$tag];
 	    if( !$copi ){
-	        $ret['s'] = 'notexsit';
+	        $ret['s'] = 'copinotexsit';
 	        return $ret;
 	    }
 	    $ret['copi'] = $copi;  // for debug
@@ -376,14 +376,14 @@ class CarController
 	    $cid = $params['cid'];
 	    $copi = self::$_config[$tag];
 	    if( !$copi ){
-	        $ret['s'] = 'notexist';
+	        $ret['s'] = 'copinotexist';
 	        return $ret;
 	    }
 	    $tu = new TTUser( $uid );
             $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
             $copilot = $tu->getbyid( $id );
 	    if( !$copilot ){
-	        $ret['s'] = 'notexsit';
+	        $ret['s'] = 'copilotnotexsit';
 	        return $ret;
 	    }
 	    $car_obj = $tu->getbyid( $cid );

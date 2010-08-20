@@ -233,8 +233,8 @@ function callback(responseItem){
 }
 
 function requestPayment(amount,gem,message) {
-	var payType = Payment.PaymentType.PRESENT;
-	if (document.getElementById('paymentType').getChecked()) {
+	var payType = Payment.PaymentType.PAYMENT;
+	/*if (document.getElementById('paymentType').getChecked()) {
 		payType = Payment.PaymentType.PAYMENT;
 	}
 	else if (document.getElementById('creditType').getChecked()) {
@@ -242,7 +242,7 @@ function requestPayment(amount,gem,message) {
 	}
 	else if (document.getElementById('peerType').getChecked()) {
 		payType = Payment.PaymentType.PEER;
-	}
+	}*/
 
 	var params = {}; 
 	params[Payment.Field.AMOUNT] = amount; 

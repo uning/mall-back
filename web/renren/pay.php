@@ -215,8 +215,13 @@ function callback(responseItem){
 	var params = responseItem.getData();
 	var msg;
 	if (errCode == Payment.ResponseCode.OK) {
-		msg = "成功了。";
-		msg += "平台充值结果为：" + errMsg +"。刷新页面查看结果。";
+ 		msg = "平台充值结果为：成功充值" +params.message  +"。如果显示结果不对，尝试刷新页面。";
+		
+		var addGem = params.parameters.gem;
+		var gemNode = document.getElementById('gemValue');
+		var oldGem = Number(gemNode.innerHTML);
+		gemNode.innerHTML = oldGem + Number(addGem);
+		
 		var alert_dialog = new Dialog(
 				Dialog.DIALOG_ALERT, 
 				{message: msg,title: '提示框标题',callBack:function(){
@@ -240,7 +245,7 @@ function requestPayment(amount,gem,message) {
 	var params = {}; 
 	params[Payment.Field.AMOUNT] = amount; 
 	params[Payment.Field.MESSAGE] = message;
-	params[Payment.Field.PARAMETERS] = '{name:"gem",amount:amount,gem:gem,message:message,pid:<?php echo $pid;?>}'; 
+	params[Payment.Field.PARAMETERS] = "{name:'gem',amount:"+amount+",gem:"+gem+",message:"+message+",pid:<?php echo $pid;?>}"; 
 	params[Payment.Field.PAYMENT_TYPE] = payType; 
 	params[Payment.Field.SANDBOX] = true;
 	var itemParams1 = {}; 
@@ -285,7 +290,7 @@ function requestPayment(amount,gem,message) {
 					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" /></h2>
 					<p>
 						<label>
-							宝石余额: <span class='gem'><?php echo $gem; ?></span>
+							宝石余额: <span class='gem' id='gemValue'><?php echo $gem; ?></span>
 						</label>
 					</p>
 				</div>

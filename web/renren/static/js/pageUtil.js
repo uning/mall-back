@@ -27,6 +27,7 @@ function inviteFriends(param, callBack) {
 	try {
 		navigateTo(inviteH.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		inviteH.addClass('active');
 		return false;
 	} catch (e) {
@@ -36,8 +37,7 @@ function inviteFriends(param, callBack) {
 
 function visitFriends(pid,id,callBack){}
 function payFor(pid, callBack) {
-	alert('暂未开放');
-	return;
+	
 	var div =  $("#tabs");
 	if(div==null||div=='undefined')
 		div = $("#tabs",window.parent.document);
@@ -47,6 +47,7 @@ function payFor(pid, callBack) {
 	try {
 		navigateTo(payFor.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		payFor.addClass('active');
 		return false;
 	} catch (e) {
@@ -64,6 +65,7 @@ function chooseGift(callBack)
 	try {
 		navigateTo(freeGift.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		freeGift.addClass('active');
 		return false;
 	} catch (e) {
@@ -84,6 +86,7 @@ function sendGift(giftid,callBack)
 		var g = isBlank(giftid)?'':'?gift='+giftid;
 		navigateTo(inviteH.attr('href')+g);
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		inviteH.addClass('active');
 		return false;
 	} catch (e) {

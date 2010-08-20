@@ -208,7 +208,7 @@ padding-right:20px;
  </style>
 
 <script type="text/javascript">
-
+ 
 function callback(responseItem){
 	var errCode = responseItem.getErrorCode();
 	var errMsg = responseItem.getErrorMessage();
@@ -223,10 +223,12 @@ function callback(responseItem){
 	else {
 		msg = "由于某种原因没支付成功。";
 	}
-	msg += "平台充值结果为：" + errMsg;
+	msg += "平台充值结果为：" + errMsg +",刷新页面查看结果。";
 	var alert_dialog = new Dialog(
 			Dialog.DIALOG_ALERT, 
-			{message: msg,title: '提示框标题' }
+			{message: msg,title: '提示框标题',callBack:function(){
+			
+			} }
 	);
 }
 
@@ -296,6 +298,7 @@ function requestPayment(amount,gem,message) {
 				</div>
 				
 				<div class='pay-form'>
+				    <!--
 				    <h2>选择支付类型</h2>
 					 <div class='payment-type' style='padding:10px 30px'>
 						<input id="paymentType" name="pt" type="radio" checked="checked"  />
@@ -307,6 +310,7 @@ function requestPayment(amount,gem,message) {
 						<input id="peerType" name="pt" type="radio" />
 						<label for="peerType">索要支付</label>
 			    	</div>
+					-->
 					<h2>选择你要充值的面值</h2>
 					
 					<ul class="pay-type clearfix">

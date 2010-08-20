@@ -365,7 +365,7 @@ $(document).ready(
 		});
 		
 		$(function() { 
-	      if(a=='invite' || a=='freeGift'){
+	      if(a=='invite' || a=='freeGift'  || a=='faq'){
 		    tabs = $('#tabs li');
 			var link = $("#"+a);
 			goTo(link);

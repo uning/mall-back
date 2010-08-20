@@ -390,7 +390,7 @@ class CarController
 	        $ret['s'] = 'carnotexsit';
 	        return $ret;
 	    }
-	    if( $car_obj['lock'] == 1 ){
+	    if( $car_obj['copolitTag'] ){
 	        $ret['s'] = 'repeat';
 	        return $ret;
 	    }

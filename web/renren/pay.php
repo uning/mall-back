@@ -208,7 +208,7 @@ padding-right:20px;
  </style>
 
 <script type="text/javascript">
-
+ 
 function callback(responseItem){
 	var errCode = responseItem.getErrorCode();
 	var errMsg = responseItem.getErrorMessage();
@@ -223,10 +223,12 @@ function callback(responseItem){
 	else {
 		msg = "由于某种原因没支付成功。";
 	}
-	msg += "平台充值结果为：" + errMsg;
+	msg += "平台充值结果为：" + errMsg +",刷新页面查看结果。";
 	var alert_dialog = new Dialog(
 			Dialog.DIALOG_ALERT, 
-			{message: msg,title: '提示框标题' }
+			{message: msg,title: '提示框标题',callBack:function(){
+			
+			} }
 	);
 }
 

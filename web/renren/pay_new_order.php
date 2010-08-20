@@ -41,7 +41,7 @@
 	//$gem = $user->chGem(0);
 	
 	//chGem(232);
- 	$orderid = $ot->put(null,$payment);
+ 	$orderid = $ot->put($payment);
 	
 	//返回数据
 	//{"app_res_order_id":20091223061349,"app_res_code":"OK","app_res_message":"10人人豆兑换100Q币","app_res_user":230121017}

@@ -97,7 +97,7 @@ class JsonServer{
 	 * 
 	 * method
 	 * auth, 
-	 * params,½
+	 * params,ï¿½
 	 */
 	public function getRequest()
 	{
@@ -182,8 +182,8 @@ class JsonServer{
 				throw new JsonServerExecption( "$cn don't has callable method $m");
 			}
 		}
+
 		$log_method=array(
-				'Achieve.get'=>1,
 				'Achieve.finish'=>1,
 				'Advert.buy'=>1,
 				'Advert.set'=>1,
@@ -192,7 +192,6 @@ class JsonServer{
 				'Gift.send'=>1,
 				'Gift.accept'=>1,
 				'Man.update'=>1,
-				'UserController.login'=>1,
 				'UserController.precheckout'=>1,
 				'UserController.update_friends'=>1,
 				'UserController.enlarge_mall'=>1,
@@ -202,22 +201,32 @@ class JsonServer{
 				'CarController.sale'=>1,
 				'CarController.go_goods'=>1,
 				'CarController.enlarge_garage'=>1,
+		        'CarController.get_copolit'=>1,
+		        'CarController.buy_copolit'=>1,
+		        'CarController.apply_copolit'=>1,
 				'GoodsController.buy'=>1,
-				'GoodsController.remove'=>1,
 				'GoodsController.exhibit_goods'=>1,
-				'GoodsController.checkshop'=>1,
 				'GoodsController.checkout'=>1,
-				'TaskController.share'=>1,
-				'TaskController.request'=>1,
-				'TaskController.accept'=>1,
-				'TaskController.update'=>1,
-				'TaskController.finish'=>1,
-				'TaskController.get_award'=>1,
+				'Task.share'=>1,
+				'Task.request'=>1,
+				'Task.accept'=>1,
+				'Task.update'=>1,
+				'Task.finish'=>1,
+				'Task.get_award'=>1,
 				'Friend.dis_neighbor'=>1,
 				'Friend.invite_neighbor'=>1,
 				'Friend.accept_neighbor'=>1,
 					);
-		$ret=$c->$m($req['p']);
+
+		try{
+			$ret=$c->$m($req['p']);
+		}catch(Exception $e){
+			$r['s']='exc';
+			$r['msg']=$e->getMessage();
+			$r['exce']=$e->getTrace();
+			error_log($method.':'.$r['msg']);
+			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
+		}
 		if($this->_debug){
 			CrabTools::myprint($ret,REQ_DATA_ROOT.$mypre.'.resp');
 		}
@@ -225,11 +234,13 @@ class JsonServer{
 			$ret['s']= "KO";
 			$ret['msg']= "$cn::$m return null";
 		}
+		$tm = $_SERVER['REQUEST_TIME'];
 		if($ret['s']=='OK'){
 			if(array_key_exists($method,$log_method)){
-				$tm = $_SERVER['REQUEST_TIME'];
-				TTLog::record(array('m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
+				TTLog::record(array('s'=>'OK','m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 			}
+		}else{
+			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 		}
 		return $ret;
 	}

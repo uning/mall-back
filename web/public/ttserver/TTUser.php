@@ -34,7 +34,6 @@ class TTUser extends TTUDB
 		$this->numch('lastawardtime',0);
 		$this->numch('continued',0);
 		$arr=array(	TT::CAPACITY_STAT=>"3,2",
-				TT::TASK_STAT=>'1',
 				'it'=>$now);
 		$this->mputf($arr);
 
@@ -267,30 +266,23 @@ class TTUser extends TTUDB
 			$ret['s'] = 'notfind';
 			return $ret;
 		}
-
-		if( $item['notsale'] ){
+		if( $item['sellable'] != 'true' ){
 			$ret['s'] = 'notsale';
 			return $ret;
 		}
-		$currency  = TT::MONEY_STAT;
-		if($item['sale_gem']){
-			$currency = TT::GEM_STAT;
-			$num = $num * $item['sale_gem'];
-			$rnum = $this->numch($currency,$num);
-		}else{//若未给出售价，按3折计算
-			if( $item['sellmoney'] )
-				$num = $num * $item['sellmoney'];
-			else
-				$num = floor($num * $item['money']*0.3);
-			$rnum = $this->numch($currency,$num);
+		if( $item['onlygem'] == 'true' ){//对用宝石购买的物品，按1:10000换成金币再3折
+		    $num = $item['gem']*3000;
 		}
+		else{
+		    $num = $item['money']*0.3;
+		}
+		$rnum = $this->numch( TT::MONEY_STAT,$num );
 		$tusys = new TTUser(0);
 		$statid = 'usalenum_'.$item['tag'];
 		$saled = $tusys->numch($statid,$num);//记录系统回购每种商品总数
-
 		$ret['s'] = 'OK';
-		$ret[$currency] = $rnum;
-		return $ret;
+        $ret['money'] = $rnum;
+   		return $ret;
 	}
 
 

@@ -32,6 +32,8 @@ class UserController
 		$ret['a'] = $tu->getdata();
 		$ret['s'] = 'OK';
 		$ret['t'] = time();
+		$params['u']=$uid;
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($params)));
 		return $ret;
 	}
 

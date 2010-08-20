@@ -104,24 +104,26 @@ class ItemController {
 				GoodsController::checkout($params);
 			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
-			    if( $row['pos'] != 's' ){
-			        $pop += $item['pop'];
-			    }
-			    else{
-			        $pop -= $item['pop'];
-			    }
+				if( $row['pos'] != 's' && $item_obj['pds'] == 's' ){
+					$pop += $item['pop'];
+				}
+				else if( $row['pos'] == 's' && $item_obj['pds'] != 's' ){
+					$pop -= $item['pop'];
+				}
 			}
 			else{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
-			    if( $item_obj['goods'] ){
-			        if( $shop_ret['s'] == 'notempty' ){
-			            $ret['s'] = 'notempty';
-			            $ret['index'] = $index;
-			           // return $ret;
-			        }
-			    }
+				if( $item_obj['goods'] ){
+					if( $shop_ret['s'] == 'notempty' ){
+						$ret['s'] = 'notempty';
+						$ret['index'] = $index;
+						// return $ret;
+					}
+				}
 			}
+		   foreach($row as $k=>$v)
+                       $item_obj[$k]=$v;
 		    $ret[$row['id']]=$item;
-		    $tu->puto($row);
+		    $tu->puto($item_obj,'',false);//reduce a get op 
 		}
 		/*
 		if($shop_num){

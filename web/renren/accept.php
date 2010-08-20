@@ -8,16 +8,15 @@ $tw = TT::LinkTT();
 if($linkid){
 	
 	$irec = $tw->getbyuidx('linkid',$linkid);
+	print_r($irec);
 }
 $fromuser = $irec['pid'];	
 $touser = $_REQUEST['xn_sig_user'];	
 if(!$irec){?>
 <xn:if-is-app-user>
-	<xn:redirect
-		url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
+	<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
 	<xn:else>
-		<xn:redirect
-			url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>" />
+		<xn:redirect url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>" />
 	</xn:else>
 </xn:if-is-app-user>
 <?php 

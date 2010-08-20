@@ -6,7 +6,8 @@ class CarController
                             ,2002=>array( 'addgoods'=>2,'gem'=>array( 1=>2,10=>18,30=>48,100=>120 ) ) 
                             ,2003=>array( 'accelerate'=>3600,'gem'=>array( 1=>1,10=>9,30=>24,100=>70 ) ) 
                             ,2004=>array( 'accelerate'=>21600,'gem'=>array( 1=>5,10=>40,30=>90,100=>250 ) ) 
-                            ,2005=>array( 'recall'=>1,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) ) 
+                            ,2005=>array( 'recall'=>1,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) )
+                            ,2006=>1
                             );    
     protected function ischange( $last_level,$cur_level )
     {
@@ -352,7 +353,7 @@ class CarController
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
 	    $ret['num'] = $num;
-	    $ret['copi'] = $tu->getbyid( $id );//for debug
+//	    $ret['copi'] = $tu->getbyid( $id );//for debug
 	    return $ret;
 	}
 	
@@ -394,11 +395,35 @@ class CarController
 	        $ret['s'] = 'repeat';
 	        return $ret;
 	    }
-		if( $copilot['bag'][$tag] < 1 ){
-		    $ret['s'] = 'needbuy';
-			return $ret;
-		}
-	    $copilot['bag'][$tag] -= 1;
+	    if( $tag != 2006 ){
+		    if( $copilot['bag'][$tag] < 1 ){
+		        $ret['s'] = 'needbuy';
+			    return $ret;
+		    }
+		    $copilot['bag'][$tag] -= 1;
+		    $car_obj['copolitTag'] = $tag;
+	    }
+	    else{
+	        $goodsTag = $car_obj['goodsTag'];
+	        $goods = ItemConfig::getItem( $goodsTag );
+	        if( $goods['buytime'] >= 1800 ){
+	            $car = ItemConfig::getItem( $car_obj['tag'] );
+		        $add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
+		        if( $add_exp ){
+		            $last_exp = $tu->getf( TT::EXP_STAT );
+		            $cur_exp = $tu->addExp( $add_exp );
+		            $last_level = UpgradeConfig::getLevel( $last_exp );
+		            $cur_level = UpgradeConfig::getLevel( $cur_exp );
+		            if( $cur_level > $last_level ){
+		                $bool = self::ischange( $last_level,$cur_level );
+		                if( !$bool )
+		                    $tu->numch( TT::GEM_STAT,1 );
+		            }
+		         }
+	        }
+	        unset( $car_obj['t'] );
+	        unset( $car_obj['help'] );	        
+	    }    
 	    $copilot['id'] = $id;
 	    $tu->puto( $copilot );
 	    if( $copi['addgoods'] ){
@@ -409,13 +434,12 @@ class CarController
 	    }
 	    if( $copi['recall'] == 1 ){
 	        $car_obj['recall'] = 1;
-	    }
-	    $car_obj['copolitTag'] = $tag;
+	    }	    
 	    $tu->puto( $car_obj,TT::CAR_GROUP );
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
-	    $ret['car'] = $car_obj;  // for debug
-	    $ret['copi'] = $copilot;  // for debug
+//	    $ret['car'] = $car_obj;  // for debug
+//	    $ret['copi'] = $copilot;  // for debug
 	    return $ret;
 	}	
 }

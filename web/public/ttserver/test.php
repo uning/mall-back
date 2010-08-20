@@ -22,7 +22,12 @@ function dodebug($str)
 
 record_time($st);
 //require_once('TTt.php');
-require_once('TT.php');
+require_once('test_config.php');
+
+$logt = TT::get_tt('order');
+$id = $logt->put(array('a'=>'b'));
+print_r($logt->get($id));
+return;
 
 $logt = TT::get_tt('log');
 $str = '$logt->num()';

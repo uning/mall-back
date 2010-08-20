@@ -30,7 +30,7 @@
 <td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
 </tr>
 </table>
-	<ul class="items">
+	<ul class="items" >
 <?php
  
 	require_once 'freeGift.php';

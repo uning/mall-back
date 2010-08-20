@@ -8,7 +8,9 @@ h1 {
 h2 {
 	font-weight: bold;
 }
-
+.items {
+	background-color: #F5DEBC;
+}
 .noticebox {
 	border: 1px solid #ffd100;
 	padding: 8px;

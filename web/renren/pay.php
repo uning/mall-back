@@ -213,12 +213,14 @@ function callback(responseItem){
 	var errCode = responseItem.getErrorCode();
 	var errMsg = responseItem.getErrorMessage();
 	var params = responseItem.getData();
+	console.debug("params",params);
 	var msg;
 	if (errCode == Payment.ResponseCode.OK) {
  		msg = "平台充值结果为：成功充值" +params.message  +"。如果显示结果不对，尝试刷新页面。";
 		
 		var addGem = params.parameters.gem;
 		var gemNode = document.getElementById('gemValue'); 
+		console.debug("gemNode",gemNode.getInnerHTML(),addGem);
 		gemNode.setTextValue(parseInt(gemNode.getInnerHTML() ) + parseInt(addGem) );
 		
 		var alert_dialog = new Dialog(

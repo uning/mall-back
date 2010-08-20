@@ -19,8 +19,8 @@
 	// "items": [{"skuId":"test_sku1","price":20,"count":2,"description":"demo descriptionred ower"},],
 	//"orderedTime":1261633596528}
 	if($_POST['xn_sig_sandbox'] == true){
-	//fake payment
-		payment.sandbox  = true;
+	    //fake payment
+		$payment['sandbox']  = true;
 	}
 	
 	$ot = TT::get_tt('order');  
@@ -30,6 +30,7 @@
 	$payment['pid'] = $pid; 
 	$payment['uid'] = $sess['id'];
 	$payment['status'] = 0;
+	$payment['gem']= $payment['amount'] * 10;
 	 
 	//$gem = $user->chGem(0);
 	

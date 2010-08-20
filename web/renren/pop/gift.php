@@ -33,7 +33,7 @@
 <div class="items">
 	<ul class="items">
 <?php
- 
+ 	require_once '../config.php';
 	require_once 'freeGift.php';
 	function getAttr($name,$xml)
 	{

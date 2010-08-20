@@ -27,6 +27,7 @@ function inviteFriends(param, callBack) {
 	try {
 		navigateTo(inviteH.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		inviteH.addClass('active');
 		return false;
 	} catch (e) {
@@ -36,8 +37,7 @@ function inviteFriends(param, callBack) {
 
 function visitFriends(pid,id,callBack){}
 function payFor(pid, callBack) {
-	alert('暂未开放');
-	return;
+	
 	var div =  $("#tabs");
 	if(div==null||div=='undefined')
 		div = $("#tabs",window.parent.document);
@@ -47,6 +47,7 @@ function payFor(pid, callBack) {
 	try {
 		navigateTo(payFor.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		payFor.addClass('active');
 		return false;
 	} catch (e) {
@@ -64,6 +65,7 @@ function chooseGift(callBack)
 	try {
 		navigateTo(freeGift.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		freeGift.addClass('active');
 		return false;
 	} catch (e) {
@@ -84,6 +86,7 @@ function sendGift(giftid,callBack)
 		var g = isBlank(giftid)?'':'?gift='+giftid;
 		navigateTo(inviteH.attr('href')+g);
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		inviteH.addClass('active');
 		return false;
 	} catch (e) {
@@ -223,7 +226,7 @@ var showFlash = function() {
 	oldIframe = iframe;
 	iframe = false;
 	tabs.children('a').removeClass('active');
-	flashTab.addClass('active');
+	flashTab.children('a').addClass('active');
 	setTimeout(cleanup, 500);
 };
 
@@ -335,29 +338,53 @@ $(document).ready(
 	/** Opens an overlaying iframe */
 	(function() {
 		
+		var goTo  = function(el){
+		 	if (!el.is('a')) {
+				el = el.parents('a');
+			}
+			navigateTo(el.attr('href'));
+			tabs.children('a').removeClass('active');
+			el.addClass('active'); 
+			
+		};
 		
 		var tabClick = function(e) {
-			if (e && e.target) {
+            if (e && e.target) {
 				var el = $(e.target);
-				if (!el.is('a')) {
-					el = el.parents('a');
-				}
-				navigateTo(el.attr('href'));
-				tabs.children('a').removeClass('active');
-				el.addClass('active');
+				goTo(el);
 				return false;
 			}
 		};
 
 		
 		$(function() {
-			tabs = $('#tabs li');
+		   tabs = $('#tabs li');
 			console.log(tabs.children('a'));
 			tabs.children('a').not('.fullpage').click(tabClick);
 			setupElements();
+		});
+		
+		$(function() { 
+	      if(a=='invite' || a=='freeGift'  || a=='faq'){
+		    tabs = $('#tabs li');
+			var link = $("#"+a);
+			goTo(link);
+		  }
 		});
 
 	})();
 
 });
 
+function sendNotifcation(ids,name,callBack,say)
+{
+	XN.Main.apiClient.notifications_send(45182749, '李彦宾'+"在<a href=\"http://apps.renren.com/livemall/\">购物天堂</a>送给了你一件神秘礼物，并对你说:快来玩啊，真好玩啊，放松一下吧，呵呵"+say, function (result, ex) {
+		  if (ex) {
+			window.alert("出错了，不好意思 " + ex.userData.error_msg);
+	  	  }
+		  else {
+			window.alert(result.result);
+		  }
+    });
+
+}

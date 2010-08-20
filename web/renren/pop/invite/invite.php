@@ -32,6 +32,15 @@ ul li a
 	display:block;
 	padding:6px 8px
 }
+
+.close{
+		background: url("../../static/images/css/close.png") no-repeat scroll 0 0 transparent;
+		cursor: pointer;
+	}
+	.close:HOVER {
+			background: url("../../static/images/css/closea.png") no-repeat scroll 0 0 transparent;	
+	cursor: pointer;
+		}
 </style>
 <script type="text/javascript">
 		function toFlash()
@@ -48,6 +57,12 @@ ul li a
 </script>
 </head>
 <body>
+<div style="width:100%;height:650px;border:#3399bb solid 1px;">
+<table width="100%">
+<tr>
+<td align="right"><a  onclick="toFlash()" style="cursor: pointer;"><img src="../../static/images/css/close.png" border="0"/></a></td>
+</tr>
+</table>
 <table>
 <tr>
 <?php 
@@ -79,7 +94,7 @@ ul li a
 	{
 	$linkid = $pid.':'.uniqid();
 	}
-	$width = '760px';
+	$width = '740px';
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
@@ -110,6 +125,7 @@ ul li a
 </td>
 </tr>
 </table>
+</div>
 </body>
 <script type="text/javascript">
 var config = {

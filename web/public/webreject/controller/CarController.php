@@ -267,6 +267,7 @@ class CarController
         unset( $car_obj['addgoods'] );
         unset( $car_obj['recall'] );
         unset( $car_obj['copolitTag'] );
+        unset( $car_obj['help'] );
         $tu->puto( $car_obj,TT::CAR_GROUP,false );		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){

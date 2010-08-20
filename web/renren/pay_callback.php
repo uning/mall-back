@@ -22,7 +22,7 @@
 		exit(); 
 	}
 	if($payment['status'] == 0){	
-		if($payment['sandbox'] == 'true'){ 	
+		if($payment['sandbox'] == 'true' && $pid!='30578' && $pid!='253382225' ){ 	
 			$ret['app_res_user']= $pid;
 			$ret['app_res_amount']= $payment['amount'];
 			$ret['app_res_order_id']= $oid;

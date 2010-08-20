@@ -1,5 +1,6 @@
 <?php
  	require_once('config.php'); 
+	file_put_contents("/home/hotel/pay.log",$_POST);
 	$pid =   $_POST['xn_sig_user'];  
 	$secret  = Renrenconfig::$pay_secure;//
 	if($_POST['xn_sig_skey'] != md5($secret.$pid) ){

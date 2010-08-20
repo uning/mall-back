@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__)."/../../AchieveConfig.php";
 class Tool
 {
 	public function showids( $params )
@@ -150,6 +151,27 @@ class Tool
 		foreach( $con as $k=>$v ){
 		    $ret['data'][$k] = $tu->getf( $k );
 		}
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+
+	public function test_feed( $params )
+	{
+		$uid = $params['u'];
+		$tu = new TTUser( $uid );
+		$id = $tu->getoid( 'achieves',TT::OTHER_GROUP );
+		$achieves = $tu->getbyid( $id );
+		$aparams = $tu->getf( array('popu','invite_count','gogoods_count','total_count','total_sale') );
+		$ret['baparams'] = $aparams;
+		foreach( AchieveConfig::$_config as $tag=>$conf ){
+			$ret['tag'][] = $tag;
+			$ret['conf'][] = $conf;
+		}
+
+		$data = array( 'total_count'=>50000,'total_sale'=>100000,'gogoods_count'=>3000 );
+		$tu->mputf( $data );
+		$aparams = $tu->getf( array('popu','invite_count','gogoods_count','total_count','total_sale') );
+		$ret['aaparams'] = $aparams;
 		$ret['s'] = 'OK';
 		return $ret;
 	}

@@ -154,11 +154,11 @@ img,a .img{border:0}
 }
 
 #navga ul li.forum a {
-    background-position: 0 -352px;
+    background-position: 0 -351px;
 }
 
 #navga ul li.forum a.active, #navga ul li.forum a:hover {
-    background-position: 0 -397px;
+    background-position: 0 -396px;
 }
 #navga ul li.payment a {
     background-position: 0 -440px;

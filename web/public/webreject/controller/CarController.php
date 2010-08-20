@@ -438,8 +438,8 @@ class CarController
 	    $tu->puto( $car_obj,TT::CAR_GROUP,false );
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
-//	    $ret['car'] = $car_obj;  // for debug
-//	    $ret['copi'] = $copilot;  // for debug
+//	    $ret['car'] = $tu->getbyid( $cid );  //for debug
+//	    $ret['copi'] = $tu->getbyid( $id );  // for debug
 	    return $ret;
 	}	
 }

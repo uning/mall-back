@@ -6,7 +6,7 @@ class CarController
                             ,2002=>array( 'addgoods'=>2,'gem'=>array( 1=>2,10=>18,30=>48,100=>120 ) ) 
                             ,2003=>array( 'accelerate'=>3600,'gem'=>array( 1=>1,10=>9,30=>24,100=>70 ) ) 
                             ,2004=>array( 'accelerate'=>21600,'gem'=>array( 1=>5,10=>40,30=>90,100=>250 ) ) 
-                            ,2005=>array( 'recall'=>1,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) )
+                            ,2005=>array( 'accelerate'=>356400,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) )
                             ,2006=>1
                             );    
     protected function ischange( $last_level,$cur_level )
@@ -238,11 +238,9 @@ class CarController
 			$ret['s'] = 'goodstagincorrect';
 			return $ret;
 		}
-		if( $car_obj['recall'] != '1' ){
-            if( $now - $car_obj['t'] < ( 1- 0.01*$car['reduceTime'] )* $goods['buytime'] ){//时间减免改为百分比
-			    $ret['s'] = 'timeleft';
-			    return $ret;
-		    }
+        if( $now - $car_obj['t'] < ( 1- 0.01*$car['reduceTime'] )* $goods['buytime'] ){//时间减免改为百分比
+			$ret['s'] = 'timeleft';
+			return $ret;
 		}
 //		$car_obj['t'] = 0;
         $num = $car['goodsNumber'];
@@ -266,7 +264,6 @@ class CarController
 		}
 		unset( $car_obj['t'] );
         unset( $car_obj['addgoods'] );
-        unset( $car_obj['recall'] );
         unset( $car_obj['copolitTag'] );
         unset( $car_obj['help'] );
         $tu->puto( $car_obj,TT::CAR_GROUP,false );		
@@ -433,10 +430,7 @@ class CarController
 	    }
 	    if( $copi['accelerate'] && $car_obj['t'] > 0 ){
 	        $car_obj['t'] -= $copi['accelerate'];
-	    }
-	    if( $copi['recall'] == 1 ){
-	        $car_obj['recall'] = 1;
-	    }	    
+	    } 
 	    $tu->puto( $car_obj,TT::CAR_GROUP,false );
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;

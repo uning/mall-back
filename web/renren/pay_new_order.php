@@ -23,6 +23,11 @@
 	    //fake payment
 		$payment['sandbox']  = 'true';
 	}
+	if($payment== null || $payment['amount'] == null){
+		$ret['app_res_code']= "error payment";
+		echo json_encode($ret);
+		exit();
+	}
 	
 	$ot = TT::get_tt('order');  
 	$sess=TTGenid::getbypid($pid);
@@ -42,7 +47,7 @@
 	//{"app_res_order_id":20091223061349,"app_res_code":"OK","app_res_message":"10ÈËÈË¶¹¶Ò»»100Q±Ò","app_res_user":230121017}
 	$ret['app_res_order_id']= $orderid;
 	$ret['app_res_code']= "OK";
-	$ret['app_res_message']= $payment.message;
+	$ret['app_res_message']= $payment['message'];
 	$ret['app_res_user']= $pid; 
 	
 	echo json_encode($ret);

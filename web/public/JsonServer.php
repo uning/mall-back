@@ -97,7 +97,7 @@ class JsonServer{
 	 * 
 	 * method
 	 * auth, 
-	 * params,½
+	 * params,ï¿½
 	 */
 	public function getRequest()
 	{
@@ -201,17 +201,18 @@ class JsonServer{
 				'CarController.sale'=>1,
 				'CarController.go_goods'=>1,
 				'CarController.enlarge_garage'=>1,
+		        'CarController.get_copolit'=>1,
+		        'CarController.buy_copolit'=>1,
+		        'CarController.apply_copolit'=>1,				
 				'GoodsController.buy'=>1,
-				'GoodsController.remove'=>1,
 				'GoodsController.exhibit_goods'=>1,
-				'GoodsController.checkshop'=>1,
-				'GoodsController.checkout'=>1,
-				'TaskController.share'=>1,
-				'TaskController.request'=>1,
-				'TaskController.accept'=>1,
-				'TaskController.update'=>1,
-				'TaskController.finish'=>1,
-				'TaskController.get_award'=>1,
+//				'GoodsController.checkout'=>1,
+				'Task.share'=>1,
+				'Task.request'=>1,
+				'Task.accept'=>1,
+				'Task.update'=>1,
+				'Task.finish'=>1,
+				'Task.get_award'=>1,
 				'Friend.dis_neighbor'=>1,
 				'Friend.invite_neighbor'=>1,
 				'Friend.accept_neighbor'=>1,

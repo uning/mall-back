@@ -21,9 +21,9 @@
 	//"orderedTime":1261633596528}
 	if($_POST['xn_sig_sandbox'] == 'true'){
 	    //fake payment
-		$payment['sandbox']  = 'true';
+		$pp['sandbox']  = 'true';
 	}
-	if($payment== null || $payment['amount'] == null){
+	if($pp== null || $pp['amount'] == null){
 		$ret['app_res_code']= "error payment";
 		echo json_encode($ret);
 		exit();

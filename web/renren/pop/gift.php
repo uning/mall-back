@@ -30,7 +30,8 @@
 <td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
 </tr>
 </table>
-	<ul class="items" >
+<div style="background-color: #F5DEBC;">
+	<ul class="items">
 <?php
  
 	require_once 'freeGift.php';
@@ -73,6 +74,7 @@
 	}
 ?>
 </ul>
+</div>
 <br/>
 <br style="clear:both" />
 		<div style="width: 700px; text-align: center;" >

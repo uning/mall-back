@@ -40,7 +40,7 @@ for($i=1;$i<=$user_num;++$i){
 		}
 		$dgr['install_num']++;
 	}
-	if($ud['ut']+$gap<$now){
+	if($ud['ut']&&$ud['ut']+$gap<$now){
 		$dgr['unstall_num']++;
 	}
 }

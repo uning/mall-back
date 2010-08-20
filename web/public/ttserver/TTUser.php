@@ -34,7 +34,6 @@ class TTUser extends TTUDB
 		$this->numch('lastawardtime',0);
 		$this->numch('continued',0);
 		$arr=array(	TT::CAPACITY_STAT=>"3,2",
-				TT::TASK_STAT=>'1',
 				'it'=>$now);
 		$this->mputf($arr);
 

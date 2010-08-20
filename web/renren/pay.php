@@ -296,6 +296,7 @@ function requestPayment(amount,gem,message) {
 				</div>
 				
 				<div class='pay-form'>
+				    <!--
 				    <h2>选择支付类型</h2>
 					 <div class='payment-type' style='padding:10px 30px'>
 						<input id="paymentType" name="pt" type="radio" checked="checked"  />
@@ -307,6 +308,7 @@ function requestPayment(amount,gem,message) {
 						<input id="peerType" name="pt" type="radio" />
 						<label for="peerType">索要支付</label>
 			    	</div>
+					-->
 					<h2>选择你要充值的面值</h2>
 					
 					<ul class="pay-type clearfix">

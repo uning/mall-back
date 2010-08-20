@@ -180,10 +180,10 @@ text-indent:-9999px;
 }
 .pay-type li input {
 background:url("<?php echo RenrenConfig::$resource_urlp ?>/images/payment.png") no-repeat scroll center top transparent;
+ background-position: -19px -205px;
 border:0 none;
 bottom:24px;
-cursor:pointer;
-display:none;
+cursor:pointer; 
 height:50px;
 position:absolute;
 right:26px;
@@ -199,7 +199,10 @@ background-position:-166px 50%;
 background-position:-332px 50%;
 }
 .pay-type li.gem-1000 {
-background-position:-496px 50%;
+background-position:-498px 50%
+}
+.payment-type label{
+padding-right:20px;
 }
  </style>
 
@@ -226,7 +229,7 @@ function callback(responseItem){
 	);
 }
 
-function requestPayment() {
+function requestPayment(amount,price,message) {
 	var payType = Payment.PaymentType.PRESENT;
 	if (document.getElementById('paymentType').getChecked()) {
 		payType = Payment.PaymentType.PAYMENT;
@@ -239,16 +242,16 @@ function requestPayment() {
 	}
 
 	var params = {}; 
-	params[Payment.Field.AMOUNT] = parseInt(document.getElementById('amount').getValue()); 
-	params[Payment.Field.MESSAGE] = document.getElementById('message').getValue(); 
+	params[Payment.Field.AMOUNT] = amount; 
+	params[Payment.Field.MESSAGE] = message;
 	params[Payment.Field.PARAMETERS] = '{name:"tulip"}'; 
 	params[Payment.Field.PAYMENT_TYPE] = payType; 
-	params[Payment.Field.SANDBOX] = document.getElementById('sandbox').getChecked(); 
+	params[Payment.Field.SANDBOX] = true;
 	var itemParams1 = {}; 
 	itemParams1[Payment.BillingItem.SKU_ID] = 'test_sku1'; 
-	itemParams1[Payment.BillingItem.PRICE] = 15; 
-	itemParams1[Payment.BillingItem.COUNT] = 2; 
-	itemParams1[Payment.BillingItem.DESCRIPTION] = 'demo description red flower'; 
+	itemParams1[Payment.BillingItem.PRICE] = amount; 
+	itemParams1[Payment.BillingItem.COUNT] = price; 
+	itemParams1[Payment.BillingItem.DESCRIPTION] = message; 
 	params[Payment.Field.ITEMS] = [itemParams1];
 	//可以有多个item构成一个购物车
 	Payment.requestPayment(callback,params);
@@ -292,61 +295,44 @@ function requestPayment() {
 				</div>
 				
 				<div class='pay-form'>
+				    <h2>选择支付类型</h2>
+					 <div class='payment-type' style='padding:10px 30px'>
+						<input id="paymentType" name="pt" type="radio" checked="checked"  />
+						<label for="paymentType">普通支付</label>
+						<input id="presentType" name="pt" type="radio" />
+						<label for="presentType">赠送好友</label>
+						<input id="creditType" name="pt" type="radio" />
+						<label for="creditType">直充</label>
+						<input id="peerType" name="pt" type="radio" />
+						<label for="peerType">索要支付</label>
+			    	</div>
 					<h2>选择你要充值的面值</h2>
 					
 					<ul class="pay-type clearfix">
 						<li class="gem-100">
 							<div title="充值100个宝石">充值100个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),10,'您的“10人人豆换100宝石”的订单');" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(100,10,'100个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">10</span>个人人豆</div>
 						</li>
 						<li class="gem-200">
 							<div title="充值200个宝石">充值200个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),20,'您的“20人人豆换200宝石”的订单');" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(200,20,'200个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">20</span>个人人豆</div>
 						</li>
 						<li class="gem-500">
 							<div title="充值500个宝石">充值500个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),50,'您的“50人人豆换500宝石”的订单');" value="   " class="btn-red"></p>
+							<p><input type="button" onclick="requestPayment(500,50,'500个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">50</span>个人人豆</div>
 						</li>
 						<li class="gem-1000">
-							<div title="充值500个宝石">充值1000个宝石</div>
-							<p><input type="button" onclick="INU_POST(document.getElementById('getForm'),100,'您的“100人人豆换1000宝石”的订单');" value="   " class="btn-red"></p>
+							<div title="充值1000个宝石">充值1000个宝石</div>
+							<p><input type="button" onclick="requestPayment(1000,100,'1000个宝石');return false;" value="   " class="btn-red"></p>
 							<div>价格：<span style="font-weight: bold; color: #009900;">100</span>个人人豆</div>
 						</li>
 					</ul>
-				</div>
-				
-				<h2>人人弹框支付页面</h2>
-			 
-
-				<label for="amount">支付人人豆数额</label>
-				<input id="amount" type="text" value="1" />
-				<br/>
-				<label for="message">购买商品名称</label>
-				<input id="message" type="text" value="15游戏币" />
-				<br/>
-				<p>选择支付类型</p>
-				<input id="paymentType" name="pt" type="radio" />
-				<label for="paymentType">普通支付</label>
-				<input id="presentType" name="pt" type="radio" checked="checked" />
-				<label for="presentType">赠送好友</label>
-				<input id="creditType" name="pt" type="radio" />
-				<label for="creditType">直充</label>
-				<input id="peerType" name="pt" type="radio" />
-				<label for="peerType">索要支付</label>
-				<br/>
-				<p>是否沙箱环境？</p>
-				<input id="sandbox" name="case" type="radio" checked="checked" />
-				<label for="sandbox">沙箱环境</label>
-				<input id="real" name="case" type="radio" />
-				<label for="real">真实环境</label>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<a href="#" onclick="requestPayment();return false">点击调出弹层赠送支付</a> 
+					
+					<h2>宝石可以用来使货车进货加速或者购买漂亮的店面装饰来增加人气</h2>
+				</div> 
 			</div>			 
 		
 		</div>

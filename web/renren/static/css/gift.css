@@ -8,7 +8,9 @@ h1 {
 h2 {
 	font-weight: bold;
 }
-
+.items {
+	background-color: #F5DEBC;
+}
 .padding_content {
 	padding: 8px;
 }

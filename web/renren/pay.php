@@ -208,14 +208,26 @@ padding-right:20px;
  </style>
 
 <script type="text/javascript">
-
+ 
 function callback(responseItem){
 	var errCode = responseItem.getErrorCode();
 	var errMsg = responseItem.getErrorMessage();
 	var params = responseItem.getData();
+	console.debug("params",params);
 	var msg;
 	if (errCode == Payment.ResponseCode.OK) {
-		msg = "成功了。";
+ 		msg = "平台充值结果为：成功充值" +params.message  +"。如果显示结果不对，尝试刷新页面。";
+		
+	 
+		var alert_dialog = new Dialog(
+				Dialog.DIALOG_ALERT, 
+				{message: msg,title: '提示框标题',callBack:function(){ 
+					var addGem = parseInt(params.amount) * 10; 
+					var gemNode = document.getElementById('gemValue'); 
+					console.debug("gemNode",gemNode.getInnerHTML(),addGem);
+					gemNode.setTextValue(parseInt(gemNode.getInnerHTML() ) + parseInt(addGem) );
+				} }
+		);
 	}
 	else if (errCode == Payment.ResponseCode.USER_CANCELLED) {
 		msg = "用户取消了消费。";
@@ -223,29 +235,17 @@ function callback(responseItem){
 	else {
 		msg = "由于某种原因没支付成功。";
 	}
-	msg += "平台返回 错误消息为：" + errMsg;
-	var alert_dialog = new Dialog(
-			Dialog.DIALOG_ALERT, 
-			{message: msg,title: '提示框标题' }
-	);
+	
 }
 
 function requestPayment(amount,gem,message) {
-	var payType = Payment.PaymentType.PRESENT;
-	if (document.getElementById('paymentType').getChecked()) {
-		payType = Payment.PaymentType.PAYMENT;
-	}
-	else if (document.getElementById('creditType').getChecked()) {
-		payType = Payment.PaymentType.CREDIT;
-	}
-	else if (document.getElementById('peerType').getChecked()) {
-		payType = Payment.PaymentType.PEER;
-	}
+	var payType = Payment.PaymentType.PAYMENT;
+ 
 
 	var params = {}; 
 	params[Payment.Field.AMOUNT] = amount; 
 	params[Payment.Field.MESSAGE] = message;
-	params[Payment.Field.PARAMETERS] = '{name:"gem",amount:amount,gem:gem,message:message,pid:<?php echo $pid;?>}'; 
+	params[Payment.Field.PARAMETERS] = "{name:'gem',amount:"+amount+",gem:"+gem+",message:"+message+",pid:<?php echo $pid;?>}"; 
 	params[Payment.Field.PAYMENT_TYPE] = payType; 
 	params[Payment.Field.SANDBOX] = true;
 	var itemParams1 = {}; 
@@ -290,23 +290,13 @@ function requestPayment(amount,gem,message) {
 					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" /></h2>
 					<p>
 						<label>
-							宝石余额: <span class='gem'><?php echo $gem; ?></span>
+							宝石余额: <span class='gem' id='gemValue'><?php echo $gem; ?></span>
 						</label>
 					</p>
 				</div>
 				
 				<div class='pay-form'>
-				    <h2>选择支付类型</h2>
-					 <div class='payment-type' style='padding:10px 30px'>
-						<input id="paymentType" name="pt" type="radio" checked="checked"  />
-						<label for="paymentType">普通支付</label>
-						<input id="presentType" name="pt" type="radio" />
-						<label for="presentType">赠送好友</label>
-						<input id="creditType" name="pt" type="radio" />
-						<label for="creditType">直充</label>
-						<input id="peerType" name="pt" type="radio" />
-						<label for="peerType">索要支付</label>
-			    	</div>
+				     
 					<h2>选择你要充值的面值</h2>
 					
 					<ul class="pay-type clearfix">

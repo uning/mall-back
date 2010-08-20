@@ -12,7 +12,7 @@
 		<title>Super Mall</title>
 		
 	</head>
-	<body>
+	<body bgcolor="#F5DEBC">
 	<form action="invite/invite.php?" method="post">
 	<!--
 	<center><h1 style="font-size:22px; font-family: tahoma; color: #4880d7;">为你的朋友选择个礼物!</h1></center>
@@ -30,7 +30,7 @@
 <td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
 </tr>
 </table>
-<div style="background-color: #F5DEBC;">
+<div>
 	<ul class="items">
 <?php
  

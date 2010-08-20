@@ -1,14 +1,13 @@
+
 <?php
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-$_REQUEST['linkeid']= '202150436:4c6e4b0ec431b';
-$_REQUEST['xn_sig_user']=45182749;
+$_REQUEST['linkid']= '202150436:4c6e4b0ec431b';$_REQUEST['xn_sig_user']=45182749;
 $tw = TT::LinkTT();
 if($linkid){
 	
 	$irec = $tw->getbyuidx('linkid',$linkid);
-	print_r($irec);
 }
 $fromuser = $irec['pid'];	
 $touser = $_REQUEST['xn_sig_user'];	
@@ -16,7 +15,8 @@ if(!$irec){?>
 <xn:if-is-app-user>
 	<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
 	<xn:else>
-		<xn:redirect url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>" />
+		<xn:redirect
+			url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>" />
 	</xn:else>
 </xn:if-is-app-user>
 <?php 

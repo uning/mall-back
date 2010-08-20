@@ -12,7 +12,7 @@
 	} 
 
 	
-	$payment = json_decode($_POST['xn_sig_payment'],true);
+	$pp = json_decode($_POST['xn_sig_payment'],true);
 	//{"amount":"1","message":"orderingsomelowers.",
 	//"parameters":"{type:'Tulip',quantity:5}",
 	//"paymentType":"payment",
@@ -32,11 +32,11 @@
 	$ot = TT::get_tt('order');  
 	$sess=TTGenid::getbypid($pid);
 	$user = new TTUser($sess['id']);
-	
+	$payment = array('amount'=>$pp['amount'],'sandbox'=>$pp['sandbox'],'paymentType'=>$pp['paymentType'] ,'orderedTime'=>$pp['orderedTime']);
 	$payment['pid'] = $pid; 
 	$payment['uid'] = $sess['id'];
 	$payment['status'] = 0;
-	$payment['gem']= $payment['amount'] * 10;
+	$payment['gem']= $pp['amount'] * 10;
 	 
 	//$gem = $user->chGem(0);
 	

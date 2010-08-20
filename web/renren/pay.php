@@ -223,7 +223,7 @@ function callback(responseItem){
 	else {
 		msg = "由于某种原因没支付成功。";
 	}
-	msg += "平台返回 错误消息为：" + errMsg;
+	msg += "平台充值结果为：" + errMsg;
 	var alert_dialog = new Dialog(
 			Dialog.DIALOG_ALERT, 
 			{message: msg,title: '提示框标题' }

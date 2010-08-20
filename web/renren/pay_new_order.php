@@ -32,7 +32,7 @@
 	$ot = TT::get_tt('order');  
 	$sess=TTGenid::getbypid($pid);
 	$user = new TTUser($sess['id']);
-	$payment = array('amount'=>$pp['amount'],'sandbox'=>$pp['sandbox'],'paymentType'=>$pp['paymentType'] ,'orderedTime'=>$pp['orderedTime']);
+	$payment = array('amount'=>$pp['amount'],'message'=>$pp['message'], 'sandbox'=>$pp['sandbox'],'paymentType'=>$pp['paymentType'] ,'orderedTime'=>$pp['orderedTime']);
 	$payment['pid'] = $pid; 
 	$payment['uid'] = $sess['id'];
 	$payment['status'] = 0;

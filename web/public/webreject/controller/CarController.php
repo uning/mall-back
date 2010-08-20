@@ -306,7 +306,7 @@ class CarController
 	    $tu = new TTUser( $uid );
 	    $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
 	    $copilot = $tu->getbyid( $id );
-	    if( !$copilot ){
+	    if( !$copilot || !$copilot['bag']){
 	        $ret['s'] = 'copilotnotexsit';
 	        return $ret;
 	    }

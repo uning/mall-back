@@ -8,6 +8,8 @@ $gtt =TT::get_tt('genid',0,'slave');
 $now = time();
 $datestr = date('Y-m-d',$now);
 $weekday = date('N',$now);
+$day_starttime = strtotime($datestr);
+$day_endtime = $day_starttime + 86400;
 echo "$datestr $weekday\n";
 
 $dbconfig=array(
@@ -35,20 +37,30 @@ function getModel($name){
 }
 
 $g_dgm = getModel('daily_varibles');
-function store_varible($pair)
+function store_varible($pairs)
 {
-	global $g_dgm,$datestr;
+	if(!$pairs)
+          return;
+	global $g_dgm,$datestr,$db;
 	$data['date']=$datestr;
-	foreach($pair as $k=>$v){
+	foreach($pairs as $k=>$v){
 		if(!$v)
-		   $v = 0;
+			$v = 0;
 		$data['name']=$k;
 		$data['value']=$v;
-try{
-		$g_dgm->insert($data);
-}catch(Exception  $e){
-	echo "exception : ".$e->getMessage()."\n";
-}
+		try{
+			$sql = "select * from daily_varibles where `date`='$datestr' and `name`='$k'";	
+			$rdata = $db->fetchRow($sql);
+			//echo "$sql\n";
+			//print_r($rdata);
+			if($rdata){
+				$g_dgm->update($data,$rdata['id']);
+
+			}else
+				$g_dgm->insert($data);
+		}catch(Exception  $e){
+			echo "exception : ".$e->getMessage()."\n";
+		}
 	}
 }
 //$dgfs = $dgm->getTableFields('daily_general');

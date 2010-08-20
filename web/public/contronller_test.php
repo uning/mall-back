@@ -30,14 +30,17 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
         echo "===============================================\n\n";
 }
+$now = 1282208631;
+$now = time();
+//dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
+//return;
+dotest('GoodsController.dcheckout',array('u'=>106,'now'=>$now));
+return;
 
 dotest('Gift.accept');
 return;
 dotest('ItemController.buy');
 dotest('ItemController.move');
-return;
-$now = time();
-dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
 return;
 dotest('Man.satisfy',array('u'=>2,'type'=>1));
 return;

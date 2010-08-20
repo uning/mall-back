@@ -182,6 +182,7 @@ class JsonServer{
 				throw new JsonServerExecption( "$cn don't has callable method $m");
 			}
 		}
+
 		$log_method=array(
 				'Achieve.finish'=>1,
 				'Advert.buy'=>1,
@@ -215,7 +216,16 @@ class JsonServer{
 				'Friend.invite_neighbor'=>1,
 				'Friend.accept_neighbor'=>1,
 					);
-		$ret=$c->$m($req['p']);
+
+		try{
+			$ret=$c->$m($req['p']);
+		}catch(Exception $e){
+			$r['s']='exc';
+			$r['msg']=$e->getMessage();
+			$r['exce']=$e->getTrace();
+			error_log($method.':'.$r['msg']);
+			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
+		}
 		if($this->_debug){
 			CrabTools::myprint($ret,REQ_DATA_ROOT.$mypre.'.resp');
 		}
@@ -223,11 +233,13 @@ class JsonServer{
 			$ret['s']= "KO";
 			$ret['msg']= "$cn::$m return null";
 		}
+		$tm = $_SERVER['REQUEST_TIME'];
 		if($ret['s']=='OK'){
 			if(array_key_exists($method,$log_method)){
-				$tm = $_SERVER['REQUEST_TIME'];
-				TTLog::record(array('m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
+				TTLog::record(array('s'=>'OK','m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 			}
+		}else{
+			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 		}
 		return $ret;
 	}

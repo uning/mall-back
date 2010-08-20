@@ -5,3 +5,4 @@ web/public/upload/*
 *.bak
 *.log
 *.tt
+*.csv

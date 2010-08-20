@@ -23,11 +23,11 @@ for($i=1;$i<=$user_num;++$i){
 	$dgr['money']+=$data['money'];
 	$dgr['exp']+=$data['exp'];
 
-	if(1 || $ud['at']+$gap>$now){//daily active user
+	if(1 || $ud['at']  > $day_starttime ){//daily active user
 		$dgr['login_num']++;
 		if(!$data['f_num'])
 		   $data['f_num']=0;
-		fputcsv($uhf,array($uid,$date,$data['money'],$data['exp'],$data['gem'],$data['f_num']));
+		fputcsv($uhf,array($uid,$datestr,$data['money'],$data['exp'],$data['gem'],$data['f_num']));
 	}
 	foreach(array(3,7,30) as $sd){//recent active user
 		if($ud['at']+$sd*$gap>$now){
@@ -50,7 +50,7 @@ if($dbconfig['password']){
   $cmd.=" -p'{$dbconfig['password']}' ";
 }
 $cmd .= $dbconfig['dbname'];
-$cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE user_history  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         
+$cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE '.$table.'  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         
 //echo $cmd;
 system($cmd);
 fclose($uhf);

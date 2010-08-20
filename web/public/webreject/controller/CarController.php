@@ -243,7 +243,7 @@ class CarController
 			    return $ret;
 		    }
 		}
-		$car_obj['t'] = 0;
+//		$car_obj['t'] = 0;
         $num = $car['goodsNumber'];
         if( $car_obj['addgoods'] ){
             $num += $car_obj['addgoods'];

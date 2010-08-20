@@ -435,7 +435,7 @@ class CarController
 	    if( $copi['recall'] == 1 ){
 	        $car_obj['recall'] = 1;
 	    }	    
-	    $tu->puto( $car_obj,TT::CAR_GROUP );
+	    $tu->puto( $car_obj,TT::CAR_GROUP,false );
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
 //	    $ret['car'] = $car_obj;  // for debug

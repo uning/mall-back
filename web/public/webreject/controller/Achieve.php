@@ -39,7 +39,7 @@ class Achieve
 //				$ret['test'][$tag]=array('tag'=>$tag,'is_done'=>0);
 			}
 		}	
-		$ret['s'] = 'ok';
+		$ret['s'] = 'OK';
 		return $ret;
 	}
 

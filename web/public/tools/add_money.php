@@ -27,3 +27,5 @@ if(!$u)
 	die( "no u get");
 $tu = new TTUser($u);
 $tu->numch('money',100000);
+$tu->numch('gem',500);
+echo "OK\n";

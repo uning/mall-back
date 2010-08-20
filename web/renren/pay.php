@@ -89,11 +89,11 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 }
 
 #navga ul li.forum a {
-    background-position: 0 -352px;
+    background-position: 0 -351px;
 }
 
 #navga ul li.forum a.active, #navga ul li.forum a:hover {
-    background-position: 0 -397px;
+    background-position: 0 -396px;
 }
 #navga ul li.payment a {
     background-position: 0 -440px;
@@ -275,7 +275,7 @@ function requestPayment(amount,gem,message) {
 					<li class="freegift"><a href="http://apps.renren.com/livemall?a=freeGift" id="freeGift" >免费礼物</a></li>
 					<li class="invite" ><a href="http://apps.renren.com/livemall?a=invite" >邀请好友</a></li>
 					<li class="faq"><a id='faq'  href="http://apps.renren.com/livemall?a=faq" >常见问题</a></li>
-					<li class="problem"><a  href="javascript:alert('暂未开放');"  id="problem">问题反馈</a></li>
+					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum">论坛</a></li>
 					<li class="payment" ><a  class="active" href="http://apps.renren.com/livemall/pay.php"   id ="pay">充值</a></li>
 				</ul>
 				</div>

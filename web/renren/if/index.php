@@ -99,7 +99,7 @@ function install_swf(pid){
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
-        <li class="forum"><a href="javascript:sendNotifcation();" class="fullpage" id="forum">论坛</a></li>
+        <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum">论坛</a></li>
 		<li class="payment" ><a  class='fullpage' href="http://apps.renren.com/livemall/pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>

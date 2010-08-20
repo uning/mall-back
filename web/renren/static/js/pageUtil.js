@@ -223,7 +223,7 @@ var showFlash = function() {
 	oldIframe = iframe;
 	iframe = false;
 	tabs.children('a').removeClass('active');
-	flashTab.addClass('active');
+	flashTab.children('a').addClass('active');
 	setTimeout(cleanup, 500);
 };
 

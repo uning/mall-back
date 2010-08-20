@@ -34,7 +34,11 @@
 			$ret['app_res_order_id']= $oid;
 			echo json_encode($ret);
 	
-		} 
+		} else{
+			$ret['app_res_code']= "error gem";
+			echo json_encode($ret);
+			exit(); 
+		}
 	} 
 	
 	 

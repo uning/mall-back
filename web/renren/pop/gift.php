@@ -60,7 +60,9 @@
 	
 	function getUserLevel()
 	{
-		return 1;
+		$ses = TTGenid::getbypid($_REQUEST['pid']);
+		$user = new TTUser($ses['id']);
+		return $user->getLevel();
 	}
 	
 	$level = getUserLevel();

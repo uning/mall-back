@@ -27,6 +27,7 @@
 		<resource name="quests" label="游戏素材17" url="./resource/simplifiedchinese/xml/quests.xml" type="xml" />
 		<resource name="adverts" label="游戏素材18" url="./resource/simplifiedchinese/xml/adverts.xml" type="xml" />
 		<resource name="achieves" label="游戏素材19" url="./resource/simplifiedchinese/xml/achieves.xml" type="xml" />
+		<resource name="tasks" label="游戏素材17" url="./resource/simplifiedchinese/xml/tasks.xml" type="xml" />
 		
 		<resource name="Achieve" label="游戏素材20" url="./resource/common/swf/Achieve.swf?v=tc1.1" type="swf" />
 		<resource name="sounds" label="游戏素材21" url="./resource/common/swf/sounds.swf?v=tc1.1" type="swf" />

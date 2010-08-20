@@ -382,10 +382,12 @@ class CarController
 	    $tu = new TTUser( $uid );
             $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
             $copilot = $tu->getbyid( $id );
+        /*            
 	    if( !$copilot ){
 	        $ret['s'] = 'copilotnotexsit';
 	        return $ret;
 	    }
+	    */
 	    $car_obj = $tu->getbyid( $cid );
 	    if( !$car_obj ){
 	        $ret['s'] = 'carnotexsit';

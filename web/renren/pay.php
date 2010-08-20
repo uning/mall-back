@@ -218,11 +218,12 @@ function callback(responseItem){
 	if (errCode == Payment.ResponseCode.OK) {
  		msg = "平台充值结果为：成功充值" +params.message  +"。如果显示结果不对，尝试刷新页面。";
 		
-		var addGem = params.parameters.gem;
+		var addGem = parseInt(params.amount) * 10;
+		 
 		var gemNode = document.getElementById('gemValue'); 
 		console.debug("gemNode",gemNode.getInnerHTML(),addGem);
 		gemNode.setTextValue(parseInt(gemNode.getInnerHTML() ) + parseInt(addGem) );
-		
+	 
 		var alert_dialog = new Dialog(
 				Dialog.DIALOG_ALERT, 
 				{message: msg,title: '提示框标题',callBack:function(){

@@ -3,8 +3,7 @@
 	
 	$pid =   $_POST['xn_sig_user']; 
 
-	file_put_contents("/home/hotel/pay.log",$_POST);
-	
+ 	
 	$secret  = Renrenconfig::$pay_secure;//
 	if($_POST['xn_sig_skey'] != md5($secret.$pid) ){
 		$ret['app_res_code']= "error";
@@ -13,16 +12,16 @@
 	} 
 
 	
-	$payment = json_decode($_POST['xn_sig_payment']);
+	$payment = json_decode($_POST['xn_sig_payment'],true);
 	//{"amount":"1","message":"orderingsomelowers.",
 	//"parameters":"{type:'Tulip',quantity:5}",
 	//"paymentType":"payment",
 	//"sandbox":true,
 	// "items": [{"skuId":"test_sku1","price":20,"count":2,"description":"demo descriptionred ower"},],
 	//"orderedTime":1261633596528}
-	if($_POST['xn_sig_sandbox'] == true){
+	if($_POST['xn_sig_sandbox'] == 'true'){
 	    //fake payment
-		$payment['sandbox']  = true;
+		$payment['sandbox']  = 'true';
 	}
 	
 	$ot = TT::get_tt('order');  

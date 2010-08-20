@@ -234,15 +234,7 @@ function callback(responseItem){
 
 function requestPayment(amount,gem,message) {
 	var payType = Payment.PaymentType.PAYMENT;
-	/*if (document.getElementById('paymentType').getChecked()) {
-		payType = Payment.PaymentType.PAYMENT;
-	}
-	else if (document.getElementById('creditType').getChecked()) {
-		payType = Payment.PaymentType.CREDIT;
-	}
-	else if (document.getElementById('peerType').getChecked()) {
-		payType = Payment.PaymentType.PEER;
-	}*/
+ 
 
 	var params = {}; 
 	params[Payment.Field.AMOUNT] = amount; 
@@ -298,19 +290,7 @@ function requestPayment(amount,gem,message) {
 				</div>
 				
 				<div class='pay-form'>
-				    <!--
-				    <h2>选择支付类型</h2>
-					 <div class='payment-type' style='padding:10px 30px'>
-						<input id="paymentType" name="pt" type="radio" checked="checked"  />
-						<label for="paymentType">普通支付</label>
-						<input id="presentType" name="pt" type="radio" />
-						<label for="presentType">赠送好友</label>
-						<input id="creditType" name="pt" type="radio" />
-						<label for="creditType">直充</label>
-						<input id="peerType" name="pt" type="radio" />
-						<label for="peerType">索要支付</label>
-			    	</div>
-					-->
+				     
 					<h2>选择你要充值的面值</h2>
 					
 					<ul class="pay-type clearfix">

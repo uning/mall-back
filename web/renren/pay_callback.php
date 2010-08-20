@@ -14,7 +14,7 @@
 	
 	
 	$oid = $_POST['xn_sig_order_id'];  
-	$payment = $ot->get($rid);
+	$payment = $ot->get($oid);
 	
 	if($payment == null){
         $ret['app_res_code']= "error no order";

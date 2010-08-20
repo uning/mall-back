@@ -47,7 +47,7 @@ class CarController
 		        $ret['index'] = $index;
 			    return $buy_ret;
 		    }
-		    $row['t'] = 0;
+//		    $row['t'] = 0;
 		    $ids[] = $tu->puto($row,TT::CAR_GROUP);
 		    $index++;
 		}	
@@ -263,10 +263,11 @@ class CarController
 				unset($goods_data['id']);
 			$ids[$i]= $tu->puto( $goods_data,TT::GOODS_GROUP );
 		}
+		unset( $car_obj['t'] );
         unset( $car_obj['addgoods'] );
         unset( $car_obj['recall'] );
         unset( $car_obj['copolitTag'] );
-        $tu->puto( $car_obj,TT::CAR_GROUP );		
+        $tu->puto( $car_obj,TT::CAR_GROUP,false );		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){
 		    $last_exp = $tu->getf( TT::EXP_STAT );

@@ -216,6 +216,13 @@ function callback(responseItem){
 	var msg;
 	if (errCode == Payment.ResponseCode.OK) {
 		msg = "成功了。";
+		msg += "平台充值结果为：" + errMsg +"。刷新页面查看结果。";
+		var alert_dialog = new Dialog(
+				Dialog.DIALOG_ALERT, 
+				{message: msg,title: '提示框标题',callBack:function(){
+					
+				} }
+		);
 	}
 	else if (errCode == Payment.ResponseCode.USER_CANCELLED) {
 		msg = "用户取消了消费。";
@@ -223,13 +230,7 @@ function callback(responseItem){
 	else {
 		msg = "由于某种原因没支付成功。";
 	}
-	msg += "平台充值结果为：" + errMsg +",刷新页面查看结果。";
-	var alert_dialog = new Dialog(
-			Dialog.DIALOG_ALERT, 
-			{message: msg,title: '提示框标题',callBack:function(){
-			
-			} }
-	);
+	
 }
 
 function requestPayment(amount,gem,message) {
@@ -241,7 +242,7 @@ function requestPayment(amount,gem,message) {
 	params[Payment.Field.MESSAGE] = message;
 	params[Payment.Field.PARAMETERS] = '{name:"gem",amount:amount,gem:gem,message:message,pid:<?php echo $pid;?>}'; 
 	params[Payment.Field.PAYMENT_TYPE] = payType; 
-	params[Payment.Field.SANDBOX] = true;
+	params[Payment.Field.SANDBOX] = false;
 	var itemParams1 = {}; 
 	itemParams1[Payment.BillingItem.SKU_ID] = 'gem'; 
 	itemParams1[Payment.BillingItem.PRICE] = amount; 

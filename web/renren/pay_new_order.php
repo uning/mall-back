@@ -1,31 +1,59 @@
 <?php
  	require_once('config.php');
-	$ot = TT::get_tt('order'); 
 	
-	$pid =   $_REQUEST['xn_sig_user']; 
+	$pid =   $_POST['xn_sig_user']; 
+	
+	$secret  = Renrenconfig::$pay_secure;//
+	if($_POST['xn_sig_skey'] != md5($secret.$pid) ){
+		$ret['app_res_code']= "error";
+		echo json_encode($ret);
+		exit();
+	} 
+
+	
+	$payment = json_decode($_POST['xn_sig_payment']);
+	//{"amount":"1","message":"orderingsomelowers.",
+	//"parameters":"{type:'Tulip',quantity:5}",
+	//"paymentType":"payment",
+	//"sandbox":true,
+	// "items": [{"skuId":"test_sku1","price":20,"count":2,"description":"demo descriptionred ower"},],
+	//"orderedTime":1261633596528}
+	if($_POST['xn_sig_sandbox'] == true){
+	//fake payment
+		payment.sandbox  = true;
+	}
+	
+	$ot = TT::get_tt('order');  
 	$sess=TTGenid::getbypid($pid);
 	$user = new TTUser($sess['id']);
 	
-	$gem = $user->chGem(0);
+	$payment['pid'] = $pid; 
+	$payment['uid'] = $sess['id'];
+	$payment['status'] = 0;
+	 
+	//$gem = $user->chGem(0);
 	
-	chGem(232);
+	//chGem(232);
+ 	$orderid = $ot->put(null,$payment);
 	
-	$r['u']=$sess['id'];
-	$r['pid'] = 
-	$r['gem']=2;
-	$orderid = $ot->put(null,$r);
-	$oq=$ot->getQuery();
+	//返回数据
+	//{"app_res_order_id":20091223061349,"app_res_code":"OK","app_res_message":"10人人豆兑换100Q币","app_res_user":230121017}
+	$ret['app_res_order_id']= $orderid;
+	$ret['app_res_code']= "OK";
+	$ret['app_res_message']= $payment.message;
+	$ret['app_res_user']= $pid; 
 	
-	$oq->setLimit(10,0);
-	$oq->addCond("pid",TokyoTyrant::RDBQC_STREQ , $pid);
-	$orders =- $oq->search();
+	echo json_encode($ret);
 	
-	
-	
+	//$oq=$ot->getQuery();	
+	//$oq->setLimit(10,0);
+	//$oq->addCond("pid",TokyoTyrant::RDBQC_STREQ , $pid);
+	//$orders =- $oq->search();
+ 	
 //	$id = $sess['id'];
 //	$sess=TTGenid::getbypid($id);
-	
-//	$rid=$ot->put(null,$record);
-    
-	$record=$ot->get($rid)
+//	$rid=$ot->put(null,$record);    
+//	$record=$ot->get($rid)
+
+
 ?>

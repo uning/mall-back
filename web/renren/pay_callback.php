@@ -22,7 +22,7 @@
 		exit(); 
 	}
 	if($payment['status'] == 0){	
-		if($user->chGem()){
+		if($user->chGem($payment['gem'])){
 			$payment['status'] = 1;
 			$payment['handledTime'] =  time();
 			$ot->put($oid,$payment);   

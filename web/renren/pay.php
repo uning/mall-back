@@ -219,7 +219,7 @@ function callback(responseItem){
 		
 		var addGem = params.parameters.gem;
 		var gemNode = document.getElementById('gemValue'); 
-		gemNode.innerHTML = parseInt(gemNode.innerHTML) + parseInt(addGem);
+		gemNode.setTextValue(parseInt(gemNode.getInnerHTML() ) + parseInt(addGem) );
 		
 		var alert_dialog = new Dialog(
 				Dialog.DIALOG_ALERT, 

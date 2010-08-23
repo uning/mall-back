@@ -31,8 +31,8 @@
 <td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
 </tr>
 </table>
-<div class="items">
-	<ul class="items">
+<div>
+	<ul>
 <?php
  	require_once '../config.php';
 	require_once 'freeGift.php';

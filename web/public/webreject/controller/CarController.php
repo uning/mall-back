@@ -423,7 +423,9 @@ class CarController
 	        unset( $car_obj['addgoods'] );
 	        unset( $car_obj['accelerate'] );
 	        unset( $car_obj['t'] );
-	        unset( $car_obj['help'] );	        
+	        unset( $car_obj['help'] );
+	        unset( $car_obj['goodsTag'] );
+	        unset( $car_obj['copolitTag']);
 	    }    
 	    $copilot['id'] = $id;
 	    $tu->puto( $copilot );

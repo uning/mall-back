@@ -197,56 +197,40 @@ class UserController
 	 * 扩大商厦
 	 * @param $params
 	 *   require  u         -- 玩家id
-	 *            cap       -- 商厦容量，字符串，长宽用逗号隔开
 	 * @return 
 	 *            s         --  OK
 	 */
 
 	public function enlarge_mall ( $params )
 	{
-		//该数组是UpgradeConfig.php中数组的一个子集，不涉及商厦容量无变化的元素
-		$mall_level = array(
-				0=>array('level'=>1,'capacity'=>"3,2",'needmoney'=>0)
-			    ,1=>array('level'=>2,'capacity'=>"3,3",'needmoney'=>500)
-				,2=>array('level'=>5,'capacity'=>"4,3",'needmoney'=>1000)
-				,3=>array('level'=>9,'capacity'=>"5,3",'needmoney'=>10000)
-				,4=>array('level'=>13,'capacity'=>"5,4",'needmoney'=>10000)
-				,5=>array('level'=>17,'capacity'=>"6,4",'needmoney'=>30000)
-				,6=>array('level'=>21,'capacity'=>"7,4",'needmoney'=>30000)
-				,7=>array('level'=>25,'capacity'=>"7,5",'needmoney'=>50000)
-				,8=>array('level'=>29,'capacity'=>"8,5",'needmoney'=>80000)
-				,9=>array('level'=>33,'capacity'=>"8,6",'needmoney'=>100000)
-				,10=>array('level'=>37,'capacity'=>"9,6",'needmoney'=>200000)
-				,11=>array('level'=>41,'capacity'=>"10,6",'needmoney'=>300000)
-				,12=>array('level'=>45,'capacity'=>"10,7",'needmoney'=>500000)
-				,13=>array('level'=>54,'capacity'=>"10,8",'needmoney'=>800000)
-				,14=>array('level'=>66,'capacity'=>"11,8",'needmoney'=>1000000)
-				);	    
+		$mall_level = array(//键为等级，值为所需金币
+				 1=>0
+			    ,2=>500
+				,5=>1000
+				,9=>10000
+				,13=>10000
+				,17=>30000
+				,21=>30000
+				,25=>50000
+				,29=>80000
+				,33=>100000
+				,37=>200000
+				,41=>300000
+				,45=>500000
+				,54=>800000
+				,66=>1000000
+				);	    			 
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-
-		$ua = $tu->getf( array( TT::CAPACITY_STAT,TT::EXP_STAT ) );
-		$i = 0;//找出当前商厦状态对应数组中第几个
-		foreach( $mall_level as $k=>$v ){
-			if( $v['capacity'] != $ua['capacity'] ){
-				continue;
-			}
-			$i = $k;		    
-		}
-
-		$level = UpgradeConfig::getLevel( $ua['exp'] );
-		if( $level < $mall_level[$i+1]['level'] ){
-			$ret['s'] = 'level';
-			return $ret;
-		}
+		$exp = $tu->getf( TT::EXP_STAT );
+		$need = UpgradeConfig::getUpgradeNeed( $exp );
 		//检查金币
-		$leftmoney = $tu->change( TT::MONEY_STAT,0-$mall_level[$i+1]['needmoney'] );
+		$leftmoney = $tu->change( TT::MONEY_STAT,0-$mall_level[$need['level']]);
 		if( $leftmoney<0 ){
 			$ret['s'] = 'money';
 			return $ret;
 		}
-
-		$tu->putf( TT::CAPACITY_STAT,$mall_level[$i+1]['capacity']);
+		$tu->putf( TT::CAPACITY_STAT,$need['shopwidth'].",".$need['shopheight'] );
 		$ret['s'] = 'OK';
 		return $ret;
 	}

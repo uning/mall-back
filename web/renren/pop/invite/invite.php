@@ -62,7 +62,6 @@ if($_REQUEST['gift'])
 </tr>
 </table>
 <table>
-<tr>
 <?php 
 	require_once '../freeGift.php';
     $accept_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
@@ -108,7 +107,6 @@ if($_REQUEST['gift'])
 	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
-
 <tr>
 <td>
 <div  id="recm">

@@ -283,7 +283,7 @@ class GoodsController
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
 				$g['ctime'] = $now;  
-				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$gaps =  self::getTimeRates($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
 					if($snum >= $g['num']){//卖完了
@@ -437,7 +437,7 @@ class GoodsController
 					$curtime = $g['stime'];
 				$g['ctime'] = $now;  
 				$gaps = self::getTimeRates($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
-				$ret[$g['id']]['getTimeRates']=array($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$ret[$g['id']]['getTimeRates']=array($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				$ret[$g['id']]['gaps']=$gaps;
 				$ret[$g['id']]['shop']=$s;
 				$ret[$g['id']]['mydata']=$g;

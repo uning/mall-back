@@ -33,7 +33,7 @@
 <div class="items">
 	<ul class="items">
 <?php
- 
+ 	require_once '../config.php';
 	require_once 'freeGift.php';
 	function getAttr($name,$xml)
 	{
@@ -60,7 +60,9 @@
 	
 	function getUserLevel()
 	{
-		return 1;
+		$ses = TTGenid::getbypid($_REQUEST['pid']);
+		$user = new TTUser($ses['id']);
+		return $user->getLevel();
 	}
 	
 	$level = getUserLevel();

@@ -23,11 +23,14 @@ h2 {
 	padding: 17px 11px 0px 0px;
 	text-align: center;
 }
-
+.gift_name {
+	margin: 5px 17px 0px 5px;
+	color: #70461e;
+	font-weight: lighter;
+}
 li.giftLocked .gift_name {
 	color: #666666;
 	margin: -4px 3px 0 0;
-	font-weight: lighter;
 }
 
 .gift_name span {
@@ -102,7 +105,6 @@ li.giftLocked .gift_name {
 	color: #70461e;
 	text-align: center;
 	font-size: 12px;
-	font-weight: lighter;
 }
 
 .main_gift_cont .gift_name span {

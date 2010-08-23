@@ -51,7 +51,6 @@ class ItemController {
 			elseif( $row['tag'] == '60102' ){//电影院买后立即可播放电影
 			    $row['id'] = $tu->getdid( false,TT::CINEMA_GROUP );
 			    $row['ctime'] = $now;
-//			    $row['lock'] = '0';
 			}
 			else{//不维护店面人气，但厕所的人气需包含
 				$row['id'] = $tu->getdid( false,TT::ITEM_GROUP );//other
@@ -85,6 +84,7 @@ class ItemController {
 		$index = 1;
 		$ids = array();
 		$pop=0;
+		$now = time();
 		foreach( $params['d'] as $index=> $row ){			
 			$item_obj = $tu->getbyid( $row['id'] );
 			if( !$item_obj ){
@@ -104,6 +104,9 @@ class ItemController {
 				GoodsController::checkout($params);
 			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
+			    if( $item['tag'] == '60102'){//移动电影院后，结算时间应当
+			        $row['ctime'] = $now;
+			    }
 				if( $row['pos'] != 's' && $item_obj['pds'] == 's' ){
 					$pop += $item['pop'];
 				}

@@ -192,7 +192,6 @@ class JsonServer{
 				'Gift.send'=>1,
 				'Gift.accept'=>1,
 				'Man.update'=>1,
-//				'UserController.precheckout'=>1,
 				'UserController.update_friends'=>1,
 				'UserController.enlarge_mall'=>1,
 				'ItemController.buy'=>1,

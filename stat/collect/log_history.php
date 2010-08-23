@@ -18,6 +18,7 @@ echo "start=$start lognum = $num\n";
 
 $table = 'log_history';
 $uhfname = $myloc."/data/$table/$weekday.csv";
+system("mkdir -p $myloc/data/$table/");
 $uhf=fopen($uhfname,'w') or die("open $uhfname failed");
 
 $cont_no = 0;
@@ -28,6 +29,8 @@ for($i=$start;$i<=$end;++$i){
 	if(!$data){
 		continue;	
 	}
+	if($tm < $day_starttime)
+                continue;
 	if($tm > $day_endtime)
 		break;
 	$s = $data['s'];

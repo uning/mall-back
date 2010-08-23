@@ -2,5 +2,5 @@
 date=`date +"%Y-%m-%d"`
 work_dir=/home/hotel/work/mall/backend/stat
 log=$work_dir/log
-cd $work/collect/ && php  user_history.php >>$log/runlog.$date 2>>$log/runerr.$date
-cd $work/collect/ && php  log_history.php   >>$log/runlog.$date 2>>$log/runerr.$date
+cd $work_dir/collect/ && php  user_history.php >>$log/log.$date 2>>$log/err.$date &
+cd $work_dir/collect/ && php  log_history.php   >>$log/log.$date 2>>$log/err.$date &

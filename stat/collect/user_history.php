@@ -11,6 +11,7 @@ $gap=86400;
 $table = 'user_history';
 print_r($tfs);
 $uhfname = $myloc."/data/$table/$weekday.csv";
+system("mkdir -p $myloc/data/$table/");
 $uhf=fopen($uhfname,'w') or die("open $uhfname failed");
 for($i=1;$i<=$user_num;++$i){
 	$ud = $gtt->get($i);		
@@ -23,7 +24,7 @@ for($i=1;$i<=$user_num;++$i){
 	$dgr['money']+=$data['money'];
 	$dgr['exp']+=$data['exp'];
 
-	if(1 || $ud['at']  > $day_starttime ){//daily active user
+	if($ud['at']  > $day_starttime ){//daily active user
 		$dgr['login_num']++;
 		if(!$data['f_num'])
 		   $data['f_num']=0;

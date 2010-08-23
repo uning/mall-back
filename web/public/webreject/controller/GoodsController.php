@@ -213,9 +213,10 @@ class GoodsController
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
-				$gids = @array_keys($shop['goods']);
+				$gids = @array_keys($shop['goods']);//sort it
 				if($gids){
 					$gs  = $tu->getbyids($gids);
+
 					if($gs['g']){
 						$condata[$shop['id']]['sconfig']= $item;
 						$condata[$shop['id']]['shop']= $shop;

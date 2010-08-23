@@ -6,3 +6,5 @@ web/public/upload/*
 *.log
 *.tt
 *.csv
+err.*
+log.*

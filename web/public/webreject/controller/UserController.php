@@ -15,8 +15,7 @@ class UserController
 	 *    t      server time
 	 */
 	public function login($params)
-	{	
-		// 需要修改：初始化成就系统 ，加上登录触发结算
+	{
 		$now = time();
 		$params['at'] = $now;	
 		$data = TTGenid::genid($params,$new);
@@ -96,6 +95,7 @@ class UserController
 		}
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		return $ret;				
 	}
 
@@ -115,54 +115,6 @@ class UserController
 		$infos = $params['infos'];
 		$uid = $params['u'];
 		TTGenid::update($infos,$uid);
-		$ret['s'] = 'OK';
-		return $ret;
-	}
-
-	/**
-	 * 更新好友列表并返回好友信息。若参数为空，则返回存储的好友信息。
-	 * @param $params
-	 *  require    u          --  userid
-	 *             fids       --  好友平台id字符串，用逗号隔开
-	 * @return
-	 *             s          --  OK,others fail
-	 *             infos      --  好友信息数组
-	 *             u          --  好友内部id数组 ? why? infos already have the id
-	 *             a          --  好友帐户信息数组 //why not use map ,dbid 
-	 */
-	public function update_friends($params)
-	{//暂时只返回10个好友测试
-		//todo:
-		$uid = $params['u'];
-		$tu = new TTUser( $uid );
-		$fids = $params['fids'];
-		$ret = array();
-		if( !$fids ){//传参为空，返回存储的好友
-			//给出几个假数据
-			//			$fids = $tu->getf( TT::FRIEND_STAT );
-			if(!$fids ){
-				//for test
-				$fids = "quest01,quest02,quest03,quest04,quest05,quest06,quest07,quest08,quest09";
-			}			
-		}
-		else{
-			$tu->putf( TT::FRIEND_STAT ,$fids);
-		}
-		$fids .= ",quest002,quest001";
-		$fl = explode(",",$fids);
-		foreach( $fl as $pid ){
-			$p['pid'] = $pid;
-			$finfos = TTGenid::getid($p); //by tingkun
-			//print_r($finfos);
-			if($finfos && $finfos['id']){//shit code
-				//may be get friend into group
-				$ftu = new TTUser($finfos['id']);
-				$id = $finfos['id'];
-				$acc = $ftu->getdata();
-				$finfos = array_merge($finfos,$acc);
-				$ret['infos'][] = $finfos;//what happened? two array ,one for id by tingkun
-			}
-		}
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -189,27 +141,6 @@ class UserController
 //		$ret['u']= $tu->getAll();
 		$ret['scale'] = $tu->getf(TT::CAPACITY_STAT);
 		$ret['s'] = 'OK';
-		return $ret;
-	}
-
-	/**
-	 * 获取装饰,物品
-	 * @param $params
-	 *  require    u               -- userid
-	 *  optional   fid             -- 好友的id，获取好友的信息才有此参数，否则不传此参数
-	 * @return 物品列表，id 为下标
-	 *             s               --   OK,others fail
-	 */
-	public function get_all( &$params )
-	{
-		$uid = $params['u'];
-		$fid = $params['fid'];
-		if( $fid ){
-			$uid = $fid;
-		}
-		$tu = new TTUser( $uid );
-		$ret['r'] = $tu->getAll();
-		$ret['s'] = 'OK';		
 		return $ret;
 	}
 
@@ -273,7 +204,6 @@ class UserController
 
 	public function enlarge_mall ( $params )
 	{
-
 		//该数组是UpgradeConfig.php中数组的一个子集，不涉及商厦容量无变化的元素
 		$mall_level = array(
 				0=>array('level'=>1,'capacity'=>"3,2",'needmoney'=>0)

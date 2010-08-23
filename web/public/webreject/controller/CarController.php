@@ -350,7 +350,7 @@ class CarController
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
 	    $ret['num'] = $num;
-//	    $ret['copi'] = $tu->getbyid( $id );//for debug
+	    $ret['copi'] = $tu->getbyid( $id );//for debug
 	    return $ret;
 	}
 	
@@ -420,6 +420,8 @@ class CarController
 		            }
 		         }
 	        }
+	        unset( $car_obj['addgoods'] );
+	        unset( $car_obj['accelerate'] );
 	        unset( $car_obj['t'] );
 	        unset( $car_obj['help'] );	        
 	    }    

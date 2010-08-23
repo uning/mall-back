@@ -83,6 +83,14 @@ for($i=$start;$i<=$end;++$i){
 			}
 		} 	
 	}	
+	if($m=='UserController.precheckout'){
+	//	print_r($p);
+		$days = $p['days'];
+		if($days){
+//				$dgr["$mpre@as@$uid"]+=$num;
+		    }
+		} 	
+	}	
 
 	if($p['pid'])
 		$sp2=$p['pid'];

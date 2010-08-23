@@ -59,7 +59,7 @@ ul li a
 <?php 
 $height = 650;
 if($_REQUEST['gift'])
-	$height = 850;
+	$height = 750;
 ?>
 <body bgcolor="#ffffff">
 <div style="width:100%;height:<?php echo $height.'px';?>;border:#3399bb solid 1px;">

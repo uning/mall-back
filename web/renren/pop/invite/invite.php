@@ -59,7 +59,7 @@ ul li a
 <?php 
 $height = 650;
 if($_REQUEST['gift'])
-	$height = 750;
+	$height = 850;
 ?>
 <body bgcolor="#ffffff">
 <div style="width:100%;height:<?php echo $height.'px';?>;border:#3399bb solid 1px;">
@@ -119,7 +119,7 @@ if($_REQUEST['gift'])
 <tr>
 <td>
 <div  id="recm">
-   <xn:serverxnml style="width:<?php echo $width;?>;">
+   <xn:serverxnml style="width:<?php echo $width;?>;height:600px">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
 	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>"/> 

@@ -61,7 +61,7 @@ if($_REQUEST['gift'])
 <td align="right"><a  onclick="toFlash()" style="cursor: pointer;"><img src="../../static/images/css/close.png" border="0"/></a></td>
 </tr>
 </table>
-<table>
+<table width="700px">
 <?php 
 	require_once '../freeGift.php';
     $accept_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";

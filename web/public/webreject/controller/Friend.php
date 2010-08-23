@@ -185,6 +185,7 @@ class Friend{
 		$fl = explode(',',$fids);
 		$rinfos= array();
 		$dup=array();
+		$friend_count = 0;//记录好友个数
 		foreach( $fl as $pid ){
 			if($dup[$pid])
 				continue;
@@ -211,7 +212,11 @@ class Friend{
 				unset($infos[$fdid]);
 			}
 			$rids = array_keys($infos);
-                        $tu->remove($rids);
+            $tu->remove($rids);
+            $friend_count++;            
+		}
+		if( $friend_count > $tu->getf('friend_count') ) {
+		    $tu->putf( 'friend_count',$friend_count );
 		}
 		$rinfos[]=array('name'=>'GM','icon'=>'http://hdn.xnimg.cn/photos/hdn121/20100807/1345/h_tiny_WtRB_190e0000358b2f75.jpg',
 			'pid'=>'293293079','exp'=>'10000','dbid'=>4);//GM

@@ -63,14 +63,14 @@ class Cinema
 	        }
 	        $money = $item['sellmoney'];
 	    }
-	    if( $shop_obj['tag'] == '60103' || $shop_obj['tag'] == '60104' ){//健身房和按摩店
+	    elseif( $shop_obj['tag'] == '60103' || $shop_obj['tag'] == '60104' ){//健身房和按摩店
 	        if( $now - $shop_obj['ctime'] < $item['selltime'] ){//开业时间需满足一定条件才可以收钱
 	            $ret['s'] = 'time';
 	            return $ret;	            
 	        }
 	        $money = $item['sellmoney'];
 	    }
-		if( $shop_obj['tag'] == '60105' ||  $shop_obj['tag'] == '60106' ){//上岛和7-11便利店
+		elseif( $shop_obj['tag'] == '60105' ||  $shop_obj['tag'] == '60106' ){//上岛和7-11便利店
 		    if( $now - $shop_obj['ctime'] < 3600 ){//开业1小时后就可以收钱，但最多只能积累6~9小时
 	            $ret['s'] = 'time';
 	            return $ret;

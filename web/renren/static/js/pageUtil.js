@@ -251,7 +251,7 @@ var innerIFramePoller = function() {
 			
 			var height = innerDoc.outerHeight();
 			if (height != lastHeight|| height ==0) {
-				iframe.height(height+10);
+				iframe.height(height+200);
 				lastHeight = height;
 			}
 		}

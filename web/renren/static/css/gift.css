@@ -138,11 +138,11 @@ li.giftLocked .gift_name {
 }
 
 .main_gift_cont li.giftLi {
-	background: url("../images/css/gift_box_open.png") no-repeat 0 0;
+    background: url("../images/css/gift_box_open.png") no-repeat 0 0;
 }
 
 .main_gift_cont li.giftLocked {
-	background: url("../images/css/gift_box_locked.png") no-repeat 0 0;
+    background: url("../images/css/gift_box_locked.png") no-repeat 0 0;
 }
 
 .giftIconImg {

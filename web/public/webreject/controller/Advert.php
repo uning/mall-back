@@ -97,7 +97,10 @@ class Advert
 //      $ret['advbag'] = $advbag;//for debug
 	    //使用广告次数
 		$advert_count = $tu->numch( 'advert_count',1 );
-		
+/*		
+		$ua = $tu->getf( array( 'max_popu',TT::POPU ) );
+		$add_advpopu = $ua[TT::POPU] + $adv['popularity'];	
+*/		
 		$ret['s'] = 'OK';
 		$ret['t'] = $now;
 		$ret['tag'] =  $adv_tag;

@@ -9,7 +9,7 @@ class GoodsController
 	 * @param $g
 	 * @return unknown_type
 	 */
-	static protected function getTimeRates( &$tu,&$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
+	static protected function getTimeRates( &$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
 	{
 
 		$pratio = 0;
@@ -46,9 +46,11 @@ class GoodsController
 			if( $add_advpopu > $max_addadvpopu ){
 				$add_advpopu = $max_addadvpopu;
 			}
-            if( $add_advpopu > $tu->get('max_popu') ){
-                $tu->putf( 'max_popu',$add_advpopu );
-            }
+
+			//if( $add_advpopu > $tu->get('max_popu') ){
+			//	$tu->putf( 'max_popu',$add_advpopu );
+			//}
+
 			$plong  =  $adv['allTime'];
 			$pratio =  1 + $add_advpopu/$gridWidth/15;
 		}
@@ -283,7 +285,7 @@ class GoodsController
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
 				$g['ctime'] = $now;  
-				$gaps =  self::getTimeRates($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
 					if($snum >= $g['num']){//卖完了

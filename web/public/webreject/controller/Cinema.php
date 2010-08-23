@@ -64,7 +64,7 @@ class Cinema
 	        $money = $item['sellmoney'];
 	    }
 	    elseif( $shop_obj['tag'] == '60103' || $shop_obj['tag'] == '60104' ){//健身房和按摩店
-	        if( $now - $shop_obj['ctime'] < $item['selltime'] ){//开业时间需满足一定条件才可以收钱
+	        if( $now - $shop_obj['ctime'] < $item['settletime'] ){//开业时间需满足一定条件才可以收钱
 	            $ret['s'] = 'time';
 	            return $ret;	            
 	        }
@@ -76,8 +76,8 @@ class Cinema
 	            return $ret;
 		    }
 		    $gap = $now - $shop_obj['ctime'];
-		    if( $gap > $item['selltime'] ){
-		        $gap = $item['selltime'];
+		    if( $gap > $item['settletime'] ){
+		        $gap = $item['settletime'];
 		    }
 		    $money = $gap * $item['sellmoney'] / 3600;
 	    }    	    	    

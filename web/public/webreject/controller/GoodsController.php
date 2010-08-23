@@ -438,8 +438,8 @@ class GoodsController
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
 				$g['ctime'] = $now;  
-				$gaps = self::getTimeRates($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
-				$ret[$g['id']]['getTimeRates']=array($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$gaps = self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$ret[$g['id']]['getTimeRates']=array($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				$ret[$g['id']]['gaps']=$gaps;
 				$ret[$g['id']]['shop']=$s;
 				$ret[$g['id']]['mydata']=$g;

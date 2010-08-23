@@ -188,8 +188,7 @@ class UserController
 	public function enlarge_mall ( $params )
 	{
 		$level2money = array(//键为等级，值为所需金币
-		         1=>0
-			    ,2=>500
+			     2=>500
 				,5=>1000
 				,9=>10000
 				,13=>10000
@@ -209,11 +208,13 @@ class UserController
 		$exp = $tu->getf( TT::EXP_STAT );
 		$need = UpgradeConfig::getUpgradeNeed( $exp );
 //		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
-        $l = 0;
+        $l = 0;/*
         foreach( $level2money as $level=>$money ){
             if( $need['level'] < $level ){
+                $oldlevel = $level;
+                continue;
             }
-        }
+        }*/
         $leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$l] ); 
 		if( $leftmoney<0 ){
 			$ret['s'] = 'money';

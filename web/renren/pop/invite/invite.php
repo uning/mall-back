@@ -63,12 +63,12 @@ if($_REQUEST['gift'])
 ?>
 <body bgcolor="#ffffff">
 <div style="height:<?php echo $height.'px';?>;border:#3399bb solid 1px;">
-<table width="100%">
+<table width="96%">
 <tr>
 <td align="right"><a  onclick="toFlash()" style="cursor: pointer;"><img src="../../static/images/css/close.png" border="0"/></a></td>
 </tr>
 </table>
-<table>
+<table width="96%">
 <tr>
 <?php 
 	require_once '../freeGift.php';

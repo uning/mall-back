@@ -3,8 +3,6 @@
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-$_REQUEST['linkid']= '202150436:4c6e4b0ec431b';
-$_REQUEST['xn_sig_user']=45182749;
 $tw = TT::LinkTT();
 if($linkid){
 	

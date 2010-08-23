@@ -86,6 +86,7 @@ class Cinema
 	    $tu->puto( $shop_obj,TT::CINEMA_GROUP );
 //	    $ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );
 //	    $ret['ashopobj'] = $shop_obj;  //for debug
+        $ret['money'] = $money;
 	    $ret['s'] = 'OK';
 	    return $ret;
 	}

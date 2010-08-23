@@ -113,7 +113,7 @@ if($_REQUEST['gift'])
    <xn:serverxnml style="width:740px;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>" width="732px"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>" width="700px"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

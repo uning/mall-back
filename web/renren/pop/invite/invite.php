@@ -9,6 +9,7 @@ xmlns="http://www.w3.org/1999/xhtml"
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <style type="text/css">
  ul
 {
@@ -33,14 +34,6 @@ ul li a
 	padding:6px 8px
 }
 
-.close{
-		background: url("../../static/images/css/close.png") no-repeat scroll 0 0 transparent;
-		cursor: pointer;
-	}
-	.close:HOVER {
-			background: url("../../static/images/css/closea.png") no-repeat scroll 0 0 transparent;	
-	cursor: pointer;
-		}
 </style>
 <script type="text/javascript">
 		function toFlash()
@@ -56,15 +49,19 @@ ul li a
 		}
 </script>
 </head>
-<body>
-<div style="width:100%;height:650px;border:#3399bb solid 1px;">
+<?php 
+$height = 650;
+if($_REQUEST['gift'])
+	$height = 750;
+?>
+<body bgcolor="#ffffff">
+<div style="overflow: hidden;width:750px;height:<?php echo $height.'px';?>;border:#3399bb solid 1px;">
 <table width="100%">
 <tr>
 <td align="right"><a  onclick="toFlash()" style="cursor: pointer;"><img src="../../static/images/css/close.png" border="0"/></a></td>
 </tr>
 </table>
-<table>
-<tr>
+<table width="700px">
 <?php 
 	require_once '../freeGift.php';
     $accept_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
@@ -73,7 +70,7 @@ ul li a
 	$gid = $_REQUEST["gift"];
 	$pid = $_REQUEST['pid'];
 	$us = TTGenid::getbypid($pid);
-	$exclude ="";	
+	$exclude ="0";	
 	$user = new TTUser($us['id']);
 	$mode = 'all';
 	if(!$gid){
@@ -84,16 +81,17 @@ ul li a
 	$feed = $tt->getbyuidx('udate',$key);
 	if($feed)
 	{
-		$arr = $feed['ids'];
-		//print_r($feed);
-		//foreach($arr as $uid)
-		//$exclude.=$uid.',';
-		$linkid = $feed['linkid'];
+		$arr = '0';
+		foreach ($feed as $k=>$v){
+			if(is_array($v)){
+				foreach ($v['ids'] as $id)
+				 $arr.=','.$id;
+			}
+		}
 	}
-	else
-	{
+	
 	$linkid = $pid.':'.uniqid();
-	}
+	
 	$width = '740px';
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
@@ -109,14 +107,13 @@ ul li a
 	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
-
 <tr>
 <td>
 <div  id="recm">
-   <xn:serverxnml style="width:<?php echo $width;?>;">
+   <xn:serverxnml style="width:740px;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>" width="700px"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

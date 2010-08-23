@@ -85,7 +85,7 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="overflow-x: hidden;overflow-y: hidden;" >
+<body style="overflow-x: hidden;overflow-y: hidden;background-color: #ffffff;" >
 
 
 
@@ -99,7 +99,7 @@ function install_swf(pid){
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
-        <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum">论坛</a></li>
+        <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
 		<li class="payment" ><a  class='fullpage' href="http://apps.renren.com/livemall/pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>
@@ -131,7 +131,7 @@ version of Flash. Please do so by clicking <a
 
 </div>
 
-<div id="htmlFrame" class="offscreen" style="width: 760px;vertical-align: middle;text-align: center;">
+<div id="htmlFrame" class="offscreen" style="width:100%;vertical-align: middle;text-align: center;">
 
 </div>
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
@@ -184,5 +184,7 @@ var config = {
 	PL.init('../static/js/config.js',config);
 </script>
 
-<?php include FB_CURR.'/cs/gajs_init.php';?> 
+<?php
+ //include FB_CURR.'/cs/gajs_init.php';
+?> 
 

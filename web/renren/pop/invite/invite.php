@@ -73,7 +73,7 @@ ul li a
 	$gid = $_REQUEST["gift"];
 	$pid = $_REQUEST['pid'];
 	$us = TTGenid::getbypid($pid);
-	$exclude ="";	
+	$exclude ="0";	
 	$user = new TTUser($us['id']);
 	$mode = 'all';
 	if(!$gid){
@@ -84,16 +84,17 @@ ul li a
 	$feed = $tt->getbyuidx('udate',$key);
 	if($feed)
 	{
-		$arr = $feed['ids'];
-		//print_r($feed);
-		//foreach($arr as $uid)
-		//$exclude.=$uid.',';
-		$linkid = $feed['linkid'];
+		$arr = '0';
+		foreach ($feed as $k=>$v){
+			if(is_array($v)){
+				foreach ($v['ids'] as $id)
+				 $arr.=','.$id;
+			}
+		}
 	}
-	else
-	{
+	
 	$linkid = $pid.':'.uniqid();
-	}
+	
 	$width = '740px';
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){

@@ -4,13 +4,12 @@ require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
 $tw = TT::LinkTT();
-if($linkid){
-	
-	$irec = $tw->getbyuidx('linkid',$linkid);
-}
-$fromuser = $irec['pid'];	
+list($pid,$str) = split(':',$linkid);
+$udate = $pid.':'.date('Ymd');
+$irec = $tw->getbyuidx('udate',$udate);
+$fromuser = $pid;	
 $touser = $_REQUEST['xn_sig_user'];	
-if(!$irec){?>
+if(!$irec[$linkid]){?>
 <xn:if-is-app-user>
 	<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
 	<xn:else>
@@ -31,7 +30,7 @@ if(!$irec){?>
 	$ttu = new TTUser($tsess['id']);
 	$tudata=$ftu->getf(array('name','icon'));
 	
-	$getted = $irec['geted'];
+	$getted = $irec[$linkid]['geted'];
 	if(!$getted[$touser]){
 		$ftu->numch('invite_num',1);
 	}
@@ -70,7 +69,7 @@ if(!$irec){?>
 		}
 		//$irec['invalid'] =  1;
 		$getted[$touser] = 1;
-		$irec['geted'] = $getted;
+		$irec[$linkid]['geted'] = $getted;
 		$tw->put($irec);
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />

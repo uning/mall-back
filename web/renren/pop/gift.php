@@ -15,24 +15,13 @@
 	</head>
 	<body bgcolor="#ffffff">
 	<form action="invite/invite.php?" method="post">
-	<!--
-	<center><h1 style="font-size:22px; font-family: tahoma; color: #4880d7;">为你的朋友选择个礼物!</h1></center>
-	
-	<div style="width: 700px; text-align: center;">
-			
-			<input type="submit" name="send_gift" value="选好了，去选朋友吧 >>>" class="giftformsubmit giftButtonFloat" style="cursor: pointer;"/>
-			<input type="button" name="skip" value="跳过" class="giftformsubmit giftButtonFloat" onclick="toFlash()" style="cursor: pointer;"/>
-			
-	</div>
-	-->
-	<div class="main_gift_cont" style="height:600px;text-align: center;padding-bottom: 5px;border:#3399bb solid 1px;">
-	<table width="100%" style="padding-top: 0px;">
-<tr>
-<td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
-</tr>
-</table>
-<div class="items">
-	<ul class="items">
+	<div class="main_gift_cont" style="height:100%;text-align: center;padding-bottom: 5px;border:#3399bb solid 1px;">
+	<table width="100%" style="padding-top: 0px;margin-bottom: 2px">
+		<tr>
+			<td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
+		</tr>
+	</table>
+	<ul>
 <?php
  	require_once '../config.php';
 	require_once 'freeGift.php';
@@ -77,15 +66,12 @@
 	}
 ?>
 </ul>
-</div>
 <br/>
-<br style="clear:both" />
 		<div style="width: 700px; text-align: center;" >
-			<input type="hidden" name="pid" value="<?php echo $_REQUEST['pid']?>">
+			<input type="hidden" name="pid" value="<?php echo $_REQUEST['pid']?>"/>
 			<input type="submit" name="send_gift" value="选好了，去选朋友吧 >>>" class="giftformsubmit giftButtonFloat" style="cursor: pointer;"/>
 			<input type="button" name="skip" value="跳过" class="giftformsubmit giftButtonFloat" onclick="toFlash()" style="cursor: pointer;"/>
 		</div>
-		<br style="clear:both" />
 </div>
 </form>
 </body>

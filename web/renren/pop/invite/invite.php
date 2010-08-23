@@ -56,7 +56,7 @@ ul li a
 		}
 </script>
 </head>
-<body>
+<body bgcolor="#ffffff">
 <div style="width:100%;height:650px;border:#3399bb solid 1px;">
 <table width="100%">
 <tr>

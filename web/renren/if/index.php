@@ -85,7 +85,7 @@ function install_swf(pid){
 } 
 </script>
 </head>
-<body style="overflow-x: hidden;overflow-y: hidden;" >
+<body style="overflow-x: hidden;overflow-y: hidden;background-color: #ffffff;" >
 
 
 

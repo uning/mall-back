@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head> 
 		<link rel="stylesheet" type="text/css" href="../static/css/gift.css" />
@@ -12,7 +13,7 @@
 		<title>Super Mall</title>
 		
 	</head>
-	<body>
+	<body bgcolor="#ffffff">
 	<form action="invite/invite.php?" method="post">
 	<!--
 	<center><h1 style="font-size:22px; font-family: tahoma; color: #4880d7;">为你的朋友选择个礼物!</h1></center>

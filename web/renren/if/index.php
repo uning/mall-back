@@ -131,7 +131,7 @@ version of Flash. Please do so by clicking <a
 
 </div>
 
-<div id="htmlFrame" class="offscreen" style="vertical-align: middle;text-align: center;height: 850px">
+<div id="htmlFrame" class="offscreen" style="height: 950px;vertical-align: middle;text-align: center;">
 
 </div>
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img

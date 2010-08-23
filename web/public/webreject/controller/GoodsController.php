@@ -9,7 +9,7 @@ class GoodsController
 	 * @param $g
 	 * @return unknown_type
 	 */
-	static protected function getTimeRates(&$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
+	static protected function getTimeRates( &$tu,&$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
 	{
 
 		$pratio = 0;
@@ -46,6 +46,9 @@ class GoodsController
 			if( $add_advpopu > $max_addadvpopu ){
 				$add_advpopu = $max_addadvpopu;
 			}
+            if( $add_advpopu > $tu->get('max_popu') ){
+                $tu->putf( 'max_popu',$add_advpopu );
+            }
 			$plong  =  $adv['allTime'];
 			$pratio =  1 + $add_advpopu/$gridWidth/15;
 		}
@@ -433,7 +436,7 @@ class GoodsController
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
 				$g['ctime'] = $now;  
-				$gaps = self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$gaps = self::getTimeRates($tu,$used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				$ret[$g['id']]['getTimeRates']=array($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				$ret[$g['id']]['gaps']=$gaps;
 				$ret[$g['id']]['shop']=$s;

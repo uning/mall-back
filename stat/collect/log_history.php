@@ -88,7 +88,6 @@ for($i=$start;$i<=$end;++$i){
 		$days = $p['days'];
 		if($days){
 //				$dgr["$mpre@as@$uid"]+=$num;
-		    }
 		} 	
 	}	
 

@@ -46,19 +46,9 @@ class UserController
 	 */
 	public function precheckout( $params )
 	{
-		/*
-		   $award = array( 1=>array( 'money'=>1000 )
-		   ,2=>array( 'money'=>2000 )
-		   ,3=>array( 'money'=>4000 )
-		   ,4=>array( 'money'=>8000 )
-		   ,5=>array( 'advtag'=>1 )
-		   );
-		 */
 		$award = array( 1=>1000,2=>2000,3=>4000,4=>8000 );
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-
-//		$ret['bdata'] = $tu->getdata(); //for debug
 		$now = time();
 		$today_start = strtotime ( date( TM_FORMAT,strtotime( date("Y-m-d",$now) ) ) );
 		$yesterday_start = strtotime( date( TM_FORMAT,strtotime( date("Y-m-d",$now-86400) ) ) );
@@ -75,18 +65,12 @@ class UserController
 		}
 		$last['lastawardtime'] = $now;
 		$tu->mputf( $last );
-
 		$loc = $last['continued'];
 		if( $loc < 5 ){
 			$tu->numch( TT::MONEY_STAT,$award[$loc] );
 		}
 		if( $loc >= 5 ){
-			$loc = 5;
-			/*
-			$adv_obj['tag'] = 1;
-			$tu->puto( $adv_obj,TT::ADVERT_GROUP );
-			*/
-			
+			$loc = 5;			
 			$id = $tu->getoid( 'advert',TT::OTHER_GROUP );
 			$adv = $tu->getbyid( $id );
 			$adv['bag'][1] += 1;//连续登录5天，奖励商业广告一 1个
@@ -203,9 +187,8 @@ class UserController
 
 	public function enlarge_mall ( $params )
 	{
-		$mall_level = array(//键为等级，值为所需金币
-				 1=>0
-			    ,2=>500
+		$level2money = array(//键为等级，值为所需金币
+			     2=>500
 				,5=>1000
 				,9=>10000
 				,13=>10000
@@ -224,8 +207,7 @@ class UserController
 		$tu = new TTUser( $uid );
 		$exp = $tu->getf( TT::EXP_STAT );
 		$need = UpgradeConfig::getUpgradeNeed( $exp );
-		//检查金币
-		$leftmoney = $tu->change( TT::MONEY_STAT,0-$mall_level[$need['level']]);
+		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]);
 		if( $leftmoney<0 ){
 			$ret['s'] = 'money';
 			return $ret;

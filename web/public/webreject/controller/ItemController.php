@@ -48,13 +48,18 @@ class ItemController {
 //			    $shop_num += $item['gridWidth'];
 				$row['id'] = $tu->getdid( false,TT::SHOP_GROUP );//shop id
 			}
+/*			
 			elseif( $row['tag'] == '60102' ){//电影院买后立即可播放电影
 			    $row['id'] = $tu->getdid( false,TT::CINEMA_GROUP );
 			    $row['ctime'] = $now;
 			}
+*/			
 			else{//不维护店面人气，但厕所的人气需包含
 				$row['id'] = $tu->getdid( false,TT::ITEM_GROUP );//other
 				$pop += $item['pop'];
+				if( $item['type'] == 'rs' ){//特殊店需记录一个结算时间
+				    $row['ctime'] = $now;
+				}
 			}
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 
 		}

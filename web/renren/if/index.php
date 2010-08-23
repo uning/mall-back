@@ -184,5 +184,7 @@ var config = {
 	PL.init('../static/js/config.js',config);
 </script>
 
-<?php include FB_CURR.'/cs/gajs_init.php';?> 
+<?php
+ //include FB_CURR.'/cs/gajs_init.php';
+?> 
 

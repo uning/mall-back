@@ -9,21 +9,19 @@ if($pid &&$ids && $linkid){
 	$tw = TT::LinkTT();
 	$value = $tw->getbyuidx('udate',$key);
 	if(!$value){
-		//$_REQUEST['linkid']=$linkid;
-		$_REQUEST['udate'] = date('Ymd').$pid;
-		$_REQUEST['invalid'] = 0;
-		$_REQUEST['geted'] = array();
-		$tw->put($_REQUEST);
+		$value = array('udate'=>date('Ymd').$pid,$linkid=>array(
+		'geted'=> array(),
+		'ids' =>$_REQUEST['ids']
+		));
+		$tw->put($value);
+		
 	}
 	else {
-		array_merge($value['ids'],$_REQUEST['ids']);
+		$value[$linkid]=array('geted'=>array(),'ids'=>$_REQUEST['ids']);
 		$tw->put($value);
 	}
-	file_put_contents('store_invite1.txt',print_r($_REQUEST,true));
+	print_r($value);
 }
-file_put_contents('store_invite2.txt',print_r($_REQUEST,true));
-header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
-echo "<pre>\n";
-print_r($_REQUEST);
+//header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 	
 

@@ -39,7 +39,7 @@ li.giftLocked .gift_name {
 }
 
 .gift_action {
-	margin: 0px 17px 0px 5px;
+	margin: -3px 17px 0px 5px;
 	color: red;
 	font-weight: lighter;
 }

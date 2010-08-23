@@ -116,7 +116,6 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 
 #pay-body{
  height: 600px; 
- border: 1px solid #3399BB; 
 }
 .user-info {
 border-bottom:1px dotted #CCCCCC;

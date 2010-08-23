@@ -119,10 +119,10 @@ if($_REQUEST['gift'])
 <tr>
 <td>
 <div  id="recm">
-   <xn:serverxnml style="width:<?php echo $width;?>;padding-right:0px;">
+   <xn:serverxnml>
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>" width="732" height="360"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

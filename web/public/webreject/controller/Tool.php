@@ -203,8 +203,8 @@ class Tool
         $tu2 = new TTUser( $u2['id'] );
         $ret['bfids1'] = $tu1->getf( TT::FRIEND_STAT );
         $ret['bfids2'] = $tu2->getf( TT::FRIEND_STAT );
-        $tu1->putf( TT::FRIEND_STAT,$pid1 );
-        $tu2->putf( TT::FRIEND_STAT,$pid2 );
+        $tu1->putf( TT::FRIEND_STAT,$pid2 );
+        $tu2->putf( TT::FRIEND_STAT,$pid1 );
         $ret['afids1'] = $tu1->getf( TT::FRIEND_STAT );
         $ret['afids2'] = $tu2->getf( TT::FRIEND_STAT );
         return $ret;

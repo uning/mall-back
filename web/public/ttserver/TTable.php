@@ -118,7 +118,9 @@ class TTable extends TokyoTyrantTable {
 		$q->addCond($idxname,TokyoTyrant::RDBQC_STREQ,$idxvalue);
 		$res = $q->search();
 		foreach($res as $k=>$v){
+		  $this->after_get($v);
 		  $v['id']=$k;
+		 
 		  return $v;
 		}
         return $res;

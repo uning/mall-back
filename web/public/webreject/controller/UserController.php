@@ -15,8 +15,7 @@ class UserController
 	 *    t      server time
 	 */
 	public function login($params)
-	{	
-		// 需要修改：初始化成就系统 ，加上登录触发结算
+	{
 		$now = time();
 		$params['at'] = $now;	
 		$data = TTGenid::genid($params,$new);
@@ -47,19 +46,9 @@ class UserController
 	 */
 	public function precheckout( $params )
 	{
-		/*
-		   $award = array( 1=>array( 'money'=>1000 )
-		   ,2=>array( 'money'=>2000 )
-		   ,3=>array( 'money'=>4000 )
-		   ,4=>array( 'money'=>8000 )
-		   ,5=>array( 'advtag'=>1 )
-		   );
-		 */
 		$award = array( 1=>1000,2=>2000,3=>4000,4=>8000 );
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-
-//		$ret['bdata'] = $tu->getdata(); //for debug
 		$now = time();
 		$today_start = strtotime ( date( TM_FORMAT,strtotime( date("Y-m-d",$now) ) ) );
 		$yesterday_start = strtotime( date( TM_FORMAT,strtotime( date("Y-m-d",$now-86400) ) ) );
@@ -76,18 +65,12 @@ class UserController
 		}
 		$last['lastawardtime'] = $now;
 		$tu->mputf( $last );
-
 		$loc = $last['continued'];
 		if( $loc < 5 ){
 			$tu->numch( TT::MONEY_STAT,$award[$loc] );
 		}
 		if( $loc >= 5 ){
-			$loc = 5;
-			/*
-			$adv_obj['tag'] = 1;
-			$tu->puto( $adv_obj,TT::ADVERT_GROUP );
-			*/
-			
+			$loc = 5;			
 			$id = $tu->getoid( 'advert',TT::OTHER_GROUP );
 			$adv = $tu->getbyid( $id );
 			$adv['bag'][1] += 1;//连续登录5天，奖励商业广告一 1个
@@ -96,6 +79,7 @@ class UserController
 		}
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		return $ret;				
 	}
 
@@ -115,54 +99,6 @@ class UserController
 		$infos = $params['infos'];
 		$uid = $params['u'];
 		TTGenid::update($infos,$uid);
-		$ret['s'] = 'OK';
-		return $ret;
-	}
-
-	/**
-	 * 更新好友列表并返回好友信息。若参数为空，则返回存储的好友信息。
-	 * @param $params
-	 *  require    u          --  userid
-	 *             fids       --  好友平台id字符串，用逗号隔开
-	 * @return
-	 *             s          --  OK,others fail
-	 *             infos      --  好友信息数组
-	 *             u          --  好友内部id数组 ? why? infos already have the id
-	 *             a          --  好友帐户信息数组 //why not use map ,dbid 
-	 */
-	public function update_friends($params)
-	{//暂时只返回10个好友测试
-		//todo:
-		$uid = $params['u'];
-		$tu = new TTUser( $uid );
-		$fids = $params['fids'];
-		$ret = array();
-		if( !$fids ){//传参为空，返回存储的好友
-			//给出几个假数据
-			//			$fids = $tu->getf( TT::FRIEND_STAT );
-			if(!$fids ){
-				//for test
-				$fids = "quest01,quest02,quest03,quest04,quest05,quest06,quest07,quest08,quest09";
-			}			
-		}
-		else{
-			$tu->putf( TT::FRIEND_STAT ,$fids);
-		}
-		$fids .= ",quest002,quest001";
-		$fl = explode(",",$fids);
-		foreach( $fl as $pid ){
-			$p['pid'] = $pid;
-			$finfos = TTGenid::getid($p); //by tingkun
-			//print_r($finfos);
-			if($finfos && $finfos['id']){//shit code
-				//may be get friend into group
-				$ftu = new TTUser($finfos['id']);
-				$id = $finfos['id'];
-				$acc = $ftu->getdata();
-				$finfos = array_merge($finfos,$acc);
-				$ret['infos'][] = $finfos;//what happened? two array ,one for id by tingkun
-			}
-		}
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -189,27 +125,6 @@ class UserController
 //		$ret['u']= $tu->getAll();
 		$ret['scale'] = $tu->getf(TT::CAPACITY_STAT);
 		$ret['s'] = 'OK';
-		return $ret;
-	}
-
-	/**
-	 * 获取装饰,物品
-	 * @param $params
-	 *  require    u               -- userid
-	 *  optional   fid             -- 好友的id，获取好友的信息才有此参数，否则不传此参数
-	 * @return 物品列表，id 为下标
-	 *             s               --   OK,others fail
-	 */
-	public function get_all( &$params )
-	{
-		$uid = $params['u'];
-		$fid = $params['fid'];
-		if( $fid ){
-			$uid = $fid;
-		}
-		$tu = new TTUser( $uid );
-		$ret['r'] = $tu->getAll();
-		$ret['s'] = 'OK';		
 		return $ret;
 	}
 
@@ -266,57 +181,48 @@ class UserController
 	 * 扩大商厦
 	 * @param $params
 	 *   require  u         -- 玩家id
-	 *            cap       -- 商厦容量，字符串，长宽用逗号隔开
 	 * @return 
 	 *            s         --  OK
 	 */
 
 	public function enlarge_mall ( $params )
 	{
-
-		//该数组是UpgradeConfig.php中数组的一个子集，不涉及商厦容量无变化的元素
-		$mall_level = array(
-				0=>array('level'=>1,'capacity'=>"3,2",'needmoney'=>0)
-			    ,1=>array('level'=>2,'capacity'=>"3,3",'needmoney'=>500)
-				,2=>array('level'=>5,'capacity'=>"4,3",'needmoney'=>1000)
-				,3=>array('level'=>9,'capacity'=>"5,3",'needmoney'=>10000)
-				,4=>array('level'=>13,'capacity'=>"5,4",'needmoney'=>10000)
-				,5=>array('level'=>17,'capacity'=>"6,4",'needmoney'=>30000)
-				,6=>array('level'=>21,'capacity'=>"7,4",'needmoney'=>30000)
-				,7=>array('level'=>25,'capacity'=>"7,5",'needmoney'=>50000)
-				,8=>array('level'=>29,'capacity'=>"8,5",'needmoney'=>80000)
-				,9=>array('level'=>33,'capacity'=>"8,6",'needmoney'=>100000)
-				,10=>array('level'=>37,'capacity'=>"9,6",'needmoney'=>200000)
-				,11=>array('level'=>41,'capacity'=>"10,6",'needmoney'=>300000)
-				,12=>array('level'=>45,'capacity'=>"10,7",'needmoney'=>500000)
-				,13=>array('level'=>54,'capacity'=>"10,8",'needmoney'=>800000)
-				,14=>array('level'=>66,'capacity'=>"11,8",'needmoney'=>1000000)
-				);	    
+		$level2money = array(//键为等级，值为所需金币
+		         0=>0
+			    ,2=>500
+				,5=>1000
+				,9=>10000
+				,13=>10000
+				,17=>30000
+				,21=>30000
+				,25=>50000
+				,29=>80000
+				,33=>100000
+				,37=>200000
+				,41=>300000
+				,45=>500000
+				,54=>800000
+				,66=>1000000
+				);	    			 
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-
-		$ua = $tu->getf( array( TT::CAPACITY_STAT,TT::EXP_STAT ) );
-		$i = 0;//找出当前商厦状态对应数组中第几个
-		foreach( $mall_level as $k=>$v ){
-			if( $v['capacity'] != $ua['capacity'] ){
-				continue;
-			}
-			$i = $k;		    
-		}
-
-		$level = UpgradeConfig::getLevel( $ua['exp'] );
-		if( $level < $mall_level[$i+1]['level'] ){
-			$ret['s'] = 'level';
-			return $ret;
-		}
-		//检查金币
-		$leftmoney = $tu->change( TT::MONEY_STAT,0-$mall_level[$i+1]['needmoney'] );
+		$exp = $tu->getf( TT::EXP_STAT );
+		$need = UpgradeConfig::getUpgradeNeed( $exp );
+//		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
+        $l = 0;
+        foreach( $level2money as $level=>$money ){
+            if(  $level < $need['level']){
+                $l = $level;
+                continue;
+            }
+            break;
+        }
+        $leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$l] ); 
 		if( $leftmoney<0 ){
 			$ret['s'] = 'money';
 			return $ret;
 		}
-
-		$tu->putf( TT::CAPACITY_STAT,$mall_level[$i+1]['capacity']);
+		$tu->putf( TT::CAPACITY_STAT,$need['shopwidth'].",".$need['shopheight'] );
 		$ret['s'] = 'OK';
 		return $ret;
 	}

@@ -9,7 +9,7 @@ class GoodsController
 	 * @param $g
 	 * @return unknown_type
 	 */
-	static protected function getTimeRates(&$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
+	static protected function getTimeRates( &$advert,$computetime,$now,$popu,$max_popu,$gridWidth )
 	{
 
 		$pratio = 0;
@@ -46,6 +46,11 @@ class GoodsController
 			if( $add_advpopu > $max_addadvpopu ){
 				$add_advpopu = $max_addadvpopu;
 			}
+
+			//if( $add_advpopu > $tu->get('max_popu') ){
+			//	$tu->putf( 'max_popu',$add_advpopu );
+			//}
+
 			$plong  =  $adv['allTime'];
 			$pratio =  1 + $add_advpopu/$gridWidth/15;
 		}
@@ -166,6 +171,7 @@ class GoodsController
 				//$ret['s'] = 'max';
 				//return $ret;
 			}
+			//$shop_obj['goods'][$goods['pos']['x']]= $goods['id'];  //没必要
 			$shop_obj['goods'][$goods['id']]=$now + $goods['pos']['x'];  //没必要
 			$goods['stime'] =  $now + $goods['pos']['x']; //对同一商店同一时间上架的货物，按出售顺序将上架时间轻微调整以方便处理
 			$goods['num'] =  $item['unitcout'];
@@ -207,9 +213,10 @@ class GoodsController
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
-				$gids = @array_keys($shop['goods']);
+				$gids = @array_keys($shop['goods']);//sort it
 				if($gids){
 					$gs  = $tu->getbyids($gids);
+
 					if($gs['g']){
 						$condata[$shop['id']]['sconfig']= $item;
 						$condata[$shop['id']]['shop']= $shop;
@@ -306,7 +313,7 @@ class GoodsController
 						unset($shop['goods'][$g['id']]);
 						break;//跳出时间段循环，继续卖同一商店下一个上架时间的货物（在同一商店，同一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
 					}
-				}
+				}//foreach group
 				if( $g['num']!= 0 ){
 					$tu->puto( $g,TT::GOODS_GROUP);
 					break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算

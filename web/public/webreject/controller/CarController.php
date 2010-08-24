@@ -48,7 +48,6 @@ class CarController
 		        $ret['index'] = $index;
 			    return $buy_ret;
 		    }
-//		    $row['t'] = 0;
 		    $ids[] = $tu->puto($row,TT::CAR_GROUP);
 		    $index++;
 		}	
@@ -185,12 +184,7 @@ class CarController
 		$tu->puto( $car_obj,TT::CAR_GROUP );
 		$gogoods_count = $tu->numch( 'gogoods_count',1 );
 		$ret['s'] = 'OK';
-		$ret['c'] = $car_obj;
-/*      $ret['c']['id'] = $car_obj['id'];
-        $ret['c']['tag'] = $car_obj['tag'];
-        $ret['c']['t'] = $car_obj['t'];
-        $ret['c']['goodsTag'] = $car_obj['goodsTag'];
-*/        
+		$ret['c'] = $car_obj;   
 		return $ret;
 	}
 
@@ -218,12 +212,6 @@ class CarController
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
 		}
-/*
-		if( !$car_obj['goodsTag'] ){
-			$car_obj['goodsTag'] = 10101;// 暂时解决不能取货
-			$goodsTag = 10101;
-		}
-*/
 		$car = ItemConfig::getItem( $car_obj['tag'] );
 		if( !$car ){
 			$ret['s'] = 'caritemnotexist';
@@ -238,16 +226,14 @@ class CarController
 			$ret['s'] = 'goodstagincorrect';
 			return $ret;
 		}
-        if( $now - $car_obj['t'] < ( 1- 0.01*$car['reduceTime'] )* $goods['buytime'] ){//时间减免改为百分比
+        if( $now - $car_obj['t'] < $goods['buytime'] ){//取消货车的时间减免
 			$ret['s'] = 'timeleft';
 			return $ret;
 		}
-//		$car_obj['t'] = 0;
         $num = $car['goodsNumber'];
         if( $car_obj['addgoods'] ){
             $num += $car_obj['addgoods'];
         }
-//      $car_obj['help'][$uid] =  array('name'=>$mydata['name'],'icon'=>$mydata['icon'],'pid'=>$mydata['pid'],'dbid'=>$uid,'num'=>$num);
         if( $car_obj['help'] ){
             foreach( $car_obj['help'] as $data ){
                 $num += $data['num'];
@@ -280,11 +266,7 @@ class CarController
 		    }
 		}		
 		$ret['s'] = 'OK';
-		$ret['c'] = $car_obj;
-/*
-        $ret['c']['id'] = $car_obj['id'];
-        $ret['c']['goodsTag'] = $car_obj['goodsTag'];
-*/        
+		$ret['c'] = $car_obj;    
 		$ret['g'] = $ids;
 		return $ret;
 	}
@@ -350,7 +332,6 @@ class CarController
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
 	    $ret['num'] = $num;
-//	    $ret['copi'] = $tu->getbyid( $id );//for debug
 	    return $ret;
 	}
 	
@@ -377,14 +358,8 @@ class CarController
 	        return $ret;
 	    }
 	    $tu = new TTUser( $uid );
-            $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
-            $copilot = $tu->getbyid( $id );
-        /*            
-	    if( !$copilot ){
-	        $ret['s'] = 'copilotnotexsit';
-	        return $ret;
-	    }
-	    */
+        $id = $tu->getoid( 'copilot',TT::OTHER_GROUP );
+        $copilot = $tu->getbyid( $id );
 	    $car_obj = $tu->getbyid( $cid );
 	    if( !$car_obj ){
 	        $ret['s'] = 'carnotexsit';
@@ -420,8 +395,12 @@ class CarController
 		            }
 		         }
 	        }
+	        unset( $car_obj['addgoods'] );
+	        unset( $car_obj['accelerate'] );
 	        unset( $car_obj['t'] );
-	        unset( $car_obj['help'] );	        
+	        unset( $car_obj['help'] );
+	        unset( $car_obj['goodsTag'] );
+	        unset( $car_obj['copolitTag']);
 	    }    
 	    $copilot['id'] = $id;
 	    $tu->puto( $copilot );
@@ -434,8 +413,6 @@ class CarController
 	    $tu->puto( $car_obj,TT::CAR_GROUP,false );
 	    $ret['s'] = 'OK';
 	    $ret['tag'] = $tag;
-	    $ret['car'] = $tu->getbyid( $cid );  //for debug
-	    $ret['copi'] = $tu->getbyid( $id );  // for debug
 	    return $ret;
 	}	
 }

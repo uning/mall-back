@@ -21,7 +21,7 @@ class Achieve
 		$tu = new TTUser( $uid );
 		$id = $tu->getoid( 'achieves',TT::OTHER_GROUP );
 		$achieves = $tu->getbyid( $id );
-		$aparams = $tu->getf( array('popu','invite_count','gogoods_count','total_count','total_sale') );
+		$aparams = $tu->getf( array('max_popu','friend_count','gogoods_count','total_count','total_sale','advert_count') );
 //		$ret['aparams'] = $aparams;
 /*		if( !$achieves ){
 			$ret['s'] = 'empty';

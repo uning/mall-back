@@ -15,16 +15,16 @@ class Cinema
 	    $cid = $params['cid'];
 	    $tu = new TTUser( $uid );
 	    $cinema_obj = $tu->getbyid( $cid );
-//	    $ret['bcinemaobj'] = $cinema_obj;  //for debug
-//	    $ret['btime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
+	    $ret['bcinemaobj'] = $cinema_obj;  //for debug
+	    $ret['btime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
 	    if( !$cinema_obj ){
 	        $ret['s'] = 'notexsit';
 	        return $ret;
 	    }
 	    $item = ItemConfig::getItem( $cinema_obj['tag'] );
 	    $cinema_obj['ctime'] -= $item['selltime'];
-//	    $ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
-//	    $ret['acinemaobj'] = $cinema_obj;  //for debug
+	    $ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
+	    $ret['acinemaobj'] = $cinema_obj;  //for debug
 	    $tu->puto( $cinema_obj,TT::CINEMA_GROUP );
 	    $ret['s'] = 'OK';
 	    return $ret;
@@ -45,8 +45,9 @@ class Cinema
 	    $now = time();
 	    $tu = new TTUser( $uid );
 	    $shop_obj = $tu->getbyid( $sid );
-//	    $ret['bshopobj'] = $shop_obj;  //for debug
-//	    $ret['btime'] = date( TM_FORMAT,$shop_obj['ctime'] );
+	    $ret['now'] = $now;  //for debug
+	    $ret['bshopobj'] = $shop_obj;  //for debug
+	    $ret['btime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 	    if( !$shop_obj ){
 	        $ret['s'] = 'notexist';
 	        return $ret;
@@ -84,8 +85,8 @@ class Cinema
 	    $tu->numch( TT::MONEY_STAT,$money );
 	    $shop_obj['ctime'] = $now;//捡钱后可以重新进人
 	    $tu->puto( $shop_obj,TT::CINEMA_GROUP );
-//	    $ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );
-//	    $ret['ashopobj'] = $shop_obj;  //for debug
+	    $ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+	    $ret['ashopobj'] = $shop_obj;  //for debug
         $ret['money'] = $money;
 	    $ret['s'] = 'OK';
 	    return $ret;

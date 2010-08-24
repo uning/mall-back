@@ -181,7 +181,6 @@ if(!$link){?>
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
 	$tudata=$ftu->getf(array('name','icon'));
-	
 	$getted = $link['geted'];
 	$ids = $link['ids'];
 	$invite = false;

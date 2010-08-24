@@ -5,8 +5,8 @@ require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
 $tw = TT::LinkTT();
 list($pid,$str) = split(':',$linkid);
-$udate = $pid.':'.date('Ymd');
-$irec = $tw->getbyuidx('udate',$udate);
+
+$irec = $tw->getbyuidx('uid',$pid);
 $fromuser = $pid;	
 $touser = $_REQUEST['xn_sig_user'];	
 if(!$irec[$linkid]){?>
@@ -35,7 +35,7 @@ if(!$irec[$linkid]){?>
 		$ftu->numch('invite_num',1);
 	}
 	if(!$getted[$touser]){
-		$gid = $irec['gift'];
+		$gid = $irec[$linkid]['gift'];
 		if($gid){?>
 	<div class="padding_content center" style="overflow: hidden;">
 	<div class="main_giftConfirm_cont">

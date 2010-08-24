@@ -31,8 +31,8 @@ if($pid &&$ids && $linkid){
 		}
 		$tw->put($value);
 	}
-	print_r($value);
+	//print_r($value);
 }
-//header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
+header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 	
 

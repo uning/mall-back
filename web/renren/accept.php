@@ -200,6 +200,7 @@ if(!$link){?>
 							}
 						
 						if(!$got&&$invite){
+							$ftu->numch('invite_num',1);
 								$gid = $link['gift'];
 										if($gid){?>
 	<div class="padding_content center" style="overflow: hidden;">

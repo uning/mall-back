@@ -32,9 +32,10 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Achieve.get',$p= array('u'=>192));
 //dotest('Achieve.finish',$p= array('u'=>1,'tag'=>1001));
 //dotest('Achieve.get',$p= array('u'=>1));
-dotest('GoodsController.checkout',$p=array('u'=>16));
+//dotest('GoodsController.checkout',$p=array('u'=>16));
 //dotest('UserController.enlarge_mall',$p = array('u'=>47));
-//dotest('UserController.login',$p = array('pid'=>'302268025'));
+//dotest('UserController.login',$p = array('pid'=>'sell100'));
+dotest('Tool.test_gen',$p = array('u1'=>130,'u2'=>12));
 //dotest('Advert.get',$p= array('u'=>1));
 //dotest( 'UserController.precheckout',$p = array('u'=>1));
 //dotest('Advert.get',$p= array('u'=>189));

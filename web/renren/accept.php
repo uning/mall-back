@@ -189,7 +189,7 @@ if(!$link){?>
 		$invite = true;
 		break;
 		}
-	}
+	}  
 	$got = false;
 	foreach ($getted as $u){
 		if($u==$touser){

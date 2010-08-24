@@ -152,14 +152,16 @@ li.giftLocked .gift_name {
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-
+$linkid = '45182749:4c734ae5c658b';
 $tw = TT::LinkTT();
 list($pid,$str) = explode(':',$linkid);
 
 $irec = $tw->getbyuidx('uid',$pid);
+$link = &$irec[$linkid];
 $fromuser = $pid;	
 $touser = $_REQUEST['xn_sig_user'];	
-if(!$irec[$linkid]){?>
+$touser =202150436;
+if(!$link){?>
 <xn:if-is-app-user>
 	<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
 	<xn:else>
@@ -180,8 +182,8 @@ if(!$irec[$linkid]){?>
 	$ttu = new TTUser($tsess['id']);
 	$tudata=$ftu->getf(array('name','icon'));
 	
-	$getted = $irec[$linkid]['geted'];
-	$ids = $irec[$linkid]['ids'];
+	$getted = $link['geted'];
+	$ids = $link['ids'];
 	$invite = false;
 	foreach($ids as $id){
 		if($id==$touser){
@@ -200,7 +202,7 @@ if(!$irec[$linkid]){?>
 		$ftu->numch('invite_num',1);
 	}
 	if(!$got&&$invite){
-		$gid = $irec[$linkid]['gift'];
+		$gid = $link['gift'];
 		if($gid){?>
 	<div class="padding_content center" style="overflow: hidden;">
 	<div class="main_giftConfirm_cont">
@@ -233,7 +235,7 @@ if(!$irec[$linkid]){?>
 			$ttu->puto( $data ); 
 		}
 		
-		$irec[$linkid]['geted'][] = $touser;
+		$link['geted'][] = $touser;
 		$tw->put($irec);
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />

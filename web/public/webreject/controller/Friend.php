@@ -183,6 +183,8 @@ class Friend{
 			$tu->putf( TT::FRIEND_STAT ,$fids);
 		}
 		$fl = explode(',',$fids);
+		$ret['fids'] = $fids;   // for debug
+		$ret['fl'] = $fl;   // for debug
 		$rinfos= array();
 		$dup=array();
 		$friend_count = 0;//记录好友个数

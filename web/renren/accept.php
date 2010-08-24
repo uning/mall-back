@@ -98,14 +98,14 @@ li.giftLocked .gift_name {
 	padding-top: 20px;
 }
 
-.giftFrom_name a:<link>
+.giftFrom_name a:link
   giftFrom_name a:visited {
 	color: #3b5998;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
-.giftFrom_name a:<hover>
+.giftFrom_name a:hover
   giftFrom_name a:active {
 	color: #559890;
 	text-decoration: none;

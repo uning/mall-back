@@ -4,20 +4,21 @@ $linkid = $_REQUEST['linkid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
-$key  = date('Ymd').$pid;
 if($pid &&$ids && $linkid){
 	$tw = TT::LinkTT();
-	$value = $tw->getbyuidx('udate',$key);
+	$value = $tw->getbyuidx('uid',$pid);
 	if(!$value){
-		$value = array('udate'=>date('Ymd').$pid,$linkid=>array(
+		$value = array('uid'=>$pid,$linkid=>array(
+		'date'=>date('Ymd'),
 		'geted'=> array(),
-		'ids' =>$_REQUEST['ids']
+		'ids' =>$_REQUEST['ids'],
+		'gift'=>$gid
 		));
 		$tw->put($value);
 		
 	}
 	else {
-		$value[$linkid]=array('geted'=>array(),'ids'=>$_REQUEST['ids']);
+		$value[$linkid]=array('geted'=>array(),'ids'=>$_REQUEST['ids'],'gift'=>$gid,'date'=>date('Ymd'));
 		$tw->put($value);
 	}
 	print_r($value);

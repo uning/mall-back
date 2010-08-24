@@ -255,5 +255,3 @@ if(!$link){?>
 					echo $rurl;?>" />
 	</xn:else>
 </xn:if-is-app-user>
-</hover>
-</link>

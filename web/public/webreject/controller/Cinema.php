@@ -45,7 +45,7 @@ class Cinema
 	    $now = time();
 	    $tu = new TTUser( $uid );
 	    $shop_obj = $tu->getbyid( $sid );
-	    $ret['now'] = $now;  //for debug
+	    $ret['now'] = date( TM_FORMAT,$now );  //for debug
 	    $ret['bshopobj'] = $shop_obj;  //for debug
 	    $ret['btime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 	    if( !$shop_obj ){

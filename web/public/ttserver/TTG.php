@@ -10,7 +10,7 @@ if(!class_exists('TokyoTyrant')){
 }
 
 
-define('USERNUM_PERTTDB','2000000');#one database user num
+define('USERNUM_PERTTDB','300000');#one database user num
 class TTG{
 	//如果需要索引，则直接加在这里
 	const GOODS_GROUP='g';

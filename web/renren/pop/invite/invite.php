@@ -76,17 +76,18 @@ if($_REQUEST['gift'])
 	if(!$gid){
 		$mode= 'naf';
 	}
-	$key  = date('Ymd').$pid;
+	//$key  = date('Ymd').$pid;
 	$tt = TT::LinkTT();
-	$feed = $tt->getbyuidx('udate',$key);
+	$feed = $tt->getbyuidx('uid',$pid);
 	if($feed)
 	{
+		$today = $feed['today'];
 		$arr = '0';
-		foreach ($feed as $k=>$v){
-			if(is_array($v)){
-				foreach ($v['ids'] as $id)
-				 $arr.=','.$id;
-			}
+		if($today['date']==date('Ymd'))
+		foreach ($feed['invite'] as $v){
+			
+				 $arr.=','.$v;
+			
 		}
 	}
 	
@@ -113,7 +114,7 @@ if($_REQUEST['gift'])
    <xn:serverxnml style="width:740px;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $exclude;?>" mode="<?php echo $mode;?>" width="700px"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友" max="30"  exclude_ids="<?php echo $arr;?>" mode="<?php echo $mode;?>" width="732px"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

@@ -51,7 +51,7 @@ dotest('GoodsController.checkout');
 $now = time();
 dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
 $now += 60;
-	dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
+dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
 return ;
 /*
 dotest('ItemController.buy');

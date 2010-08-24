@@ -21,9 +21,9 @@ if(!$u){
 	$data = TTGenid::getbypid($pid);
 }else
 	$data = TTGenid::getbyid($u);
-
-$u = $data['id'];
-if(!$u)
+if($data['id'])
+	$u = $data['id'];
+if(!$data)
 	die( "no u get");
 $tu = new TTUser($u);
 print_r($data);

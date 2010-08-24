@@ -8,6 +8,9 @@ class TT extends TTG{
 					array(
 						array('host'=>'127.0.0.1','port'=>'15000')
 					     ),
+					array(
+						array('host'=>'127.0.0.1','port'=>'15001')
+					     ),
 					)
 				),
 			//前台用数据

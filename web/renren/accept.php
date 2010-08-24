@@ -189,11 +189,6 @@ if(!$irec[$linkid]){?>
 		break;
 		}
 	}
-	?>
-	<?php if(!$invite){?>
-	<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
-	<?php ?>
-	<?php
 	$got = false;
 	foreach ($getted as $u){
 		if($u==$touser){

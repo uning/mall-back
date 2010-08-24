@@ -173,7 +173,6 @@ if(!$link){?>
 		exit ;
 }
 ?>
-
 <xn:if-is-app-user>
 <?php
 	$fsess = TTGenid::getbypid($fromuser);	

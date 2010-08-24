@@ -161,8 +161,6 @@ class Friend{
 	 */
 	public function get($params)
 	{	
-		//暂时只返回10个好友测试
-		//todo:
 		$now = time();
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
@@ -183,8 +181,6 @@ class Friend{
 			$tu->putf( TT::FRIEND_STAT ,$fids);
 		}
 		$fl = explode(',',$fids);
-		$ret['fids'] = $fids;   // for debug
-		$ret['fl'] = $fl;   // for debug
 		$rinfos= array();
 		$dup=array();
 		$friend_count = 0;//记录好友个数
@@ -193,7 +189,7 @@ class Friend{
 				continue;
 			$dup[$pid]=1;
 			$finfos = TTGenid::getbypid($pid); //by tingkun
-			$id = $finfos['id'];
+                        $id = $finfos['id'];
 			if($id){
 				$fdid = $tu->getdid($id,'fr');
 				$fdata = json_decode( $infos[$fdid],true);

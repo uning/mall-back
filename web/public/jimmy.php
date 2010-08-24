@@ -15,7 +15,7 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-dotest('Tool.add_friends',$p = array( 'pid1'=>"wely111",'pid2'=>"wely112" ) );
+//dotest('Tool.add_friends',$p = array( 'pid1'=>"wely111",'pid2'=>"wely112" ) );
 //dotest('Tool.test_gen',$p = array('u1'=>130,'u2'=>12));
 //dotest( 'Tool.test_feed',$p = array('u'=>21));
 //dotest('UserController.get_cars',$p=array('u'=>9));
@@ -35,14 +35,14 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Achieve.get',$p= array('u'=>1));
 //dotest('GoodsController.checkout',$p=array('u'=>16));
 //dotest('UserController.enlarge_mall',$p = array('u'=>47));
-//dotest('UserController.login',$p = array('pid'=>'sell100'));
+//dotest('UserController.login',$p = array('pid'=>'wely112'));
 //dotest('Advert.get',$p= array('u'=>1));
 //dotest( 'UserController.precheckout',$p = array('u'=>1));
 //dotest('Advert.get',$p= array('u'=>189));
 //dotest('Advert.buy',$p= array('u'=>1,'tag'=>1,'num'=>100));
 //dotest('Advert.set',$p= array('u'=>1,'tag'=>1));
 //dotest('Friend.test',$p=array('u'=>5));
-//dotest('Friend.get',$p=array('u'=>1));
+dotest('Friend.get',$p=array('u'=>133));
 //dotest('UserController.get_achieves',$p=array('u'=>1));
 /*
 for($i=150;$i<169;$i++){

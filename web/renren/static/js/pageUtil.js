@@ -391,7 +391,7 @@ function sendNotifcation(ids,name,callBack,say)
 
 function openCinema(data,callBack)
 {
-	navigateTo('../pop/open_shop.php&pid='+query_json.xn_sig_user);
+	navigateTo('../pop/open_shop.php');
 	$('#flash').removeClass('active');
 	//callBack();
 }

@@ -175,4 +175,38 @@ class Tool
 		$ret['s'] = 'OK';
 		return $ret;
 	}
+
+    public function test_gen( $params )
+    {
+        $uid1 = $params['u1'];
+        $uid2 = $params['u2'];
+        $u1 = TTGenid::getbyid( $uid1 );
+        $u2 = TTGenid::getbyid( $uid2 );
+        $ret['u1'] = $u1;
+        $ret['u2'] = $u2;
+        if( $u1['pid'] == $u2['pid'] ){
+            $ret['equal'] = 'true';
+        }
+        else{
+            $ret['equal'] = 'false';
+        }
+        return $ret;
+    }
+    
+    public function add_friends( $params )
+    {
+        $pid1 = $params['pid1'];
+        $pid2 = $params['pid2'];
+        $u1 = TTGenid::getbypid( $pid1 );
+        $u2 = TTGenid::getbypid( $pid2 );
+        $tu1 = new TTUser( $u1['id'] );
+        $tu2 = new TTUser( $u2['id'] );
+        $ret['bfids1'] = $tu1->getf( TT::FRIEND_STAT );
+        $ret['bfids2'] = $tu2->getf( TT::FRIEND_STAT );
+        $tu1->putf( TT::FRIEND_STAT,$pid2 );
+        $tu2->putf( TT::FRIEND_STAT,$pid1 );
+        $ret['afids1'] = $tu1->getf( TT::FRIEND_STAT );
+        $ret['afids2'] = $tu2->getf( TT::FRIEND_STAT );
+        return $ret;
+    }
 }

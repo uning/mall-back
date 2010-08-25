@@ -4,7 +4,7 @@ $host = '127.0.0.1';
 $port = 15000;
 
 
-	$cmd = 'init';
+$cmd = 'init';
 if($argv[1]=='start'){
 	$cmd = 'start';
 }

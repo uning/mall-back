@@ -234,12 +234,12 @@ class CarController
         if( $car_obj['addgoods'] ){
             $num += $car_obj['addgoods'];
         }
-        if( $car_obj['help'] ){
-            foreach( $car_obj['help'] as $data ){
-                $num += $data['num'];
-            }
-            unset( $car_obj['help'] );
-        }
+	if( $car_obj['help'] ){
+		foreach( $car_obj['help'] as $data ){
+			$num += $num;
+		}
+		unset( $car_obj['help'] );
+	}
 		$goods_data['pos'] = 's';
 		$goods_data['tag'] = $goodsTag;
 		$ids = array();

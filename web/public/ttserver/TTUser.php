@@ -237,6 +237,13 @@ class TTUser extends TTUDB
 
 		$cnum = floor($disc*$item[$currency]*$num);
 		$rnum = $this->change($currency,-$cnum);
+		if($rnum<0){
+			if($currency=='money'){
+				require_once 'GoodsController.php';
+				GoodsController::checkout($params);
+			}
+		}
+		$rnum = $this->change($currency,-$cnum);
 		if($rnum<0){//钱不够
 			$ret['s']   = $currency;
 			$ret['num'] = $rnum +$cnum;//买物品失败，剩余金币或宝石
@@ -281,10 +288,43 @@ class TTUser extends TTUDB
 		$statid = 'usalenum_'.$item['tag'];
 		$saled = $tusys->numch($statid,$num);//记录系统回购每种商品总数
 		$ret['s'] = 'OK';
-        $ret['money'] = $rnum;
+		$ret['money'] = $rnum;
    		return $ret;
 	}
 
+
+	/**
+	 * 获取所有帮助开启物品进度
+	 * @param
+             tag 
+
+	 * @return  one or a array of help open objects
+	 */
+	public function get_help($tag='')
+	{
+		if($tag){
+		 	$oid = $this->getoid($tag,'ho');
+			return $this->getbyid($oid);
+		} 
+		return $this->get('ho');
+	}
+
+	/**
+	 * 更新帮助获取物品
+	 * @param
+             tag 
+             fid
+
+	 * @return  one or a array of help open objects
+	 */
+	public function update_help($tag,$fid)
+	{
+		$oid = $this->getoid($tag,'ho');
+		$obj = $this->getbyid($oid);
+		$obj['help'][$fid]=time();
+		$obj['id'] = $oid;
+		$this->puto($obj);
+	}
 
 
 }

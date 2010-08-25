@@ -11,23 +11,23 @@ class Cinema
 	 */	
 	public function enter( $params )
 	{
-	    $uid = $params['u'];
-	    $cid = $params['cid'];
-	    $tu = new TTUser( $uid );
-	    $cinema_obj = $tu->getbyid( $cid );
-	    $ret['bcinemaobj'] = $cinema_obj;  //for debug
-	    $ret['btime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
-	    if( !$cinema_obj ){
-	        $ret['s'] = 'notexsit';
-	        return $ret;
-	    }
-	    $item = ItemConfig::getItem( $cinema_obj['tag'] );
-	    $cinema_obj['ctime'] -= $item['selltime'];
-	    $ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
-	    $ret['acinemaobj'] = $cinema_obj;  //for debug
-	    $tu->puto( $cinema_obj,TT::CINEMA_GROUP );
-	    $ret['s'] = 'OK';
-	    return $ret;
+		$uid = $params['u'];
+		$cid = $params['cid'];
+		$tu = new TTUser( $uid );
+		$cinema_obj = $tu->getbyid( $cid );
+		$ret['bcinemaobj'] = $cinema_obj;  //for debug
+		$ret['btime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
+		if( !$cinema_obj ){
+			$ret['s'] = 'notexsit';
+			return $ret;
+		}
+		$item = ItemConfig::getItem( $cinema_obj['tag'] );
+		$cinema_obj['ctime'] -= $item['selltime'];
+		$ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
+		$ret['acinemaobj'] = $cinema_obj;  //for debug
+		$tu->puto( $cinema_obj,TT::CINEMA_GROUP );
+		$ret['s'] = 'OK';
+		return $ret;
 	}
 
 	/**
@@ -40,55 +40,58 @@ class Cinema
 	 */	
 	public function pick( $params )
 	{
-	    $uid = $params['u'];
-	    $sid = $params['sid'];
-	    $now = time();
-	    $tu = new TTUser( $uid );
-	    $shop_obj = $tu->getbyid( $sid );
-	    $ret['now'] = date( TM_FORMAT,$now );  //for debug
-	    $ret['bshopobj'] = $shop_obj;  //for debug
-	    $ret['btime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
-	    if( !$shop_obj ){
-	        $ret['s'] = 'notexist';
-	        return $ret;
-	    }
-	    $item = ItemConfig::getItem( $shop_obj['tag'] );
-	    if( !$item ){
-	        $ret['s'] = 'itemnotexsit';
-	        return $ret;
-	    }
-	    if( $shop_obj['tag'] == '60102'){//电影院
-	        if( $now - $shop_obj['ctime'] < $item['selltime']*60 ){//坐满30个才开映，再过2小时才放映结束
-	            $ret['s'] = 'time';
-	            return $ret;
-	        }
-	        $money = $item['sellmoney'];
-	    }
-	    elseif( $shop_obj['tag'] == '60103' || $shop_obj['tag'] == '60104' ){//健身房和按摩店
-	        if( $now - $shop_obj['ctime'] < $item['settletime'] ){//开业时间需满足一定条件才可以收钱
-	            $ret['s'] = 'time';
-	            return $ret;	            
-	        }
-	        $money = $item['sellmoney'];
-	    }
+		$uid = $params['u'];
+		$sid = $params['sid'];
+		$now = time();
+		$tu = new TTUser( $uid );
+		$shop_obj = $tu->getbyid( $sid );
+		$ret['now'] = date( TM_FORMAT,$now );  //for debug
+		$ret['bshopobj'] = $shop_obj;  //for debug
+		$ret['btime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+		if( !$shop_obj ){
+			$ret['s'] = 'notexist';
+			return $ret;
+		}
+		$item = ItemConfig::getItem( $shop_obj['tag'] );
+		if( !$item ){
+			$ret['s'] = 'itemnotexsit';
+			return $ret;
+		}
+		if( $shop_obj['tag'] == '60102'){//电影院
+			if( $now - $shop_obj['ctime'] < $item['selltime']*60 ){//坐满30个才开映，再过2小时才放映结束
+				$ret['s'] = 'time';
+				return $ret;
+			}
+			$money = $item['sellmoney'];
+		}
+		elseif( $shop_obj['tag'] == '60103' || $shop_obj['tag'] == '60104' ){//健身房和按摩店
+			if( $now - $shop_obj['ctime'] < $item['settletime'] ){//开业时间需满足一定条件才可以收钱
+				$ret['s'] = 'time';
+				return $ret;	            
+			}
+			$money = $item['sellmoney'];
+		}
 		elseif( $shop_obj['tag'] == '60105' ||  $shop_obj['tag'] == '60106' ){//上岛和7-11便利店
-		    if( $now - $shop_obj['ctime'] < 3600 ){//开业1小时后就可以收钱，但最多只能积累6~9小时
-	            $ret['s'] = 'time';
-	            return $ret;
-		    }
-		    $gap = $now - $shop_obj['ctime'];
-		    if( $gap > $item['settletime'] ){
-		        $gap = $item['settletime'];
-		    }
-		    $money = $gap * $item['sellmoney'] / 3600;
-	    }    	    	    
-	    $tu->numch( TT::MONEY_STAT,$money );
-	    $shop_obj['ctime'] = $now;//捡钱后可以重新进人
-	    $tu->puto( $shop_obj,TT::CINEMA_GROUP );
-	    $ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
-	    $ret['ashopobj'] = $shop_obj;  //for debug
-        $ret['money'] = $money;
-	    $ret['s'] = 'OK';
-	    return $ret;
+			if( $now - $shop_obj['ctime'] < 3600 ){//开业1小时后就可以收钱，但最多只能积累6~9小时
+				$ret['s'] = 'time';
+				return $ret;
+			}
+			$gap = $now - $shop_obj['ctime'];
+			if( $gap > $item['settletime'] ){
+				$gap = $item['settletime'];
+			}
+			$money = $gap * $item['sellmoney'] / 3600;
+		}    	    	    
+		$tu->numch( TT::MONEY_STAT,$money );
+		$shop_obj['ctime'] = $now;//捡钱后可以重新进人
+		$tu->puto( $shop_obj,TT::CINEMA_GROUP );
+		$ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+		$ret['ashopobj'] = $shop_obj;  //for debug
+		$ret['money'] = $money;
+		$ret['s'] = 'OK';
+                return $ret;
+
 	}
+
+
 }

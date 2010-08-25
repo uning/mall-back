@@ -24,6 +24,7 @@ function dotest($m,$p=null)
 //dotest( 'Tool.showids',$p = array('u'=>1));
 //dotest('Tool.test_condition',$p= array('u'=>10,'con'=>array( 'audio'=>'0' ) ));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
+dotest('Cinema.pick',$p= array('u'=>129,'sid'=>'129:o:4c733b9ae0b76'));
 //dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
 /*
 for( $i=1;$i<151;$i++ ){
@@ -42,7 +43,7 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Advert.buy',$p= array('u'=>1,'tag'=>1,'num'=>100));
 //dotest('Advert.set',$p= array('u'=>1,'tag'=>1));
 //dotest('Friend.test',$p=array('u'=>5));
-dotest('Friend.get',$p=array('u'=>133));
+//dotest('Friend.get',$p=array('u'=>133));
 //dotest('UserController.get_achieves',$p=array('u'=>1));
 /*
 for($i=150;$i<169;$i++){

@@ -30,11 +30,20 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
         echo "===============================================\n\n";
 }
+$tu = new TTUser(2);
+$tu->update_help('60102',3);
+$tu->update_help('60102',4);
+$tu->update_help('60102',5);
+dotest('Friend.get',array('u'=>2,'f'=>24));
+dotest('HelpGet.get',array('u'=>2));
+dotest('HelpGet.open',array('u'=>2,'tag'=>'60102'));
+dotest('HelpGet.award',array('u'=>2,'tag'=>'60102'));
+return;
 $now = 1282208631;
 $now = time();
 //dotest('GoodsController.checkout',array('u'=>61,'now'=>$now));
 //return;
-dotest('GoodsController.dcheckout',array('u'=>106,'now'=>$now));
+dotest('GoodsController.dcheckout',array('u'=>138,'now'=>$now));
 return;
 
 dotest('Gift.accept');

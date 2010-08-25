@@ -102,10 +102,10 @@ class TTable extends TokyoTyrantTable {
 	public function getbyidx($idxname,$idxvalue)
 	{
 		$q=$this->getQuery();
-        $q->setLimit(10000);
+		$q->setLimit(10000);
 		$q->addCond($idxname,TokyoTyrant::RDBQC_STREQ,$idxvalue);
 		$res = $q->search();
-        return $res;
+		return $res;
 	}
 	
 	/**
@@ -115,7 +115,7 @@ class TTable extends TokyoTyrantTable {
 	public function getbyuidx($idxname,$idxvalue)
 	{
 		$q=$this->getQuery();
-        $q->setLimit(1);
+		$q->setLimit(1);
 		$q->addCond($idxname,TokyoTyrant::RDBQC_STREQ,$idxvalue);
 		$res = $q->search();
 		foreach($res as $k=>$v){
@@ -124,6 +124,6 @@ class TTable extends TokyoTyrantTable {
 		 
 		  return $v;
 		}
-        return $res;
+		return $res;
 	}
 }

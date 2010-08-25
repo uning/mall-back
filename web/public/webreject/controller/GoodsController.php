@@ -288,7 +288,8 @@ class GoodsController
 				$g['ctime'] = $now;  
 				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
-					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
+					//$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
+					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth']);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}
@@ -445,7 +446,7 @@ class GoodsController
 				$ret[$g['id']]['shop']=$s;
 				$ret[$g['id']]['mydata']=$g;
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
-					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
+					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth']);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}
@@ -458,8 +459,8 @@ class GoodsController
 						$ret[$g['id']][$k]['curtime']=$curtime;
 						$ret[$g['id']][$k]['gap']=$gr[0];
 						$ret[$g['id']][$k]['ratio']=$gr[1];
-						$ret[$g['id']][$k]['basespertime']=$gconfig['selltime'];
-						$ret[$g['id']][$k]['shopwidth']=$sconfig['gridWidth'];
+						$ret[$g['id']][$k]['basespertime'] = $gconfig['selltime'];
+						$ret[$g['id']][$k]['shopwidth'] = $sconfig['gridWidth'];
 					}
 
 					$ret['sell'][$g['tag']] += $asnum;

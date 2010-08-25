@@ -261,14 +261,12 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-$linkid = '202150436:4c7499df48697';
 $tw = TT::LinkTT();
 list($pid,$str) = explode(':',$linkid);
 $irec = $tw->getbyuidx('uid',$pid);
 $link = &$irec[$linkid];
 $fromuser = $pid;	
 $touser = $_REQUEST['xn_sig_user'];	
-$touser = 45182749;
 if(!$link){?>
 <xn:if-is-app-user>
 	<xn:redirect
@@ -365,6 +363,9 @@ if(!$link){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
 		<?php }
 		}
+		else {?>
+		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
+		<?php 
 		?>
 	<xn:else>
 		<xn:redirect

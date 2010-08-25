@@ -192,7 +192,6 @@ class ItemController {
 				return $sale_ret;
 			}
 			if( $item_obj['pos']!='s' ){
-//				$shop_num  -=  $item['gridWidth'];
 				$pop       -=  $item['pop'];
 			}
 //			$tu->remove( $id );
@@ -205,7 +204,6 @@ class ItemController {
 		if($pop)
 			$tu->numch( TT::POPU,$pop);
 		$tu->remove( $params['d'] );
-//		$ret['remain'] = $tu->get( TT::ITEM_GROUP ); for debug
 		$ret['s'] = 'OK';
 		return $ret;
 	}

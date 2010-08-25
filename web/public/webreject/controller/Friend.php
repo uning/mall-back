@@ -321,7 +321,7 @@ class Friend{
 
 		$vt = $fdata['ht'];
                 $vt_date = date('Ymd',$vt);
-		if($vt_date == $now_date){
+		if($vt_date == $now_date && $fdata['help_car']=='1'){
 			$ret['s']='helped';
 			return $ret;
 		}
@@ -348,14 +348,14 @@ class Friend{
 			$num = 2;
 		if($level >39) 
 			$num = 3;
-		$mydata = TTGenid::getbyid($uid); 
-		$car['help'][$uid] =  array('name'=>$mydata['name'],'icon'=>$mydata['icon'],'pid'=>$mydata['pid'],'dbid'=>$uid,'num'=>$num);
+		//$mydata = TTGenid::getbyid($uid); 
+		$car['help'][$uid] =  $num;
 		$flevel = $ftu->getLevel();
 		$exp = 1 + $flevel*4;
-		$money = 50 + $flevel*40;
 		$ret['exp']  = $tu->addExp($add_exp);
 		$ret['award']['exp']=$add_exp;
 		$fdata['ht']=$now;
+		$fdata['help_car']=1;
 		$tu->puto($fdata,'fr',false);
 		$ftu->puto($car,'',false);
 		$ret['s'] = 'OK';

@@ -13,3 +13,14 @@ require_once "ttserver/test_config.php";
 require_once "ItemConfig.php";
 require_once "AdvertConfig.php";
 require_once "UpgradeConfig.php";
+
+function get_controller($cn)
+{
+	$file = CONTROLLER_ROOT."$cn.php";
+	if(!file_exists($file )){
+		throw new JsonServerExecption( "method $method file not exist:(".CONTROLLER_ROOT."$cn.php)");
+	}
+	@require_once $file;
+	return new $cn;
+
+}

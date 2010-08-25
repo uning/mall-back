@@ -162,7 +162,8 @@ list($pid,$str) = explode(':',$linkid);
 $irec = $tw->getbyuidx('uid',$pid);
 $link = &$irec[$linkid];
 $fromuser = $pid;	
-$touser = $_REQUEST['xn_sig_user'];	
+$touser = $_REQUEST['xn_sig_user'];
+$touser = 45182749;	
 if(!$link){?>
 <xn:if-is-app-user>
 	<xn:redirect
@@ -179,7 +180,7 @@ if(!$link){?>
 <xn:if-is-app-user>
 <?php
 	$fsess = TTGenid::getbypid($fromuser);	
-	$tsess = TTGenid::genid($touser,true);	
+	$tsess = TTGenid::getbypid($touser);	
 		$ftu = new TTUser($fsess['id']);
 		$ttu = new TTUser($tsess['id']);
 			$tudata=$ftu->getf(array('name','icon'));

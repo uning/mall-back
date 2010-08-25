@@ -305,10 +305,10 @@ if(!$link){?>
 		}
 						
 	if(!$got&&$invite){
-			$ftu->numch('invite_num',1);
-				$gid = $link['gift'];
-					if($gid){?>
-	<div id='content'>
+	$ftu->numch('invite_num',1);
+	$gid = $link['gift'];
+	if($gid){?>
+		<div id='content'>
 	<div class='container'>
         <div class='canvas'>
 			<div id="header">

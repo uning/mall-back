@@ -6,9 +6,10 @@ $irec = false;
 $pid = false;
 $user =  null;
 if($linkid){
-	$tw = TT::TTWeb();
-	$irec = $tw->getbyid($linkid);
+	$tw = TT::LinkTT();
+	$irec = $tw->getbyuidx('linkid',$linkid);;
     $pid = $irec['pid'];
+    $oid = $irec['oid'];
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);
 	

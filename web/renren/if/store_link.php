@@ -3,17 +3,21 @@ require_once('../config.php');
 $linkid = $_REQUEST['linkid'];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
-if($pid &&$ids && $linkid){
+$oid = $_REQUEST['oid'];
+if($pid &&$ids && $linkid&&$oid){
 	$tw = TT::LinkTT();
 	$value = $tw->getbyuidx('linkid',$linkid);
 	if(!$value){
-		$value = array('linkid'=>$linkid,
+		/*$value = array('linkid'=>$linkid,
 		'uid'=>$pid,
 		'date'=>date('Ymd'),
 		'geted'=> array(),
-		'ids' =>$_REQUEST['ids']
-		);
-		$tw->put($value);
+		'ids' =>$_REQUEST['ids']*/
+		//);
+		
+		$_REQUEST['geted'] = array();
+		$_REQUEST['time'] = date('Ymd');
+		$tw->put($_REQUEST);
 		
 	}
 	

@@ -261,12 +261,11 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-$tw = TT::LinkTT();
-list($pid,$str) = explode(':',$linkid);
-$irec = $tw->getbyuidx('uid',$pid);
-$link = &$irec[$linkid];
-$fromuser = $pid;	
 $touser = $_REQUEST['xn_sig_user'];	
+$tw = TT::LinkTT();
+//list($pid,$str) = explode(':',$linkid);
+//$irec = $tw->getbyuidx('uid',$pid);
+$link = $tw->getbyuidx('linkid',$linkid);
 if(!$link){?>
 <xn:if-is-app-user>
 	<xn:redirect
@@ -282,11 +281,12 @@ if(!$link){?>
 ?>
 <xn:if-is-app-user>
 <?php
+	$fromuser = $link['pid'];
 	$fsess = TTGenid::getbypid($fromuser);	
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
-	$tudata=$ftu->getf(array('name','icon'));
+	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
 	$invite = false;
@@ -358,7 +358,7 @@ if(!$link){?>
 		}
 		
 		$link['geted'][] = $touser;
-		$tw->put($irec);
+		$tw->put($link);
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
 		<?php }

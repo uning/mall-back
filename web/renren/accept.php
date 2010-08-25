@@ -339,8 +339,8 @@ if(!$link){?>
 	<h3>From</h3>
 	</div>
 	<div class="from_box_cont">
-	<div class="giftFrom_img"><img src="<?php echo $tudata['icon'];?>" /></div>
-	<div class="giftFrom_name"><span><?php echo $tudata['name'];?></span></div>
+	<div class="giftFrom_img"><xn:profile-pic uid="<?php echo $pid;?>" linked="false" size="tiny" /></div>
+	<div class="giftFrom_name"><span><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" /></span></div>
 	</div>
 	</div>
 	</div>

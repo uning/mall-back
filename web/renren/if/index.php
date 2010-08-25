@@ -94,7 +94,7 @@ function install_swf(pid){
     <div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       
-        <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" >游戏</a></li>
+        <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
         <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>

@@ -149,16 +149,117 @@ li.giftLocked .gift_name {
 	float: center;
 	margin-top: 1px;
 	margin-bottom: 12px;
+} 
+ 
+#content {
+height: 700px;
+font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 }
+#header .logo {
+    width: 165px;
+    height: 46px;
+    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/logo.png?v=1") no-repeat center;
+    text-indent: -9999px;
+    float: left;
+}
+
+#header .logo  a {
+    display: block;
+    height: 36px;
+} 
+ 
+#navga ul { 
+    margin: 0 0 5px 0px;
+    padding-top: 14px;
+}
+
+#navga ul li {
+    float: left;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+#navga ul li a {
+    display: block;
+    text-indent: -9999px;
+    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/nav.png") no-repeat left top;
+    width: 95px;
+    height: 32px; 
+} 
+#navga ul li.game a {
+    background-position: 0 -1px;
+}
+
+
+#navga ul li.game a.active, #navga ul li.game a:hover {
+    background-position: 0 -45px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+	
+}
+
+#navga ul li.freegift a {
+    background-position: 0 -88px;
+}
+
+#navga ul li.freegift a.active, #navga ul li.freegift a:hover {
+    background-position: 0 -133px;
+	outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+
+#navga ul li.invite a {
+    background-position: 0 -176px;
+}
+
+#navga ul li.invite a.active, #navga ul li.invite a:hover {
+    background-position: 0 -221px;
+}
+
+/*payment*/
+#navga ul li.faq a {
+    background-position: 0 -263px;
+}
+
+#navga ul li.faq a.active, #navga ul li.faq a:hover {
+    background-position: 0 -308px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+
+#navga ul li.forum a {
+    background-position: 0 -351px;
+}
+
+#navga ul li.forum a.active, #navga ul li.forum a:hover {
+    background-position: 0 -396px;
+}
+#navga ul li.payment a {
+    background-position: 0 -440px;
+}
+
+#navga ul li.payment a.active, #navga ul li.payment a:hover {
+    background-position: 0 -487px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+#navga ul li.problem a {
+    background-position: 0 -532px;
+}
+
+#navga ul li.problem a.active, #navga ul li.problem a:hover {
+    background-position: 0 -579px;
+    outline:none;
+	blr:expression(this.onFocus=this.blur());
+}
+
 </style>
 <?php
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
-
 $tw = TT::LinkTT();
 list($pid,$str) = explode(':',$linkid);
-
 $irec = $tw->getbyuidx('uid',$pid);
 $link = &$irec[$linkid];
 $fromuser = $pid;	
@@ -204,6 +305,26 @@ if(!$link){?>
 							$ftu->numch('invite_num',1);
 								$gid = $link['gift'];
 										if($gid){?>
+	<div id='content'>
+	<div class='container'>
+        <div class='canvas'>
+			<div id="header">
+				<div id="navga">
+				<div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
+			   <div id="tabs">
+				<ul class="clearfix tcenter">       
+					<li class="game" id="flashTab" ><a  href="http://apps.renren.com/livemall" >游戏</a></li>
+					<li class="freegift"><a href="http://apps.renren.com/livemall?a=freeGift" id="freeGift" >免费礼物</a></li>
+					<li class="invite" ><a href="http://apps.renren.com/livemall?a=invite" >邀请好友</a></li>
+					<li class="faq"><a id='faq'  href="http://apps.renren.com/livemall?a=faq" >常见问题</a></li>
+					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" target='_blank' id="forum">论坛</a></li>
+					<li class="payment" ><a  class="active" href="http://apps.renren.com/livemall/pay.php"   id ="pay">充值</a></li>
+				</ul>
+				</div>
+				</div>
+			</div>
+			</div>
+			</div>
 	<div class="padding_content center" style="overflow: hidden;">
 	<div class="main_giftConfirm_cont">
 	<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
@@ -224,8 +345,7 @@ if(!$link){?>
 	</div>
 	</div>
 	</div>
-	<div align="center"><a href="http://apps.renren.com/livemall"
-		class="giftformsubmit giftButtonFloat">~游戏去~</a></div>
+</div>
 		<?php 
 			$id = $ttu->getdid( '',$gift[$gid]['group'] );
 			$data['tag'] = $gid;
@@ -241,8 +361,8 @@ if(!$link){?>
 		<?php }
 		}
 		else{?>
-			<div align="center"><a href="http://apps.renren.com/livemall"
-		class="giftformsubmit giftButtonFloat">~游戏去~</a></div>
+			<xn:redirect
+		url="<?php echo RenrenConfig::$canvas_url.'?from=invite';?>" />
 		<?php }?>
 	<xn:else>
 

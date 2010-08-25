@@ -285,30 +285,30 @@ if(!$link){?>
 <?php
 	$fsess = TTGenid::getbypid($fromuser);	
 	$tsess = TTGenid::getbypid($touser);	
-		$ftu = new TTUser($fsess['id']);
-		$ttu = new TTUser($tsess['id']);
-			$tudata=$ftu->getf(array('name','icon'));
-			$getted = $link['geted'];
-				$ids = $link['ids'];
-				$invite = false;
-					foreach($ids as $id){
-						if($id==$touser){
-									$invite = true;
-									break;
-									}
-							}  
-					$got = false;
-					foreach ($getted as $u){
-							if($u==$touser){
-								$got = true;
-									break;
-									}
-							}
+	$ftu = new TTUser($fsess['id']);
+	$ttu = new TTUser($tsess['id']);
+	$tudata=$ftu->getf(array('name','icon'));
+	$getted = $link['geted'];
+	$ids = $link['ids'];
+	$invite = false;
+	foreach($ids as $id){
+		if($id==$touser){
+				$invite = true;
+				break;
+				}
+		}  
+	$got = false;
+	foreach ($getted as $u){
+			if($u==$touser){
+				$got = true;
+					break;
+					}
+		}
 						
-						if(!$got&&$invite){
-							$ftu->numch('invite_num',1);
-								$gid = $link['gift'];
-										if($gid){?>
+	if(!$got&&$invite){
+			$ftu->numch('invite_num',1);
+				$gid = $link['gift'];
+					if($gid){?>
 	<div id='content'>
 	<div class='container'>
         <div class='canvas'>
@@ -349,7 +349,7 @@ if(!$link){?>
 	</div>
 	</div>
 	</div>
-</div>
+	</div>
 		<?php 
 			$id = $ttu->getdid( '',$gift[$gid]['group'] );
 			$data['tag'] = $gid;
@@ -364,12 +364,8 @@ if(!$link){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
 		<?php }
 		}
-		else{?>
-			<xn:redirect
-		url="<?php echo RenrenConfig::$canvas_url.'?from=invite';?>" />
-		<?php }?>
+		?>
 	<xn:else>
-
 		<xn:redirect
 			url="<?php 
 			$next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 

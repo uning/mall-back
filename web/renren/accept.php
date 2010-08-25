@@ -155,6 +155,7 @@ li.giftLocked .gift_name {
 require_once('config.php');
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['linkid'];
+$linkid ='202150436:4c748b1bbf0db';
 $tw = TT::LinkTT();
 list($pid,$str) = explode(':',$linkid);
 

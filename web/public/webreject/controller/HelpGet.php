@@ -37,7 +37,7 @@ class HelpGet
 	 *            tag    --  
 	 */
 
-	public function open( $params )
+	public function open($params )
 	{
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );

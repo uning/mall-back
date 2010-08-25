@@ -51,11 +51,12 @@ ul li a
 </table>
 <table width="700px">
 <?php 
+require_once 'freeGift.php';
 	$linkid = uniqid();
+	$oid = $_REQUEST['oid'];
     $accept_url = RenrenConfig::$canvas_url."cinema.php?linkid=$linkid";
-	$content = '我正在玩购物天堂，我需要个开个电影院，可是人手不够，需要你的帮忙 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;帮ta&quot;&gt;';
+	$content = '我正在玩购物天堂，我需要个开个'.$help[$oid]['name'].'，可是人手不够，需要你的帮忙 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;帮ta&quot;&gt;';
 	$pid = $_REQUEST['pid'];
-	$cid = $_REQUEST['cid'];
 	$mode = 'all';
 	$content.="&quot;&gt;"; 
 	$store_url = RenrenConfig::$callback_url."if/store_link.php?linkid=$linkid&pid=$pid";
@@ -63,7 +64,7 @@ ul li a
 ?>
 <tr>
 <td align="center">
-	<img  src=""/>
+	<img  src="../static/images/help/<?php echo $help[$oid]['sp']; ?>"/>
 </td>
 </tr>
 <tr>
@@ -72,7 +73,7 @@ ul li a
    <xn:serverxnml style="width:740px;">
    <script type="text/xnml">
  	<xn:request-form content="<?php echo $content;?>" action="<?php echo $store_url;?>"> 
-	<xn:multi-friend-selector-x actiontext="选择好友 帮你开启电影院" max="30"   mode="all" width="732px"/> 
+	<xn:multi-friend-selector-x actiontext="选择好友 帮你开启<?php $help[$oid]['name'];?>" max="30"   mode="all" width="732px"/> 
 	</xn:request-form> 
  </script>
 </xn:serverxnml> 

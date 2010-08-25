@@ -388,3 +388,10 @@ function sendNotifcation(ids,name,callBack,say)
     });
 
 }
+
+function openCinema(data,callBack)
+{
+	navigateTo('../pop/open_shop.php');
+	$('#flash').removeClass('active');
+	//callBack();
+}

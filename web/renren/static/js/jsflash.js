@@ -153,6 +153,11 @@ var PF = {
 		popUpFeed(data,function(response){
 			PF.flashapp.onfb_playcrab(id,response);
 		});
+	},
+	switchToCinema: function(id,data){
+		openCinema(data,function(response){
+			PF.flashapp.onfb_playcrab(id,response);
+		});
 	}
 };
 

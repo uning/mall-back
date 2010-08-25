@@ -52,7 +52,7 @@ $ids = $_REQUEST['ids'];
 			array_merge($value['invite'],$ids);
 		}
 	}
-	$_REQUEST['geted'] =array();
+	$_REQUEST['geted'] =array(0);
 	if($pid){
 	$tw->put($value);
 	$tw->put($_REQUEST);

@@ -1,29 +1,33 @@
 <?php
 require_once('config.php');
-include "./header.php";
+require_once('pop/freeGift.php');
+
+//include "./header.php";
 $linkid = $_REQUEST['linkid'];
 $irec = false;
 $pid = false;
 $user =  null;
 if($linkid){
-	$tw = TT::TTWeb();
-	$irec = $tw->getbyid($linkid);
+	$tw = TT::LinkTT();
+	$irec = $tw->getbyuidx('linkid',$linkid);;
     $pid = $irec['pid'];
+    $oid = $irec['oid'];
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);
 	
 }
 
-
-
-
 $mypid =   $_REQUEST['xn_sig_user'];  
 $sess=TTGenid::getbypid($pid);
 $myuser = new TTUser($sess['id']);
  	
- 
+ if(!$oid||!$help[$oid]){
 ?> 
-
+<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
+<?php exit;}
+	$obj = $user->get_help($oid);
+	
+?>
  <style>  
  
 #content {
@@ -176,10 +180,24 @@ font-size:14px;
 font-weight:normal;
 padding:10px 30px;
 }  
+
+.formsubmit {
+	border-style: solid;
+	border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea;
+	border-width: 1px;
+	margin: 1px 5px;
+	padding: 3px 10px;
+	background-color: #3b5998;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	height: 25px;
+}
  </style>
 
-
- 
+<xn:if-is-app-user>
+<form action="pop/help_open.php" method="post">
 <div id='is_install'></div>	
 
 <div id='content'>
@@ -213,13 +231,53 @@ padding:10px 30px;
 						</label>
 					</p>
 				</div>
-				
+				<input type="hidden" name="linkid" value="<?php echo $linkid;?>"/>
+				<input type="hidden" name="fid" value="<?php echo $mypid;?>"/>
 				<div class='cinema-body'> 
+					<?php 
+						if($obj['help']&&$obj['help']!='null')
+						$count = count($obj['help']);
+						else $count = 0;
+					?>
+					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />
+					<?php if($obj['help'][$mypid])
+							echo '已经获得了你的帮助';
+						else if($count<$help[$oid]['need_num']){ 
+								echo '需要你的帮助才能开启'.$help[$oid]['name'];
+							}
+						if($count>=$help[$oid]['need_num']){
+							echo ',ta的'.$help[$oid]['name'].'已经开启';
+						}
+						if(!$obj['help'][$mypid]&&$count<$help[$oid]['need_num']){?>
+						<input type="submit"  value="帮助ta" style="cursor: pointer;padding-left: 30px;" class="formsubmit"/>
+						<?php }?>
+					</h2>
+					<div class="pictue">
+						<img src="<?php echo RenrenConfig::$resource_urlp; ?>/images/help/<?php echo $help[$oid]['bp'];?>"/>
+					</div>
 					
-					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />需要你的帮助才能开启电影院</h2>
-					
-					<h2>已经有2位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
-
+					<h2>已经有<?php echo $count;?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
+					<table cellpadding="0" cellspacing="0">
+					<?php 
+					if($obj['help']&&$obj['help']!='null'){
+						echo '<tr>';
+					foreach ($obj['help'] as $k=>$v){?>
+					<td align="center" valign="bottom">
+					<span class='avatar'>
+						<xn:profile-pic uid="<?php echo $k;?>" linked="true" size="tiny" />
+					</span>
+					</td>
+					<?php }
+					echo '</tr><tr>';
+					foreach ($obj['help'] as $k=>$v){?>
+					<td align="center" valign="top" style="font-weight: lighter;">
+					<xn:name uid="<?php echo $k;?>" linked="true" shownetwork="false" />
+					</td>
+					<?php }
+					echo '</tr>';
+					}
+					?>
+					</table>
 				</div> 
 			</div>			 
 		
@@ -227,7 +285,7 @@ padding:10px 30px;
 	</div>
 </div>
  
-
+</form>
 
 <xn:else>
 <img src="<?php echo RenrenConfig::$resource_urlp ?>images/genricbg.jpg"/>
@@ -248,8 +306,6 @@ if(!Session.isApplicationAdded() || is_install == null ){
 	Session.requireLogin(authOK,authKO);
 }
 </script>
-
 </xn:else>
-
 </xn:if-is-app-user>
 

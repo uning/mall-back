@@ -4,7 +4,7 @@ $linkid = $_REQUEST['linkid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
-if($pid &&$ids && $linkid){
+/*if($pid &&$ids && $linkid){
 	$tw = TT::LinkTT();
 	$value = $tw->getbyuidx('uid',$pid);
 	if(!$value){
@@ -32,7 +32,31 @@ if($pid &&$ids && $linkid){
 		$tw->put($value);
 	}
 	//print_r($value);
-}
+}*/
+	$date = date('Ymd');
+	$_REQUEST['date'] = $date;
+	$tw = TT::LinkTT();
+	$value = $tw->getbyuidx('uid',$pid);
+	if(!$value)
+	{
+		$value = array('uid'=>$pid,'invite'=>$ids,'accepted'=>array(),'time'=>$date);
+	}
+	else 
+	{
+		if($value['time']!=$date){
+			$value['time']=$date;
+			$value['invite'] = $ids;
+		}
+		else
+		{
+			array_merge($value['invite'],$ids);
+		}
+	}
+	$_REQUEST['geted'] =array(0);
+	if($pid){
+	$tw->put($value);
+	$tw->put($_REQUEST);
+	}
 header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 	
 

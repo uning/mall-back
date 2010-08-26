@@ -13,3 +13,7 @@ $gift = array(
 '10111' => array('level'=>10,'bg'=>'','icon' =>'icon_ipad.jpg','lbg'=>'','name'=>'爱牌德','group'=>'g'),
 '10112' => array('level'=>12,'bg'=>'','icon' =>'icon_chair.jpg','lbg'=>'','name'=>'椅子','group'=>'o')
 );
+
+$help =array(
+'60102'=>array('level'=>1,'bp'=>'cinameb.png','sp'=>'cinames.png','need_num'=>3,'name'=>'电影院')
+);

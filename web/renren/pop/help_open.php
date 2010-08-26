@@ -27,5 +27,5 @@ foreach ($irec['ids'] as $v){
 }
 if($inv)
 $user->update_help($oid,$fid);
-}
+}?>
 <xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />

@@ -248,12 +248,12 @@ padding:10px 30px;
 					
 					<h2>已经有<?php echo $count;?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
 					<?php 
-					if($obj['help']&&$obj['help']!='null')
+					if($obj['help']&&$obj['help']!='null'){
 					foreach ($obj['help'] as $k=>$v){?>
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $k;?>" linked="true" size="tiny" />
 					</span>
-					<?php }
+					<?php }}
 					?>
 				</div> 
 			</div>			 

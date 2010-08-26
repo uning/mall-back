@@ -27,5 +27,6 @@ foreach ($irec['ids'] as $v){
 }
 if($inv)
 $user->update_help($oid,$fid);
-}?>
-<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
+
+}
+header('Location: '.RenrenConfig::$canvas_url.'cinema.php?linkid='.$linkid.'&xn_sig_user='.$fid);

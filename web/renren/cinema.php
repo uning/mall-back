@@ -222,7 +222,7 @@ padding:10px 30px;
 				<div class='cinema-body'> 
 					<?php 
 						if($obj['help']&&$obj['help']!='null')
-						$count = array_count_values($obj['help']);
+						$count = count($obj['help']);
 						else $count = 0;
 					?>
 					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />

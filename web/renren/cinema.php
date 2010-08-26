@@ -17,9 +17,6 @@ if($linkid){
 	$user = new TTUser($sess['id']);
 	
 }
-print_r($irec);
-
-
 
 $mypid =   $_REQUEST['xn_sig_user'];  
 $sess=TTGenid::getbypid($pid);
@@ -243,7 +240,7 @@ padding:10px 30px;
 						<?php }?>
 					</h2>
 					<div class="pictue">
-						<img src="static/images/help/<?php echo $help[$oid]['bp'];?>"/>
+						<img src="<?php echo RenrenConfig::$resource_urlp; ?>/images/help/<?php echo $help[$oid]['bp'];?>"/>
 					</div>
 					
 					<h2>已经有<?php echo $count;?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>

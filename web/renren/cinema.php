@@ -262,7 +262,7 @@ padding:10px 30px;
 					if($obj['help']&&$obj['help']!='null'){
 						echo '<tr>';
 					foreach ($obj['help'] as $k=>$v){?>
-					<td>
+					<td align="center" valign="bottom">
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $k;?>" linked="true" size="tiny" />
 					</span>
@@ -270,8 +270,8 @@ padding:10px 30px;
 					<?php }
 					echo '</tr><tr>';
 					foreach ($obj['help'] as $k=>$v){?>
-					<td align="center">
-					<h2><xn:name uid="<?php echo $k;?>" linked="true" shownetwork="false" /></h2>
+					<td align="center" valign="top">
+					<h1><xn:name uid="<?php echo $k;?>" linked="true" shownetwork="false" /></h1>
 					</td>
 					<?php }
 					echo '</tr>';

@@ -172,7 +172,7 @@ class GoodsController
 				//return $ret;
 			}
 			//$shop_obj['goods'][$goods['pos']['x']]= $goods['id'];  //没必要
-			$shop_obj['goods'][$goods['id']]=$now + $goods['pos']['x'];  //没必要
+			$shop_obj['goods'][$goods['id']]=$now + $index;//$goods['pos']['x'];  //没必要
 			$goods['stime'] =  $now + $goods['pos']['x']; //对同一商店同一时间上架的货物，按出售顺序将上架时间轻微调整以方便处理
 			$goods['num'] =  $item['unitcout'];
 			$goods['stag']  =  $shop_obj['tag'];//商店类型
@@ -216,7 +216,6 @@ class GoodsController
 				$gids = @array_keys($shop['goods']);//sort it
 				if($gids){
 					$gs  = $tu->getbyids($gids);
-
 					if($gs['g']){
 						$condata[$shop['id']]['sconfig']= $item;
 						$condata[$shop['id']]['shop']= $shop;

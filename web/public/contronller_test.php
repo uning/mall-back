@@ -30,6 +30,10 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
         echo "===============================================\n\n";
 }
+dotest('UserController.update_profile');
+
+dotest('Friend.help_car');
+return;
 $tu = new TTUser(2);
 $tu->update_help('60102',3);
 $tu->update_help('60102',4);
@@ -77,7 +81,6 @@ print_r($data=TTGenid::genid(array('pid'=>'dfs1','gender'=>1,'name'=>"wahaha"),$
 echo "new = $new\n";
 return;
 */
-dotest('UserController.login');
 dotest('UserController.get_achieves');
 otest('UserController.showids');
 dotest('UserController.genusers');

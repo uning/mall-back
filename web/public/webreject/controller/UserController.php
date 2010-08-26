@@ -263,12 +263,7 @@ class UserController
 		$uid = $params['u'];
 		$ups = $params['ups'];
 		$tu = new TTUser( $uid );
-		$data = array();
-		foreach ($ups as $k=>$v){
-			if( $v )
-				$data[$k] = $v;
-		}
-		$tu->mputf( $data );
+		$tu->mputf( $ups );
 		$ret['s'] = 'OK';
 		return $ret;
 	}

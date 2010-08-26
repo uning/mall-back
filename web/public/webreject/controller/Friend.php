@@ -243,7 +243,7 @@ class Friend{
 
 		$tu = new TTUser( $uid );
 		$ftu = new TTUser( $nid);
-		$fdid = $tu->getdid($uid,'fr');
+		$fdid = $tu->getdid($nid,'fr');
 
 		$now = time();
         $now_date = date('Ymd',$now);

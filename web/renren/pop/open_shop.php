@@ -59,7 +59,7 @@ require_once 'freeGift.php';
 	$pid = $_REQUEST['pid'];
 	$mode = 'all';
 	$content.="&quot;&gt;"; 
-	$store_url = RenrenConfig::$callback_url."if/store_link.php?linkid=$linkid&pid=$pid";
+	$store_url = RenrenConfig::$callback_url."if/store_link.php?linkid=$linkid&pid=$pid&oid=$oid";
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
 <tr>

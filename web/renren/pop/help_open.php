@@ -28,4 +28,4 @@ foreach ($irec['ids'] as $v){
 if($inv)
 $user->update_help($oid,$fid);
 }
-header('Location: '.RenrenConfig::$canvas_url.'?help=invite');
+<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />

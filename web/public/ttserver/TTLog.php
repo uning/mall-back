@@ -16,6 +16,7 @@ class TTLog{
 		$t = & self::$_t;
 		if($t==null)
 		 $t = TT::get_tt('log');
-		$t->putCat(null,$data);
+		 $t->put(null,$data);
+		//$t->putCat($data);
 	}
 }

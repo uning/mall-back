@@ -352,13 +352,14 @@ class Friend{
 			$num = 3;
 		//$mydata = TTGenid::getbyid($uid); 
 		$car['help'][$uid] =  $num;
-		$add_exp *=$num;
+		$add_exp *=4;
 		$ret['exp']  = $tu->addExp($add_exp);
 		$ret['award']['exp']=$add_exp;
 		$fdata['ht']=$now;
 		$fdata['help_car']=1;
 		$tu->puto($fdata,'fr',false);
 		$ftu->puto($car,'',false);
+		$ret['cid']=$cid;
 		$ret['s'] = 'OK';
 		$ret['t'] = $now;
 		return $ret;

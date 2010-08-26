@@ -83,6 +83,5 @@ for($i=$start;$i<=$end;++$i){
 		$uid = $p['p']['u'];
 	if($uid == $u)
 		print_r($data);
-
 }
 

@@ -148,7 +148,7 @@ class CarController
 			$ret['s'] = 'notexist';
 			return $ret;
 		}
-		if( $car_obj['t'] != 0 ){
+		if( $car_obj['t'] ){
 			$ret['s'] = 'doing';
 			return $ret;
 		}

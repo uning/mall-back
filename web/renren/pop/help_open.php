@@ -29,4 +29,4 @@ if($inv)
 $user->update_help($oid,$fid);
 
 }
-header('Location: '.RenrenConfig::$canvas_url.'cinema.php?linkid='.$linkid.'&xn_sig_user='.$fid);
+header('Location: ../cinema.php?linkid='.$linkid.'&xn_sig_user='.$fid);

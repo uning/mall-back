@@ -180,6 +180,20 @@ font-size:14px;
 font-weight:normal;
 padding:10px 30px;
 }  
+
+.formsubmit {
+	border-style: solid;
+	border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea;
+	border-width: 1px;
+	margin: 1px 5px;
+	padding: 3px 10px;
+	background-color: #3b5998;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	height: 25px;
+}
  </style>
 
 <xn:if-is-app-user>
@@ -231,11 +245,11 @@ padding:10px 30px;
 						else if($count<$help[$oid]['need_num']){ 
 								echo '需要你的帮助才能开启'.$help[$oid]['name'];
 							}
-						else if($count>=$help[$oid]['need_num']){
-							echo $help[$oid]['name'].'已经开启';
+						if($count>=$help[$oid]['need_num']){
+							echo ',ta的'.$help[$oid]['name'].'已经开启';
 						}
 						if(!$obj['help'][$mypid]&&$count<$help[$oid]['need_num']){?>
-						<input type="submit" name="submit" value="帮助ta" style="cursor: pointer;"/>
+						<input type="submit"  value="帮助ta" style="cursor: pointer;" class="formsubmit"/>
 						<?php }?>
 					</h2>
 					<div class="pictue">

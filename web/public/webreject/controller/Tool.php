@@ -198,14 +198,14 @@ class Tool
     public function add_friends( $params )
     {
         $pids = $params['pids'];
+return $pids;
         $apids = explode( ",",$pids );
         $length = count( $apids );
-        $ret = array();
         for( $i=0;$i<$length;$i++ ){
             $ui = TTGenid::getbypid( $apids[$i] );
             $tui = new TTUser( $ui['id'] );
             $ret['bf'][$i] = $tui->getf( TT::FRIEND_STAT );
-            $tui->putf( $pids,TT::FRIEND_STAT );
+//            $tui->putf( $pids,TT::FRIEND_STAT );
             $ret['af'][$i] = $tui->getf( TT::FRIEND_STAT );
         }
         

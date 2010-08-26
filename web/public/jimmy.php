@@ -16,7 +16,8 @@ function dotest($m,$p=null)
         echo "===============================================\n\n";
 }
 //dotest('Tool.test_exp',$p = array( 'u'=>132 ) );
-dotest('Tool.add_friends',$p = array( 'pids1'=>"wely111",'pids2'=>"wely112" ) );
+//dotest('Tool.add_friends',$p = array( 'pids1'=>"wely111",'pids2'=>"wely112" ) );
+dotest('Tool.add_friends',$p = array('pids'=>"wely111,wely112,JimmyChou"));
 //dotest('Tool.test_gen',$p = array('u1'=>130,'u2'=>12));
 //dotest( 'Tool.test_feed',$p = array('u'=>21));
 //dotest('UserController.get_cars',$p=array('u'=>132));

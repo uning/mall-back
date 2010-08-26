@@ -270,7 +270,7 @@ padding:10px 30px;
 					<?php }
 					echo '</tr><tr>';
 					foreach ($obj['help'] as $k=>$v){?>
-					<td>
+					<td align="center">
 					<h2><xn:name uid="<?php echo $k;?>" linked="true" shownetwork="false" /></h2>
 					</td>
 					<?php }

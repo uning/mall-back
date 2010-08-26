@@ -18,8 +18,8 @@ if($pid &&$ids && $linkid&&$oid){
 		$_REQUEST['geted'] = array();
 		$_REQUEST['time'] = date('Ymd');
 		$tw->put($_REQUEST);
-		
+		print_r($_REQUEST);
 	}
 	
 }
-header('Location: '.RenrenConfig::$canvas_url.'?c=invite');
+//header('Location: '.RenrenConfig::$canvas_url.'?c=invite');

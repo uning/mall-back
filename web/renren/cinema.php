@@ -2,7 +2,7 @@
 require_once('config.php');
 require_once('pop/freeGift.php');
 
-include "./header.php";
+//include "./header.php";
 $linkid = $_REQUEST['linkid'];
 $linkid='linkid=4c75d1c9374fc';
 $irec = false;

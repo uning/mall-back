@@ -192,21 +192,60 @@ class Tool
         }
         return $ret;
     }
-    
+    /**
+     * 互相加为好友
+     */
     public function add_friends( $params )
     {
-        $pid1 = $params['pid1'];
-        $pid2 = $params['pid2'];
-        $u1 = TTGenid::getbypid( $pid1 );
-        $u2 = TTGenid::getbypid( $pid2 );
-        $tu1 = new TTUser( $u1['id'] );
-        $tu2 = new TTUser( $u2['id'] );
+        $pids = $params['pids'];
+        $apids = explode( ",",$pids );
+        $length = count( $apids );
+        $ret = array();
+        for( $i=0;$i<$length;$i++ ){
+            $ui = TTGenid::getbypid( $apids[$i] );
+            $tui = new TTUser( $ui['id'] );
+            $ret['bf'][$i] = $tui->getf( TT::FRIEND_STAT );
+            $tui->putf( $pids,TT::FRIEND_STAT );
+            $ret['af'][$i] = $tui->getf( TT::FRIEND_STAT );
+        }
+        
+/*        
+        $pids1 = $params['pids1'];
+        $pids2 = $params['pids2'];
+$ret['pids1'] = $pids1;
+$ret['pids2'] = $pids2; 
+        $pid_array1 = explode(",",$pids1);
+        $pid_array2 = explode(",",$pids2);
+$ret['array1'] = $pid_array1;
+$ret['array2'] = $pid_array2;
+        foreach( $pid_array1 as $pid1 ){
+            $u1 = TTGenid::getbypid( $pid1 );
+            $tu1 = new TTUser( $u1['id'] );
+        }
+        foreach( $pid_array2 as $pid2 ){
+            $u2 = TTGenid::getbypid( $pid2 );
+            $tu2 = new TTUser( $u2['id'] );
+        }
         $ret['bfids1'] = $tu1->getf( TT::FRIEND_STAT );
         $ret['bfids2'] = $tu2->getf( TT::FRIEND_STAT );
-        $tu1->putf( TT::FRIEND_STAT,$pid2 );
-        $tu2->putf( TT::FRIEND_STAT,$pid1 );
+//        $tu1->putf( TT::FRIEND_STAT,$pid2 );
+//        $tu2->putf( TT::FRIEND_STAT,$pid1 );
         $ret['afids1'] = $tu1->getf( TT::FRIEND_STAT );
         $ret['afids2'] = $tu2->getf( TT::FRIEND_STAT );
+*/        
+        return $ret;
+    }
+
+    public function test_exp( $params )
+    {
+        $u1 = TTGenid::getbypid("wely111");
+        $u2 = TTGenid::getbypid("wely112");
+        $ret['u1'] = $u1;
+        $ret['u2'] = $u2;
+        $tu1 = new TTUser( $u1['id'] );
+        $tu2 = new TTUser( $u2['id'] );
+        $ret['tu1'] = $tu1->getdata();
+        $ret['tu2'] = $tu2->getdata();
         return $ret;
     }
 }

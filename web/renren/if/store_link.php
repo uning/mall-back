@@ -22,4 +22,4 @@ if($pid &&$ids && $linkid&&$oid){
 	}
 	
 }
-//header('Location: '.RenrenConfig::$canvas_url.'?c=invite');
+header('Location: '.RenrenConfig::$canvas_url.'?c=invite');

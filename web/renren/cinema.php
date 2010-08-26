@@ -4,7 +4,6 @@ require_once('pop/freeGift.php');
 
 //include "./header.php";
 $linkid = $_REQUEST['linkid'];
-$linkid='4c75d57c9cdda';
 $irec = false;
 $pid = false;
 $user =  null;
@@ -184,7 +183,7 @@ padding:10px 30px;
  </style>
 
 <xn:if-is-app-user>
-<form action="" method="post" id="form">
+<form action="pop/help_open.php" method="post" id="form">
 <div id='is_install'></div>	
 
 <div id='content'>

@@ -262,7 +262,7 @@ padding:10px 30px;
 					if($obj['help']&&$obj['help']!='null'){
 						echo '<tr>';
 					foreach ($obj['help'] as $k=>$v){?>
-					<td>
+					<td width="60px">
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $k;?>" linked="true" size="tiny" />
 					</span>

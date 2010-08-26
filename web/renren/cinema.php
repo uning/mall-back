@@ -249,7 +249,7 @@ padding:10px 30px;
 							echo ',ta的'.$help[$oid]['name'].'已经开启';
 						}
 						if(!$obj['help'][$mypid]&&$count<$help[$oid]['need_num']){?>
-						<input type="submit"  value="帮助ta" style="cursor: pointer;" class="formsubmit"/>
+						<input type="submit"  value="帮助ta" style="cursor: pointer;padding-left: 30px;" class="formsubmit"/>
 						<?php }?>
 					</h2>
 					<div class="pictue">
@@ -257,14 +257,27 @@ padding:10px 30px;
 					</div>
 					
 					<h2>已经有<?php echo $count;?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
+					<table>
 					<?php 
 					if($obj['help']&&$obj['help']!='null'){
+						echo '<tr>';
 					foreach ($obj['help'] as $k=>$v){?>
+					<td>
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $k;?>" linked="true" size="tiny" />
 					</span>
-					<?php }}
+					</td>
+					<?php }
+					echo '</tr><tr>';
+					foreach ($obj['help'] as $k=>$v){?>
+					<td>
+					<h2><xn:name uid="<?php echo $k;?>" linked="true" shownetwork="false" /></h2>
+					</td>
+					<?php }
+					echo '</tr>';
+					}
 					?>
+					</table>
 				</div> 
 			</div>			 
 		

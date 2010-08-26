@@ -30,6 +30,10 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
         echo "===============================================\n\n";
 }
+$now = 1282208631;
+$now = time();
+dotest('GoodsController.dcheckout',array('u'=>147,'now'=>$now));
+return;
 dotest('UserController.update_profile');
 
 dotest('Friend.help_car');

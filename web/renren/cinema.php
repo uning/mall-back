@@ -4,6 +4,7 @@ require_once('pop/freeGift.php');
 
 include "./header.php";
 $linkid = $_REQUEST['linkid'];
+$linkid='linkid=4c75d1c9374fc';
 $irec = false;
 $pid = false;
 $user =  null;
@@ -16,7 +17,7 @@ if($linkid){
 	$user = new TTUser($sess['id']);
 	
 }
-
+print_r($irec);
 
 
 
@@ -27,7 +28,7 @@ $myuser = new TTUser($sess['id']);
  if(!$oid||!$help[$oid]){
 ?> 
 <xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
-<?php exit(0);}
+<?php exit;}
 	$obj = $user->get_help($oid);
 	
 ?>

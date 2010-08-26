@@ -27,5 +27,5 @@ foreach ($irec['ids'] as $v){
 }
 if($inv)
 $user->update_help($oid,$fid);
-header('Location: '.RenrenConfig::$canvas_url.'?help=invite');
 }
+header('Location: '.RenrenConfig::$canvas_url.'?help=invite');

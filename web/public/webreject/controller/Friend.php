@@ -241,13 +241,12 @@ class Friend{
 		$uid = $params['u'];
 		$nid = $params['f'];
 
-
 		$tu = new TTUser( $uid );
 		$ftu = new TTUser( $nid);
 		$fdid = $tu->getdid($nid,'fr');
 
 		$now = time();
-                $now_date = date('Ymd',$now);
+        $now_date = date('Ymd',$now);
 		$fdata = $tu->getbyid($fdid);
 		if(!$fdata ){
 			$ret['s']='nofriend'; 
@@ -255,11 +254,12 @@ class Friend{
 		}
 
 		$vt = $fdata['vt'];
-                $vt_date = date('Ymd',$vt);
+        $vt_date = date('Ymd',$vt);
 		if($vt_date == $now_date){
 			$ret['s']='visited';
 			return $ret;
 		}
+		/*
 		$flevel = $ftu->getLevel();
 		$exp = 1 + $flevel*4;
 		$money = 50 + $flevel*50;
@@ -268,7 +268,7 @@ class Friend{
 		
 		$ret['award']['money']=$money;
 		$ret['award']['exp']=$exp;
-               
+        */       
 		$fdata['vt']=$now;
 		$tu->puto($fdata,'fr',false);
 		$ret['s'] = 'OK';

@@ -224,24 +224,29 @@ padding:10px 30px;
 				<input type="hidden" name="linkid" value="<?php echo $linkid;?>"/>
 				<input type="hidden" name="fid" value="<?php echo $mypid;?>"/>
 				<div class='cinema-body'> 
-					
+					<?php 
+						if($obj['help'])
+						$count = array_count_values($obj['help']);
+						else $count = 0;
+					?>
 					<h2><xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />
 					<?php if($obj['help'][$mypid])
 							echo '已经获得了你的帮助';
-						else if(array_count_values($obj['help'])<$help[$oid]['need_num']){ 
+						else if($count<$help[$oid]['need_num']){ 
 								echo '需要你的帮助才能开启'.$help[$oid]['name'];
 							}
-						else if(array_count_values($obj['help'])>=$help[$oid]['need_num']){
+						else if($count>=$help[$oid]['need_num']){
 							echo $help[$oid]['name'].'已经开启';
 						}
-						if(!$obj['help'][$mypid]&&array_count_values($obj['help'])<$help[$oid]['need_num']){?>
+						if(!$obj['help'][$mypid]&&$count<$help[$oid]['need_num']){?>
 						<input type="button" name="submit" value="帮助ta" onclick="document.getElementById('form').submit();"/>
 						<?php }?>
 					</h2>
 					<div class="pictue">
 						<img src="static/images/help/<?php echo $help[$oid]['bp'];?>"/>
 					</div>
-					<h2>已经有<?php echo array_count_values($obj['help']);?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
+					
+					<h2>已经有<?php echo $count;?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
 					<?php 
 					foreach ($obj['help'] as $k=>$v){?>
 					<span class='avatar'>

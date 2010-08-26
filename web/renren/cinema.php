@@ -225,7 +225,7 @@ padding:10px 30px;
 				<input type="hidden" name="fid" value="<?php echo $mypid;?>"/>
 				<div class='cinema-body'> 
 					<?php 
-						if($obj['help'])
+						if($obj['help']&&$obj['help']!='null')
 						$count = array_count_values($obj['help']);
 						else $count = 0;
 					?>
@@ -248,6 +248,7 @@ padding:10px 30px;
 					
 					<h2>已经有<?php echo $count;?>位董事长帮助过<xn:name uid="<?php echo $pid;?>" linked="false" shownetwork="false" />了</h2>
 					<?php 
+					if($obj['help']&&$obj['help']!='null')
 					foreach ($obj['help'] as $k=>$v){?>
 					<span class='avatar'>
 						<xn:profile-pic uid="<?php echo $k;?>" linked="true" size="tiny" />

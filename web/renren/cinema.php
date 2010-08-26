@@ -186,8 +186,8 @@ padding:10px 30px;
 }  
  </style>
 
-
- <form action="" method="post" id="form">
+<xn:if-is-app-user>
+<form action="" method="post" id="form">
 <div id='is_install'></div>	
 
 <div id='content'>
@@ -283,8 +283,6 @@ if(!Session.isApplicationAdded() || is_install == null ){
 	Session.requireLogin(authOK,authKO);
 }
 </script>
-
 </xn:else>
-
 </xn:if-is-app-user>
 

@@ -226,6 +226,10 @@ class CarController
 			$ret['s'] = 'goodstagincorrect';
 			return $ret;
 		}
+		if( !$car_obj['t'] ){
+		    $ret['s'] = 'notgogoods';
+		    return $ret;
+		}
         if( $now - $car_obj['t'] < $goods['buytime'] ){//取消货车的时间减免
 			$ret['s'] = 'timeleft';
 			return $ret;

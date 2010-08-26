@@ -183,7 +183,7 @@ padding:10px 30px;
  </style>
 
 <xn:if-is-app-user>
-<form action="pop/help_open.php" method="post" id="form">
+<form action="pop/help_open.php" method="post">
 <div id='is_install'></div>	
 
 <div id='content'>
@@ -235,7 +235,7 @@ padding:10px 30px;
 							echo $help[$oid]['name'].'已经开启';
 						}
 						if(!$obj['help'][$mypid]&&$count<$help[$oid]['need_num']){?>
-						<input type="button" name="submit" value="帮助ta" onclick="document.getElementById('form').submit();"/>
+						<input type="submit" name="submit" value="帮助ta" style="cursor: pointer;"/>
 						<?php }?>
 					</h2>
 					<div class="pictue">

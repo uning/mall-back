@@ -267,6 +267,7 @@ $tw = TT::LinkTT();
 //$irec = $tw->getbyuidx('uid',$pid);
 $link = $tw->getbyuidx('linkid',$linkid);?>
 <xn:if-is-app-user>
+<div id='is_install'></div>
 <?php
 	$fromuser = $link['pid'];
 	$fsess = TTGenid::getbypid($fromuser);	

@@ -18,6 +18,7 @@ if($linkid){
 }
 
 $mypid =   $_REQUEST['xn_sig_user'];  
+TTLog::record(array('m'=>'help_open_shop','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$mypid));
 $sess=TTGenid::getbypid($pid);
 $myuser = new TTUser($sess['id']);
  	

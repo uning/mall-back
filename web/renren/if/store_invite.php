@@ -56,6 +56,7 @@ $ids = $_REQUEST['ids'];
 	if($pid){
 	$tw->put($value);
 	$tw->put($_REQUEST);
+	TTLog::record(array('m'=>'pub_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid));
 	}
 header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 	

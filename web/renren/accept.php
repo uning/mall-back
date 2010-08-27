@@ -266,6 +266,7 @@ $tw = TT::LinkTT();
 //list($pid,$str) = explode(':',$linkid);
 //$irec = $tw->getbyuidx('uid',$pid);
 $link = $tw->getbyuidx('linkid',$linkid);
+
 if(!$link){?>
 <xn:if-is-app-user>
 	<xn:redirect
@@ -286,6 +287,7 @@ if(!$link){?>
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];

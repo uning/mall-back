@@ -391,7 +391,7 @@ function sendNotifcation(ids,name,callBack,say)
 
 function openCinema(data,callBack)
 {
-	navigateTo('../pop/open_shop.php?oid=60102');
+	navigateTo('../pop/open_shop.php?oid='+data['oid']);
 	$('#flash').removeClass('active');
 	//callBack();
 }

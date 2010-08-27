@@ -4,31 +4,28 @@ class TaskOnce
 	static function getConf($tag)
 	{
 		static $_conf=array(
-'101'=>array('name'=>'扩建大楼','award'=>array('exp'=>200,) ),
-'102'=>array('name'=>'让世界更美丽','award'=>array('items'=>array(array('tag'=>71103,'num'=>3)) ) ),
-'103'=>array('name'=>'吸引顾客','award'=>array('items'=>array(array('tag'=>60101,'num'=>1)) ) ),
-'104'=>array('name'=>'琳琅满目','award'=>array('money'=>20000,) ),
-'105'=>array('name'=>'老鼠来袭','award'=>array('items'=>array(array('tag'=>92703,'num'=>1)) ) ),
-'106'=>array('name'=>'电梯恐惧症','award'=>array('items'=>array(array('tag'=>71108,'num'=>1)) ) ),
-'107'=>array('name'=>'走累了。。。','award'=>array('money'=>35000,) ),
-'201'=>array('name'=>'声名鹊起','award'=>array('exp'=>380,) ),
-'202'=>array('name'=>'助人为乐','award'=>array('exp'=>500,) ),
-'203'=>array('name'=>'免费礼物','award'=>array('items'=>array(array('tag'=>10105,'num'=>1)) ) ),
-'108'=>array('name'=>'课外活动','award'=>array('items'=>array(array('tag'=>92702,'num'=>1)) ) ),
-'109'=>array('name'=>'推广员','award'=>array('items'=>array(array('tag'=>60103,'num'=>1)) ) ),
-'204'=>array('name'=>'送货上门','award'=>array('items'=>array(array('tag'=>10115,'num'=>3)) ) ),
-'205'=>array('name'=>'健身教练','award'=>array('exp'=>800,) ),
-'206'=>array('name'=>'护花使者','award'=>array('items'=>array(array('tag'=>10109,'num'=>3)) ) ),
-'110'=>array('name'=>'坚持不懈','award'=>array('money'=>60000,) ),
-'111'=>array('name'=>'小有所成','award'=>array() ),
-'112'=>array('name'=>'保护环境','award'=>array() ),
+'101'=>array('name'=>'扩建大楼','award'=>array('exp'=>200),) ,
+'102'=>array('name'=>'让世界更美丽','award'=>array(),'items'=>array(array('tag'=>71103,'num'=>3)) ) ,
+'103'=>array('name'=>'吸引顾客','award'=>array(),'items'=>array(array('tag'=>60101,'num'=>1)) ) ,
+'104'=>array('name'=>'琳琅满目','award'=>array('money'=>20000,),) ,
+'105'=>array('name'=>'老鼠来袭','award'=>array(),'items'=>array(array('tag'=>92703,'num'=>1)) ) ,
+'106'=>array('name'=>'电梯恐惧症','award'=>array(),'items'=>array(array('tag'=>71108,'num'=>1)) ) ,
+'107'=>array('name'=>'走累了。。。','award'=>array('money'=>35000,),) ,
+'201'=>array('name'=>'声名鹊起','award'=>array('exp'=>380),) ,
+'202'=>array('name'=>'助人为乐','award'=>array('exp'=>500),) ,
+'203'=>array('name'=>'免费礼物','award'=>array(),'items'=>array(array('tag'=>10105,'num'=>1)) ) ,
+'108'=>array('name'=>'课外活动','award'=>array(),'items'=>array(array('tag'=>92702,'num'=>1)) ) ,
+'109'=>array('name'=>'推广员','award'=>array(),'items'=>array(array('tag'=>60103,'num'=>1)) ) ,
+'204'=>array('name'=>'送货上门','award'=>array(),'items'=>array(array('tag'=>10115,'num'=>3)) ) ,
+'205'=>array('name'=>'健身教练','award'=>array('exp'=>800),) ,
+'206'=>array('name'=>'护花使者','award'=>array(),'items'=>array(array('tag'=>10109,'num'=>3)) ) ,
+'110'=>array('name'=>'坚持不懈','award'=>array('money'=>60000,),) ,
+'111'=>array('name'=>'小有所成','award'=>array(),) ,
+'112'=>array('name'=>'保护环境','award'=>array(),) ,
 
 				);
 		//获取详细的配置	
-		return array(
-				'award'=>array('money'=>2,'exp'=>2,'items'=>array('tag'=>'71110','idp'=>'o')),
-				'minus'=>array('money'=>1,'exp'=>1),
-			    );
+		return $_conf[$tag];
 	}    
 
 	/**
@@ -123,9 +120,9 @@ class TaskOnce
 			$ret['s']='finished';
 			return $ret;
 		}
+		print_r($params);
        
 		$data=$params['d'];
-		
 		$data['id']=$tid;
 		$data['ut']=time();
 		$tu->puto($data);
@@ -166,23 +163,34 @@ class TaskOnce
 		}
 		$conf = self::getConf($tag);
 		
-		foreach($conf['award'] as $k=>$v){
+		$d = $conf['award'];
+		if($d)
+		foreach($d as $k=>$v){
 			$tu->numch($k,$v);
 			$award[$k]=$v;
 		}
-		foreach($conf['minus'] as $k=>$v){
+		$d = $conf['minus'];
+		if($d)
+		foreach($d as $k=>$v){
 			$tu->numch($k,-$v);
 		}
 		$items = $conf['items'];
 		if($items){
 			foreach($items as $item){
-				$idp = $item['idp'];
-				//					$item['id']=$uid.$idp;
-				unset( $item['idp'] );
-				$item['pos'] = 's';
-				$item['id'] = $tu->getoid('',$idp);
-				$tu->puto( $item);
-				$award['items'][]=$item;
+				$num  = $item['num'];
+				unset( $item['num'] );
+				$iconf = ItemConfig::getItem($item['tag']); 
+				$g=$iconf['group'];
+				if(!$g)
+				  $g = 'o';
+				if(!$num)
+				 $num = 1;
+				for($i=0;$i<$num; $i++){
+					$item['pos'] = 's';
+					$item['id'] = $tu->getoid(null,$g);
+					$tu->puto( $item);
+					$award['items'][]=$item;
+				}
 			}
 		}
 		$rids = $params['rids'];

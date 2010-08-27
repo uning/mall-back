@@ -376,12 +376,12 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	//document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
 }
 function authKO()
 {
 	auth = false;
-	//document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
 }
 var is_install=document.getElementById('is_install');
 if(!Session.isApplicationAdded() || is_install == null ){

@@ -26,7 +26,7 @@ class TTUser extends TTUDB
 	public function initAccount()
 	{   
 		$now = time();
-		$this->numch(TT::MONEY_STAT,10000);
+		$this->numch(TT::MONEY_STAT,50000);
 		$this->numch(TT::GEM_STAT,1);
 		$this->numch(TT::EXP_STAT,0);
 		$this->numch(TT::POPU,0);
@@ -38,7 +38,7 @@ class TTUser extends TTUDB
 		$this->mputf($arr);
 
 		//初始化一辆车
-		$car_obj['tag'] = 92701;
+		$car_obj['tag'] = 92702;
 		$car_obj['t'] = 0;
 		$car_obj['pos']['x'] = 0;
 		$car_obj['pos']['y'] = 0;
@@ -52,9 +52,9 @@ class TTUser extends TTUDB
 		$shop_obj['goods'][$gid]=$now;
 		$shop_id = $this->puto( $shop_obj,TT::SHOP_GROUP );
 
-		//初始化一箱酒
+		//初始化一箱玫瑰花
 		$goods_obj['id'] = $gid;
-		$goods_obj['tag'] = 10103;
+		$goods_obj['tag'] = 10106;
 		$goods = ItemConfig::getItem( $goods_obj['tag'] );
 		$goods_obj['num'] = $goods['unitcout'];
 		$goods_obj['stag'] = $shop_obj['tag'];
@@ -63,18 +63,19 @@ class TTUser extends TTUDB
 		$goods_obj['pos']['y'] = $shop_id;
 		$this->puto( $goods_obj,TT::GOODS_GROUP );
 
-		//初始化库存的rose，coffee等各5箱，共15箱
-		for( $i=10106;$i<10109;$i++ ){
-			$inventory_obj['tag'] = $i;
+		//初始化库存的juice,rose，coffee,icecream等各5箱，共20箱
+		$tags = array(10101,10106,10107,10108);
+		foreach( $tags as $tag ){
+			$inventory_obj['tag'] = $tag;
 			$inventory_obj['pos'] = 's';
-			$item = ItemConfig::getItem( $i );
+			$item = ItemConfig::getItem( $tag );
 			$inventory_obj['num'] = $item['unitcout'];
 			for( $n=0;$n<5;$n++ ){
 				if( isset( $inventory_obj['id'] ) ){
 					unset( $inventory_obj['id'] );
 				}
 				$this->puto( $inventory_obj,TT::GOODS_GROUP );
-			}
+			}		    
 		}
 
 		//初始化楼体
@@ -126,10 +127,52 @@ class TTUser extends TTUDB
 	public function chGem( $num)
 	{
 		return $this->change(TT::GEM_STAT,$num);
-	}    
-	public function addExp( $num)
+	}
+	
+	protected function ischange( $last_level,$cur_level )
 	{
-		return $this->numch(TT::EXP_STAT,$num);
+		$last = UpgradeConfig::$_config[$last_level];
+		$cur = UpgradeConfig::$_config[$cur_level];
+		if( $last['maxpopu'] != $cur['maxpopu'] ){
+		    $ret['s'] = 'maxpopu';
+		    $ret['a'] = $cur['maxpopu'];
+			return $ret;
+		}
+		elseif( $last['garage'] != $cur['garage'] ){
+		    $ret['s'] = 'garage';
+		    $ret['a'] = $cur['garage'];
+			return $ret;
+		}
+		elseif( $last['shopheight'] != $cur['shopheight'] || $last['shopwidth'] != $cur['shopwidth'] ){
+		    $ret['s'] = 'shop';
+		    $ret['a']['shopheight'] = $cur['shopheight'];
+		    $ret['a']['shopwidth'] = $cur['shopwidth'];
+			return $ret;
+	    }
+	    else{
+		    $ret['s'] = 'none';
+			return $ret;
+	    }
+	}
+		
+	public function addExp( $num)
+	{//升级时有商厦容量变大，车库变大，最高人气值增加和加宝石4种奖励，商厦扩容要主动触发
+	    $last_exp = $this->getf( TT::EXP_STAT );
+		$cur_exp = $this->numch(TT::EXP_STAT,$num);
+		$last_level = UpgradeConfig::getLevel( $last_exp );
+		$cur_level = UpgradeConfig::getLevel( $cur_exp );
+		if( $cur_level > $last_level ){
+			$change = self::ischange( $last_level,$cur_level );
+			if( $change['s'] == 'none' ){
+				$this->numch( TT::GEM_STAT,1 );
+			}
+			elseif( $change['s'] == 'maxpopu'){
+			    if( $change['a'] > $this->getf('max_popu') ){
+                    $this->putf( 'max_popu',$change['a'] );
+                }
+			}
+		}
+		return $cur_exp;
 	}    
 
 	/**
@@ -272,16 +315,17 @@ class TTUser extends TTUDB
 		if(!$item || !isset($item['tag'])){
 			$ret['s'] = 'notfind';
 			return $ret;
-		}
-		if( $item['sellable'] != 'true' ){
-			$ret['s'] = 'notsale';
-			return $ret;
-		}
+		}	
 		if( $item['onlygem'] == 'true' ){//对用宝石购买的物品，按1:10000换成金币再3折
 		    $num = $item['gem']*3000;
 		}
 		else{
-		    $num = $item['money']*0.3;
+		    if( $item['group'] == 'g' ){
+		        $num = $item['sellmoney']*$item['unitcout']*0.3;
+		    }
+		    else{
+		        $num = $item['money']*0.3;
+		    }
 		}
 		$rnum = $this->numch( TT::MONEY_STAT,$num );
 		$tusys = new TTUser(0);

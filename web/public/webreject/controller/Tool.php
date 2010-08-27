@@ -237,7 +237,7 @@ $ret['array2'] = $pid_array2;
     }
 
 	/**
-	 * 清除仍有货物的商店被放进仓库的坏数据
+	 * 处理仍有货物的商店被放进仓库的坏数据，同时清除店面和商品
 	 * @param $params
 	 *  require u              --             user id
 	 * @return 
@@ -254,15 +254,19 @@ $ret['array2'] = $pid_array2;
         foreach ( $shops as $shop ){
             if( $shop['pos'] == 's' ){
                 $rgids = array();
+                $count = 0;
                 foreach( $goods as $good ){
                     if( $good['pos']['y'] == $shop['id'] ){
                         $rgids[] = $good['id'];
+                        $count++;
+                        $ret['deletegoods'][][] = $good;
                     }
                 }
+                if( $count ){//如果有货则删除
+                    $tu->remove( $shop['id'] );
+                }
                 $tu->remove( $rgids );
-                $tu->remove( $shop['id'] );
                 $ret['deleteshops'][] = $shop;
-                $ret['deletegoods'][] = $rgids;
             }
         }
         $ret['s'] = 'OK';

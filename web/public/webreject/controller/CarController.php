@@ -8,16 +8,7 @@ class CarController
 			,2004=>array( 'accelerate'=>21600,'gem'=>array( 1=>5,10=>40,30=>90,100=>250 ) ) 
 			,2005=>array( 'accelerate'=>356400,'gem'=>array( 1=>10,10=>80,30=>180,100=>400 ) )
 			,2006=>1
-			);    
-	protected function ischange( $last_level,$cur_level )
-	{
-		$last = ItemConfig::$_config[$last_level];
-		$cur = ItemConfig::$_config[$cur_level];
-		if( $last['maxpopu'] != $cur['maxpopu'] || $last['garage'] != $cur['garage'] ||  $last['shopheight'] != $cur['shopheight'] || $last['shopwidth'] != $cur['shopwidth'] ){
-			return true;
-		}
-		return false;
-	}
+			);
 	/**
 	 * 购买卡车
 	 * @param $params
@@ -35,21 +26,13 @@ class CarController
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 		$ids = array();
-		$index = 1;
-		foreach( $params['c'] as $row ){
-			$car = ItemConfig::getItem( $row['tag']);
-			if( !$car ){
-				$ret['s'] = 'notexsit';
-				$ret['index'] = $index;
-				return $ret;
-			}
-			$buy_ret = $tu->buyItem($car['tag']);
+		foreach( $params['c'] as $index=>$row ){
+			$buy_ret = $tu->buyItem($row['tag']);
 			if( $buy_ret['s'] != 'OK' ){
 				$ret['index'] = $index;
 				return $buy_ret;
 			}
 			$ids[] = $tu->puto($row,TT::CAR_GROUP);
-			$index++;
 		}	
 		$ret['s'] = 'OK';
 		$ret['ids'] = $ids;
@@ -68,9 +51,8 @@ class CarController
 	public function sale($params)
 	{
 		$uid = $params['u'];
-		$index = 1;
 		$tu = new TTUser( $uid );
-		foreach ( $params['d'] as $id ){
+		foreach ( $params['d'] as $index=>$id ){
 			$car_obj = $tu->getbyid($id);
 			if( !$car_obj ){
 				$ret['s'] = 'notexist';
@@ -82,7 +64,6 @@ class CarController
 				$sale_ret['index'] = $index;
 				return $sale_ret;
 			}
-			$index++;
 		}
 		$tu->remove( $params['d'] );
 		$ret['s'] = 'OK';
@@ -104,22 +85,20 @@ class CarController
 	{
 		$uid = $params['u'];
 		$tu = new TTUser($uid);
-		$index = 1;
 		$ids = array();
-		foreach( $params['c'] as $row ){		
+		foreach( $params['c'] as $index=>$row ){		
 			$car_obj = $tu->getbyid( $row['id']);
 			if( !$car_obj ){
 				$ret['s'] = 'notexist';
 				$ret['index'] = $index;
 				return $ret;
 			}
-			if( $car_obj['t'] != 0 ){
+			if( $car_obj['t'] ){
 				$ret['s'] = 'go_goods';
 				$ret['index'] = $index;
 				return $ret;
 			}
 			$tu->puto($row,TT::CAR_GROUP,true);
-			$index++;
 		}
 		$ret['s'] = 'OK';
 		return $ret;
@@ -168,15 +147,7 @@ class CarController
 		}
 		$add_exp = $goods['exp']*$car['goodsNumber'];
 		if( $add_exp ){
-			$last_exp = $tu->getf( TT::EXP_STAT );
-			$cur_exp = $tu->addExp( $add_exp );
-			$last_level = UpgradeConfig::getLevel( $last_exp );
-			$cur_level = UpgradeConfig::getLevel( $cur_exp );
-			if( $cur_level > $last_level ){
-				$bool = self::ischange( $last_level,$cur_level );
-				if( !$bool )
-					$tu->numch( TT::GEM_STAT,1 );
-			}
+		    $tu->addExp( $add_exp );
 		}
 		$now = time();
 		$car_obj['goodsTag'] = $goodsTag;
@@ -260,15 +231,7 @@ class CarController
 		$tu->puto( $car_obj,TT::CAR_GROUP,false );		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){
-			$last_exp = $tu->getf( TT::EXP_STAT );
-			$cur_exp = $tu->addExp( $add_exp );
-			$last_level = UpgradeConfig::getLevel( $last_exp );
-			$cur_level = UpgradeConfig::getLevel( $cur_exp );
-			if( $cur_level > $last_level ){
-				$bool = self::ischange( $last_level,$cur_level );
-				if( !$bool )
-					$tu->numch( TT::GEM_STAT,1 );
-			}
+		    $tu->addExp( $add_exp );
 		}		
 		$ret['s'] = 'OK';
 		$ret['c'] = $car_obj;    
@@ -389,15 +352,7 @@ class CarController
 				$car = ItemConfig::getItem( $car_obj['tag'] );
 				$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 				if( $add_exp ){
-					$last_exp = $tu->getf( TT::EXP_STAT );
-					$cur_exp = $tu->addExp( $add_exp );
-					$last_level = UpgradeConfig::getLevel( $last_exp );
-					$cur_level = UpgradeConfig::getLevel( $cur_exp );
-					if( $cur_level > $last_level ){
-						$bool = self::ischange( $last_level,$cur_level );
-						if( !$bool )
-							$tu->numch( TT::GEM_STAT,1 );
-					}
+				    $tu->addExp( $add_exp );
 				}
 			}
 			unset( $car_obj['addgoods'] );

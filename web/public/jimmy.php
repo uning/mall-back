@@ -16,8 +16,7 @@ function dotest($m,$p=null)
         echo "===============================================\n\n";
 }
 //dotest('Tool.test_exp',$p = array( 'u'=>132 ) );
-//dotest('Tool.add_friends',$p = array( 'pids1'=>"wely111",'pids2'=>"wely112" ) );
-dotest('Tool.add_friends',$p = array('pids'=>"wely111,wely112,JimmyChou"));
+//dotest('Tool.add_friends',$p = array('pids'=>"wely111,wely112,JimmyChou"));
 //dotest('Tool.test_gen',$p = array('u1'=>130,'u2'=>12));
 //dotest( 'Tool.test_feed',$p = array('u'=>21));
 //dotest('UserController.get_cars',$p=array('u'=>132));
@@ -45,8 +44,8 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Advert.buy',$p= array('u'=>1,'tag'=>1,'num'=>100));
 //dotest('Advert.set',$p= array('u'=>1,'tag'=>1));
 //dotest('Friend.test',$p=array('u'=>5));
-//dotest('Friend.get',$p=array('u'=>132,'fids'=>"wely112"));
-//dotest('Friend.get',$p=array('u'=>132));
+//dotest('Friend.get',$p=array('u'=>132,'fids'=>"JimmyChou,wely112"));
+//dotest('Friend.get',$p = array( 'u'=>132 ) );
 //dotest('UserController.get_achieves',$p=array('u'=>1));
 /*
 for($i=150;$i<169;$i++){

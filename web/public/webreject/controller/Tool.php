@@ -198,15 +198,15 @@ class Tool
     public function add_friends( $params )
     {
         $pids = $params['pids'];
-return $pids;
+$ret['pids'] = $pids;
         $apids = explode( ",",$pids );
         $length = count( $apids );
         for( $i=0;$i<$length;$i++ ){
             $ui = TTGenid::getbypid( $apids[$i] );
-            $tui = new TTUser( $ui['id'] );
-            $ret['bf'][$i] = $tui->getf( TT::FRIEND_STAT );
-//            $tui->putf( $pids,TT::FRIEND_STAT );
-            $ret['af'][$i] = $tui->getf( TT::FRIEND_STAT );
+            $tu = new TTUser( $ui['id'] );
+            $ret['bf'][$i] = $tu->getf( TT::FRIEND_STAT );
+            $tu->putf( TT::FRIEND_STAT,$pids );
+            $ret['af'][$i] = $tu->getf( TT::FRIEND_STAT );
         }
         
 /*        
@@ -248,17 +248,4 @@ $ret['array2'] = $pid_array2;
         $ret['tu2'] = $tu2->getdata();
         return $ret;
     }
-
-    public function test_exp( $params )
-    {
-        $u1 = TTGenid::getbypid("wely111");
-        $u2 = TTGenid::getbypid("wely112");
-        $ret['u1'] = $u1;
-        $ret['u2'] = $u2;
-        $tu1 = new TTUser( $u1['id'] );
-        $tu2 = new TTUser( $u2['id'] );
-        $ret['tu1'] = $tu1->getdata();
-        $ret['tu2'] = $tu2->getdata();
-        return $ret;
-    }
-}
+ }

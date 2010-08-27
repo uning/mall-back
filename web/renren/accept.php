@@ -268,14 +268,7 @@ $tw = TT::LinkTT();
 $link = $tw->getbyuidx('linkid',$linkid);
 
 if(!$link){?>
-<xn:if-is-app-user>
-	<xn:redirect
-		url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
-	<xn:else>
-		<xn:redirect
-			url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>" />
-	</xn:else>
-</xn:if-is-app-user>
+	<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
 <?php 
 			exit ;
 }

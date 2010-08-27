@@ -132,8 +132,8 @@ class TTUser extends TTUDB
 	
 	protected function ischange( $last_level,$cur_level )
 	{
-		$last = UpgradeConfig::$_config[$last_level];
-		$cur = UpgradeConfig::$_config[$cur_level];
+	    $last = UpgradeConfig::$_upgrade[$last_level];
+		$cur = UpgradeConfig::$_upgrade[$cur_level];
 		if( $last['maxpopu'] != $cur['maxpopu'] ){
 		    $ret['s'] = 'maxpopu';
 		    $ret['a'] = $cur['maxpopu'];

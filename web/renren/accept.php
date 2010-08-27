@@ -374,7 +374,7 @@ if(!$link){?>
 			url="<?php 
 			$next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 
 					$tail = '&v=1.0&next='.urlencode($next);
-					if(!$invite) $tail = '';
+					//if(!$invite) $tail = '';
 					$rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.$tail;
 					echo $rurl;?>" />
 	</xn:else>

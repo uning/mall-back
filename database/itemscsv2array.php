@@ -30,7 +30,7 @@ while(!feof($f)){
 	unset( $d['instructions'] );
 	unset( $d['location'] );
 	unset( $d['mc'] );
-//	unset( $d['name'] );
+	unset( $d['sellable'] );
 	unset( $d['showMcs'] );
 	unset( $d['star'] );
 	unset( $d['truckBg'] );

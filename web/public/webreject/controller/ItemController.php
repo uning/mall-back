@@ -64,10 +64,7 @@ class ItemController {
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 
 		}
 		if($pop)
-			$popu = $tu->numch( TT::POPU,$pop);
-        if( $popu > $tu->getf('max_popu') ){
-            $tu->putf( 'max_popu',$popu );
-        }			
+			$popu = $tu->numch( TT::POPU,$pop);		
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -147,10 +144,7 @@ class ItemController {
 		}
 		*/
 		if($pop)
-			$popu = $tu->numch( TT::POPU,$pop);
-        if( $popu > $tu->getf('max_popu') ){
-            $tu->putf( 'max_popu',$popu );
-        }			
+			$popu = $tu->numch( TT::POPU,$pop);			
 		$ret['s'] = 'OK';
 		return $ret;
 	}

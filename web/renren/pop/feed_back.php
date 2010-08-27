@@ -8,6 +8,7 @@ $tt = TT::LinkTT();
 $value = $tt->getbyuidx('fid',$key);
 $type = $value['type'];
 $uid = $_POST['xn_sig_user'];
+TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid));
 $session = TTGenid::getbypid($uid);
 $user = new TTUser($session['id']);
 if($type==2&&$value['count']>0):

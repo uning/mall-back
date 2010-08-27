@@ -15,7 +15,7 @@ require_once('config.php');
 </div>
 
 <xn:else>
-<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genricbg.jpg"/>
+<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
 <script>
 var auth = false;
 function authOK()

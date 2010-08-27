@@ -18,6 +18,7 @@ if($linkid){
 }
 
 $mypid =   $_REQUEST['xn_sig_user'];  
+TTLog::record(array('m'=>'help_open_shop','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$mypid));
 $sess=TTGenid::getbypid($pid);
 $myuser = new TTUser($sess['id']);
  	
@@ -288,18 +289,18 @@ padding:10px 30px;
 </form>
 
 <xn:else>
-<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genricbg.jpg"/>
+<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
 <script>
 var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>?"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>cinema.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
 }
 function authKO()
 {
 	auth = false;
-	document.setLocation("http://app.renren.com/app/apps/list?origin=119") ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
 }
 var is_install=document.getElementById('is_install');
 if(!Session.isApplicationAdded() || is_install == null ){

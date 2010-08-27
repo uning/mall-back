@@ -40,7 +40,7 @@ li.giftLocked .gift_name {
 }
 
 .main_giftConfirm_cont {
-	background: #ffffff
+	background:
 		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_box.png")
 		no-repeat scroll left top;
 	width: 744px;
@@ -58,7 +58,7 @@ li.giftLocked .gift_name {
 }
 
 .gift_box_cont {
-	background: #ffffff
+	background:
 		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_gift.png")
 		no-repeat scroll left top;
 	width: 152px;
@@ -82,7 +82,7 @@ li.giftLocked .gift_name {
 }
 
 .from_box_cont {
-	background: #ffffff
+	background: 
 		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_user.png")
 		no-repeat scroll left top;
 	width: 117px;
@@ -265,27 +265,16 @@ $touser = $_REQUEST['xn_sig_user'];
 $tw = TT::LinkTT();
 //list($pid,$str) = explode(':',$linkid);
 //$irec = $tw->getbyuidx('uid',$pid);
-$link = $tw->getbyuidx('linkid',$linkid);
-if(!$link){?>
+$link = $tw->getbyuidx('linkid',$linkid);?>
 <xn:if-is-app-user>
-	<xn:redirect
-		url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
-	<xn:else>
-		<xn:redirect
-			url="<?php $rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.RenrenConfig::$canvas_url;echo $rurl;?>" />
-	</xn:else>
-</xn:if-is-app-user>
-<?php 
-			exit ;
-}
-?>
-<xn:if-is-app-user>
+<div id='is_install'></div>
 <?php
 	$fromuser = $link['pid'];
 	$fsess = TTGenid::getbypid($fromuser);	
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
@@ -304,7 +293,7 @@ if(!$link){?>
 					}
 		}
 						
-	if(!$got&&$invite){
+	if($invite){
 	$ftu->numch('invite_num',1);
 	$gid = $link['gift'];
 	if($gid){?>
@@ -348,32 +337,49 @@ if(!$link){?>
 	</div>
 	</div>
 	</div>
+	<?php 
+		if($got) {?>
+			<div style="text-align: center;">
+				<h3>您的礼物已经领取，请在仓库中查收</h3>
+			</div>
+		<?php }?>
 	</div>
 		<?php 
+		if(!$got){
 			$id = $ttu->getdid( '',$gift[$gid]['group'] );
 			$data['tag'] = $gid;
 			$data['id'] = $id;
 			$data['pos']='s';
 			$ttu->puto( $data ); 
+			}
 		}
-		
+		if(!$got){
 		$link['geted'][] = $touser;
 		$tw->put($link);
+		}
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
 		<?php }
 		}
-		else {?>
-		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
-		<?php }
 		?>
 	<xn:else>
-		<xn:redirect
-			url="<?php 
-			$next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 
-					$tail = '&v=1.0&next='.urlencode($next);
-					if(!$invite) $tail = '';
-					$rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.$tail;
-					echo $rurl;?>" />
-	</xn:else>
+<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
+<script>
+var auth = false;
+function authOK()
+{
+	auth = true;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&"+Math.random() ) ;
+}
+function authKO()
+{
+	auth = false;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
+}
+var is_install=document.getElementById('is_install');
+if(!Session.isApplicationAdded() || is_install == null ){
+	Session.requireLogin(authOK,authKO);
+}
+</script>
+</xn:else>
 </xn:if-is-app-user>

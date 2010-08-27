@@ -236,7 +236,8 @@ class GoodsController
 
 
 		if(!$condata || !$total_width){
-			$ret['s']='nogoods';
+			$ret['s']='OK';
+			$ret['msg']='nogoods';
 			return $ret;
 		}
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
@@ -389,7 +390,8 @@ class GoodsController
 
 
 		if(!$condata || !$total_width){
-			$ret['s']='nogoods';
+			$ret['s']='OK';
+			$ret['msg']='nogoods';
 			$ret['condata']=$condata;
 			$ret['total_width']=$total_width;
 			return $ret;

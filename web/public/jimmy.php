@@ -15,9 +15,9 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-dotest('Tool.cleanShopInStoreWithGoods',$p = array( 'u'=>132 ) );
+//dotest('Tool.cleanShopInStoreWithGoods',$p = array( 'u'=>132 ) );
 /*
-for( $i=1;$i<150;$i++ ){
+for( $i=1;$i<156;$i++ ){
     dotest('Tool.cleanShopInStoreWithGoods',$p = array( 'u'=>$i ) );
 }
 */

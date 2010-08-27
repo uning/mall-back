@@ -333,7 +333,12 @@ $link = $tw->getbyuidx('linkid',$linkid);?>
 	<div class="from_box_cont">
 	<div class="giftFrom_img"><xn:profile-pic uid="<?php echo $fromuser;?>" linked="false" size="tiny" /></div>
 	<div class="giftFrom_name"><span><xn:name uid="<?php echo $fromuser;?>" linked="false" shownetwork="false" /></span></div>
-	</div>
+	</div><?php 
+		if($got) {?>
+			<div style="text-align: center;">
+				<h3>您的礼物已经领取，请在仓库中查收</h3>
+			</div>
+		<?php }?>
 	</div>
 	</div>
 	</div>
@@ -355,11 +360,6 @@ $link = $tw->getbyuidx('linkid',$linkid);?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
 		<?php }
 		}
-		if($got) {?>
-			<div style="text-align: center;">
-				<h3>您的礼物已经领取，请在仓库中查收</h3>
-			</div>
-		<?php }
 		?>
 	<xn:else>
 <img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>

@@ -110,15 +110,11 @@ class ItemController {
 				//{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
 				$item_obj = $tu->getbyid( $row['id'] );
 				if( isset($item_obj['goods']) ){
-					if( $shop_ret['s'] == 'notempty' ){
-						$ret['s'] = 'notempty';
-						$ret['index'] = $index;
-						TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));
-						continue;
-						// return $ret;
-					}
+					$ret['s'] = 'notempty';
+					$ret['index'] = $index;
+					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));
+					continue;
 				}
-				//}
 			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
 			    if( $item['tag'] == '60102'){//移动电影院后，结算时间应当
@@ -131,18 +127,11 @@ class ItemController {
 					$pop -= $item['pop'];
 				}
 			}
-			//*
-//*/
 			foreach($row as $k=>$v)
 				$item_obj[$k]=$v;
 			$ret[$row['id']]=$item;
 			$tu->puto($item_obj,'',false);//reduce a get op 
 		}
-		/*
-		if($shop_num){
-			$tu->numch(TT::SHOP_NUM,$shop_num);           
-		}
-		*/
 		if($pop)
 			$popu = $tu->numch( TT::POPU,$pop);			
 		$ret['s'] = 'OK';

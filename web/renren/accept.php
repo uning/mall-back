@@ -266,6 +266,7 @@ $tw = TT::LinkTT();
 //list($pid,$str) = explode(':',$linkid);
 //$irec = $tw->getbyuidx('uid',$pid);
 $link = $tw->getbyuidx('linkid',$linkid);
+
 if(!$link){?>
 <xn:if-is-app-user>
 	<xn:redirect
@@ -286,6 +287,7 @@ if(!$link){?>
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
@@ -368,12 +370,29 @@ if(!$link){?>
 		<?php }
 		?>
 	<xn:else>
-		<xn:redirect
-			url="<?php 
-			$next = RenrenConfig::$canvas_url."accept.php?linkid=$linkid"; 
-					$tail = '&v=1.0&next='.urlencode($next);
-					if(!$invite) $tail = '';
-					$rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.$tail;
-					echo $rurl;?>" />
+	
+	
+<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
+<script>
+var auth = false;
+function authOK()
+{
+	auth = true;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>?"+Math.random() ) ;
+}
+function authKO()
+{
+	auth = false;
+	document.setLocation("http://app.renren.com/app/apps/list?origin=119") ;
+}
+var is_install=document.getElementById('is_install');
+if(!Session.isApplicationAdded() || is_install == null ){
+	Session.requireLogin(authOK,authKO);
+}
+</script>
+	
+	
+	
+	
 	</xn:else>
 </xn:if-is-app-user>

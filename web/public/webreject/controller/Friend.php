@@ -241,13 +241,12 @@ class Friend{
 		$uid = $params['u'];
 		$nid = $params['f'];
 
-
 		$tu = new TTUser( $uid );
 		$ftu = new TTUser( $nid);
 		$fdid = $tu->getdid($nid,'fr');
 
 		$now = time();
-                $now_date = date('Ymd',$now);
+        $now_date = date('Ymd',$now);
 		$fdata = $tu->getbyid($fdid);
 		if(!$fdata ){
 			$ret['s']='nofriend'; 
@@ -255,11 +254,12 @@ class Friend{
 		}
 
 		$vt = $fdata['vt'];
-                $vt_date = date('Ymd',$vt);
+        $vt_date = date('Ymd',$vt);
 		if($vt_date == $now_date){
 			$ret['s']='visited';
 			return $ret;
 		}
+		/*
 		$flevel = $ftu->getLevel();
 		$exp = 1 + $flevel*4;
 		$money = 50 + $flevel*50;
@@ -268,7 +268,7 @@ class Friend{
 		
 		$ret['award']['money']=$money;
 		$ret['award']['exp']=$exp;
-               
+        */       
 		$fdata['vt']=$now;
 		$tu->puto($fdata,'fr',false);
 		$ret['s'] = 'OK';
@@ -304,7 +304,7 @@ class Friend{
 	{
 		$uid = $params['u'];
 		$nid = $params['f'];
-		$carid = $params['cid'];
+		$cid = $params['cid'];
 
 
 		$tu = new TTUser( $uid );
@@ -323,12 +323,13 @@ class Friend{
                 $vt_date = date('Ymd',$vt);
 		if($vt_date == $now_date && $fdata['help_car']=='1'){
 			$ret['s']='helped';
-			return $ret;
+			//return $ret;//for test
 		}
 
-		$car = $ftu->getbyid($carid);	
+		$car = $ftu->getbyid($cid);	
 		if(!$car){
-			$ret['s']='nocar';
+
+			$ret['s']='nocar '.$cid;
 			return $ret;
 		}
 		if(count($car['help'])>5){
@@ -337,9 +338,10 @@ class Friend{
 		}
 		$goodsid = $car['goodsTag'];
 		$gconfig = ItemConfig::getItem($goodsid);
-		$add_exp = $gconfig['exp']*$num;
+		$add_exp = $gconfig['exp'];
 		if(!$add_exp){
-			$ret['s']='nocar';
+			$ret['s']='nogoods';
+			$ret['g']=$gconfig;
 			return $ret;
 		}
 		$level = $tu->getLevel();
@@ -350,15 +352,16 @@ class Friend{
 			$num = 3;
 		//$mydata = TTGenid::getbyid($uid); 
 		$car['help'][$uid] =  $num;
-		$flevel = $ftu->getLevel();
-		$exp = 1 + $flevel*4;
+		$add_exp *=4;
 		$ret['exp']  = $tu->addExp($add_exp);
 		$ret['award']['exp']=$add_exp;
 		$fdata['ht']=$now;
 		$fdata['help_car']=1;
 		$tu->puto($fdata,'fr',false);
 		$ftu->puto($car,'',false);
+		$ret['cid']=$cid;
 		$ret['s'] = 'OK';
+		$ret['t'] = $now;
 		return $ret;
 	}
 }

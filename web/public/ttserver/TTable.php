@@ -22,8 +22,8 @@ class TTable extends TokyoTyrantTable {
 		if(!$this->needSV || $data == null)
 			return;
 		foreach($data as $k=>$v){
-			if($v && substr_compare($v,'{',0,1,false)== 0
-			||$v && substr_compare($v,'[',0,1,false)== 0
+			if($v && (substr_compare($v,'{',0,1,false)== 0
+			       ||substr_compare($v,'[',0,1,false)== 0)
 			){
 
 				$nd = json_decode($v,true);
@@ -79,6 +79,7 @@ class TTable extends TokyoTyrantTable {
 	public function get($id)
 	{
 		$r = parent::get($id);
+		print_r($r);
 		$this->after_get($r);
 		return $r;
 	}

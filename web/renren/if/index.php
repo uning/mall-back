@@ -136,9 +136,9 @@ version of Flash. Please do so by clicking <a
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
 </div>
-<div style="margin: 0 ">
+<!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
-</div>
+</div-->
 </body>
 </html>
 <script type="text/javascript">

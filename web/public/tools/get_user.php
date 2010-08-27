@@ -24,7 +24,7 @@ if(!$u){
 if($data['id'])
 	$u = $data['id'];
 if(!$data)
-	die( "no u get");
+	die( "$u $pid no u get");
 $tu = new TTUser($u);
 print_r($data);
 $tt=$tu->getAll(false);

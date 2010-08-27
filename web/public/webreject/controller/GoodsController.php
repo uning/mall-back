@@ -179,6 +179,10 @@ class GoodsController
 			$tu->puto($goods,GOODS_GROUP);
 		}
 		foreach($shops as $s){
+			//for what?
+			//$goods = $s['goods'];
+			//$ngoods = asort($goods);
+			//$s['goods'] = $ngoods;
 			$tu->puto($s);
 		}
 		$ret['s'] = 'OK';
@@ -213,10 +217,10 @@ class GoodsController
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
-				$gids = @array_keys($shop['goods']);//sort it
+				asort($shop['goods']);
+				$gids = @array_keys($shop['goods']);
 				if($gids){
 					$gs  = $tu->getbyids($gids);
-
 					if($gs['g']){
 						$condata[$shop['id']]['sconfig']= $item;
 						$condata[$shop['id']]['shop']= $shop;
@@ -366,6 +370,7 @@ class GoodsController
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
+				asort($shop['goods']);
 				$gids = @array_keys($shop['goods']);
 				if($gids){
 					$gs  = $tu->getbyids($gids);
@@ -507,7 +512,7 @@ class GoodsController
 
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
-		$ret['money']  = $tu->numch('money',$income);
+		//$ret['money']  = $tu->numch('money',$income);
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
 		$ret['u'] = $uid;

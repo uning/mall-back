@@ -11,7 +11,7 @@ class TTUser extends TTUDB
 	}
 
 
-	public function getdata($f=array(TT::GEM_STAT,TT::MONEY_STAT,TT::EXP_STAT,'musicon','audioon','looks','sex'))
+	public function getdata($f=array(TT::GEM_STAT,TT::MONEY_STAT,TT::EXP_STAT,'zoom','musicon','audioon','looks','sex'))
 	{
 		if($f==null || is_array($f)){
 			$this->_data = $this->getf($f);
@@ -242,12 +242,12 @@ class TTUser extends TTUDB
 				require_once 'GoodsController.php';
 				GoodsController::checkout($params);
 			}
-		}
-		$rnum = $this->change($currency,-$cnum);
-		if($rnum<0){//钱不够
-			$ret['s']   = $currency;
-			$ret['num'] = $rnum +$cnum;//买物品失败，剩余金币或宝石
-			return $ret;
+			$rnum = $this->change($currency,-$cnum);
+			if($rnum<0){//钱不够
+				$ret['s']   = $currency;
+				$ret['num'] = $rnum +$cnum;//买物品失败，剩余金币或宝石
+				return $ret;
+			}
 		}
 
 		$ret['s'] = 'OK';

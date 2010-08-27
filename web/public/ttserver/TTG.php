@@ -89,7 +89,7 @@ class TTG{
 	static function TTDS($uid){return new TTUDB($uid,'data');}
 	static function LinkTT(){static $c;if($c)return $c; $c = &self::get_tt('link');$c->needSV=true;return $c; }
 	static function StatTT(){static $c;if($c)return $c; $c = &self::get_tt('stat');$c->needSV=false;return $c; }
-	static function LogTT(){static $c;if($c)return $c; $c = &self::get_tt('log');$c->needSV=false;return $c;}
+	static function LogTT(){static $c;if($c)return $c; return $c = &self::get_tt('log');}
 	
 }
 require_once('TTExtend.php');

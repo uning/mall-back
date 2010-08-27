@@ -51,7 +51,7 @@ class TT extends TTG{
 					),
 
 			'log'=> array(
-					'type'=>'TTable',
+					'type'=>'TokyoTyrantTable',
 					'procs'=>array(
 						array(
 							array('host'=>'122.11.61.27','port'=>'16002')

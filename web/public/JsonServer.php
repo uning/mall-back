@@ -200,8 +200,8 @@ class JsonServer{
 				'CarController.sale'=>1,
 				'CarController.go_goods'=>1,
 				'CarController.enlarge_garage'=>1,
-		        'CarController.buy_copolit'=>1,
-		        'CarController.apply_copolit'=>1,
+				'CarController.buy_copolit'=>1,
+				'CarController.apply_copolit'=>1,
 				'GoodsController.buy'=>1,
 				'GoodsController.exhibit_goods'=>1,
 				'GoodsController.checkout'=>1,
@@ -214,7 +214,7 @@ class JsonServer{
 				'Friend.dis_neighbor'=>1,
 				'Friend.invite_neighbor'=>1,
 				'Friend.accept_neighbor'=>1,
-					);
+				);
 
 		try{
 			$ret=$c->$m($req['p']);

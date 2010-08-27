@@ -15,16 +15,17 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-//dotest('Tool.add_friends',$p = array( 'pid1'=>"wely111",'pid2'=>"wely112" ) );
+//dotest('Tool.test_exp',$p = array( 'u'=>132 ) );
+//dotest('Tool.add_friends',$p = array('pids'=>"wely111,wely112,JimmyChou"));
 //dotest('Tool.test_gen',$p = array('u1'=>130,'u2'=>12));
 //dotest( 'Tool.test_feed',$p = array('u'=>21));
-//dotest('UserController.get_cars',$p=array('u'=>9));
+//dotest('UserController.get_cars',$p=array('u'=>132));
 //dotest( 'Copilot.buy',$p = array( 'u'=>9,'tag'=>6,'num'=>10 ) );
 //dotest( 'Copilot.apply',$p = array( 'u'=>9,'tag'=>5,'cid'=>'9:c:4c64b6c5ec396' ) );
 //dotest( 'Tool.showids',$p = array('u'=>1));
 //dotest('Tool.test_condition',$p= array('u'=>10,'con'=>array( 'audio'=>'0' ) ));
 //dotest('Tool.reset_cinema',$p= array('u'=>119));
-dotest('Cinema.pick',$p= array('u'=>129,'sid'=>'129:o:4c733b9ae0b76'));
+//dotest('Cinema.pick',$p= array('u'=>129,'sid'=>'129:o:4c733b9ae0b76'));
 //dotest('Cinema.enter',$p= array('u'=>1,'cid'=>'157:o:m:4c639f3d5a79b'));
 /*
 for( $i=1;$i<151;$i++ ){
@@ -43,7 +44,8 @@ for( $i=1;$i<151;$i++ ){
 //dotest('Advert.buy',$p= array('u'=>1,'tag'=>1,'num'=>100));
 //dotest('Advert.set',$p= array('u'=>1,'tag'=>1));
 //dotest('Friend.test',$p=array('u'=>5));
-//dotest('Friend.get',$p=array('u'=>133));
+//dotest('Friend.get',$p=array('u'=>132,'fids'=>"JimmyChou,wely112"));
+//dotest('Friend.get',$p = array( 'u'=>132 ) );
 //dotest('UserController.get_achieves',$p=array('u'=>1));
 /*
 for($i=150;$i<169;$i++){

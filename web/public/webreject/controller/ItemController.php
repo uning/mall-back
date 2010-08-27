@@ -105,11 +105,13 @@ class ItemController {
 			}
 			if( $item['type'] == 'ro' && $row['pos']=='s'){
 				//todo $tu 结算	
-				require_once 'GoodsController.php';
-				GoodsController::checkout($params);
+				if($item_obj['pos']!='s'){
+					require_once 'GoodsController.php';
+					GoodsController::checkout($params);
+					$item_obj = $tu->getbyid( $row['id'] );
+				}
 				//{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
-				$item_obj = $tu->getbyid( $row['id'] );
-				if( isset($item_obj['goods']) ){
+				if($item_obj['goods']){
 					$ret['s'] = 'notempty';
 					$ret['index'] = $index;
 					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));

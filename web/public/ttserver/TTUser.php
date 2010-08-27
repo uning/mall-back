@@ -283,7 +283,7 @@ class TTUser extends TTUDB
 		$rnum = $this->change($currency,-$cnum);
 		if($rnum<0){
 			if($currency=='money'){
-				require_once 'GoodsController.php';
+				require_once dirname(__FILE__).'/../webreject/controller/GoodsController.php';
 				GoodsController::checkout($params);
 			}
 			$rnum = $this->change($currency,-$cnum);

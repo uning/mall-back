@@ -120,7 +120,6 @@ class TaskOnce
 			$ret['s']='finished';
 			return $ret;
 		}
-		print_r($params);
        
 		$data=$params['d'];
 		$data['id']=$tid;
@@ -154,8 +153,9 @@ class TaskOnce
 		$tid = $tu->getoid($tag,'to');
 		$to = $tu->getbyid($tid);
 		if(!$to){
-			$ret['s']='no';
-			return $ret;
+		//	$ret['s']='no';
+		//	return $ret;
+			$to['id']=$tid;
 		}
 		if($to['s']=='finished'){
 			$ret['s']='finished';

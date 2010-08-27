@@ -306,7 +306,7 @@ if(!$link){?>
 					}
 		}
 						
-	if(!$got&&$invite){
+	if($invite){
 	$ftu->numch('invite_num',1);
 	$gid = $link['gift'];
 	if($gid){?>
@@ -352,21 +352,26 @@ if(!$link){?>
 	</div>
 	</div>
 		<?php 
+		if(!$got){
 			$id = $ttu->getdid( '',$gift[$gid]['group'] );
 			$data['tag'] = $gid;
 			$data['id'] = $id;
 			$data['pos']='s';
 			$ttu->puto( $data ); 
+			}
 		}
-		
+		if(!$got){
 		$link['geted'][] = $touser;
 		$tw->put($link);
+		}
 		if(!$gid){?>
 		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
 		<?php }
 		}
-		else {?>
-		<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>" />
+		if($got) {?>
+			<div style="text-align: center;">
+				<h3>您的礼物已经领取，请在仓库中查收</h3>
+			</div>
 		<?php }
 		?>
 	<xn:else>
@@ -376,12 +381,12 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	//document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
 }
 function authKO()
 {
 	auth = false;
-	//document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
 }
 var is_install=document.getElementById('is_install');
 if(!Session.isApplicationAdded() || is_install == null ){

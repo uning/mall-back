@@ -295,7 +295,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>cinema.php?linkid=".$linkid."?"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>cinema.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
 }
 function authKO()
 {

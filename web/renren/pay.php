@@ -338,12 +338,12 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>?"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>pay.php?"+Math.random() ) ;
 }
 function authKO()
 {
 	auth = false;
-	document.setLocation("http://app.renren.com/app/apps/list?origin=119") ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
 }
 var is_install=document.getElementById('is_install');
 if(!Session.isApplicationAdded() || is_install == null ){

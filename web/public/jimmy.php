@@ -15,7 +15,12 @@ function dotest($m,$p=null)
         print_r($server->doRequest($m,$p));      
         echo "===============================================\n\n";
 }
-//dotest('Tool.test_exp',$p = array( 'u'=>132 ) );
+dotest('Tool.cleanShopInStoreWithGoods',$p = array( 'u'=>132 ) );
+/*
+for( $i=1;$i<150;$i++ ){
+    dotest('Tool.cleanShopInStoreWithGoods',$p = array( 'u'=>$i ) );
+}
+*/
 //dotest('Tool.add_friends',$p = array('pids'=>"wely111,wely112,JimmyChou"));
 //dotest('Tool.test_gen',$p = array('u1'=>130,'u2'=>12));
 //dotest( 'Tool.test_feed',$p = array('u'=>21));

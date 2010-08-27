@@ -370,8 +370,6 @@ if(!$link){?>
 		<?php }
 		?>
 	<xn:else>
-	
-	
 <img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
 <script>
 var auth = false;
@@ -390,9 +388,5 @@ if(!Session.isApplicationAdded() || is_install == null ){
 	Session.requireLogin(authOK,authKO);
 }
 </script>
-	
-	
-	
-	
-	</xn:else>
+</xn:else>
 </xn:if-is-app-user>

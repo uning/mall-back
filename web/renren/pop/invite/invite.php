@@ -91,7 +91,7 @@ if($_REQUEST['gift'])
 		}
 	}
 	
-	$linkid = $pid.':'.uniqid();
+	$linkid = uniqid();
 	
 	$width = '740px';
 	//print_r($exclude);

@@ -265,14 +265,7 @@ $touser = $_REQUEST['xn_sig_user'];
 $tw = TT::LinkTT();
 //list($pid,$str) = explode(':',$linkid);
 //$irec = $tw->getbyuidx('uid',$pid);
-$link = $tw->getbyuidx('linkid',$linkid);
-
-if(!$link){?>
-	<xn:redirect url="<?php echo RenrenConfig::$canvas_url.'?from=uinvite';?>" />
-<?php 
-			exit ;
-}
-?>
+$link = $tw->getbyuidx('linkid',$linkid);?>
 <xn:if-is-app-user>
 <?php
 	$fromuser = $link['pid'];

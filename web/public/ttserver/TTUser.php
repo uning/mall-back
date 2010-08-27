@@ -33,6 +33,7 @@ class TTUser extends TTUDB
 		$this->numch(TT::GARAGE_STAT,1);
 		$this->numch('lastawardtime',0);
 		$this->numch('continued',0);
+		$this->numch( 'max_popu',UpgradeConfig::$_upgrade[1]['maxpopu'] );
 		$arr=array(	TT::CAPACITY_STAT=>"3,2",
 				'it'=>$now);
 		$this->mputf($arr);

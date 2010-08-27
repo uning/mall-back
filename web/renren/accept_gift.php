@@ -61,9 +61,24 @@ exit ;
 	</div>
 	<?php } }?>
 <xn:else>
-<xn:redirect url="<?php 
-$next = RenrenConfig::$canvas_url."accept_gift.php?linkid=$linkid&f=auth"; 
-$rurl = 'http://app.renren.com/apps/tos.do?api_key='.RenrenConfig::$api_key.'&v=1.0&next='.urlencode($next);
-echo $rurl;?>"/>
+
+<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
+<script>
+var auth = false;
+function authOK()
+{
+	auth = true;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>?"+Math.random() ) ;
+}
+function authKO()
+{
+	auth = false;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
+}
+var is_install=document.getElementById('is_install');
+if(!Session.isApplicationAdded() || is_install == null ){
+	Session.requireLogin(authOK,authKO);
+}
+</script>
  </xn:else>
 </xn:if-is-app-user>

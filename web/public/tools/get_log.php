@@ -10,9 +10,8 @@ $day_starttime = strtotime($datestr);
 $day_endtime = $day_starttime + 86400;
 $logt = TT::get_tt('log');
 $logt->needSV=false;
-$id = $logt->put(null,array('ad'=>1,'add'=>2));
+$id = $logt->genUid();
 echo "$id:\n";
-print_r($logt->get($id));
 #exit;
 
 $num = $logt->num();
@@ -22,7 +21,6 @@ $r = $tq->search();
 foreach($r as $k=>$v)
 {
 	$start = $k;
-	print_r($r);
         break;	
 }
 if(!$start )
@@ -35,7 +33,7 @@ $start = $end - 10;
 if($start<1){
 	$start = 1;
 }
-echo "start=$start end=$end lognum = $num\n";
+echo "start=$start end=$end   lognum = $num\n";
 for($i=$start;$i<=$end;++$i){
 	$data =  $logt->get($i);		
 	echo "$i:\n";

@@ -83,6 +83,7 @@ PL.js(['http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'],functi
 		flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
 //flashvars.platform = "facebook";
 flashvars.platform = "<?php echo  $platform;?>";
+flashvars.platform = 'dev';
 var flash_width = 760+200;
 var flash_height = 700;
 var params = {};

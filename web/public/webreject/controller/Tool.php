@@ -198,7 +198,7 @@ class Tool
     public function add_friends( $params )
     {
         $pids = $params['pids'];
-$ret['pids'] = $pids;
+        $ret['pids'] = $pids;
         $apids = explode( ",",$pids );
         $length = count( $apids );
         for( $i=0;$i<$length;$i++ ){
@@ -236,16 +236,40 @@ $ret['array2'] = $pid_array2;
         return $ret;
     }
 
-    public function test_exp( $params )
+	/**
+	 * 处理仍有货物的商店被放进仓库的坏数据，同时清除店面和商品
+	 * @param $params
+	 *  require u              --             user id
+	 * @return 
+	 *          s              --        OK ,or other fail
+	 */
+    
+    public function cleanShopInStoreWithGoods( $params )
     {
-        $u1 = TTGenid::getbypid("wely111");
-        $u2 = TTGenid::getbypid("wely112");
-        $ret['u1'] = $u1;
-        $ret['u2'] = $u2;
-        $tu1 = new TTUser( $u1['id'] );
-        $tu2 = new TTUser( $u2['id'] );
-        $ret['tu1'] = $tu1->getdata();
-        $ret['tu2'] = $tu2->getdata();
+        $uid = $params['u'];
+        $tu = new TTUser( $uid );
+        $goods = $tu->get( TT::GOODS_GROUP );
+        $shops = $tu->get( TT::SHOP_GROUP );
+        $ret = array();
+        foreach ( $shops as $shop ){
+            if( $shop['pos'] == 's' ){
+                $rgids = array();
+                $count = 0;
+                foreach( $goods as $good ){
+                    if( $good['pos']['y'] == $shop['id'] ){
+                        $rgids[] = $good['id'];
+                        $count++;
+                        $ret['deletegoods'][][] = $good;
+                    }
+                }
+                if( $count ){//如果有货则删除
+                    $tu->remove( $shop['id'] );
+                }
+                $tu->remove( $rgids );
+                $ret['deleteshops'][] = $shop;
+            }
+        }
+        $ret['s'] = 'OK';
         return $ret;
     }
  }

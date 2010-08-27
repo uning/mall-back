@@ -24,26 +24,45 @@ for($i=1;$i<=$user_num;++$i){
 	$dgr['money']+=$data['money'];
 	$dgr['exp']+=$data['exp'];
 
-	if($ud['at']  > $day_starttime ){//daily active user
+	$accesstime = $ud['at'];
+	$unstalltime = $ud['ut'];
+	$installtime = $ud['it'];
+	$authtime = $ud['auth_at'];
+	if($accesstime > $day_starttime ){//daily active user
 		$dgr['login_num']++;
 		if(!$data['f_num'])
 		   $data['f_num']=0;
 		fputcsv($uhf,array($uid,$datestr,$data['money'],$data['exp'],$data['gem'],$data['f_num']));
 	}
 	foreach(array(3,7,30) as $sd){//recent active user
-		if($ud['at']+$sd*$gap>$now){
+		if($accesstime+$sd*$gap>$day_starttime){
 			$dgr['login_'.$sd.'num']++;
 		}
 	}
-	if($ud['it']+$gap<$now){
-		if($ud['ut']){
-			$dgr['reinstall_num']++;
-		}
-		$dgr['install_num']++;
+	
+	if($authtime>$day_starttime ){
+		if($unstalltime>$authtime)
+			++$dgr['auth_unauth_num'];
+		else if($accesstime <$authtime)
+			++$dgr['auth_noinstall_num'];
+		else
+			++$dgr['auth_num'];
+		++$dgr['total_auth_num'];
 	}
-	if($ud['ut']&&$ud['ut']+$gap<$now){
+	if($installtime>$day_starttime){
+		if($unstalltime<$installtime){
+			if($unstalltime)
+				$dgr['reinstall_num']++;
+			else
+				$dgr['install_num']++;
+		}else{
+			$dgr['in_un_num']++;//当天卸载人数
+		}
+	}
+	if($unstalltime>$day_starttime){
 		$dgr['unstall_num']++;
 	}
+	
 }
 store_varible($dgr);
 $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";

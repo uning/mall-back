@@ -8,7 +8,7 @@ require_once('config.php');
 <style>
 .footnotice {
 background:none repeat scroll 0 0 #FCFAD4;
-
+width:740px;
 border:1px solid #BEB9B9;
 margin:5px;
 padding:5px;
@@ -18,7 +18,7 @@ padding:5px;
 <div id='content'>
     <div class='container'>
         <div class='canvas'>
-	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="855" width="800" frameborder="0"/>
+	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="790" width="800" frameborder="0"/>
 		</div> 
 		<div class='footnotice'>
 			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				

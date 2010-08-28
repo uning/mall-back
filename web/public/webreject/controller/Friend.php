@@ -217,7 +217,7 @@ class Friend{
 		    $tu->putf( 'friend_count',$friend_count );
 		}
 		$rinfos[]=array('name'=>'GM','icon'=>'http://hdn.xnimg.cn/photos/hdn121/20100807/1345/h_tiny_WtRB_190e0000358b2f75.jpg',
-			'pid'=>'293293079','exp'=>'10000','dbid'=>4);//GM
+			'pid'=>'253382225','exp'=>'10000','dbid'=>2);//GM
 		$ret['infos'] = &$rinfos;
 		$ret['s'] = 'OK';
 		return $ret;

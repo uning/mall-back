@@ -38,7 +38,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/pageUtil.js?v=12"></script>
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
-<script type="text/javascript">
+<script type="text/javascript" defer="true">
 swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
@@ -82,21 +82,14 @@ function install_swf(pid){
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);
 	
-	var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-11480477-10']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  
-  
+	
 } 
 </script>
 
- 
+
+<?php
+ include FB_CURR.'/cs/gajs_init.php';
+?> 
 
 </head>
 <body style="overflow-x: hidden;overflow-y: hidden;background-color: #ffffff;" >

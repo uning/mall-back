@@ -139,6 +139,11 @@ version of Flash. Please do so by clicking <a
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
+
+
+<?php
+ include FB_CURR.'/cs/gajs_init.php';
+?> 
 </body>
 </html>
 <script type="text/javascript">
@@ -186,7 +191,4 @@ var config = {
 	PL.init('../static/js/config.js',config);
 </script>
 
-<?php
- include FB_CURR.'/cs/gajs_init.php';
-?> 
 

@@ -8,6 +8,7 @@ require_once('config.php');
 <style>
 .footnotice {
 background:none repeat scroll 0 0 #FCFAD4;
+
 border:1px solid #BEB9B9;
 margin:5px;
 padding:5px;

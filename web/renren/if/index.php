@@ -38,7 +38,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/pageUtil.js?v=12"></script>
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
-<script type="text/javascript" defer="true">
+<script type="text/javascript">
 swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)

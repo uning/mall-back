@@ -85,6 +85,12 @@ function install_swf(pid){
 	
 } 
 </script>
+
+
+<?php
+ include FB_CURR.'/cs/gajs_init.php';
+?> 
+
 </head>
 <body style="overflow-x: hidden;overflow-y: hidden;background-color: #ffffff;" >
 
@@ -142,9 +148,6 @@ version of Flash. Please do so by clicking <a
 </div-->
 
 
-<?php
- include FB_CURR.'/cs/gajs_init.php';
-?> 
 </body>
 </html>
 <script type="text/javascript">

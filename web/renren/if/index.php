@@ -187,6 +187,6 @@ var config = {
 </script>
 
 <?php
- //include FB_CURR.'/cs/gajs_init.php';
+ include FB_CURR.'/cs/gajs_init.php';
 ?> 
 

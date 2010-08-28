@@ -3,8 +3,8 @@
 var IBar = {
 	stat:function (op,phase)
 	{
-	  if(gPageTracker){
-		  gPageTracker._trackEvent('IBar', op, phase);
+	  if(_gaq){
+		  _gaq._trackEvent('IBar', op, phase);
 	  }
 	},
 	save_bar : function(op) {

@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-  var gPageTracker = _gaq || [];
+  var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-11480477-10']);
   _gaq.push(['_trackPageview']);
 

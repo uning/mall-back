@@ -119,8 +119,8 @@ function popUpFeed(data,callBack){
 }
 function stat(op)
 {
-	if(gPageTracker){
-		  gPageTracker._trackEvent('Feed', op);
+	if(_gaq){
+		  _gaq._trackEvent('Feed', op);
 	  }
 }
 function prepareParams(data){

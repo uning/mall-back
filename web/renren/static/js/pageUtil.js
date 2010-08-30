@@ -121,9 +121,9 @@ function popUpFeed(data,callBack){
 }
 function stat(op)
 {
-	if(_gaq){
+	/*if(_gaq){
 		  _gaq._trackEvent('Feed', op);
-	  }
+	  }*/
 }
 function prepareParams(data){
 	console.log('data:',data);
@@ -143,7 +143,7 @@ function prepareParams(data){
 	  			body_general: '',
 	  			callback: feedPublishCallback,
 	  			user_message_prompt: "有啥想法没？^o^",
-	  			user_message: "here user_message"
+	  			user_message: "讲两句吧.."
 	  		};
 	
 	return publish;

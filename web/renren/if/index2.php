@@ -109,6 +109,7 @@ function install_swf(pid){
 	</ul>
 	</div>
     </div>
+    <input type="button" onclick="popUpFeed()" value="jksk"/>
 </div>
 
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->

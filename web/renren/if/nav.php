@@ -1,4 +1,8 @@
+<?php
+require_once('../config.php');
+?>
 
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/crab2.css" type="text/css"/>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery.boxy.js"></script>
 <!--link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?2" /-->

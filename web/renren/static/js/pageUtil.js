@@ -129,10 +129,10 @@ function prepareParams(data){
 	
 	var feedId = PLStat.uuid();
 	 var publish = {
-	  			template_bundle_id: 1,
+	  			template_bundle_id: data['ext']['type'],
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://apps.renren.com/livemall/feed_back.php?ft=1&action={action}&xnuid={xnuid}&fid='+feedId}
+	                            href:'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['type']+'&action={action}&xnuid={xnuid}&fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
@@ -158,7 +158,7 @@ function feedPublishCallback(response){
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data: 'type=' + param['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
+			data: 'type=' + param['ext']['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
 			dataType:'text',
 			success: function (response){alert(response);}
 		});

@@ -26,6 +26,7 @@
 		<resource name="backgrounds" label="游戏素材16" url="./resource/common/xml/backgrounds.xml" type="xml" />
 		<resource name="quests" label="游戏素材17" url="./resource/simplifiedchinese/xml/quests.xml" type="xml" />
 		<resource name="tasks" label="游戏素材17" url="./resource/simplifiedchinese/xml/tasks.xml" type="xml" />
+		<resource name="taskgoals" label="游戏素材17" url="./resource/simplifiedchinese/xml/taskgoals.xml" type="xml" />
 		<resource name="adverts" label="游戏素材18" url="./resource/simplifiedchinese/xml/adverts.xml" type="xml" />
 		<resource name="achieves" label="游戏素材19" url="./resource/simplifiedchinese/xml/achieves.xml" type="xml" />
 		
@@ -42,7 +43,6 @@
 		<resource name="magicfaces" label="游戏素材27" url="./resource/common/xml/magicfaces.xml" type="xml" />
 		
 		<resource name="guild2" label="游戏素材28" url="./resource/simplifiedchinese/swf/mallTestGuild2.swf?v=tc1.1" type="swf" />
-		
 	
 	
 	</resources>
@@ -57,8 +57,8 @@
 	    <!--server name="test" purl="http://192.168.1.50/work/mall/Venus/to-company/" /-->
 	</resource_servers>	
 	<app_servers>
-	    <server name="test" purl="http://192.168.1.50/work/mall/backend/web/public/" />
-	    <!--server name="test2" purl="http://dev.tingkun.com/work/mall/backend/web/public/" /-->
+	    <!--server name="test" purl="http://192.168.1.50/work/mall/backend/web/public/" /-->
+	    <server name="test2" purl="/work/mall/backend/web/public/" />
 	</app_servers>	
 
 </config>

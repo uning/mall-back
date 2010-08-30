@@ -57,7 +57,7 @@ function install_swf(pid){
 	flashvars.pconf = '../static/flash/o_0_mall_config.xml';
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "760";
-	//flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
+	flashvars.CRITICAL_ERROR_SHOW = "0";
 	flashvars.platform = "renren";
 	var flash_width = 760;
 	var flash_height = 700;
@@ -81,9 +81,12 @@ function install_swf(pid){
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);
 	
-	
 } 
 </script>
+
+
+ 
+
 </head>
 <body style="overflow-x: hidden;overflow-y: hidden;background-color: #ffffff;" >
 
@@ -139,6 +142,8 @@ version of Flash. Please do so by clicking <a
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
+
+
 </body>
 </html>
 <script type="text/javascript">
@@ -186,7 +191,4 @@ var config = {
 	PL.init('../static/js/config.js',config);
 </script>
 
-<?php
- //include FB_CURR.'/cs/gajs_init.php';
-?> 
 

@@ -55,7 +55,7 @@
 	<progress_aspect url="resource/common/swf/loadinglogo.swf" />
 	
 	<resource_servers>
-	    <server name="test" purl="http://rrmall.playcrab.com/work/mall/Venus/to-company/" />
+		<server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" />
 	</resource_servers>	
 	<app_servers>
 	    <server name="test2" purl="http://rrmall.playcrab.com/work/mall/backend/web/public/" />

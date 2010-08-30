@@ -30,7 +30,8 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
         echo "===============================================\n\n";
 }
-dotest('TaskOnce.update');
+dotest('UserController.get_items',array('u'=>1));
+return;
 dotest('TaskOnce.get');
 return;
 $now = 1282208631;

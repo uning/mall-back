@@ -198,7 +198,7 @@ padding:10px 30px;
  </style>
 
 <xn:if-is-app-user>
-<form action="pop/help_open.php" method="post">
+<form action="cinema_help_open.php" method="post">
 <div id='is_install'></div>	
 
 <div id='content'>

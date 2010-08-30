@@ -74,8 +74,8 @@ document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
 	flashvars.pconf = 'o_0_mall_config.xml';
 	flashvars.languagetype = "0";
 	//flashvars.platform = "facebook";
-	flashvars.platform = "dev"
-	var flash_width = 760;
+	flashvars.platform = "renren"
+	var flash_width = 800;
 	var flash_height = 700;
 	var params = {};
 	params.quality = "high";

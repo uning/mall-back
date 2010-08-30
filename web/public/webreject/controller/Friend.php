@@ -183,18 +183,22 @@ class Friend{
 		$fl = explode(',',$fids);
 		$rinfos= array();
 		$dup=array();
-		$friend_count = 0;//记录好友个数
+		$now = time();
+		$dup['253382225']=1;
+		//$fl[]='253382225';
+		$friend_count = 0;
+		//记录好友个数
 		foreach( $fl as $pid ){
 			if($dup[$pid])
 				continue;
 			$dup[$pid]=1;
 			$finfos = TTGenid::getbypid($pid); //by tingkun
-                        $id = $finfos['id'];
+			$id = $finfos['id'];
 			if($id){
 				$fdid = $tu->getdid($id,'fr');
 				$fdata = json_decode( $infos[$fdid],true);
 				//if(!$fdata ||  $fdata['ut']<$now - 3600){
-				if(1||!$fdata ||  $fdata['ut']<$now - 3600){
+				if(!$fdata ||  $fdata['ut']<$now - 3600){
 					$ftu = new TTUser($finfos['id']);
 					$acc = $ftu->getdata();
 					$acc['name'] = $finfos['name'];
@@ -203,21 +207,23 @@ class Friend{
 					$acc['ut']=$now;
 					$acc['id']=$fdid;
 					$acc['dbid']=$id;
-					$tu->puto($acc,'fr',false);
+					$tu->puto($acc);
 					$rinfos[]=$acc;
 				}else
 					$rinfos[]=$fdata;
 				unset($infos[$fdid]);
 			}
-			$rids = array_keys($infos);
-            $tu->remove($rids);
+			//$rids = array_keys($infos);
+            //$tu->remove($rids);
             $friend_count++;            
 		}
 		if( $friend_count > $tu->getf('friend_count') ) {
 		    $tu->putf( 'friend_count',$friend_count );
 		}
+		//*
 		$rinfos[]=array('name'=>'GM','icon'=>'http://hdn.xnimg.cn/photos/hdn121/20100807/1345/h_tiny_WtRB_190e0000358b2f75.jpg',
-			'pid'=>'293293079','exp'=>'10000','dbid'=>4);//GM
+			'pid'=>'253382225','exp'=>'10000','dbid'=>2,'ht'=>$name,'help_car'=>1);//GM
+		 //*/
 		$ret['infos'] = &$rinfos;
 		$ret['s'] = 'OK';
 		return $ret;
@@ -259,6 +265,7 @@ class Friend{
 			$ret['s']='visited';
 			return $ret;
 		}
+
 		/*
 		$flevel = $ftu->getLevel();
 		$exp = 1 + $flevel*4;
@@ -352,11 +359,11 @@ class Friend{
 			$num = 3;
 		//$mydata = TTGenid::getbyid($uid); 
 		$car['help'][$uid] =  $num;
-		$add_exp *=4;
+		$add_exp *= 4;
 		$ret['exp']  = $tu->addExp($add_exp);
-		$ret['award']['exp']=$add_exp;
-		$fdata['ht']=$now;
-		$fdata['help_car']=1;
+		$ret['award']['exp'] = $add_exp;
+		$fdata['ht'] = $now;
+		$fdata['help_car'] = 1;
 		$tu->puto($fdata,'fr',false);
 		$ftu->puto($car,'',false);
 		$ret['cid']=$cid;

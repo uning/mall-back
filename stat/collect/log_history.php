@@ -57,44 +57,50 @@ for($i=$start;$i<=$end;++$i){
 	}
 	if(!$sp1){
 		$sp1=$p['p']['tag'];
-	}
 		$inp1=$p['p']['num'];
+	}
 	if(!$sp1){
 		$sp1=$p['p']['goodsTag'];
 		$inp1=$p['p']['num'];
 	}
 	if(!$sp1){
 		$sp1=$p['p']['c']['goodsTag'];
-		$inp1=$p['p']['num'];
+		$inp1=$p['p']['c']['num'];
 	}
-	if(!$sp1){
-		$sp1=$p['p']['c']['goodsTag'];
-		$inp1=$p['p']['num'];
-	}
-
 	if($sp1){
 		if(!$inp1)
 			$inp1=1;
 		$dgr[$mpre.'@'.$sp1]+=$inp1;
 	}
-
 	if($m=='GoodsController.checkout'){
-	//	print_r($p);
 		$sell = $p['sell'];
 		if($sell){
 			foreach($sell as $gid=>$num){
 				$dgr["$mpre@as@$gid"]+=$num;	
 			}
-		} 	
-	}	
+		}
+	}
 	if($m=='UserController.precheckout'){
-	//	print_r($p);
-		$days = $p['days'];
-		if($days){
-//				$dgr["$mpre@as@$uid"]+=$num;
-		} 	
+		$sp1 = $p['days'];
+	}		
+	if($m=='Gift.accept'){
+	    $gids = $p['gids'];
+	    foreach( $gids as $gid ){
+	        $dgr["$mpre@$gid"] += 1;
+	    }
+	}
+	if($m=='ItemController.buy'){
+	    $items = $p['d'];
+	    foreach( $items as $tag){
+	        $dgr["$mpre@$tag"] +=1;
+	    }
+	}
+	if($m=='CarController.buy'){
+	    $cars = $p['c'];
+	    foreach( $cars as $tag){
+	        $dgr["$mpre@$tag"] +=1;
+	    }
 	}	
-
 	if($p['pid'])
 		$sp2=$p['pid'];
 

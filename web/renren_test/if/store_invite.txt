@@ -1,10 +1,5 @@
 Array
 (
-    [linkid] => :4c7373e284f1e
-    [gift] => 83406
-    [ids] => Array
-        (
-            [0] => 334936945
-        )
-
+    [linkid] => 332979442:4c7798853ee4c
+    [gift] => 
 )

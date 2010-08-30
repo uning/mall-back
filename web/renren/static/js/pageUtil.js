@@ -119,8 +119,8 @@ function popUpFeed(data,callBack){
 }
 function stat(op)
 {
-	if(gPageTracker){
-		  gPageTracker._trackEvent('Feed', op);
+	if(_gaq){
+		  _gaq._trackEvent('Feed', op);
 	  }
 }
 function prepareParams(data){
@@ -132,12 +132,12 @@ function prepareParams(data){
 	  			template_bundle_id: 1,
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://apps.renren.com/livemall/pop/feed_back.php?fid='+feedId}
+	                            href:'http://apps.renren.com/livemall/feed_back.php?ft=1&action={action}&xnuid={xnuid}&fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
 	                              ,xnuid:PL.conf('pid')
-	                              ,action:'pop/feed_back.php?&fid='+feedId
+	                              ,action:'feed_back.php?&fid='+feedId
 	                              },
 	  			body_general: '',
 	  			callback: feedPublishCallback,
@@ -160,7 +160,7 @@ function feedPublishCallback(response){
 			url: '../pop/storeFeed.php',
 			data: 'type=' + param['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
 			dataType:'text',
-			success: feedCall
+			success: function (response){alert(response);}
 		});
 	}
 	

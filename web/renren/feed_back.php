@@ -1,7 +1,7 @@
 
 <?php
-require_once '../config.php';
-require_once 'freeGift.php';
+require_once 'config.php';
+require_once 'pop/freeGift.php';
 //print_r($_REQUEST);
 $key = $_GET['key'];
 $tt = TT::LinkTT();
@@ -27,10 +27,11 @@ if($type==2&&$value['count']>0):
  	  			$value['count'] = $value['count']-1;
  	  			$value['clickTime'] +=1;
  	  			$value['rcv'][]=$uid;
+				$tt->put($value['id'],$value);
  	  			echo '<script type="text/javacsript">';
 				echo 'wodows.location = "http://apps.renren.com/livemall/";';
 				echo '</script>';
-				$tt->put($value['id'],$value);
+				
  	  		}
  	   }
 ?>

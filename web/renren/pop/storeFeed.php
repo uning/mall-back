@@ -76,7 +76,6 @@ switch ($type){
 	default:break;
 }
 file_put_contents('stroefeed.txt',$_REQUEST);
-echo 'i,m hered';
 
 
 

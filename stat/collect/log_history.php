@@ -87,7 +87,7 @@ for($i=$start;$i<=$end;++$i){
 		}
 		if($m=='UserController.precheckout'){
 			$sp1 = $p['days'];
-		}		
+		}
 		if($m=='Gift.accept'){
 			$gids = $p['gids'];
 			foreach( $gids as $gid ){
@@ -97,15 +97,21 @@ for($i=$start;$i<=$end;++$i){
 		if($m=='ItemController.buy'){
 			$items = $p['d'];
 			foreach( $items as $tag){
-				$dgr["$mpre@$tag"] +=1;
+				$dgr["$mpre@$tag"] += 1;
 			}
 		}
 		if($m=='CarController.buy'){
 			$cars = $p['c'];
 			foreach( $cars as $tag){
-				$dgr["$mpre@$tag"] +=1;
+				$dgr["$mpre@$tag"] += 1;
 			}
-		}	
+		}
+		if($m=='GoodsController.exhibit_goods'){
+			$tags = $p['tags'];
+			foreach( $tags as $tag){
+				$dgr["$mpre@$tag"] += 1;
+			}
+		}
 		if($p['pid'])
 			$sp2=$p['pid'];
 

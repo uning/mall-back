@@ -129,6 +129,7 @@ function prepareParams(data){
 	console.log('data:',data);
 	param = data;
 	var feedId = PLStat.uuid();
+	param['fid'] = feedId;
 	 var publish = {
 	  			template_bundle_id: data['ext']['feedtype'],
 	  			template_data: {images:[

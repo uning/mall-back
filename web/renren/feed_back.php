@@ -2,7 +2,7 @@
 require_once 'config.php';
 require_once 'pop/freeGift.php';
 //
-$key = $_REQUEST['key'];
+$key = $_REQUEST['fid'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('fid',$key);
 print_r($value);
@@ -317,6 +317,7 @@ if($type==2)
 elseif($type==1)
 {
  	  		$recv = $value['rcv'];
+ 	  		if(!$recv||$recv=='null') $recv = array();
  	  		$new = false;
  	  		if(!array_key_exists($uid,$recv)){
  	  			$user->chMoney(1000);
@@ -377,7 +378,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>feed_back.php?key=<?php echo $key; ?>&"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>feed_back.php?fid=<?php echo $key; ?>&"+Math.random() ) ;
 }
 function authKO()
 {

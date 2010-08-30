@@ -136,7 +136,8 @@ class ItemController {
 		}
 		if($pop)
 			$popu = $tu->numch( TT::POPU,$pop);			
-		$ret['s'] = 'OK';
+		if(!$ret['s'])
+			$ret['s'] = 'OK';
 		return $ret;
 	}
 

@@ -132,7 +132,7 @@ function prepareParams(data){
 	  			template_bundle_id: 1,
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://apps.renren.com/livemall/feed_back.php?fid='+feedId}
+	                            href:'http://apps.renren.com/livemall/feed_back.php?ft=1&action={action}&xnuid={xnuid}&fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  

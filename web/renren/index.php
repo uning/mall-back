@@ -11,7 +11,14 @@ background:none repeat scroll 0 0 #FCFAD4;
 width:740px;
 border:1px solid #BEB9B9;
 margin:5px;
+display:none;
 padding:5px;
+}
+.bottom {
+width:760px; 
+}
+.bottom a img{
+border: 0;
 }
 </style>
 <div id='is_install'></div>
@@ -20,6 +27,11 @@ padding:5px;
         <div class='canvas'>
 	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="770" width="800" frameborder="0"/>
 		</div> 
+		<div class='bottom'>
+			<a target='_blank' href='http://page.renren.com/livemall'>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>
+			</a>
+		</div>
 		<div class='footnotice'>
 			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
 		</div>

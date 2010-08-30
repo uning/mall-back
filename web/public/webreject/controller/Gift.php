@@ -45,6 +45,9 @@ class Gift{
 		if( $params['msg'] )
 		    $obj['msg'] = $params['msg'];
 		$ftu->puto( $obj );
+		$stat = array();
+		$stat['tag'] = $gift_obj['tag'];
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
 		$ret['s'] = 'OK';
 		return $ret;
 	}

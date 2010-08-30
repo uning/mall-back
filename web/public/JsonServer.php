@@ -202,8 +202,6 @@ class JsonServer{
 				'CarController.enlarge_garage'=>1,
 				'CarController.buy_copolit'=>1,
 				'CarController.apply_copolit'=>1,
-				'GoodsController.buy'=>1,
-				'GoodsController.exhibit_goods'=>1,
 				'GoodsController.checkout'=>1,
 				'Task.share'=>1,
 				'Task.request'=>1,

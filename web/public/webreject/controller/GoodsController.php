@@ -169,6 +169,7 @@ class GoodsController
 		$shops =array();
 		$shopconfs =array();
 		$now = time();
+		$stat = array();    // for stat
 		foreach ( $params['d'] as $index => $goods ){
 			$sid =  $goods['pos']['y'];
 			$shop_obj = & $shops[$sid]; 
@@ -192,6 +193,7 @@ class GoodsController
 				$ret['s'] = 'goodsnotexsit';
 				return $ret;
 			}
+			$stat['tags'][] = $goods_obj['tag'];
 			$item = ItemConfig::getItem( $goods_obj['tag'] );
 			//if( !$item ){
 			//	$ret['s'] = 'goodsnotexsit '.$goods['tag'];
@@ -217,6 +219,7 @@ class GoodsController
 			//$s['goods'] = $ngoods;
 			$tu->puto($s);
 		}
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
 		$ret['s'] = 'OK';
 		return $ret;
 	}

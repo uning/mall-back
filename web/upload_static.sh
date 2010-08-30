@@ -12,6 +12,7 @@ rdir=/hotel
 flash_dir=/home/hotel/work/mall/Venus/to-company
 cp -rf $flash_dir/* $ldir/flash
 find $ldir/flash -name '*.fla' | xargs rm 
+cd renren && php  gen_Config.php && cd -
 
 #for s in 61.164.73.19 61.164.73.20 202.98.23.86
 for s in 61.164.73.19 61.164.73.20 202.98.23.86

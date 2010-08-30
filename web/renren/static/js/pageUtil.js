@@ -109,7 +109,7 @@ var d = {
 		'caption':'这里是内容',
 		'ext':{'feedtype':1}
 		
-}
+};
 function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
@@ -128,7 +128,6 @@ function stat(op)
 function prepareParams(data){
 	console.log('data:',data);
 	param = data;
-	
 	var feedId = PLStat.uuid();
 	 var publish = {
 	  			template_bundle_id: data['ext']['feedtype'],

@@ -284,7 +284,9 @@ class TTUser extends TTUDB
 		if($rnum<0){
 			if($currency=='money'){
 				require_once CONTROLLER_ROOT.'/GoodsController.php';
+				$params['u'] = $this->_u;
 				GoodsController::checkout($params);
+//				$ret['params'] = $params;     //for debug
 			}
 			$rnum = $this->change($currency,-$cnum);
 			if($rnum<0){//钱不够

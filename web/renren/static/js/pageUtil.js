@@ -157,18 +157,16 @@ function feedPublishCallback(response){
 		stat('Try '+param['ext']['feedtype']);
 	}else if(pub==1){
 		stat('Ok '+param['ext']['feedtype']);
-		var k='type='+param['ext']['feedtype']+param['fid']+"_"+PL.conf('pid');
+		var k='';
 		if(param['ext']['feedtype']==2){
-			k += '_' + param['task'];
+			k = '&ot='+param['task'];
 		}else if(param['ext']['feedtype']==3){
-			k += '_' + param['gift'];
-		}else if(param['ext']['feedtype']==1){
-			k+='_'+"c";
+			k = '&ot='+ param['gift'];
 		}
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data: k,
+			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+PL.conf('pid'),
 			success: function (response){}
 		});
 	}

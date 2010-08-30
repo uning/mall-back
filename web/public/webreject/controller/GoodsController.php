@@ -249,7 +249,7 @@ class GoodsController
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
-				asort($shop['goods']);
+				@asort($shop['goods']);
 				$gids = @array_keys($shop['goods']);
 				if($gids){
 					$gs  = $tu->getbyids($gids);
@@ -403,7 +403,7 @@ class GoodsController
 		foreach( $shops as $shop ){
 			if( $shop['pos'] != 's' ){
 				$item = ItemConfig::getItem( $shop['tag'] );
-				asort($shop['goods']);
+				@asort($shop['goods']);
 				$gids = @array_keys($shop['goods']);
 				if($gids){
 					$gs  = $tu->getbyids($gids);

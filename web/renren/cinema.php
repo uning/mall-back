@@ -198,7 +198,7 @@ padding:10px 30px;
  </style>
 
 <xn:if-is-app-user>
-<form action="pop/help_open.php" method="post">
+<form action="cinema_help_open.php" method="post">
 <div id='is_install'></div>	
 
 <div id='content'>
@@ -206,15 +206,15 @@ padding:10px 30px;
         <div class='canvas'>
 			<div id="header">
 				<div id="navga">
-				<div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
+				<div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
 			   <div id="tabs">
 				<ul class="clearfix tcenter">       
-					<li class="game" id="flashTab" ><a  href="http://apps.renren.com/livemall" >游戏</a></li>
-					<li class="freegift"><a href="http://apps.renren.com/livemall?a=freeGift" id="freeGift" >免费礼物</a></li>
-					<li class="invite" ><a href="http://apps.renren.com/livemall?a=invite" >邀请好友</a></li>
-					<li class="faq"><a id='faq'  href="http://apps.renren.com/livemall?a=faq" >常见问题</a></li>
+					<li class="game" id="flashTab" ><a  href="<?php echo RenrenConfig::$canvas_url;?>" >游戏</a></li>
+					<li class="freegift"><a href="<?php echo RenrenConfig::$canvas_url;?>?a=freeGift" id="freeGift" >免费礼物</a></li>
+					<li class="invite" ><a href="<?php echo RenrenConfig::$canvas_url;?>?a=invite" >邀请好友</a></li>
+					<li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$canvas_url;?>?a=faq" >常见问题</a></li>
 					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" target='_blank' id="forum">论坛</a></li>
-					<li class="payment" ><a  href="http://apps.renren.com/livemall/pay.php"   id ="pay">充值</a></li>
+					<li class="payment" ><a  href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   id ="pay">充值</a></li>
 				</ul>
 				</div>
 				</div>

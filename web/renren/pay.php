@@ -220,7 +220,7 @@ function callback(responseItem){
 	 
 		var alert_dialog = new Dialog(
 				Dialog.DIALOG_ALERT, 
-				{message: msg,title: '提示框标题',callBack:function(){ 
+				{message: msg,title: '充值结果',callBack:function(){ 
 					var addGem = parseInt(params.amount) * 10; 
 					var gemNode = document.getElementById('gemValue'); 
 					console.debug("gemNode",gemNode.getInnerHTML(),addGem);

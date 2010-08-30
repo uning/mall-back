@@ -1,63 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	
 	<version tag="beta1.0"/>
 	
-	<resources parallel="false" use_cache="false">
-		<resource name="secondResouce" label="游戏素材1" url="./resource/simplifiedchinese/xml/second_resource_list.xml" type="xml" />
-		<resource name="test01" label="游戏素材2" url="./resource/common/swf/GuildMc.swf?v=tc1.1" type="swf" />
-		<resource name="test02" label="游戏素材3" url="./resource/simplifiedchinese/swf/package.swf?v=tc1.1" type="swf" />
-		<resource name="test03" label="游戏素材4" url="./resource/simplifiedchinese/swf/TestUINew01.swf?v=tc1.1" type="swf" />
-		<resource name="test04" label="游戏素材5" url="./resource/common/swf/gift.swf?v=tc1.1" type="swf" />
-		<resource name="guild" label="游戏素材6" url="./resource/simplifiedchinese/swf/mallTestGuild.swf?v=tc1.1" type="swf" />
-		<!--resource name="test05" label="test05" url="./resource/common/swf/MallGoods.swf?v=tc1.1" type="swf" /-->
-		<!--resource name="test06" label="test06" url="./resource/common/swf/NewMallTest.swf?v=tc1.1" type="swf" /-->
-		
-		<resource name="waiting" label="游戏素材7" url="./resource/common/swf/waiting.swf?v=tc1.1" type="swf" />
-		<resource name="truck" label="游戏素材8" url="./resource/common/swf/MallTruck.swf?v=tc1.1" type="swf" />
-		<resource name="truckUINew" label="游戏素材9" url="./resource/simplifiedchinese/swf/newtruckUI.swf?v=tc1.1" type="swf" />
-		<resource name="newtruckUI002" label="游戏素材10" url="./resource/simplifiedchinese/swf/newtruckUI002.swf?v=tc1.1" type="swf" />
-		<!--resource name="playernew" label="playernew" url="./resource/common/swf/PlayerNew.swf?v=tc1.1" type="swf" /-->
-		<resource name="magicFace" label="游戏素材11" url="./resource/common/swf/MagicFace.swf?v=tc1.1" type="swf" />
-		<resource name="manipulater" label="游戏素材12" url="./resource/common/swf/manipulater.swf?v=tc1.1" type="swf" />
-		<resource name="Quests" label="游戏素材13" url="./resource/common/swf/Quests.swf?v=tc1.1" type="swf" />
-		
-		<resource name="items" label="游戏素材14" url="./resource/simplifiedchinese/xml/items.xml" type="xml" />
-		<resource name="magicfaces" 游戏素材15="magicfaces" url="./resource/common/xml/magicfaces.xml" type="xml" />
-		<resource name="backgrounds" label="游戏素材16" url="./resource/common/xml/backgrounds.xml" type="xml" />
-		<resource name="quests" label="游戏素材17" url="./resource/simplifiedchinese/xml/quests.xml" type="xml" />
-		<resource name="tasks" label="游戏素材17" url="./resource/simplifiedchinese/xml/tasks.xml" type="xml" />
-		<resource name="taskgoals" label="游戏素材17" url="./resource/simplifiedchinese/xml/taskgoals.xml" type="xml" />
-		<resource name="adverts" label="游戏素材18" url="./resource/simplifiedchinese/xml/adverts.xml" type="xml" />
-		<resource name="achieves" label="游戏素材19" url="./resource/simplifiedchinese/xml/achieves.xml" type="xml" />
-		
-		<resource name="Achieve" label="游戏素材20" url="./resource/common/swf/Achieve.swf?v=tc1.1" type="swf" />
-		<resource name="sounds" label="游戏素材21" url="./resource/common/swf/sounds.swf?v=tc1.1" type="swf" />
-		<resource name="Background" label="游戏素材22" url="./resource/common/swf/Background.swf?v=tc1.1" type="swf" />
-		<resource name="Background_new" label="游戏素材23" url="./resource/common/swf/Background_new.swf?v=tc1.1" type="swf" />
-		
-		<resource name="feed" label="游戏素材24" url="./resource/simplifiedchinese/xml/feed.xml" type="xml" />
-		
-		<resource name="items" label="游戏素材25" url="./resource/simplifiedchinese/xml/items.xml" type="xml" />
-		<resource name="quests" label="游戏素材26" url="./resource/simplifiedchinese/xml/quests.xml" type="xml" />
-		
-		<resource name="magicfaces" label="游戏素材27" url="./resource/common/xml/magicfaces.xml" type="xml" />
-		
-		<resource name="guild2" label="游戏素材28" url="./resource/simplifiedchinese/swf/mallTestGuild2.swf?v=tc1.1" type="swf" />
-		
-	
-	
+	<resources parallel="false" use_cache="false">   <resource name="secondResouce" label="游戏素材1" url="./resource/simplifiedchinese/xml/second_resource_list.xml?v=4f7f13c727a5da51ee200a0d3c4084bb" type="xml"/>
+   <resource name="test01" label="游戏素材2" url="./resource/common/swf/GuildMc.swf?v=5ba8f9382cb87fc68c69032e259f67c1" type="swf"/>
+   <resource name="test02" label="游戏素材3" url="./resource/simplifiedchinese/swf/package.swf?v=291344c67e9c4b8f3e7fb9e140bd4dd3" type="swf"/>
+   <resource name="test03" label="游戏素材4" url="./resource/simplifiedchinese/swf/TestUINew01.swf?v=35ed8a390d44670cc34ae1febc7fbcad" type="swf"/>
+   <resource name="test04" label="游戏素材5" url="./resource/common/swf/gift.swf?v=5d23e01b6c0afcfe44add998b601e943" type="swf"/>
+   <resource name="guild" label="游戏素材6" url="./resource/simplifiedchinese/swf/mallTestGuild.swf?v=0d98e397398c1a139cc2c1f141423d25" type="swf"/>
+   <resource name="waiting" label="游戏素材7" url="./resource/common/swf/waiting.swf?v=f7a3bb078e44b13eb68108f9b5263563" type="swf"/>
+   <resource name="truck" label="游戏素材8" url="./resource/common/swf/MallTruck.swf?v=fcb1fd33c117b46830413f318e17c49f" type="swf"/>
+   <resource name="truckUINew" label="游戏素材9" url="./resource/simplifiedchinese/swf/newtruckUI.swf?v=f07e71e71f05ac71a48273f6f240e43a" type="swf"/>
+   <resource name="newtruckUI002" label="游戏素材10" url="./resource/simplifiedchinese/swf/newtruckUI002.swf?v=b94fc0ba9469890906ac8299f1a717b5" type="swf"/>
+   <resource name="magicFace" label="游戏素材11" url="./resource/common/swf/MagicFace.swf?v=8eeabf366e7b24b51d787d8d475aca29" type="swf"/>
+   <resource name="manipulater" label="游戏素材12" url="./resource/common/swf/manipulater.swf?v=de4b8a92bdc4348c353afb4600cd3da8" type="swf"/>
+   <resource name="Quests" label="游戏素材13" url="./resource/common/swf/Quests.swf?v=5e876251fbed147ed9c20e0a5d05f8e1" type="swf"/>
+   <resource name="items" label="游戏素材14" url="./resource/simplifiedchinese/xml/items.xml?v=0ca95a740b8923acb587785327dbcf64" type="xml"/>
+   <resource name="magicfaces" 游戏素材15="magicfaces" url="./resource/common/xml/magicfaces.xml?v=3a1bffcea419d68786b6ea8d10caad5e" type="xml"/>
+   <resource name="backgrounds" label="游戏素材16" url="./resource/common/xml/backgrounds.xml?v=3e8ac7b23b3065e7cf180bcc7e5c8857" type="xml"/>
+   <resource name="quests" label="游戏素材17" url="./resource/simplifiedchinese/xml/quests.xml?v=d7faf015565616f90193ccbacb9f7f40" type="xml"/>
+   <resource name="tasks" label="游戏素材17" url="./resource/simplifiedchinese/xml/tasks.xml?v=e870593f4e7f12dee98f229bbeed922c" type="xml"/>
+   <resource name="taskgoals" label="游戏素材17" url="./resource/simplifiedchinese/xml/taskgoals.xml?v=63ec097475a422f2d7735a64aa16ff1d" type="xml"/>
+   <resource name="adverts" label="游戏素材18" url="./resource/simplifiedchinese/xml/adverts.xml?v=6ec4b138980bc7947a229146dcef6ec1" type="xml"/>
+   <resource name="achieves" label="游戏素材19" url="./resource/simplifiedchinese/xml/achieves.xml?v=e7207f6633dd116543521ef5e7dfa68c" type="xml"/>
+   <resource name="Achieve" label="游戏素材20" url="./resource/common/swf/Achieve.swf?v=927c147ca9e1d532459b55c009a5ab97" type="swf"/>
+   <resource name="sounds" label="游戏素材21" url="./resource/common/swf/sounds.swf?v=273544a69da875a5bdda443e76b2305e" type="swf"/>
+   <resource name="Background" label="游戏素材22" url="./resource/common/swf/Background.swf?v=c4706a632fd88c0fcf34a9105276f832" type="swf"/>
+   <resource name="Background_new" label="游戏素材23" url="./resource/common/swf/Background_new.swf?v=cb121ef17610a855373ee45cbfd5b6d2" type="swf"/>
+   <resource name="feed" label="游戏素材24" url="./resource/simplifiedchinese/xml/feed.xml?v=9c994dd5fb123189e139ef6d1a1237cf" type="xml"/>
+   <resource name="items" label="游戏素材25" url="./resource/simplifiedchinese/xml/items.xml?v=0ca95a740b8923acb587785327dbcf64" type="xml"/>
+   <resource name="quests" label="游戏素材26" url="./resource/simplifiedchinese/xml/quests.xml?v=d7faf015565616f90193ccbacb9f7f40" type="xml"/>
+   <resource name="magicfaces" label="游戏素材27" url="./resource/common/xml/magicfaces.xml?v=3a1bffcea419d68786b6ea8d10caad5e" type="xml"/>
+   <resource name="guild2" label="游戏素材28" url="./resource/simplifiedchinese/swf/mallTestGuild2.swf?v=0e1ba6298b248b795e72af67cc3384dd" type="swf"/>
+
 	</resources>
-	
-	<main name="main" label="加载主程式" url="MallGame.swf?v=tc1.2" use_cache="false"/>
-	
-	
-	<progress_aspect url="resource/common/swf/loadinglogo.swf" />
+   <main name="main" label="加载主程式" url="MallGame.swf?v=5dc672c49735d4b92b43aab3e04d6954" use_cache="false"/>
+   <progress_aspect url="resource/common/swf/loadinglogo.swf?v=086690bb9e98023697f7cff01c4e992c"/>
 	
 	<resource_servers>
-		<server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" />
+	    <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" />
 	</resource_servers>	
 	<app_servers>
-	    <server name="test2" purl="http://rrmall.playcrab.com/work/mall/backend/web/public/" />
+	    <server name="test" purl="http://rrmall.playcrab.com/work/mall/backend/web/public/" />
 	</app_servers>	
 </config>

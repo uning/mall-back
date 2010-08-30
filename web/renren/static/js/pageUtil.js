@@ -137,7 +137,7 @@ function prepareParams(data){
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
 	                              ,xnuid:PL.conf('pid')
-	                              ,action:'pop/feed_back.php?&fid='+feedId
+	                              ,action:'feed_back.php?&fid='+feedId
 	                              },
 	  			body_general: '',
 	  			callback: feedPublishCallback,

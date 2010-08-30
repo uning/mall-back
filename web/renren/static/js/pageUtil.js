@@ -103,7 +103,7 @@ var cached_publish_stream = false;
 
 var param;
 var feedCall;
-var d = {
+var ddd = {
 		'picture':'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
 		'name' : '礼物feed',
 		'caption':'这里是内容',
@@ -116,7 +116,7 @@ function popUpFeed(data,callBack){
 	if(data)
 	XN.Connect.showFeedDialog(prepareParams(data));
 	else
-	XN.Connect.showFeedDialog(prepareParams(d));
+	XN.Connect.showFeedDialog(prepareParams(ddd));
 	
 }
 function stat(op)

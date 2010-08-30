@@ -1,19 +1,9 @@
-<?php
-require_once('../config.php');
-?>
-<html>
-<head>
-<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/crab2.css" type="text/css"/>
+
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery.boxy.js"></script>
 <!--link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?2" /-->
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/pageUtil.js"></script>
-<!--script src="http://xnhf2.cache.fminutes.com/hf2/media_v0.5.4_1/javascript/v0.6/Fminutes.Core.js" type="text/javascript"></script>
-<script src="http://xnhf2.cache.fminutes.com/hf2/media_v0.5.4_1/javascript/v0.6/Fminutes.Xiaonei.js" type="text/javascript"></script-->
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
-<body>
 <div id="header">
     <div id="main-nav">
     <div class="logo"><a href="http://apps.renren.com/happyfarmtwo/" target="_top" title="开始游戏!">logo</a></div>
@@ -38,5 +28,3 @@ require_once('../config.php');
 </div>
 <div id="loadingFrame" class="offscreen" style="display: none"><img
 	src="../static/images/loading.gif"/></div>
-</body>
-</html>

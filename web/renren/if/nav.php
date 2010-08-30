@@ -33,8 +33,8 @@ require_once('../config.php');
 
 
 
-<div id="htmlFrame" class="offscreen" style="width: 760px;">
-
+<div id="htmlFrame"  style="width: 760px;">
+<input type="button" onclick="popUpFeed();" value="clicak"></input>
 </div>
 <div id="loadingFrame" class="offscreen" style="display: none"><img
 	src="../static/images/loading.gif"/></div>

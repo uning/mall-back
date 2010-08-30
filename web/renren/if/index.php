@@ -113,7 +113,7 @@ function install_swf(pid){
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
 <div id="appFrame" class="flashVisible">
 <div id="flashFrame"
-	style="background: url('../static/images/back.png') no-repeat; margin-top: 0px; padding: 0px">
+	style="background: url('<?php echo RenrenConfig::$resource_urlp;?>/images/genericbg.jpg') no-repeat; margin-top: 0px; padding: 0px">
 
 
 

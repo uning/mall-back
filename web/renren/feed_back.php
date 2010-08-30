@@ -3,6 +3,7 @@ require_once 'config.php';
 require_once 'pop/freeGift.php';
 //
 $key = $_REQUEST['fid'];
+print_r($_REQUEST);
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('fid',$key);
 print_r($value);

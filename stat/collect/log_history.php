@@ -25,6 +25,7 @@ $cont_no = 0;
 $end = $start + $num;
 for($i=$start;$i<=$end;++$i){
 	$data = $logt->get($i);		
+//	$logt->out($i);
 	$tm = $data['tm'];
 	if(!$data){
 		continue;	
@@ -106,7 +107,6 @@ for($i=$start;$i<=$end;++$i){
 	}
 	//print_r($p);
 	fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
-//	$logt->out($i);
 }
 store_varible($dgr);
 $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";

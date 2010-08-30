@@ -160,7 +160,7 @@ function feedPublishCallback(response){
 			url: '../pop/storeFeed.php',
 			data: 'type=' + param['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
 			dataType:'text',
-			success: feedCall
+			success: function (response){alert(response);}
 		});
 	}
 	

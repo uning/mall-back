@@ -220,7 +220,7 @@ function callback(responseItem){
 	 
 		var alert_dialog = new Dialog(
 				Dialog.DIALOG_ALERT, 
-				{message: msg,title: '提示框标题',callBack:function(){ 
+				{message: msg,title: '充值结果',callBack:function(){ 
 					var addGem = parseInt(params.amount) * 10; 
 					var gemNode = document.getElementById('gemValue'); 
 					console.debug("gemNode",gemNode.getInnerHTML(),addGem);
@@ -267,15 +267,15 @@ function requestPayment(amount,gem,message) {
         <div class='canvas'>
 			<div id="header">
 				<div id="navga">
-				<div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
+				<div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
 			   <div id="tabs">
 				<ul class="clearfix tcenter">       
-					<li class="game" id="flashTab" ><a  href="http://apps.renren.com/livemall" >游戏</a></li>
-					<li class="freegift"><a href="http://apps.renren.com/livemall?a=freeGift" id="freeGift" >免费礼物</a></li>
-					<li class="invite" ><a href="http://apps.renren.com/livemall?a=invite" >邀请好友</a></li>
-					<li class="faq"><a id='faq'  href="http://apps.renren.com/livemall?a=faq" >常见问题</a></li>
+					<li class="game" id="flashTab" ><a  href="<?php echo RenrenConfig::$canvas_url;?>" >游戏</a></li>
+					<li class="freegift"><a href="<?php echo RenrenConfig::$canvas_url;?>?a=freeGift" id="freeGift" >免费礼物</a></li>
+					<li class="invite" ><a href="<?php echo RenrenConfig::$canvas_url;?>?a=invite" >邀请好友</a></li>
+					<li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$canvas_url;?>?a=faq" >常见问题</a></li>
 					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" target='_blank' id="forum">论坛</a></li>
-					<li class="payment" ><a  class="active" href="http://apps.renren.com/livemall/pay.php"   id ="pay">充值</a></li>
+					<li class="payment" ><a  class="active" href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   id ="pay">充值</a></li>
 				</ul>
 				</div>
 				</div>

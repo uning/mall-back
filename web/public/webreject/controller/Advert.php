@@ -94,13 +94,15 @@ class Advert
 		$now = time();
 		$advbag['use'][$now]=$adv_tag;
 		$advbag['bag'][$adv_tag] -=1;
-//      $ret['advbag'] = $advbag;//for debug
+		
+		$exp = $tu->getf( TT::EXP_STAT );
+		$ua = UpgradeConfig::getUpgradeNeed( $exp );
+		$maxpopu = $ua['maxpopu'] + $adv['maxpopular'];
+		if( $maxpopu > $tu->getf('max_popu') )
+		    $tu->putf( 'maxpopu',$maxpopu );
+
 	    //使用广告次数
-		$advert_count = $tu->numch( 'advert_count',1 );
-/*		
-		$ua = $tu->getf( array( 'max_popu',TT::POPU ) );
-		$add_advpopu = $ua[TT::POPU] + $adv['popularity'];	
-*/		
+		$advert_count = $tu->numch( 'advert_count',1 );	
 		$ret['s'] = 'OK';
 		$ret['t'] = $now;
 		$ret['tag'] =  $adv_tag;

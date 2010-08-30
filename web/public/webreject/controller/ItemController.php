@@ -64,10 +64,7 @@ class ItemController {
 			$ret['ids'][$index] = $tu->puto($row,TT::ITEM_GROUP,false); 
 		}
 		if($pop)
-			$popu = $tu->numch( TT::POPU,$pop);
-        if( $popu > $tu->getf('max_popu') ){
-            $tu->putf( 'max_popu',$popu );
-        }			
+			$popu = $tu->numch( TT::POPU,$pop);		
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -108,20 +105,18 @@ class ItemController {
 			}
 			if( $item['type'] == 'ro' && $row['pos']=='s'){
 				//todo $tu 结算	
-				require_once 'GoodsController.php';
-				GoodsController::checkout($params);
-				//{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
-				$item_obj = $tu->getbyid( $row['id'] );
-				if( isset($item_obj['goods']) ){
-					if( $shop_ret['s'] == 'notempty' ){
-						$ret['s'] = 'notempty';
-						$ret['index'] = $index;
-						TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));
-						continue;
-						// return $ret;
-					}
+				if($item_obj['pos']!='s'){
+					require_once 'GoodsController.php';
+					GoodsController::checkout($params);
+					$item_obj = $tu->getbyid( $row['id'] );
 				}
-				//}
+				//{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
+				if($item_obj['goods']){
+					$ret['s'] = 'notempty';
+					$ret['index'] = $index;
+					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));
+					continue;
+				}
 			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
 			    if( $item['tag'] == '60102'){//移动电影院后，结算时间应当
@@ -134,23 +129,13 @@ class ItemController {
 					$pop -= $item['pop'];
 				}
 			}
-			//*
-//*/
 			foreach($row as $k=>$v)
 				$item_obj[$k]=$v;
 			$ret[$row['id']]=$item;
 			$tu->puto($item_obj,'',false);//reduce a get op 
 		}
-		/*
-		if($shop_num){
-			$tu->numch(TT::SHOP_NUM,$shop_num);           
-		}
-		*/
 		if($pop)
-			$popu = $tu->numch( TT::POPU,$pop);
-        if( $popu > $tu->getf('max_popu') ){
-            $tu->putf( 'max_popu',$popu );
-        }			
+			$popu = $tu->numch( TT::POPU,$pop);			
 		$ret['s'] = 'OK';
 		return $ret;
 	}

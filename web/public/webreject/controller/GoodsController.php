@@ -119,6 +119,38 @@ class GoodsController
 	}
 	
 	/**
+	 * 售卖货物
+	 *   
+	 * @param $params
+	 *  require   u     -- uid
+	 *  require   d     -- goods id 数组
+	 * @return 
+	 *  s     --OK
+	 *  
+	 */
+	public function sale( $params )
+	{
+	    $uid = $params['u'];
+	    $tu = new TTUser( $uid );
+	    foreach( $params['d'] as $index=>$id ){
+	        $goods_obj = $tu->getbyid( $id );
+	        if( !$goods_obj ){
+				$ret['s'] =  'notexsit';
+				$ret['index'] = $index;
+				return $ret;	            
+	        }
+	        $sale_ret = $tu->saleItem( $goods_obj );
+	   		if( $sale_ret['s'] != 'OK' ){
+				$sale_ret['index'] = $index;
+				return $sale_ret;
+			}	        
+	    }
+	    $tu->remove( $params['d'] );
+	    $ret['s'] = 'OK';
+	    return $ret;
+	}	
+	
+	/**
 	 * 上架,在shop记录里记录商品id
 	 * @param $params
 	 *    require   u        -- uid
@@ -236,7 +268,8 @@ class GoodsController
 
 
 		if(!$condata || !$total_width){
-			$ret['s']='nogoods';
+			$ret['s']='OK';
+			$ret['msg']='nogoods';
 			return $ret;
 		}
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
@@ -389,7 +422,8 @@ class GoodsController
 
 
 		if(!$condata || !$total_width){
-			$ret['s']='nogoods';
+			$ret['s']='OK';
+			$ret['msg']='nogoods';
 			$ret['condata']=$condata;
 			$ret['total_width']=$total_width;
 			return $ret;

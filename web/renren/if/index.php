@@ -81,9 +81,12 @@ function install_swf(pid){
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);
 	
-	
 } 
 </script>
+
+
+ 
+
 </head>
 <body style="overflow-x: hidden;overflow-y: hidden;background-color: #ffffff;" >
 
@@ -91,7 +94,7 @@ function install_swf(pid){
 
 <div id="header">
     <div id="navga">
-    <div class="logo"><a href="http://apps.renren.com/livemall/" target="_top" title="开始游戏!">logo</a></div>
+    <div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
@@ -100,7 +103,7 @@ function install_swf(pid){
         <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
-		<li class="payment" ><a  class='fullpage' href="http://apps.renren.com/livemall/pay.php"   target="_top" id ="pay">充值</a></li>
+		<li class="payment" ><a  class='fullpage' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>
@@ -139,6 +142,8 @@ version of Flash. Please do so by clicking <a
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
+
+
 </body>
 </html>
 <script type="text/javascript">
@@ -186,7 +191,4 @@ var config = {
 	PL.init('../static/js/config.js',config);
 </script>
 
-<?php
- //include FB_CURR.'/cs/gajs_init.php';
-?> 
 

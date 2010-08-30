@@ -70,18 +70,11 @@ document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
 	//get query to it
 	var flashvars = {};
 	var hash;
-	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-	for(var i = 0; i < hashes.length; i++)
-	{
-		hash = hashes[i].split('=');
-		flashvars[hash[0]] = hash[1];
-		console.log('query:'+hash[0]+'='+hash[1]);
-	}
 	flashvars.platform_id = '<?php echo  $pid;?>';//flashvars.fb_sig_user;
 	flashvars.pconf = 'o_0_mall_config.xml';
 	flashvars.languagetype = "0";
 	//flashvars.platform = "facebook";
-	flashvars.platform = "<?php echo  $platform;?>";
+	flashvars.platform = "dev"
 	var flash_width = 760;
 	var flash_height = 700;
 	var params = {};

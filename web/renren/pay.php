@@ -246,7 +246,7 @@ function requestPayment(amount,gem,message) {
 	params[Payment.Field.MESSAGE] = message;
 	params[Payment.Field.PARAMETERS] = "{name:'gem',amount:"+amount+",gem:"+gem+",message:"+message+",pid:<?php echo $pid;?>}"; 
 	params[Payment.Field.PAYMENT_TYPE] = payType; 
-	params[Payment.Field.SANDBOX] = true;
+	params[Payment.Field.SANDBOX] = false;
 	var itemParams1 = {}; 
 	itemParams1[Payment.BillingItem.SKU_ID] = 'gem'; 
 	itemParams1[Payment.BillingItem.PRICE] = amount; 

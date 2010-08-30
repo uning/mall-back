@@ -58,7 +58,6 @@ function install_swf(pid){
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "760";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
-	//flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
 	flashvars.platform = "renren";
 	var flash_width = 760;
 	var flash_height = 700;

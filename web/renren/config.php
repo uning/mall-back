@@ -15,8 +15,8 @@ class RenrenConfig
    public static  $resource_urlp = "http://files5.qq494.cn/pig/hotel/";
    //public static  $iframe_urlp = "http://supermall.playcrab.com/inif/";
    public static  $ajax_urlp = "/ajax/"; //this can be all the same??move to backend
-    public static $group_url = "http://group.renren.com/GetTribe.do?id=301354649";
-    public static $pay_secure = 'a0901b';
+   public static $group_url = "http://group.renren.com/GetTribe.do?id=301354649";
+   public static $pay_secure = 'a0901b';
 
 }
 

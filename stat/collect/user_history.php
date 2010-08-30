@@ -19,7 +19,7 @@ for($i=1;$i<=$user_num;++$i){
 	if(!$ud || !$uid)
 		continue;	
 	$tu = new TTuser($uid);
-	$data = $tu->getf(array('money','exp','gem','f_num'));
+	$data = $tu->getf(array('money','exp','gem','friend_count'));
 	$dgr['gem']+=$data['gem'];
 	$dgr['money']+=$data['money'];
 	$dgr['exp']+=$data['exp'];
@@ -32,7 +32,7 @@ for($i=1;$i<=$user_num;++$i){
 		$dgr['login_num']++;
 		if(!$data['f_num'])
 		   $data['f_num']=0;
-		fputcsv($uhf,array($uid,$datestr,$data['money'],$data['exp'],$data['gem'],$data['f_num']));
+		fputcsv($uhf,array($uid,$datestr,$data['money'],$data['exp'],$data['gem'],$data['friend_count']));
 	}
 	foreach(array(3,7,30) as $sd){//recent active user
 		if($accesstime+$sd*$gap>$day_starttime){
@@ -59,11 +59,14 @@ for($i=1;$i<=$user_num;++$i){
 			$dgr['in_un_num']++;//当天卸载人数
 		}
 	}
-	if($unstalltime>$day_starttime){
+	if($unstalltime>$accesstime){
 		$dgr['unstall_num']++;
 	}
 	
 }
+print_r($dgr);
+//exit;
+//*
 store_varible($dgr);
 $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
 if($dbconfig['password']){
@@ -71,6 +74,6 @@ if($dbconfig['password']){
 }
 $cmd .= $dbconfig['dbname'];
 $cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE '.$table.'  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         
-//echo $cmd;
+//*/
 system($cmd);
 fclose($uhf);

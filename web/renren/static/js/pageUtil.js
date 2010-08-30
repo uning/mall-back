@@ -106,7 +106,9 @@ var feedCall;
 var d = {
 		picture:'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
 		name : '礼物feed',
-		caption:'这里是内容'
+		caption:'这里是内容',
+		ext:{feedtype:1}
+		
 }
 function popUpFeed(data,callBack){
 	
@@ -129,10 +131,10 @@ function prepareParams(data){
 	
 	var feedId = PLStat.uuid();
 	 var publish = {
-	  			template_bundle_id: data['ext']['type'],
+	  			template_bundle_id: data['ext']['feedtype'],
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['type']+'&action={action}&xnuid={xnuid}&fid='+feedId}
+	                            href:'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
@@ -152,13 +154,13 @@ function feedPublishCallback(response){
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
 	if(pub==0){
-		stat('Try '+param['type']);
+		stat('Try '+param['ext']['feedtype']);
 	}else if(pub==1){
-		stat('Ok '+param['type']);
+		stat('Ok '+param['ext']['feedtype']);
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data: 'type=' + param['ext']['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
+			data: 'type=' + param['ext']['feedtype'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
 			dataType:'text',
 			success: function (response){alert(response);}
 		});
@@ -352,6 +354,7 @@ $(document).ready(
             if (e && e.target) {
 				var el = $(e.target);
 				goTo(el);
+				popUpFeed();
 				return false;
 			}
 		};

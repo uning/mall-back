@@ -173,7 +173,7 @@ font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 #header .logo {
     width:  195px;
     height: 46px;
-    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/logo.png?v=1") no-repeat center;
+    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/logo.png?v=1") no-repeat 10px center transparent;
     text-indent: -9999px;
     float: left;
 }

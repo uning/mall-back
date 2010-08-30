@@ -57,10 +57,10 @@ function install_swf(pid){
 	flashvars.platform_id = pid;
 	flashvars.pconf = '../static/flash/o_0_mall_config.xml';
 	flashvars.languagetype = "0";
-	flashvars.STAGE_WIDTH = "760";
+	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
 	flashvars.platform = "renren";
-	var flash_width = 760;
+	var flash_width = 800;
 	var flash_height = 700;
 	var params = {};
 	params.quality = "high";
@@ -118,7 +118,7 @@ function install_swf(pid){
 
 
 
-<div id="flashDIV" style="width: 760px; height: 700px; margin-top: 0px;">
+<div id="flashDIV" style="width: 800px; height: 700px; margin-top: 0px;">
 
 <div id="flashOuterContainer" style="margin-top: 0px;">
 <div id="flashapp" style="margin-top: 0px;"><span

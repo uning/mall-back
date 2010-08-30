@@ -1,4 +1,5 @@
 <?php
+require_once '../config.php';
 function changeUser()
 {
 	$pid = $_REQUEST['pid'];

@@ -2,7 +2,7 @@
 require_once 'config.php';
 require_once 'pop/freeGift.php';
 //
-$key = $_GET['key'];
+$key = $_REQUEST['key'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('fid',$key);
 print_r($value);
@@ -11,6 +11,7 @@ $uid = $_POST['xn_sig_user'];
 TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid));
 $session = TTGenid::getbypid($uid);
 $user = new TTUser($session['id']);
+$type = 1;
 ?>
 <style type="text/css">
 .padding_content {

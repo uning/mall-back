@@ -354,7 +354,6 @@ $(document).ready(
             if (e && e.target) {
 				var el = $(e.target);
 				goTo(el);
-				popUpFeed();
 				return false;
 			}
 		};

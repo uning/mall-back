@@ -55,7 +55,7 @@ if($_REQUEST['gift'])
 	$height = 750;
 ?>
 <body bgcolor="#ffffff">
-<div style="overflow: hidden;width:750px;height:<?php echo $height.'px';?>;border:#3399bb solid 1px;">
+<div style="overflow: hidden;width:780px;height:<?php echo $height.'px';?>;border:#3399bb solid 1px;">
 <table width="100%">
 <tr>
 <td align="right"><a  onclick="toFlash()" style="cursor: pointer;"><img src="../../static/images/css/close.png" border="0"/></a></td>

@@ -11,6 +11,7 @@ background:none repeat scroll 0 0 #FCFAD4;
 width:740px;
 border:1px solid #BEB9B9;
 margin:5px;
+display:none;
 padding:5px;
 }
 .bottom {

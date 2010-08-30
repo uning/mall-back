@@ -57,10 +57,10 @@ dbname="$mdata_dir/stat.tcb#lmemb=1024#nmemb=2048#bnum=2000"
 #default 
 dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=20000"
 if [ "x$dbtype" == "xt" ] ;then
-    dbname="$mdata_dir/$name.tct#lmemb=1024#nmemb=2048#bnum=20000#opts=l#rcnum=1000#idx=u#idx=pid"
+    dbname="$mdata_dir/$name.tct#lmemb=1024#nmemb=2048#bnum=2000000#opts=l#rcnum=1000#idx=u#idx=pid"
 fi
 if [ "x$dbtype" == "xo" ] ;then
-    dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=20000"
+    dbname="$mdata_dir/$name.tcb#lmemb=1024#nmemb=2048#bnum=20000000"
 fi
 #runopts='-l '
 echo $dbname

@@ -9,3 +9,7 @@ web/public/upload/*
 err.*
 log.*
 t
+
+web/*/static/flash/*
+#web/renren/static/flash/*
+

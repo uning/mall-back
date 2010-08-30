@@ -32,8 +32,8 @@ $u=$argv[1];
 $r=rand(1,5);
 
 echo "user $u\n";
-$u = rand(1,300000);
-if(1 || $r<3){
+$u = rand(1,20);
+if( $r<2 ){
 	dotest('GoodsController.checkout',array('u'=>$u));
 	exit;
 

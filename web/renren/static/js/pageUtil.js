@@ -104,10 +104,10 @@ var cached_publish_stream = false;
 var param;
 var feedCall;
 var d = {
-		picture:'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
-		name : '礼物feed',
-		caption:'这里是内容',
-		ext:{feedtype:1}
+		'picture':'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
+		'name' : '礼物feed',
+		'caption':'这里是内容',
+		'ext':{'feedtype':1}
 		
 }
 function popUpFeed(data,callBack){

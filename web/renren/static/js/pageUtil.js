@@ -129,6 +129,7 @@ function prepareParams(data){
 	console.log('data:',data);
 	param = data;
 	var feedId = PLStat.uuid();
+	param['fid'] = feedId;
 	 var publish = {
 	  			template_bundle_id: data['ext']['feedtype'],
 	  			template_data: {images:[
@@ -166,8 +167,7 @@ function feedPublishCallback(response){
 			type: 'POST',
 			url: '../pop/storeFeed.php',
 			data: 'type=' + param['ext']['feedtype']+'&fid'+param['fid'] + k+'&pid'+PL.conf('pid'),
-			dataType:'text',
-			success: function (response){alert(response);}
+			success: function (response){alert(data);}
 		});
 	}
 	

@@ -5,7 +5,7 @@ require_once 'pop/freeGift.php';
 $key = $_REQUEST['fid'];
 print_r($_REQUEST);
 $tt = TT::LinkTT();
-$value = $tt->getbyuidx('fid',$key);
+$value = $tt->getbyuidx('lid',$key);
 print_r($value);
 $type = $value['type'];
 $uid = $_POST['xn_sig_user'];

@@ -14,7 +14,7 @@ function ShareGift($fid,$pid,$ty)
 {
 	$obj = array(
 			'uid' => $pid,
-			'fid' => $fid,
+			'lid' => $fid,
 			'type' =>3,
 			'gift' => $ty,
 			'clickTime' => 0,
@@ -31,7 +31,7 @@ function shareTask($fid,$pid,$ty)
 
 	$obj = array(
 		'uid' => $pid,
-		'fid' => $fid,
+		'lid' => $fid,
 		'type' => 2,
 		'task' => $ty,
 		'clickTime' => 0,
@@ -48,7 +48,7 @@ function shareGoldCoin($fid,$pid)
 
 	$obj = array(
 		'uid' => $pid,
-		'fid' => $fid,
+		'lid' => $fid,
 		'type' => 1,
 		'clickTime' => 0,
 		'count' => 0,
@@ -56,7 +56,8 @@ function shareGoldCoin($fid,$pid)
 		'rcv' => array(0)
 	);
 	$tt = TT::LinkTT();
-	$tt->put($obj);
+	$id = $tt->put($obj);
+	print_r($tt->getbyuidx('fid',$fid));
 	changeUser($pid);
 }
 $types   = $_REQUEST['type'];

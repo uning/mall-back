@@ -6,7 +6,6 @@ $key = $_REQUEST['fid'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('lid',$key);
 $type = $value['type'];
-$value['uid'] = 202150436;
 $uid = $_POST['xn_sig_user'];
 TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid));
 $session = TTGenid::getbypid($uid);

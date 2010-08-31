@@ -151,6 +151,7 @@ version of Flash. Please do so by clicking <a
 <script type="text/javascript">
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
+PL.conf('pid',pid);
 var config = {
 		useparent:false,
 		//log:1,//init log? server can force debug, just for develop

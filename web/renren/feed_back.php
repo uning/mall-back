@@ -391,4 +391,7 @@ if(!Session.isApplicationAdded() || is_install == null ){
 </script>
 </xn:else>
 </xn:if-is-app-user>
+<div style="text-align: center;">
+<a href='<?php echo RenrenConfig::$canvas_url;?>' class='giftformsubmit' >返回游戏</a>	
+</div>
 </div>

@@ -14,7 +14,7 @@ function ShareGift($fid,$pid,$ty)
 {
 	$obj = array(
 			'uid' => $pid,
-			'fid' => $fid,
+			'lid' => $fid,
 			'type' =>3,
 			'gift' => $ty,
 			'clickTime' => 0,
@@ -31,7 +31,7 @@ function shareTask($fid,$pid,$ty)
 
 	$obj = array(
 		'uid' => $pid,
-		'fid' => $fid,
+		'lid' => $fid,
 		'type' => 2,
 		'task' => $ty,
 		'clickTime' => 0,
@@ -48,7 +48,7 @@ function shareGoldCoin($fid,$pid)
 
 	$obj = array(
 		'uid' => $pid,
-		'fid' => $fid,
+		'lid' => $fid,
 		'type' => 1,
 		'clickTime' => 0,
 		'count' => 0,
@@ -56,21 +56,22 @@ function shareGoldCoin($fid,$pid)
 		'rcv' => array(0)
 	);
 	$tt = TT::LinkTT();
-	$tt->put($obj);
+	$id = $tt->put($obj);
+	print_r($tt->getbyuidx('lid',$fid));
 	changeUser($pid);
 }
-$types   = $_REQUEST['type'];
-list($tyd,$pid,$ty) = explode('_',$types,3);
-$type = substr($tyd,0,1);
-$fid =  substr($tyd,1);
+$type   = $_REQUEST['type'];
+$fid = $_REQUEST['fid'];
+$pid = $_REQUEST['pid'];
+$ot = $_REQUEST['ot'];
 switch ($type){
 
 	case 1: 
-		shareGoldCoin($tyd,$pid);break;
+		shareGoldCoin($fid,$pid);break;
 	case 2:  
-		shareTask($tyd,$pid,$ty);break;
+		shareTask($fid,$pid,$ot);break;
 	case 3: 
-		ShareGift($tyd,$pid,$ty);break;
+		ShareGift($fid,$pid,$ot);break;
 	default:break;
 }
 TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp1'=>$fid,'sp2'=>$type));

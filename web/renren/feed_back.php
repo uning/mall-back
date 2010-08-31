@@ -50,9 +50,9 @@ li.giftLocked .gift_name {
 }
 
 .main_giftConfirm_cont {
-	background:
-		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_box.png")
-		no-repeat scroll left top;
+	/*background:
+		url("<?php //echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_box.png")
+		no-repeat scroll left top;*/
 	width: 744px;
 	height: 265px;
 }

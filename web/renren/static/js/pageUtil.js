@@ -166,7 +166,7 @@ function feedPublishCallback(response){
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+param['ext']['uid'],
+			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ PL.conf('pid'),
 			success: function (response){}
 		});
 	}

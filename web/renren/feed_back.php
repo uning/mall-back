@@ -307,7 +307,7 @@ text-decoration:none;
 if($type==2)
 {
 			$value['clicktime']+=1;
-			$tt->put($value['id'],$value);
+			$tt->put($value);
 			?>
 			<xn:redirect url="<?php echo RenrenConfig::$canvas_url;?>"/>
 			<?php

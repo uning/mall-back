@@ -5,13 +5,11 @@ require_once 'pop/freeGift.php';
 $key = $_REQUEST['fid'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('lid',$key);
-
 $type = $value['type'];
 $uid = $_POST['xn_sig_user'];
 TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid));
 $session = TTGenid::getbypid($uid);
 $user = new TTUser($session['id']);
-$type = 1;
 ?>
 <style type="text/css">
 .padding_content {
@@ -53,7 +51,7 @@ li.giftLocked .gift_name {
 
 .main_giftConfirm_cont {
 	background:
-		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_box.png")
+		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_box.png")
 		no-repeat scroll left top;
 	width: 744px;
 	height: 265px;
@@ -71,7 +69,7 @@ li.giftLocked .gift_name {
 
 .gift_box_cont {
 	background:
-		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_gift.png")
+		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_gift.png")
 		no-repeat scroll left top;
 	width: 152px;
 	height: 151px;
@@ -95,7 +93,7 @@ li.giftLocked .gift_name {
 
 .from_box_cont {
 	background: 
-		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_user.png")
+		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_user.png")
 		no-repeat scroll left top;
 	width: 117px;
 	height: 115px;
@@ -302,7 +300,7 @@ text-decoration:none;
 			</div>
 		</div>
 	</div>
-</div>
+
 <xn:if-is-app-user>
 <div id='is_install'></div>
 <?php
@@ -331,13 +329,14 @@ elseif($type==1)
  	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/coinheap.JPG"/>
  	  		</div>
 <?php    if($new){
-	$str='您抢到了'.$user->name.'分享的1000金币';
+	$str='您抢到了'.'<xn:name uid="' .$value['pid'].'linked="false" shownetwork="false" />'.'分享的1000金币';
 }
 else{
-	$str = '您已经领取'.$user->name.'分享的1000金币';
+	$str = '您已经领取'.'<xn:name uid="' .$value['pid'].'linked="false" shownetwork="false" />'.'分享的1000金币';
 } ?>
 <div style="text-align: center;">
 <h3><?php echo $str;?></h3>
+</div>
 </div>
 <?php
  }
@@ -368,6 +367,7 @@ else{
 			</div>
 		</div>
 		
+	</div>
 	</div>
 <?php 
 }?>

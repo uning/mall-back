@@ -103,36 +103,38 @@ var cached_publish_stream = false;
 
 var param;
 var feedCall;
-var d = {
-		picture:'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
-		name : '礼物feed',
-		caption:'这里是内容'
-}
+var ddd = {
+		'picture':'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
+		'name' : '礼物feed',
+		'caption':'这里是内容',
+		'ext':{'feedtype':1}
+		
+};
 function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
 	if(data)
 	XN.Connect.showFeedDialog(prepareParams(data));
 	else
-	XN.Connect.showFeedDialog(prepareParams(d));
+	XN.Connect.showFeedDialog(prepareParams(ddd));
 	
 }
 function stat(op)
 {
-	if(_gaq){
+	/*if(_gaq){
 		  _gaq._trackEvent('Feed', op);
-	  }
+	  }*/
 }
 function prepareParams(data){
 	console.log('data:',data);
 	param = data;
-	
 	var feedId = PLStat.uuid();
+	param['fid'] = feedId;
 	 var publish = {
-	  			template_bundle_id: data['ext']['type'],
+	  			template_bundle_id: data['ext']['feedtype'],
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['type']+'&action={action}&xnuid={xnuid}&fid='+feedId}
+	                            href:'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&fid='+feedId}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
@@ -142,7 +144,7 @@ function prepareParams(data){
 	  			body_general: '',
 	  			callback: feedPublishCallback,
 	  			user_message_prompt: "有啥想法没？^o^",
-	  			user_message: "here user_message"
+	  			user_message: "讲两句吧.."
 	  		};
 	
 	return publish;
@@ -152,15 +154,20 @@ function feedPublishCallback(response){
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
 	if(pub==0){
-		stat('Try '+param['type']);
+		stat('Try '+param['ext']['feedtype']);
 	}else if(pub==1){
-		stat('Ok '+param['type']);
+		stat('Ok '+param['ext']['feedtype']);
+		var k='';
+		if(param['ext']['feedtype']==2){
+			k = '&ot='+param['task'];
+		}else if(param['ext']['feedtype']==3){
+			k = '&ot='+ param['gift'];
+		}
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data: 'type=' + param['ext']['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
-			dataType:'text',
-			success: function (response){alert(response);}
+			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ PL.conf('pid'),
+			success: function (response){}
 		});
 	}
 	

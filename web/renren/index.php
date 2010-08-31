@@ -15,7 +15,8 @@ display:none;
 padding:5px;
 }
 .bottom {
-width:760px; 
+text-align:center;
+width:800px;
 }
 .bottom a img{
 border: 0;

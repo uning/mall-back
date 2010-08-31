@@ -15,7 +15,7 @@
 	</head>
 	<body bgcolor="#ffffff">
 	<form action="invite/invite.php?" method="post">
-	<div class="main_gift_cont" style="overflow: hidden;width:750px;height:640px;margin:0;text-align: center;padding-bottom: 5px;border:#3399bb solid 1px;z-index: 1;">
+	<div class="main_gift_cont" style="background-color:#f5debc;overflow: hidden;width:780px;height:640px;margin:0;text-align: center;padding-bottom: 5px;border:#3399bb solid 1px;z-index: 1;">
 	<table width="100%" style="padding-top: 0px;margin-bottom: 2px">
 		<tr>
 			<td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>
@@ -43,7 +43,7 @@
 	function levelLessShow($xml)
 	{
 		echo '<li class="giftLocked"><div class="gift_img">';
-		echo '<img src="../static/images/giftIcon/'.getAttr('icon',$xml).'" class="giftIconImg" style="width: 90px; margin-left: 0px;"/>';
+		echo '<img src="../static/images/giftIcon/'.getAttr('icon',$xml).'" class="giftIconImg" style="width: 90px; margin-left: 0px;"/></div>';
 		echo '<div class="gift_name"><strong><span>'.getAttr('name',$xml).'</span></strong></div>';
 		echo '<div class="gift_action">'.getAttr('level',$xml).'级后可赠送</div></li>';
 	}

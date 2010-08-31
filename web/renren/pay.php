@@ -17,9 +17,9 @@ height: 700px;
 font:12px/1.5 tahoma,arial,微软雅黑,宋体,sans-serif;
 }
 #header .logo {
-    width: 165px;
+    width:195px;
     height: 46px;
-    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/logo.png?v=1") no-repeat center;
+    background: url("<?php echo RenrenConfig::$resource_urlp; ?>/images/logo.png?v=1") no-repeat 10px center transparent;
     text-indent: -9999px;
     float: left;
 }
@@ -246,7 +246,7 @@ function requestPayment(amount,gem,message) {
 	params[Payment.Field.MESSAGE] = message;
 	params[Payment.Field.PARAMETERS] = "{name:'gem',amount:"+amount+",gem:"+gem+",message:"+message+",pid:<?php echo $pid;?>}"; 
 	params[Payment.Field.PAYMENT_TYPE] = payType; 
-	params[Payment.Field.SANDBOX] = true;
+	params[Payment.Field.SANDBOX] = false;
 	var itemParams1 = {}; 
 	itemParams1[Payment.BillingItem.SKU_ID] = 'gem'; 
 	itemParams1[Payment.BillingItem.PRICE] = amount; 

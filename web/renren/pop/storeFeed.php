@@ -1,82 +1,82 @@
 <?php
-function changeUser()
+require_once '../config.php';
+
+function changeUser($pid)
 {
-	$pid = $_REQUEST['pid'];
+	
 	$session = TTgenid::getbypid($pid);
 	$uid = $session['id'];
 	$tu = new TTUser($uid);
 	//$tu->addExp();
 	//$tu->get();
 }
-function ShareGift()
+function ShareGift($fid,$pid,$ty)
 {
-	$key =$_REQUEST['fid'];
-	$gift = $_REQUEST['gift'];
-	if(!$gift) return;
 	$obj = array(
-			'uid' => $_REQUEST['pid'],
-			'fid' => $key,
+			'uid' => $pid,
+			'lid' => $fid,
 			'type' =>3,
-			'gift' => $gift,
+			'gift' => $ty,
 			'clickTime' => 0,
 			'count' => 15,
 			'date' =>date('Ymd'),
-			'rcv' => array()
+			'rcv' => array($pid=>1)
 		);
 	$tt = TT::LinkTT();
 	$tt->put($obj);
-	changeUser();
+	changeUser($pid);
 }
-function shareTask()
+function shareTask($fid,$pid,$ty)
 {
-	$key = $_REQUEST['fid'];
-	$task = $_REQUEST['task'];
+
 	$obj = array(
-		'uid' =>$_REQUEST['pid'],
-		'fid' => $key,
+		'uid' => $pid,
+		'lid' => $fid,
 		'type' => 2,
-		'task' => $task,
+		'task' => $ty,
 		'clickTime' => 0,
 		'count' => 0,
 		'date' =>date('Ymd'),
-		'rcv' => array()
+		'rcv' => array($pid=>1)
 	);
 	$tt = TT::LinkTT();
 	$tt->put($obj);
-	changeUser();
+	changeUser($pid);
 }
-function shareGoldCoin()
+function shareGoldCoin($fid,$pid)
 {
-	$key = $_REQUEST['fid'];
+
 	$obj = array(
-		'uid'=> $_POST['pid'],
-		'fid' => $key,
+		'uid' => $pid,
+		'lid' => $fid,
 		'type' => 1,
 		'clickTime' => 0,
 		'count' => 0,
 		'date' =>date('Ymd'),
-		'rcv' => array()
+		'rcv' => array($pid=>1)
 	);
 	$tt = TT::LinkTT();
-	$tt->put($obj);
-	changeUser();
+	$id = $tt->put($obj);
+	print_r($tt->getbyuidx('lid',$fid));
+	changeUser($pid);
 }
-
-$feedId = $_REQUEST['fid'];
 $type   = $_REQUEST['type'];
-
+$fid = $_REQUEST['fid'];
+$pid = $_REQUEST['pid'];
+$ot = $_REQUEST['ot'];
 switch ($type){
 
 	case 1: 
-		shareGoldCoin();break;
+		shareGoldCoin($fid,$pid);break;
 	case 2:  
-		shareTask();break;
+		shareTask($fid,$pid,$ot);break;
 	case 3: 
-		ShareGift();break;
+		ShareGift($fid,$pid,$ot);break;
 	default:break;
 }
-TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp1'=>$fid),'sp2'=>$type);
+TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp1'=>$fid,'sp2'=>$type));
 file_put_contents('stroefeed.txt',$_REQUEST);
+print_r($_REQUEST);
 
 
 

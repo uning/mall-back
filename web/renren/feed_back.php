@@ -325,14 +325,14 @@ elseif($type==1)
 				$new = true;
  	  		}
  	  		?>
- 	  		<div>
+ 	  		<div style="text-align: center;">
  	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/coinheap.JPG"/>
  	  		</div>
 <?php    if($new){
-	$str='您抢到了1000金币';
+	$str='您抢到了'.'<xn:name uid="' .$value['pid'].'" linked="false" shownetwork="false" />'.'分享的1000金币';
 }
 else{
-	$str = '您已经领取1000金币';
+	$str = '您已经领取'.'<xn:name uid="' .$value['pid'].'" linked="false" shownetwork="false" />'.'分享的1000金币';
 } ?>
 <div style="text-align: center;">
 <h3><?php echo $str;?></h3>
@@ -368,7 +368,6 @@ else{
 		</div>
 		
 	</div>
-
 <?php 
 }?>
 <xn:else>

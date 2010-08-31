@@ -329,7 +329,7 @@ elseif($type==1)
 			<div class="main_giftConfirm_cont">
 			<div class="gift_box_holder">
 				<div class="gift_box_cont">
-					<div style="text-align: center;">
+					<div class ="giftConfirm_img">
  	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/coinheap.JPG"/>
  	  		</div>
 				</div>

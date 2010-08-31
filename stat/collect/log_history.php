@@ -80,8 +80,9 @@ for($i=$start;$i<=$end;++$i){
 		if($m=='GoodsController.checkout'){
 			$sell = $p['sell'];
 			if($sell){
-				foreach($sell as $gid=>$num){
-					$dgr["$mpre@as@$gid"]+=$num;	
+				foreach($sell as $gtag=>$sellnum){
+					$dgr["$mpre@as@$gtag"]+=$sellnum;
+					$sp1.="$gtag@"; 
 				}
 			}
 		}
@@ -89,27 +90,31 @@ for($i=$start;$i<=$end;++$i){
 			$sp1 = $p['days'];
 		}
 		if($m=='Gift.accept'){
-			$gids = $p['gids'];
-			foreach( $gids as $gid ){
-				$dgr["$mpre@$gid"] += 1;
+			$gtags = $p['gids'];
+			foreach( $gtags as $gtag ){
+				$dgr["$mpre@$gtag"] += 1;
+				$sp1.="$gtag@";
 			}
 		}
 		if($m=='ItemController.buy'){
 			$items = $p['d'];
 			foreach( $items as $tag){
 				$dgr["$mpre@$tag"] += 1;
+				$sp1.="$tag@";
 			}
 		}
 		if($m=='CarController.buy'){
 			$cars = $p['c'];
 			foreach( $cars as $tag){
 				$dgr["$mpre@$tag"] += 1;
+				$sp1.="$tag@";
 			}
 		}
 		if($m=='GoodsController.exhibit_goods'){
 			$tags = $p['tags'];
 			foreach( $tags as $tag){
 				$dgr["$mpre@$tag"] += 1;
+				$sp1.="$tag@";
 			}
 		}
 		if($p['pid'])

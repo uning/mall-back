@@ -43,7 +43,7 @@
 	function levelLessShow($xml)
 	{
 		echo '<li class="giftLocked"><div class="gift_img">';
-		echo '<img src="../static/images/giftIcon/'.getAttr('icon',$xml).'" class="giftIconImg" style="width: 90px; margin-left: 0px;"/>';
+		echo '<img src="../static/images/giftIcon/'.getAttr('icon',$xml).'" class="giftIconImg" style="width: 90px; margin-left: 0px;"/></div>';
 		echo '<div class="gift_name"><strong><span>'.getAttr('name',$xml).'</span></strong></div>';
 		echo '<div class="gift_action">'.getAttr('level',$xml).'级后可赠送</div></li>';
 	}

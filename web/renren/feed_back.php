@@ -325,9 +325,23 @@ elseif($type==1)
 				$new = true;
  	  		}
  	  		?>
- 	  		<div style="text-align: center;">
+ 	  		<div class="padding_content center">
+			<div class="main_giftConfirm_cont">
+			<div class="gift_box_holder">
+				<div class="gift_box_cont">
+					<div style="text-align: center;">
  	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/coinheap.JPG"/>
  	  		</div>
+				</div>
+				<div class="gift_from"><h3>From</h3></div>
+				<div class="from_box_cont">
+					<div class="giftFrom_img"><xn:profile-pic uid="<?php echo $value['uid'];?>" linked="false" size="tiny" /></div>
+					<div class="giftFrom_name"><span><xn:name uid="<?php echo $value['uid'];?>" linked="false" shownetwork="false" /></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+ 	  		
 <?php    if($new){
 	$str='您抢到了'.'<xn:name uid="' .$value['uid'].'" linked="true" shownetwork="false" />'.'分享的1000金币';
 }
@@ -366,7 +380,6 @@ else{
 				</div>
 			</div>
 		</div>
-		
 	</div>
 <?php 
 }?>

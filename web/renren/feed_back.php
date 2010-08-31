@@ -337,7 +337,7 @@ else{
 <div style="text-align: center;">
 <h3><?php echo $str;?></h3>
 </div>
-</div>
+
 <?php
  }
  elseif($type==3){
@@ -368,7 +368,7 @@ else{
 		</div>
 		
 	</div>
-	</div>
+
 <?php 
 }?>
 <xn:else>
@@ -392,3 +392,4 @@ if(!Session.isApplicationAdded() || is_install == null ){
 </script>
 </xn:else>
 </xn:if-is-app-user>
+</div>

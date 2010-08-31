@@ -6,6 +6,7 @@ $key = $_REQUEST['fid'];
 $tt = TT::LinkTT();
 $value = $tt->getbyuidx('lid',$key);
 $type = $value['type'];
+$value['uid'] = 202150436;
 $uid = $_POST['xn_sig_user'];
 TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid));
 $session = TTGenid::getbypid($uid);
@@ -329,10 +330,10 @@ elseif($type==1)
  	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/coinheap.JPG"/>
  	  		</div>
 <?php    if($new){
-	$str='您抢到了'.'<xn:name uid="' .$value['pid'].'" linked="false" shownetwork="false" />'.'分享的1000金币';
+	$str='您抢到了'.'<xn:name uid="' .$value['uid'].'" linked="false" shownetwork="false" />'.'分享的1000金币';
 }
 else{
-	$str = '您已经领取过'.'<xn:name uid="' .$value['pid'].'" linked="false" shownetwork="false" />'.'分享的1000金币';
+	$str = '您已经领取过'.'<xn:name uid="' .$value['uid'].'" linked="false" shownetwork="false" />'.'分享的1000金币';
 } ?>
 <div style="text-align: center;">
 <h3><?php echo $str;?></h3>
@@ -361,8 +362,8 @@ else{
 				</div>
 				<div class="gift_from"><h3>From</h3></div>
 				<div class="from_box_cont">
-					<div class="giftFrom_img"><xn:profile-pic uid="<?php echo $value['pid'];?>" linked="false" size="tiny" /></div>
-					<div class="giftFrom_name"><span><xn:name uid="<?php echo $value['pid'];?>" linked="false" shownetwork="false" /></span></div>
+					<div class="giftFrom_img"><xn:profile-pic uid="<?php echo $value['uid'];?>" linked="false" size="tiny" /></div>
+					<div class="giftFrom_name"><span><xn:name uid="<?php echo $value['uid'];?>" linked="false" shownetwork="false" /></span></div>
 				</div>
 			</div>
 		</div>

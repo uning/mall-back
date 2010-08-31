@@ -13,7 +13,7 @@ class RenrenConfig
    public static  $resource_urlp = "http://rrmall.playcrab.com/static/";
    //public static  $resource_urlp = "http://files5.qq494.cn/pig/hotel/";
    //public static  $iframe_urlp = "http://supermall.playcrab.com/inif/";
-   public static $group_url = "http://group.renren.com/GetTribe.do?id=301354649";
+   public static $group_url = "http://group.renren.com/GetTribe.do?id=336701942";
    public static $pay_secure = 'a0901b';
 
 }

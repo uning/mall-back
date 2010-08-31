@@ -330,7 +330,7 @@ elseif($type==1)
 			<div class="gift_box_holder">
 				<div class="gift_box_cont">
 					<div class ="giftConfirm_img">
- 	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/coinheap.JPG"/>
+ 	  		<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/heapcoin.png"/>
  	  		</div>
 				</div>
 				<div class="gift_from"><h3>From</h3></div>

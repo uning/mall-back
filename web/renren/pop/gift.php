@@ -15,7 +15,7 @@
 	</head>
 	<body bgcolor="#ffffff">
 	<form action="invite/invite.php?" method="post">
-	<div class="main_gift_cont" style="overflow: hidden;width:780px;height:640px;margin:0;text-align: center;padding-bottom: 5px;border:#3399bb solid 1px;z-index: 1;">
+	<div class="main_gift_cont" style="background-color:#f5debc;overflow: hidden;width:780px;height:640px;margin:0;text-align: center;padding-bottom: 5px;border:#3399bb solid 1px;z-index: 1;">
 	<table width="100%" style="padding-top: 0px;margin-bottom: 2px">
 		<tr>
 			<td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../static/images/css/close.png"/></a></td>

@@ -20,7 +20,7 @@ function ShareGift($fid,$pid,$ty)
 			'clickTime' => 0,
 			'count' => 15,
 			'date' =>date('Ymd'),
-			'rcv' => array(0)
+			'rcv' => array($pid=>1)
 		);
 	$tt = TT::LinkTT();
 	$tt->put($obj);
@@ -37,7 +37,7 @@ function shareTask($fid,$pid,$ty)
 		'clickTime' => 0,
 		'count' => 0,
 		'date' =>date('Ymd'),
-		'rcv' => array(0)
+		'rcv' => array($pid=>1)
 	);
 	$tt = TT::LinkTT();
 	$tt->put($obj);
@@ -53,7 +53,7 @@ function shareGoldCoin($fid,$pid)
 		'clickTime' => 0,
 		'count' => 0,
 		'date' =>date('Ymd'),
-		'rcv' => array(0)
+		'rcv' => array($pid=>1)
 	);
 	$tt = TT::LinkTT();
 	$id = $tt->put($obj);

@@ -140,7 +140,7 @@ for($i=$start;$i<=$end;++$i){
 		}
 		if($m=='feed_back'){
 		//sp1==type
-		$dgr["$m@$sp1"]+=1;
+		$dgr["$m@$sp1@$sp2"]+=1;
 		}
 		if($m=='pub_invite'){
 		//sp1 = gift 
@@ -149,7 +149,7 @@ for($i=$start;$i<=$end;++$i){
 		if($m=='accept_invite'){
 		//sp1 = gift  sp2 =ÐÂ°²×°
 		$pre = $m.$sp2;
-		$dgr["$pre@$sp1"]+=1;
+		$dgr["$pre@$sp1@$sp2"]+=1;
 		}
 		if($m=='help_open_shop'){
 		//sp1 = oid sp2 = new one

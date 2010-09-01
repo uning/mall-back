@@ -28,7 +28,5 @@ if($op&&$pid){
 		echo "{'s':'ok'}";
 		return;
 	}
-	
-	
 }
 echo "{'s':'fail','error':'pid=$pid op=$op'}";

@@ -78,7 +78,7 @@ function install_swf(pid){
 	/*flashDivId*/
 	//params.base = "http://127.0.0.1/work/mall/Venus/to-company/";
 	swfobject.embedSWF(
-		"../static/flash/MallLoader.swf?v=<?php md5_file('../static/flash/MallLoader.swf');?>", "flashapp", 
+		"../static/flash/MallLoader.swf?v=<?php echo md5_file('../static/flash/MallLoader.swf');?>", "flashapp", 
 			flash_width, flash_height, 
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);

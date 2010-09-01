@@ -18,7 +18,6 @@ if($gflg){
 	}
 	$ts->puto($data);
  
-			
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,7 +25,7 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?2" />
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
@@ -45,6 +44,7 @@ function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
 	   swf_install = true;
+	  return;
 	
 	//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
@@ -95,30 +95,7 @@ function install_swf(pid){
 
 
 <div id="header">
-	<div class='topbar'> 
- 			<ul id="scrollBox">   
-				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
-				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
-				  <li> 多上货才能多赚钱 </li>  
-				  <li> 离线的时候，商场依然是在运作的 </li>  
-				  <li> <span>厕所</span>虽然不能收钱，但是可以提高人气 </li>  
-				  <li> <span>电影院</span>要所有的座位都坐上人才能开演 </li>  
-				  <li> 高等级的货车可以进取更多的货物 </li>  
-				  <li> 可以使用道具使正在运货的货车增加运货量或者提高运货速度 </li>  
-				  <li> <span>手扶梯</span>可以显著地改善很多顾客等电梯的状况 </li>  
-				  <li> 如果你的商场有坐下休息的地方，顾客们会很高兴的 </li>  
-				  <li> 每个商铺都有<span>等待队列</span>，当前物品卖完后会依次销售队列里的货物 </li>  
-				  <li> 你的好友偶尔也会来你的商场购物 </li>  
-				  <li> 全屏可以使你的视野更加开阔 </li>  
-				  <li> 如果你的商场营业店铺太少的话顾客会不高兴的离开 </li>  
-				  <li> 楼体、屋顶、地板、吊饰都是可以更换的 </li>  
-				  <li> 经常点击游戏中好友分享的消息，可是一笔很可观的收入哦 </li>  
-				  <li> 经常分享游戏中的消息，好友会因此得到一笔很不错的收入哦 </li>  
-
- 			</ul>
-
-    </div>
-     <div id="navga">
+    <div id="navga">
     <div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       
@@ -134,36 +111,7 @@ function install_swf(pid){
     </div>
 </div>
 
-<div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
-<div id="appFrame" class="flashVisible">
-<div id="flashFrame"
-	style="background: url('<?php echo RenrenConfig::$resource_urlp;?>/images/genericbg.jpg') no-repeat; margin-top: 0px; padding: 0px">
 
-
-
-<div id="flashDIV" style="width: 800px; height: 700px; margin-top: 0px;">
-
-<div id="flashOuterContainer" style="margin-top: 0px;">
-<div id="flashapp" style="margin-top: 0px;"><span
-	style="font-size: 19px; font-family: tahoma; color: #4880d7; margin-top: 0px; padding-top: 0px">Loading
-Game...</span><br />
-<span
-	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">If
-your game does not load within 10 seconds, you may need to upgrade your
-version of Flash. Please do so by clicking <a
-	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">here</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div id="htmlFrame" class="offscreen" style="width:100%;vertical-align: middle;text-align: center;">
-
-</div>
-<div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
-	src="../static/images/loading.gif"/></div>
-</div>
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
@@ -172,31 +120,6 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
-
-window.onload=function(){
-			var o=document.getElementById('scrollBox');
-			window.setInterval(function(){scrollup(o,24,0);},3000); 
-	}
-	function scrollup(o,d,c){
-			if(d==c){
-					var t=getFirstChild(o.firstChild).cloneNode(true);
-					o.removeChild(getFirstChild(o.firstChild));
-					o.appendChild(t);
-					t.style.marginTop="0px";
-			}else{
-					c+=2;
-					getFirstChild(o.firstChild).style.marginTop=-c+"px";
-					window.setTimeout(function(){scrollup(o,d,c)},20);
-			}
-	}
-	function getFirstChild(node){
-			  while (node.nodeType!=1) {
-					 node=node.nextSibling;
-			  }
-			  return node;
-	}
-
-
 
 function update_info()
 {
@@ -221,12 +144,13 @@ function update_info()
 		XN.Main.apiClient.friends_getAppUsers(get_friends);
 	});
 }
+
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
 var config = {
 		useparent:false,
-		//log:1,//init log? server can force debug, just for develop
-		fb:1,//init fb?
+		log:1,//init log? server can force debug, just for develop
+		fbd:1,//init fb?
 		//fbd:1,//init fb debug? 
 	logcb:function(r){//log init callback
 		      console.log('index log callback' +  window.location.href);
@@ -239,10 +163,9 @@ var config = {
 	  				   pid = r.uid;
 	  				   PL.conf('pid',pid);
 	  				   console.log(pid);
-	    			   install_swf(pid);
+	  				   
 					   update_info();
 
-	  				   
 	  			   }
 	  			   XN.Main.get_sessionState().waitUntilReady(
 	  					   function(){
@@ -253,7 +176,7 @@ var config = {
 	   			  install_swf(pid);
 				  update_info();
 	  		   }
-	  		   PF.set_page_ok();	  
+	  		   //PF.set_page_ok();	  
 
 
 	},

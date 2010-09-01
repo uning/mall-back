@@ -91,7 +91,7 @@ document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
 	attributes.salign = "tl";
 	/*flashDivId*/
 	swfobject.embedSWF(
-		"MallLoader.swf?v=", "flashDivId", 
+		"MallLoader.swf?v=<?php echo md5_file('MallLoader.swf');?>", "flashDivId", 
 
 		flash_width, flash_height, 
 		swfVersionStr, xiSwfUrlStr, 

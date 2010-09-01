@@ -15,7 +15,7 @@ if($op&&$pid){
 		echo "{'s':'fail','msg':'not find $pid op=$op'}";
 		return;
 	}
-	$tu = TTUser($uid);
+	$tu = new   TTUser($uid);
 	 $id = $tu->getdid('installbar',TT::OTHER_GROUP);
 	 $barobj = $tu->getbyid($id);
 	if($barobj[$op]){
@@ -28,7 +28,5 @@ if($op&&$pid){
 		echo "{'s':'ok'}";
 		return;
 	}
-	
-	
 }
 echo "{'s':'fail','error':'pid=$pid op=$op'}";

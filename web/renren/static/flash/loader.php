@@ -80,7 +80,6 @@ PL.js(['http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'],functi
 		flashvars.platform_id = '<?php echo  $pid;?>';//flashvars.fb_sig_user;
 		flashvars.pconf = '0_mall_config.xml';
 		flashvars.languagetype = "0";
-		flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
 //flashvars.platform = "facebook";
 flashvars.platform = "<?php echo  $platform;?>";
 flashvars.platform = 'dev';

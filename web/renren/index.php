@@ -65,7 +65,7 @@ width:100%;
 
 		<div class='bottom'>
 			<a target='_blank' href='http://page.renren.com/livemall'>
-				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png" /> 
 			</a>
 		</div>
 		

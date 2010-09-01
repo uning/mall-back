@@ -1,6 +1,6 @@
 <?php
 require_once('../config.php');
-$linkid = $_REQUEST['linkid'];
+$linkid = $_REQUEST['lid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
@@ -56,7 +56,7 @@ $ids = $_REQUEST['ids'];
 	if($pid){
 	$tw->put($value);
 	$tw->put($_REQUEST);
-	TTLog::record(array('m'=>'pub_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp1'=>$linkid,'sp2'=>$gid));
+	TTLog::record(array('m'=>'pub_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$linkid,'sp1'=>$gid));
 	}
 header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 	

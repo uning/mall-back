@@ -273,12 +273,12 @@ text-decoration:none;
 <?php
 require_once('config.php');
 require_once('pop/freeGift.php');
-$linkid = $_REQUEST['linkid'];
+$linkid = $_REQUEST['lid'];
 $touser = $_REQUEST['xn_sig_user'];	
 $tw = TT::LinkTT();
 //list($pid,$str) = explode(':',$linkid);
 //$irec = $tw->getbyuidx('uid',$pid);
-$link = $tw->getbyuidx('linkid',$linkid);?>
+$link = $tw->getbyuidx('lid',$linkid);?>
 <xn:if-is-app-user>
 <div id='is_install'></div>
 <?php
@@ -298,7 +298,7 @@ $link = $tw->getbyuidx('linkid',$linkid);?>
 	 }else{
 	 	$new  = 0;
 	 }
-	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$$new,'sp2'=>$new));
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$lg,'sp2'=>$new));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];

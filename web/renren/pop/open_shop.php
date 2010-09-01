@@ -54,12 +54,12 @@ ul li a
 require_once 'freeGift.php';
 	$linkid = uniqid();
 	$oid = $_REQUEST['oid'];
-    $accept_url = RenrenConfig::$canvas_url."cinema.php?linkid=$linkid";
+    $accept_url = RenrenConfig::$canvas_url."cinema.php?lid=$linkid";
 	$content = '我正在玩购物天堂，我需要个开个'.$help[$oid]['name'].'，可是人手不够，需要你的帮忙 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;帮ta&quot;&gt;';
 	$pid = $_REQUEST['pid'];
 	$mode = 'all';
 	$content.="&quot;&gt;"; 
-	$store_url = RenrenConfig::$callback_url."if/store_link.php?linkid=$linkid&pid=$pid&oid=$oid";
+	$store_url = RenrenConfig::$callback_url."if/store_link.php?lid=$linkid&pid=$pid&oid=$oid";
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
 <tr>

@@ -74,7 +74,7 @@ switch ($type){
 		ShareGift($fid,$pid,$ot);break;
 	default:break;
 }
-TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp1'=>$fid,'sp2'=>$type));
+TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$fid,'sp1'=>$type));
 file_put_contents('stroefeed.txt',$_REQUEST);
 print_r($_REQUEST);
 

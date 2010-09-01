@@ -17,6 +17,8 @@ padding:5px;
 .xnid{
 text-align: right; font-size: 12px;
 width:100%;
+margin-bottom:3px;
+margin-top:4px;
 }
 .bottom {
 text-align:center;
@@ -36,7 +38,7 @@ height:18px;
 line-height:18px;
 margin-left:3px;
 margin-top:4px;
-width:800px;
+width:100%;
 }
 </style>
 <div id='is_install'></div>

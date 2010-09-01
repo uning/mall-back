@@ -129,17 +129,23 @@ function prepareParams(data){
 	console.log('data:',data);
 	param = data;
 	var feedId = PLStat.uuid();
+	var link = 'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&fid='+feedId;
+	var ac = 'feed_back.php?&fid='+feedId;
+	if(data['ext']['feedtype']==4){
+		link = 'http://apps.renren.com/livemall/cinema.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&lid='+feedId;
+		ac = 'ciname.php?&fid='+feedId;
+	}
 	param['fid'] = feedId;
 	 var publish = {
 	  			template_bundle_id: data['ext']['feedtype'],
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&fid='+feedId}
+	                             href:link}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
 	                              ,xnuid:data['ext']['uid']
-	                              ,action:'feed_back.php?&fid='+feedId
+	                              ,action: ac
 	                              },
 	  			body_general: '',
 	  			callback: feedPublishCallback,
@@ -163,10 +169,17 @@ function feedPublishCallback(response){
 		}else if(param['ext']['feedtype']==3){
 			k = '&ot='+ param['gift'];
 		}
+		else if(param['ext']['feedtype']==4){
+			k = '&ot='+param['ext']['oid']+'&frd='+param['ext']['uid'];
+		}
+		var pid = param['ext']['uid'];
+		if(param['ext']['frd']){
+			pid = param['ext']['frd'];
+		}
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ param['ext']['uid'],
+			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ pid,
 			success: function (response){}
 		});
 	}

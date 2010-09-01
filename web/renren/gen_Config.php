@@ -62,7 +62,10 @@ foreach($fs as $v){
 $out .= <<<EOT
 	
 	<resource_servers>
-	    <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" />
+	 <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
+	 <!--
+	    <server name="test" purl="http://rrmall.playcrab.com/static/flash/" />
+-->
 	</resource_servers>	
 	<app_servers>
 	    <server name="test" purl="http://rrmall.playcrab.com/bg/" />

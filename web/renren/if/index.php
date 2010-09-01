@@ -45,7 +45,6 @@ function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
 	   swf_install = true;
-	  update_info();
 	
 	//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
@@ -226,6 +225,7 @@ var config = {
 	  				   PL.conf('pid',pid);
 	  				   console.log(pid);
 	    			   install_swf(pid);
+					   update_info();
 
 	  				   
 	  			   }
@@ -236,6 +236,7 @@ var config = {
 	  			   
 	  		   }else{
 	   			  install_swf(pid);
+				  update_info();
 	  		   }
 	  		   PF.set_page_ok();	  
 

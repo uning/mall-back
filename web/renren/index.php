@@ -14,6 +14,10 @@ margin:5px;
 display:none;
 padding:5px;
 }
+.xnid{
+text-align: right; font-size: 12px;
+width:100%;
+}
 .bottom {
 text-align:center;
 width:800px;
@@ -36,6 +40,8 @@ top:0;
 			</div>
 	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="770" width="800" frameborder="0"/>
 		</div> 
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+
 		<div class='bottom'>
 			<a target='_blank' href='http://page.renren.com/livemall'>
 				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>

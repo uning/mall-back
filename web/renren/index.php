@@ -21,11 +21,19 @@ width:800px;
 .bottom a img{
 border: 0;
 }
+.share-wrapper {
+position:absolute;
+right:0;
+top:0;
+}
 </style>
 <div id='is_install'></div>
-<div id='content'>
+<div id='content' style="background-color: #ffffff;">
     <div class='container'>
         <div class='canvas'>
+			<div class='share-wrapper'>
+				<xn:share-app-button/> 
+			</div>
 	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="770" width="800" frameborder="0"/>
 		</div> 
 		<div class='bottom'>

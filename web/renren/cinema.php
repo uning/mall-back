@@ -3,22 +3,24 @@ require_once('config.php');
 require_once('pop/freeGift.php');
 
 //include "./header.php";
-$linkid = $_REQUEST['linkid'];
+$linkid = $_REQUEST['lid'];
 $irec = false;
 $pid = false;
 $user =  null;
 if($linkid){
 	$tw = TT::LinkTT();
-	$irec = $tw->getbyuidx('linkid',$linkid);;
+	$irec = $tw->getbyuidx('lid',$linkid);;
     $pid = $irec['pid'];
     $oid = $irec['oid'];
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);
-	
 }
-
+$new = 0;
+if($_REQUEST['new']){
+	$new = 1;
+}
 $mypid =   $_REQUEST['xn_sig_user'];  
-TTLog::record(array('m'=>'help_open_shop','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$mypid));
+TTLog::record(array('m'=>'help_open_shop','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$mypid,'sp2'=>$new,'sp1'=>$oid));
 $sess=TTGenid::getbypid($pid);
 $myuser = new TTUser($sess['id']);
  	
@@ -295,7 +297,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>cinema.php?linkid=<?php echo $linkid; ?>?"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>cinema.php?linkid=<?php echo $linkid; ?>?&new="+Math.random() ) ;
 }
 function authKO()
 {

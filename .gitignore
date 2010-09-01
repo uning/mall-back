@@ -10,6 +10,7 @@ err.*
 log.*
 t
 
+bg
 web/*/static/flash/*
 #web/renren/static/flash/*
 

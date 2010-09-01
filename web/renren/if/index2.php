@@ -33,7 +33,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 
 </script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js?df"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/stat/common.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jsflash.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/pageUtil.js?v=12"></script>
@@ -46,6 +46,9 @@ function install_swf(pid){
 		   return ;
 	   swf_install = true;
 	
+	  console.log('install_swf',pid);
+	  PL.conf('pid',pid);
+
 	//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
 	swfVersionStr = "0.0.0";

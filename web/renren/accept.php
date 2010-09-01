@@ -273,12 +273,12 @@ text-decoration:none;
 <?php
 require_once('config.php');
 require_once('pop/freeGift.php');
-$linkid = $_REQUEST['linkid'];
+$linkid = $_REQUEST['lid'];
 $touser = $_REQUEST['xn_sig_user'];	
 $tw = TT::LinkTT();
 //list($pid,$str) = explode(':',$linkid);
 //$irec = $tw->getbyuidx('uid',$pid);
-$link = $tw->getbyuidx('linkid',$linkid);?>
+$link = $tw->getbyuidx('lid',$linkid);?>
 <xn:if-is-app-user>
 <div id='is_install'></div>
 <?php
@@ -287,7 +287,18 @@ $link = $tw->getbyuidx('linkid',$linkid);?>
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
-	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$linkid));
+	if($link['gift']){
+		$lg = $link['gift'];
+	}
+	else
+	 $lg = 0;
+	 
+	if($_REQUEST['new']){
+	 	$new = 1;
+	 }else{
+	 	$new  = 0;
+	 }
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$lg,'sp2'=>$new));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
@@ -336,7 +347,7 @@ $link = $tw->getbyuidx('linkid',$linkid);?>
 	<div class="gift_box_holder">
 	<div class="gift_box_cont">
 	<div class="giftConfirm_img"><img
-		src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></img>
+		src="<?php echo RenrenConfig::$resource_urlp; ?>/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></img>
 	</div>
 	<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
 	</div>
@@ -385,7 +396,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&new="+Math.random() ) ;
 }
 function authKO()
 {

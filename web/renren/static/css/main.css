@@ -79,13 +79,35 @@ li {
 img,a .img{border:0}
 
 /*head*/
-#header .logo {
+.logo {
     width:195px;
     height: 46px;
     background: url("../images/logo.png?v=1") no-repeat 10px center transparent;
     text-indent: -9999px;
     float: left;
 }
+#header .topbar{ 
+background: url("../images/logo16.png?v=1") no-repeat 5px center transparent; 
+background-color: #EFEFEF;
+float:left;
+width:100%;
+}
+#scrollBox {
+float:left;
+font-size:12px;
+height:20px;
+overflow:hidden;
+padding-left:32px;
+width:510px;
+}
+#scrollBox li {
+line-height:20px;
+list-style:none outside none;
+}
+#scrollBox li span {
+	color:#FF0000;
+}
+
 
 #header .logo  a {
     display: block;

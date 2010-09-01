@@ -40,7 +40,7 @@ for($i=$start;$i<=$end;++$i){
 
 	$dgr[$mpre] ++;
 	$inp2=0;
-        $inp1=0;
+    $inp1=0;
 	$sp2='';
 	$sp1='';
 
@@ -127,6 +127,30 @@ for($i=$start;$i<=$end;++$i){
 
 		if(!$inp1){
 			$inp1 = $p['p']['f']; 
+		}
+	}
+	else
+	{
+		if($m=='pub_feed'){
+		//sp1 = type
+		$dgr["$m@$sp1"]+=1;
+		}
+		if($m=='feed_back'){
+		//sp1==type
+		$dgr["$m@$sp1"]+=1;
+		}
+		if($m=='pub_invite'){
+		//sp1 = gift 
+		$dgr["$m@$sp1"]+=1;
+		}
+		if($m=='accept_invite'){
+		//sp1 = gift  sp2 =ÐÂ°²×°
+		$pre = $m.$sp2;
+		$dgr["$pre@$sp1"]+=1;
+		}
+		if($m=='help_open_shop'){
+		//sp1 = oid sp2 = new one
+			$dgr["$m@$sp1@$sp2"]+=1;
 		}
 	}
 	if(!$uid)

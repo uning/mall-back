@@ -1,7 +1,7 @@
 //loader and common function
 //to add reinit guard
 var PL = {
-	_config : false,
+	_config :{},
 	_query_str:false,
 	_query_json:false,
 	_useparent:false,
@@ -9,20 +9,27 @@ var PL = {
 	_platform_init:false,
 	
 	conf:function(name,value){
-	  return PL._config[name] = value||PL._config[name]||false;
+
+	   PL._config =   PL._config || {};
+	   PL._config[name] = value || PL._config[name] || false
+	   //console.log(PL._config,PL._config[name],value);
+	   return PL._config[name]
+	  
 	},
 	
 	// f config file,cb: after init callback
 	init : function(f, config){
 		cb  =  config.cb||function(){};
-		
-	
-	    this._useparent = config.useparent || false;
-		if (this._useparent) {
+	    PL._useparent = config.useparent || false;
+		if (PL._useparent) {
 			p = parent.PL || false;
 			if (p._config) {
-				console.log('init from parent : me='+  window.location.href)
-				this._config = p._config;
+			    var o=PL._config
+				for (i in o)
+				   p._config[i]=o[i];
+			
+				PL._config = p._config;
+				
 				(config.fbd||PL._config.debug||config.log)&&PL.init_log(config.logcb);
 				(config.fb||config.fbd)&&PL.init_platform(config.fbd||PL._config.debug||false,config.before_fbinit,config.after_fbinit);// need
 				cb();
@@ -35,7 +42,12 @@ var PL = {
 		// console.log('init from:' + f +' me='+ window.location.href)
 		PL.js( [ f ], function(r) {
 
+			 var o=PL._config
+				for (i in o)
+				   $config[i]=o[i];
+			
 			PL._config = $config;
+			console.log('in init',PL._config);
 			(config.fbd||PL._config.debug||config.log)&&PL.init_log(config.logcb);
 			(config.fb||config.fbd)&&PL.init_platform(config.fbd||PL._config.debug||false,config.before_fbinit,config.after_fbinit);// need
 			cb(r);
@@ -79,7 +91,7 @@ var PL = {
 				|| file.indexOf('https://') == 0)
 			return file;
 		var df = false;
-		for ( var i = 0; i < PL._config.jsfiles.length; i++) {
+		for ( var i = 0; PL._config.jsfiles&& i < PL._config.jsfiles.length; i++) {
 			if (PL._config.jsfiles[i][0].indexOf(file) > -1) {
 				df = PL._config.jspre[PL._config.jsfiles[i][1]]
 						+ PL._config.jsfiles[i][0];

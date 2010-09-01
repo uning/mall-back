@@ -287,7 +287,18 @@ $link = $tw->getbyuidx('linkid',$linkid);?>
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
-	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$linkid));
+	if($link['gift']){
+		$lg = $link['gift'];
+	}
+	else
+	 $lg = 0;
+	 
+	if($_REQUEST['new']){
+	 	$new = 1;
+	 }else{
+	 	$new  = 0;
+	 }
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$$new,'sp2'=>$new));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
@@ -385,7 +396,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&new="+Math.random() ) ;
 }
 function authKO()
 {

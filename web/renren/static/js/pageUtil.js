@@ -138,7 +138,7 @@ function prepareParams(data){
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
-	                              ,xnuid:PL.conf('pid')
+	                              ,xnuid:data['ext']['uid']
 	                              ,action:'feed_back.php?&fid='+feedId
 	                              },
 	  			body_general: '',
@@ -166,7 +166,7 @@ function feedPublishCallback(response){
 		$.ajax({
 			type: 'POST',
 			url: '../pop/storeFeed.php',
-			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ PL.conf('pid'),
+			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ param['ext']['uid'],
 			success: function (response){}
 		});
 	}

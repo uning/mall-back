@@ -124,6 +124,17 @@ for($i=$start;$i<=$end;++$i){
 			$inp1 = $p['p']['f']; 
 		}
 	}
+	else
+	{
+		if($m=='pub_feed'){
+		}
+		if($m=='feed_back'){
+		}
+		if($m=='pub_invite'){
+		}
+		if($m=='accept_invite'){
+		}
+	}
 	if(!$uid)
 		$uid = $data['u'];
 	

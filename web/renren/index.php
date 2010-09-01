@@ -14,6 +14,12 @@ margin:5px;
 display:none;
 padding:5px;
 }
+.xnid{
+text-align: right; font-size: 12px;
+width:100%;
+margin-bottom:3px;
+margin-top:4px;
+}
 .bottom {
 text-align:center;
 width:800px;
@@ -26,6 +32,14 @@ position:absolute;
 right:0;
 top:0;
 }
+.help {
+color:#444444;
+height:18px;
+line-height:18px;
+margin-left:3px;
+margin-top:4px;
+width:100%;
+}
 </style>
 <div id='is_install'></div>
 <div id='content' style="background-color: #ffffff;">
@@ -36,6 +50,18 @@ top:0;
 			</div>
 	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="770" width="800" frameborder="0"/>
 		</div> 
+		
+		<div class="help">
+			    <span style="width: 625px; float: left;">
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;
+				  
+				</span>
+				<span style="width: 175px; float: right; text-align: right;">
+					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
+				</span>
+	  </div>
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+
 		<div class='bottom'>
 			<a target='_blank' href='http://page.renren.com/livemall'>
 				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>

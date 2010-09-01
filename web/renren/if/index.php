@@ -26,7 +26,7 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?4" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';

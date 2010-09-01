@@ -369,8 +369,10 @@ class TTUser extends TTUDB
 	{
 		$oid = $this->getoid($tag,'ho');
 		$obj = $this->getbyid($oid);
-		$obj['help'][$fid]=time();
+		$now = $_SERVER['REQUEST_TIME'];
+		$obj['help'][$fid]=$now;
 		$obj['id'] = $oid;
+		TTLog::record(array('s'=>'OK','m'=>__METHOD__,'tm'=>$now,'sp1'=>$tag,'intp1'=>$fid));
 		$this->puto($obj);
 	}
 

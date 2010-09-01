@@ -16,7 +16,7 @@ if($gflg){
 		//	
 		$bids .=','.$pid;
 	}
-	$ts->puto($data);
+	//$ts->puto($data);
  
 			
 }
@@ -60,6 +60,7 @@ function install_swf(pid){
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
 	flashvars.platform = "renren";
+	flashvars.errorPage = '/bg/error_log.php';
 	var flash_width = 800;
 	var flash_height = 700;
 	var params = {};
@@ -75,6 +76,7 @@ function install_swf(pid){
 	attributes.name = "SuperMall";
 	attributes.align = "t";
 	attributes.salign = "tl";
+
 	/*flashDivId*/
 	//params.base = "http://127.0.0.1/work/mall/Venus/to-company/";
 	swfobject.embedSWF(

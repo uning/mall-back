@@ -102,9 +102,8 @@ function install_swf(pid){
 					<li> 多去好友家瞧瞧，帮助好友增加货车货物哦！ </li>  
  			</ul>
 
- 		</div>
- 	</div>
-    <div id="navga">
+    </div>
+     <div id="navga">
     <div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       

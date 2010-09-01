@@ -18,7 +18,6 @@ if($gflg){
 	}
 	$ts->puto($data);
  
-			
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,7 +25,7 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?2" />
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
@@ -45,6 +44,7 @@ function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
 	   swf_install = true;
+	  return;
 	
 	//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
@@ -95,15 +95,7 @@ function install_swf(pid){
 
 
 <div id="header">
-	<div class='topbar'> 
- 			<ul id="scrollBox"> 
-					<li> 提示：如果<span>“全屏模式”</span>中无法操作，可以尝试使用“IE”或者“chrome”浏览器！</li> 
-					<li> <span>如果游戏中无法输入文字，可以尝试使用“IE”或者“chrome”浏览器！</span> </li> 
-					<li> 多去好友家瞧瞧，帮助好友增加货车货物哦！ </li>  
- 			</ul>
-
-    </div>
-     <div id="navga">
+    <div id="navga">
     <div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
     <ul class="clearfix tcenter">       
@@ -119,36 +111,7 @@ function install_swf(pid){
     </div>
 </div>
 
-<div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
-<div id="appFrame" class="flashVisible">
-<div id="flashFrame"
-	style="background: url('<?php echo RenrenConfig::$resource_urlp;?>/images/genericbg.jpg') no-repeat; margin-top: 0px; padding: 0px">
 
-
-
-<div id="flashDIV" style="width: 800px; height: 700px; margin-top: 0px;">
-
-<div id="flashOuterContainer" style="margin-top: 0px;">
-<div id="flashapp" style="margin-top: 0px;"><span
-	style="font-size: 19px; font-family: tahoma; color: #4880d7; margin-top: 0px; padding-top: 0px">Loading
-Game...</span><br />
-<span
-	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">If
-your game does not load within 10 seconds, you may need to upgrade your
-version of Flash. Please do so by clicking <a
-	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">here</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div id="htmlFrame" class="offscreen" style="width:100%;vertical-align: middle;text-align: center;">
-
-</div>
-<div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
-	src="../static/images/loading.gif"/></div>
-</div>
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
@@ -157,31 +120,6 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
-
-window.onload=function(){
-			var o=document.getElementById('scrollBox');
-			window.setInterval(function(){scrollup(o,24,0);},3000); 
-	}
-	function scrollup(o,d,c){
-			if(d==c){
-					var t=getFirstChild(o.firstChild).cloneNode(true);
-					o.removeChild(getFirstChild(o.firstChild));
-					o.appendChild(t);
-					t.style.marginTop="0px";
-			}else{
-					c+=2;
-					getFirstChild(o.firstChild).style.marginTop=-c+"px";
-					window.setTimeout(function(){scrollup(o,d,c)},20);
-			}
-	}
-	function getFirstChild(node){
-			  while (node.nodeType!=1) {
-					 node=node.nextSibling;
-			  }
-			  return node;
-	}
-
-
 
 function update_info()
 {
@@ -206,12 +144,13 @@ function update_info()
 		XN.Main.apiClient.friends_getAppUsers(get_friends);
 	});
 }
+
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
 var config = {
 		useparent:false,
-		//log:1,//init log? server can force debug, just for develop
-		fb:1,//init fb?
+		log:1,//init log? server can force debug, just for develop
+		fbd:1,//init fb?
 		//fbd:1,//init fb debug? 
 	logcb:function(r){//log init callback
 		      console.log('index log callback' +  window.location.href);
@@ -224,10 +163,9 @@ var config = {
 	  				   pid = r.uid;
 	  				   PL.conf('pid',pid);
 	  				   console.log(pid);
-	    			   install_swf(pid);
+	  				   
 					   update_info();
 
-	  				   
 	  			   }
 	  			   XN.Main.get_sessionState().waitUntilReady(
 	  					   function(){
@@ -238,7 +176,7 @@ var config = {
 	   			  install_swf(pid);
 				  update_info();
 	  		   }
-	  		   PF.set_page_ok();	  
+	  		   //PF.set_page_ok();	  
 
 
 	},

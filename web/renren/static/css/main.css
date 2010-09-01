@@ -86,6 +86,24 @@ img,a .img{border:0}
     text-indent: -9999px;
     float: left;
 }
+#header .topbar{
+}
+#scrollBox {
+float:left;
+font-size:12px;
+height:20px;
+overflow:hidden;
+padding-left:32px;
+width:510px;
+}
+#scrollBox li {
+line-height:20px;
+list-style:none outside none;
+}
+#scrollBox li span {
+	color:#FF0000;
+}
+
 
 #header .logo  a {
     display: block;

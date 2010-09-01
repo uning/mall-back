@@ -23,6 +23,7 @@ margin-top:4px;
 .bottom {
 text-align:center;
 width:800px;
+margin-top:5px;
 }
 .bottom a img{
 border: 0;

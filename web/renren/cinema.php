@@ -14,7 +14,6 @@ if($linkid){
     $oid = $irec['oid'];
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);
-	
 }
 $new = 0;
 if($_REQUEST['new']){

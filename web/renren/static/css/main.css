@@ -87,7 +87,7 @@ img,a .img{border:0}
     float: left;
 }
 #header .topbar{ 
-background: url("../images/logo16.png?v=1") no-repeat 10px center transparent; 
+background: url("../images/logo16.png?v=1") no-repeat 5px center transparent; 
 background-color: #EFEFEF;
 float:left;
 width:100%;

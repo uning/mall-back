@@ -330,7 +330,7 @@ class Friend{
                 $vt_date = date('Ymd',$vt);
 		if($vt_date == $now_date && $fdata['help_car']=='1'){
 			$ret['s']='helped';
-			//return $ret;//for test
+			return $ret;//for test
 		}
 
 		$car = $ftu->getbyid($cid);	

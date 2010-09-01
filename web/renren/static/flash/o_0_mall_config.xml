@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<version tag="beta1.0"/>
+<<<<<<< HEAD
 	
 	<resources parallel="false" use_cache="false">   <resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=414382de11a88d4215bab1b0057bf793" type="xml"/>
+=======
+<<<<<<< HEAD
+	<resources parallel="false" use_cache="false">   <resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=414382de11a88d4215bab1b0057bf793" type="xml"/>
+=======
+	<resources parallel="false" use_cache="false">   <resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=eb30e702e94b01c15c524620d0dec31d" type="xml"/>
+>>>>>>> 37a4965b802b4990a912c961436a50e915080447
+>>>>>>> 544c8db9bf4562ad5144d02a02f7a3fc07d968b2
    <resource name="GuildMc" label="游戏素材2" url="./resource/common/swf/end/GuildMc.swf?v=5ba8f9382cb87fc68c69032e259f67c1" type="swf"/>
    <resource name="waiting" label="游戏素材3" url="./resource/common/swf/end/waiting.swf?v=f7a3bb078e44b13eb68108f9b5263563" type="swf"/>
    <resource name="truck" label="游戏素材4" url="./resource/common/swf/end/MallTruck.swf?v=6a6f636c466a6bc9239fabc1af766d25" type="swf"/>
    <resource name="magicFace" label="游戏素材5" url="./resource/common/swf/end/MagicFace.swf?v=a63e963403333729ac62dc2adf395c55" type="swf"/>
+<<<<<<< HEAD
    <resource name="manipulater" label="游戏素材6" url="./resource/common/swf/end/manipulater.swf?v=884be15a6559197226d4c951ec062027" type="swf"/>
+=======
+<<<<<<< HEAD
+   <resource name="manipulater" label="游戏素材6" url="./resource/common/swf/end/manipulater.swf?v=884be15a6559197226d4c951ec062027" type="swf"/>
+=======
+   <resource name="manipulater" label="游戏素材6" url="./resource/common/swf/end/manipulater.swf?v=e76a923c83e4a9d7dd58388081351bc4" type="swf"/>
+>>>>>>> 37a4965b802b4990a912c961436a50e915080447
+>>>>>>> 544c8db9bf4562ad5144d02a02f7a3fc07d968b2
    <resource name="sounds" label="游戏素材7" url="./resource/common/swf/end/sounds.swf?v=273544a69da875a5bdda443e76b2305e" type="swf"/>
    <resource name="Background" label="游戏素材8" url="./resource/common/swf/end/Background.swf?v=d65d7599930848a62f7994094180d4ae" type="swf"/>
    <resource name="Background_new" label="游戏素材9" url="./resource/common/swf/end/Background_new.swf?v=3750ffc0b5053f7851f79595e73f848a" type="swf"/>
    <resource name="gift" label="游戏素材10" url="./resource/common/swf/end/gift.swf?v=5d23e01b6c0afcfe44add998b601e943" type="swf"/>
+<<<<<<< HEAD
    <resource name="UI" label="游戏素材11" url="./resource/simplifiedchinese/swf/end/UI.swf?v=06cd03646604be3e48c9057eafabb018" type="swf"/>
+=======
+<<<<<<< HEAD
+   <resource name="UI" label="游戏素材11" url="./resource/simplifiedchinese/swf/end/UI.swf?v=06cd03646604be3e48c9057eafabb018" type="swf"/>
+=======
+   <resource name="UI" label="游戏素材11" url="./resource/simplifiedchinese/swf/end/UI.swf?v=d051792623cc7e6b98e2ea1b38fdd766" type="swf"/>
+>>>>>>> 37a4965b802b4990a912c961436a50e915080447
+>>>>>>> 544c8db9bf4562ad5144d02a02f7a3fc07d968b2
    <resource name="items" label="游戏素材12" url="./resource/simplifiedchinese/xml/items.xml?v=3912822a0c97d3f4bf89490ae0b19bd2" type="xml"/>
    <resource name="magicfaces" label="游戏素材13" url="./resource/common/xml/magicfaces.xml?v=3a1bffcea419d68786b6ea8d10caad5e" type="xml"/>
    <resource name="backgrounds" label="游戏素材14" url="./resource/common/xml/backgrounds.xml?v=3e8ac7b23b3065e7cf180bcc7e5c8857" type="xml"/>
@@ -21,16 +45,40 @@
    <resource name="taskgoals" label="游戏素材17" url="./resource/simplifiedchinese/xml/taskgoals.xml?v=9778c05d7aac4f8ac8e254ec8bb963bf" type="xml"/>
    <resource name="adverts" label="游戏素材18" url="./resource/simplifiedchinese/xml/adverts.xml?v=6ec4b138980bc7947a229146dcef6ec1" type="xml"/>
    <resource name="achieves" label="游戏素材19" url="./resource/simplifiedchinese/xml/achieves.xml?v=e7207f6633dd116543521ef5e7dfa68c" type="xml"/>
+<<<<<<< HEAD
    <resource name="feed" label="游戏素材20" url="./resource/simplifiedchinese/xml/feed.xml?v=3d74e5e0e8c0b80c254a3bda871373cb" type="xml"/>
+=======
+<<<<<<< HEAD
+   <resource name="feed" label="游戏素材20" url="./resource/simplifiedchinese/xml/feed.xml?v=3d74e5e0e8c0b80c254a3bda871373cb" type="xml"/>
+=======
+   <resource name="feed" label="游戏素材20" url="./resource/simplifiedchinese/xml/feed.xml?v=3a6d898bf9cd3015088ee4182e8fd80d" type="xml"/>
+>>>>>>> 37a4965b802b4990a912c961436a50e915080447
+>>>>>>> 544c8db9bf4562ad5144d02a02f7a3fc07d968b2
    <resource name="items" label="游戏素材21" url="./resource/simplifiedchinese/xml/items.xml?v=3912822a0c97d3f4bf89490ae0b19bd2" type="xml"/>
    <resource name="quests" label="游戏素材22" url="./resource/simplifiedchinese/xml/quests.xml?v=d7faf015565616f90193ccbacb9f7f40" type="xml"/>
    <resource name="magicfaces" label="游戏素材23" url="./resource/common/xml/magicfaces.xml?v=3a1bffcea419d68786b6ea8d10caad5e" type="xml"/>
    <resource name="goodsIcon" label="游戏素材24" url="./resource/common/swf/end/MallGoodsIcon.swf?v=281bc75ee6151c51629d2a43e8c57009" type="swf"/>
+<<<<<<< HEAD
    <resource name="guideUrl" label="游戏素材25" url="./test_end_guide_resource_list.xml?v=9b0ba47c6dceb2e42c284165d49e2733" type="xml"/>
 
 	</resources>
    <main name="main" label="加载主程式" url="MallGame.swf?v=14d88f0e584857bc3aaeacc3cbfc5abb" use_cache="false"/>
    <progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=0517669bc4b736d822b306b42aa752db"/>
+=======
+<<<<<<< HEAD
+   <resource name="guideUrl" label="游戏素材25" url="./test_end_guide_resource_list.xml?v=9b0ba47c6dceb2e42c284165d49e2733" type="xml"/>
+
+	</resources>
+   <main name="main" label="加载主程式" url="MallGame.swf?v=14d88f0e584857bc3aaeacc3cbfc5abb" use_cache="false"/>
+   <progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=0517669bc4b736d822b306b42aa752db"/>
+=======
+   <resource name="guidebase" label="游戏素材25" url="./resource/simplifiedchinese/swf/end/mallTestGuildNew01.swf?v=2b76bd49ff86ae34267f3a57593895d3" type="swf"/>
+
+	</resources>
+   <main name="main" label="加载主程式" url="MallGame.swf?v=08ee2d35ed8a7ff88479a8b6ff8b8355" use_cache="false"/>
+   <progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=1c277684f823d078ca9be9b43a7bb7de"/>
+>>>>>>> 37a4965b802b4990a912c961436a50e915080447
+>>>>>>> 544c8db9bf4562ad5144d02a02f7a3fc07d968b2
 	
 	<resource_servers>
 	 <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 

@@ -17,6 +17,8 @@ padding:5px;
 .xnid{
 text-align: right; font-size: 12px;
 width:100%;
+margin-bottom:3px;
+margin-top:4px;
 }
 .bottom {
 text-align:center;
@@ -36,7 +38,7 @@ height:18px;
 line-height:18px;
 margin-left:3px;
 margin-top:4px;
-width:800px;
+width:100%;
 }
 </style>
 <div id='is_install'></div>
@@ -58,13 +60,16 @@ width:800px;
 					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
 				</span>
 	  </div>
-		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
 
 		<div class='bottom'>
 			<a target='_blank' href='http://page.renren.com/livemall'>
 				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>
 			</a>
 		</div>
+		
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
 		<div class='footnotice'>
 			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
 		</div>

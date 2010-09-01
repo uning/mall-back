@@ -23,7 +23,7 @@ border: 0;
 }
 </style>
 <div id='is_install'></div>
-<div id='content'>
+<div id='content' style="background-color: #ffffff;">
     <div class='container'>
         <div class='canvas'>
 	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="770" width="800" frameborder="0"/>

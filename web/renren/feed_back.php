@@ -7,7 +7,9 @@ $tt = TT::LinkTT();
 $value = $tt->getbyuidx('lid',$key);
 $type = $value['type'];
 $uid = $_POST['xn_sig_user'];
-TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid));
+$new  = 0;
+if($_REQUEST['new']) $new = 1;
+TTLog::record(array('m'=>'feed_back','tm'=> $_SERVER['REQUEST_TIME'],'sp1'=>$type,'u'=>$uid,'sp2'=>1));
 $session = TTGenid::getbypid($uid);
 $user = new TTUser($session['id']);
 ?>
@@ -386,7 +388,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>feed_back.php?fid=<?php echo $key; ?>&"+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>feed_back.php?fid=<?php echo $key; ?>&new="+Math.random() ) ;
 }
 function authKO()
 {

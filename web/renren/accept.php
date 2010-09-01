@@ -347,7 +347,7 @@ $link = $tw->getbyuidx('lid',$linkid);?>
 	<div class="gift_box_holder">
 	<div class="gift_box_cont">
 	<div class="giftConfirm_img"><img
-		src="http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></img>
+		src="<?php echo RenrenConfig::$resource_urlp; ?>/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></img>
 	</div>
 	<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
 	</div>

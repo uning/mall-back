@@ -60,13 +60,16 @@ width:100%;
 					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
 				</span>
 	  </div>
-		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
 
 		<div class='bottom'>
 			<a target='_blank' href='http://page.renren.com/livemall'>
 				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>
 			</a>
 		</div>
+		
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
 		<div class='footnotice'>
 			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
 		</div>

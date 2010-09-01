@@ -9,7 +9,8 @@ var PL = {
 	_platform_init:false,
 	
 	conf:function(name,value){
-	  return PL._config[name] = value||PL._config[name]||false;
+	   PL._config[name] = value || (PL._config[name] || false);
+	   return PL._config[name]
 	},
 	
 	// f config file,cb: after init callback

@@ -24,6 +24,17 @@ record_time($st);
 //require_once('TTt.php');
 require_once('test_config.php');
 
+$ltt = TT::LinkTT();
+
+$lid='dfdf';
+$data=array('lid'=>$lid);
+$id = $ltt->put($data);
+print_r($ltt->get($id));
+print_r($ltt->getbyuidx('lid',$lid));
+print_r($ltt->getbyuidx('lid','9A18326D4627EF4F0B0A43A638C6E96'));
+return;
+
+
 $logt = TT::get_tt('order');
 $id = $logt->put(array('a'=>'b'));
 print_r($logt->get($id));

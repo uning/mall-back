@@ -25,8 +25,8 @@ foreach($xml->resources->resource as $r){
 	$src.='?v='.md5_file($file);
 	$size = filesize ($file);
 	$total_size +=$size;
-	if($size>700000)
-		echo "size of $src  : $size\n ";
+	if($size>100000)
+		echo " $size bytes $src \n ";
 	$r['url']=$src;
 	$out .= "   ".$r->asXML()."\n";
 	//print_r($v);
@@ -45,16 +45,16 @@ foreach($fs as $v){
 	$r = $xml->$v;
 
 	$src=$r['url'];
-	$src = explode('?',$src);
-	$src = $src[0];
+	$srcs = explode('?',$src);
+	$src = $srcs[0];
 	$file = $rdir.$src;
 	if(!file_exists($file)){
 		die("CONF resource not exists $file");
 	}
 	$size = filesize ($file);
 	$total_size +=$size;
-	if($size>700000)
-		echo "size of $src  : $size\n ";
+	if($size>100000)
+		echo " $size bytes $src \n ";
 	$src.='?v='.md5_file($file);
 	$r['url']=$src;
 	$out .= "   ".$r->asXML()."\n";
@@ -62,7 +62,10 @@ foreach($fs as $v){
 $out .= <<<EOT
 	
 	<resource_servers>
-	    <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" />
+	 <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
+	 <!--
+	    <server name="test" purl="http://rrmall.playcrab.com/static/flash/" />
+-->
 	</resource_servers>	
 	<app_servers>
 	    <server name="test" purl="http://rrmall.playcrab.com/bg/" />

@@ -64,7 +64,7 @@ if($_REQUEST['gift'])
 <table width="700px">
 <?php 
 	require_once '../freeGift.php';
-    $accept_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
+    
 	$content = '我正在玩购物天堂，推荐你也来玩一把，在这里白手起家 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;赶快行动&quot;&gt;';
 	
 	$gid = $_REQUEST["gift"];
@@ -94,9 +94,10 @@ if($_REQUEST['gift'])
 	$linkid = uniqid();
 	
 	$width = '740px';
+	$accept_url = RenrenConfig::$canvas_url."accept.php?lid=$linkid";
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
-		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?linkid=$linkid";
+		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?lid=$linkid";
 		$content = '我在购物天堂送给你个'.$gift[$gid]['name'].',快来领取吧!'.'这个可是要达到'.$gift[$gid]['level'].'级才可以获得的哦'
 		.'&lt;xn:req-choice url=&quot;'.$accept_gift_url.'&quot; label=&quot;领取礼物&quot;&gt;&lt;xn:req-choice url=&quot;'.$accept_url.' &quot; label=&quot;试试再说&quot;&gt;';
 		echo '<tr><td align="center">';
@@ -105,7 +106,7 @@ if($_REQUEST['gift'])
 		echo '</td></tr>';
 	}
 	$content.="&quot;&gt;"; 
-	$store_url = RenrenConfig::$callback_url."if/store_invite.php?linkid=$linkid&gift=$gid&pid=".$pid;
+	$store_url = RenrenConfig::$callback_url."if/store_invite.php?lid=$linkid&gift=$gid&pid=".$pid;
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
 <tr>

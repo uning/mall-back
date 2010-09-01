@@ -2,12 +2,11 @@
 var $config = {
 	//debug:1,
 	jspre : [ '',
-			'/work/mall/backend/web/renren/static/js/' ],
+			'http://files5.qq494.cn/pig/hotel/js/' ],
 	api_key:"a32cb73bea154d2c9d40703b66dc9142",
 	app_id: "110107",
-	secret:'023a6201a9b04955b1af79b1e9037c16',
     canvas_url: "http://apps.renren.com/livemall/",
-	reciever_url:'/work/mall/backend/web/renren/xd.html',
+	reciever_url:'/xd.html',
 	jsfiles : [ 
 	        [ 'jsflash.js', 1 ],
 	        [ 'delegator.js', 1 ],

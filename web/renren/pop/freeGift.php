@@ -11,7 +11,7 @@ $gift = array(
 '10108' => array('level'=>7,'bg'=>'','icon' =>'icon_icecream.jpg','lbg'=>'','name'=>'冰激凌','group'=>'g'),
 '10109' => array('level'=>8,'bg'=>'','icon' =>'icon_carnation.jpg','lbg'=>'','name'=>'康乃馨','group'=>'g'),
 '10111' => array('level'=>10,'bg'=>'','icon' =>'icon_ipad.jpg','lbg'=>'','name'=>'爱牌德','group'=>'g'),
-'10112' => array('level'=>12,'bg'=>'','icon' =>'icon_chair.jpg','lbg'=>'','name'=>'椅子','group'=>'o')
+'10112' => array('level'=>12,'bg'=>'','icon' =>'icon_chair.jpg','lbg'=>'','name'=>'椅子','group'=>'g')
 );
 
 $help =array(

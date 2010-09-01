@@ -78,7 +78,7 @@ function install_swf(pid){
 	/*flashDivId*/
 	//params.base = "http://127.0.0.1/work/mall/Venus/to-company/";
 	swfobject.embedSWF(
-			"../static/flash/MallLoader.swf?v=", "flashapp", 
+		"../static/flash/MallLoader.swf?v=<?php md5_file('../static/flash/MallLoader.swf');?>", "flashapp", 
 			flash_width, flash_height, 
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);
@@ -185,7 +185,6 @@ window.onload=function(){
 
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
-PL.conf('pid',pid);
 var config = {
 		useparent:false,
 		//log:1,//init log? server can force debug, just for develop

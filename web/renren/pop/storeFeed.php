@@ -57,6 +57,24 @@ function shareGoldCoin($fid,$pid)
 	);
 	$tt = TT::LinkTT();
 	$id = $tt->put($obj);
+	//print_r($tt->getbyuidx('lid',$fid));
+	changeUser($pid);
+}
+function helpOpenShop($fid,$pid,$ot)
+{
+	$obj = array(
+		'uid' => $pid,
+		'lid' => $fid,
+		'frd' => $_REQUEST['frd'],
+		'type' => 1,
+		'clickTime' => 0,
+		'count' => 0,
+		'oid' => $ot,
+		'date' =>date('Ymd'),
+		'rcv' => array($pid=>1)
+	);
+	$tt = TT::LinkTT();
+	$id = $tt->put($obj);
 	print_r($tt->getbyuidx('lid',$fid));
 	changeUser($pid);
 }
@@ -72,9 +90,11 @@ switch ($type){
 		shareTask($fid,$pid,$ot);break;
 	case 3: 
 		ShareGift($fid,$pid,$ot);break;
+	case 4:
+		helpOpenShop($fid,$pid,$ot);
 	default:break;
 }
-TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$fid,'sp1'=>$type));
+TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$ot,'sp1'=>$type));
 file_put_contents('stroefeed.txt',$_REQUEST);
 print_r($_REQUEST);
 

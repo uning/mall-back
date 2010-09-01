@@ -95,6 +95,15 @@ function install_swf(pid){
 
 
 <div id="header">
+	<div class='topbar'> 
+ 			<ul id="scrollBox"> 
+					<li> 提示：如果<span>“全屏模式”</span>中无法操作，可以尝试使用“IE”或者“chrome”浏览器！</li> 
+					<li> <span>如果游戏中无法输入文字，可以尝试使用“IE”或者“chrome”浏览器！</span> </li> 
+					<li> 多去好友家瞧瞧，帮助好友增加货车货物哦！ </li>  
+ 			</ul>
+
+ 		</div>
+ 	</div>
     <div id="navga">
     <div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
    <div id="tabs">
@@ -149,6 +158,31 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
+window.onload=function(){
+			var o=document.getElementById('scrollBox');
+			window.setInterval(function(){scrollup(o,24,0);},3000); 
+	}
+	function scrollup(o,d,c){
+			if(d==c){
+					var t=getFirstChild(o.firstChild).cloneNode(true);
+					o.removeChild(getFirstChild(o.firstChild));
+					o.appendChild(t);
+					t.style.marginTop="0px";
+			}else{
+					c+=2;
+					getFirstChild(o.firstChild).style.marginTop=-c+"px";
+					window.setTimeout(function(){scrollup(o,d,c)},20);
+			}
+	}
+	function getFirstChild(node){
+			  while (node.nodeType!=1) {
+					 node=node.nextSibling;
+			  }
+			  return node;
+	}
+
+
+
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
 PL.conf('pid',pid);

@@ -24,6 +24,27 @@ class HelpGet
 		$ret['d']=$tu->get_help();
 		return $ret;
 	}
+	/**
+	 * 帮助
+	 * @param $params
+	 *   require  u      --  玩家id
+	 *   require  fid      --  朋友id
+	 *   require  tag      --  帮助物品id
+	 *            
+	 * @return 
+	 *            s      --  OK
+	 */
+	public function help( $params )
+	{
+		$uid = $params['u'];
+		$fid = $params['fid'];
+		$tag = $params['tag'];
+		$tu = new TTUser( $uid );
+		$tu->update_help($tag,$fid);
+		$ret['s']='OK';
+		$ret['d']=$tu->get_help();
+		return $ret;
+	}
 
 	/**
 	 * 开启help，前端调完后发feed出去

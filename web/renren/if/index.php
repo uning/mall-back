@@ -45,6 +45,7 @@ function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
 	   swf_install = true;
+	  update_info();
 	
 	//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
@@ -78,7 +79,7 @@ function install_swf(pid){
 	/*flashDivId*/
 	//params.base = "http://127.0.0.1/work/mall/Venus/to-company/";
 	swfobject.embedSWF(
-		"../static/flash/MallLoader.swf?v=<?php md5_file('../static/flash/MallLoader.swf');?>", "flashapp", 
+		"../static/flash/MallLoader.swf?v=<?php echo md5_file('../static/flash/MallLoader.swf');?>", "flashapp", 
 			flash_width, flash_height, 
 			swfVersionStr, xiSwfUrlStr, 
 			flashvars, params, attributes);
@@ -157,6 +158,7 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
+
 window.onload=function(){
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
@@ -182,6 +184,29 @@ window.onload=function(){
 
 
 
+function update_info()
+{
+	pid = PL.conf('pid')||query_json.xn_sig_user;
+	XN.Main.get_sessionState().waitUntilReady(function(){
+		var get_user=function (r){
+			if(r[0]&&r[0].name){
+				$.post("../ajax/save_info.php", r[0], function(){}, 'json');
+			}
+		}
+		XN.Main.apiClient.users_getInfo([ pid ],["uid","name",
+			"sex","star","zidou","vip","tinyurl","birthday","email_hash",
+			],get_user);
+			// ],Log.info.bind('XN.Main.apiClient.users_getInfo_update'));
+	});
+	XN.Main.get_sessionState().waitUntilReady(function(){
+		var get_friends=function (r){
+			if(r&&r[0]>0){
+				$.post("../ajax/save_friends.php", {'pid':pid,'fids':r}, function(){}, 'json');
+			}
+		}
+		XN.Main.apiClient.friends_getAppUsers(get_friends);
+	});
+}
 pid = PL.conf('pid')||query_json.xn_sig_user;
 pid && install_swf(pid);
 var config = {
@@ -201,6 +226,7 @@ var config = {
 	  				   PL.conf('pid',pid);
 	  				   console.log(pid);
 	    			   install_swf(pid);
+
 	  				   
 	  			   }
 	  			   XN.Main.get_sessionState().waitUntilReady(

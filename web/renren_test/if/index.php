@@ -95,7 +95,7 @@ padding:10px 5px;'>
 | <a href='<?php echo RenrenConfig::$callback_url?>/static/help/teach.html' target='_blank' >帮助</a> 
 | <a href='http://apps.renren.com/happyhotel/?f=mall' target='_blank' >返回旅馆</a>  
 </div>
-<a a href='#' onclick='$("#feedback").click();return false; '><img src='../static/images/promte_test_800x80.png'/></a>
+<a  href='#' onclick='$("#feedback").click();return false; '><img src='../static/images/promte_test_800x80.png'/></a>
  <div style="clear:both"></div>
 
 

@@ -244,7 +244,7 @@ list-style:none outside none;
 	display: none;
 }
 #appFrame.flashVisible {
-	height: 800px;
+	height: 700px;
 }
 
 #flashFrame {

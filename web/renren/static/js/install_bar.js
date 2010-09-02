@@ -33,18 +33,10 @@ var IBar = {
 	
 	//
 	fan : function(step) {
-		
-		
-		IBar.stat('fan','try');
-		$("#fan_dialog").show();
-		$("#fan_close_link").click(
-				function() {
-					$("#fan_dialog").hide();
-					IBar.increase_completion(step);
-					IBar.save_bar('fan')
-					IBar.stat('fan','ok');
-				});
-			
+ 		IBar.stat('fan','try'); 
+		window.open("http://page.renren.com/pa/bf?pid=699110107", "_blank"); 
+		IBar.save_bar('fan')
+	    IBar.stat('fan','ok');    
 	},
 	
 	publish_stream : function(step){
@@ -56,18 +48,15 @@ var IBar = {
 	get_perm : function(step, perm) {
 		IBar.stat(perm,'try');
 		var cb = function(response) {
-			Log.info(response)
-				if (response) {
+ 				if (response) {
 					IBar.increase_completion(step);
 					IBar.save_bar(perm)
 					IBar.stat(perm,'ok');
 				}
 
 		};
-		XN.Connect.showPermissionDialog(perm,cb);
-		
-	},
-
+		XN.Connect.showPermissionDialog(perm,cb); 
+	}, 
 	increase_completion : function(step) {
 		var button = $("#step_button_" + step);
 		var img = button.find('a');

@@ -27,6 +27,7 @@ if($gflg){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?1" />
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
@@ -127,13 +128,40 @@ function install_swf(pid){
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
-        <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
+        <li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$resource_urlp;?>/help/FAQ.html" >常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
 		<li class="payment" ><a  class='fullpage' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>
+	<div style="display: none;" id="installBar">
+		<div class="pBarStep done" id="pBarStepInstall">
+			<div class="pBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_install.png">
+			</div>
+		</div>
+		<div class="pBarStep" id="pBarStepFan">
+			<div class="pBarAction">
+				<a onclick="becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
+			</div>
+			<div style="left: -12px;" class="pBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_like.png">
+			</div>
+		</div>
+		<div class="pBarStep" id="pBarStepEmail">
+			<div class="pBarAction">
+				<a onclick="XN.Connect.showPermissionDialog('email',permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
+			</div>
+			<div class="pBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_email.png">
+			</div>
+		</div>
+		<div id="progressBar" style="width: 229px;" class="stepcount_1">
+			<div id="progressPercentage">
+			</div>
+		</div> 
+	</div> 
 </div>
 
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
@@ -174,8 +202,60 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
+var stepCnt = 1;
 
-window.onload=function(){
+function permCallBack(permission) {
+		if (permission) {
+	        stepCnt++;
+	        document.getElementById("pBarStepEmail").className = "pBarStep done";
+	    }
+        updInstallBar();        
+	}
+ 
+	function becomeFan() {
+	    window.open("http://page.renren.com/pa/bf?pid=699110107", "_blank");
+	
+	    stepCnt++;
+	    document.getElementById("pBarStepFan").className = "pBarStep done";
+	    
+	    updInstallBar();
+	}
+ 
+    function updInstallBar() {
+	    var w;
+	    switch (stepCnt) {
+	        case 1: 
+	            w = 229;
+	            break;
+	        case 2:
+	            w = 509;
+	            break;
+	        default:
+	            w = 747;
+	            break;
+	    }
+	    
+	    document.getElementById("progressBar").style.width = w + "px";
+	    document.getElementById("progressBar").className = "stepcount_" + stepCnt;
+	
+	    if (stepCnt >= 3) {
+	    	document.getElementById("installBar").style.display = "none";
+	    }
+	    else {
+	        document.getElementById("installBar").style.display = "block";
+	    }
+    }
+ 
+    function initBar() {
+        if (stepCnt == 2) {
+            document.getElementById("pBarStepFan").className = "pBarStep done";
+        }
+    }
+    
+
+    window.onload=function(){
+			initBar();	
+
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
 	}

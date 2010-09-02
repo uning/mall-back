@@ -55,7 +55,7 @@ function install_swf(pid){
 	//get query to it
 	var flashvars = PL.query_json();
 	flashvars.platform_id = pid;
-	flashvars.pconf = 'http://192.168.1.50/work/mall/Venus/to-company/0_mall_config.xml';
+	flashvars.pconf = './0_mall_config.xml';
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";

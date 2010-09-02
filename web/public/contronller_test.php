@@ -4,15 +4,15 @@ require_once (LIB_ROOT.'/JsonServer.php');
 
 function record_time(&$start,$usage="",$unit=0)
 {
-    $end  = microtime(true);
-    $cost=$end-$start;
-    $cost=ceil(1000000*$cost);
-    if($unit>0){
-        $cost = ceil($cost/$unit);
-    }
-    if($usage)
-        echo "$usage use time $cost us\n";
-    $start = $end;
+	$end  = microtime(true);
+	$cost=$end-$start;
+	$cost=ceil(1000000*$cost);
+	if($unit>0){
+		$cost = ceil($cost/$unit);
+	}
+	if($usage)
+		echo "$usage use time $cost us\n";
+	$start = $end;
 }
 
 
@@ -22,15 +22,15 @@ function dotest($m,$p=null)
 	if(!$p)
 		$p = JsonServer::getMethodLastCallParam($m);
 	echo "method $m\n";
-        echo "The params are these as follow:\n";
-        print_r( $p );
-        echo "The response are these as follow:\n";
+	echo "The params are these as follow:\n";
+	print_r( $p );
+	echo "The response are these as follow:\n";
 	record_time($st);
-        print_r($server->doRequest($m,$p));      
+	print_r($server->doRequest($m,$p));      
 	record_time($st," $m ");
-        echo "===============================================\n\n";
+	echo "===============================================\n\n";
 }
-dotest('GoodsController.exhibit_goods');
+dotest('Friend.debug_get',array('u'=>4));
 return;
 dotest('TaskOnce.get');
 return;
@@ -88,7 +88,7 @@ echo "new = $new\n";
 print_r($data=TTGenid::genid(array('pid'=>'dfs1','gender'=>1,'name'=>"wahaha"),$new));
 echo "new = $new\n";
 return;
-*/
+ */
 dotest('UserController.get_achieves');
 otest('UserController.showids');
 dotest('UserController.genusers');

@@ -4,6 +4,7 @@ background:url("../images/bar_body.png") no-repeat scroll 0 0 transparent;
 height:75px;
 position:relative;
 width:800px;
+margin-bottom: 4px;
 }
 
 #installBar #progressBar {

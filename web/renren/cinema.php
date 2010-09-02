@@ -10,12 +10,12 @@ $user =  null;
 if($linkid){
 	$tw = TT::LinkTT();
 	$irec = $tw->getbyuidx('lid',$linkid);;
-    $pid = $irec['pid'];
+    $pid = $irec['uid'];
     $oid = $irec['oid'];
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);
 }
-print_r($irec);
+
 $new = 0;
 if($_REQUEST['new']){
 	$new = 1;

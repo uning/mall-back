@@ -58,8 +58,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
 <script type="text/javascript">
-var installbar = <?php echo json_encode($barobj) ?>;
-swf_install = false;
+ swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
@@ -230,7 +229,7 @@ echo "var installStep = 1; ";
 }?>
      
 var pid= <?php echo $pid; ?>;
-var session_key= <?php echo $session_key; ?>;
+var session_key= "<?php echo $session_key; ?>";
  
     window.onload=function(){
 			IBar.update_bar();	 

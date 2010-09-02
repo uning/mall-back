@@ -341,7 +341,7 @@ var preloadUrl = function(url) {
 };
 */
 var createIframe = function() {
-	return $("<iframe/>", {scrolling: 'no', border: '0', frameborder: '0', height: '0'});
+	return $("<iframe/>", {scrolling: 'no', name:'htmlFrame',border: '0', frameborder: '0', height: '0'});
 };
 
 var setupElements = function() {

@@ -217,9 +217,8 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
-
-	<?php if($barobj['email']) { ?>
-<?php else if($barobj['fan']) { ?>
+ 
+<?php  if($barobj['fan']) { ?>
   var stepCnt = 2;  	  
 <?php else { ?>   
  var stepCnt = 1;  	

@@ -215,6 +215,35 @@ version of Flash. Please do so by clicking <a
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
 </div>
+
+
+		
+		<div class="help">
+			    <span style="width: 625px; float: left;">
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;
+				  
+				</span>
+				<span style="width: 175px; float: right; text-align: right;">
+					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
+				</span>
+	  </div>
+		
+
+		<div class='bottom'>
+			<a target='_blank' href='http://page.renren.com/livemall'>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png" /> 
+			</a>
+		</div>
+		
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
+		<div class='footnotice'>
+			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
+		</div>
+
+
+
+
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->

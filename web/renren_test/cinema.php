@@ -3,7 +3,7 @@ require_once('config.php');
 require_once('pop/freeGift.php');
 
 //include "./header.php";
-$linkid = $_REQUEST['lid'];
+$linkid = $_REQUEST['fid'];
 $irec = false;
 $pid = false;
 $user =  null;
@@ -15,6 +15,7 @@ if($linkid){
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);
 }
+print_r($irec);
 $new = 0;
 if($_REQUEST['new']){
 	$new = 1;

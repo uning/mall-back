@@ -46,7 +46,7 @@ class UserController
 	 */
 	public function precheckout( $params )
 	{
-		$award = array( 1=>1000,2=>2000,3=>4000,4=>8000 );
+		$award = array( 1=>1000,2=>2000,3=>4000,4=>8000,5=>20000 );
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 		$now = time();
@@ -66,9 +66,14 @@ class UserController
 		$last['lastawardtime'] = $now;
 		$tu->mputf( $last );
 		$loc = $last['continued'];
-		if( $loc < 5 ){
+		if( $loc > 5 ){
+		    $loc = 5;
+		}		
+//		if( $loc < 5 ){
+		if( $loc > 0  ){
 			$tu->numch( TT::MONEY_STAT,$award[$loc] );
 		}
+		/*
 		if( $loc >= 5 ){
 			$loc = 5;			
 			$id = $tu->getoid( 'advert',TT::OTHER_GROUP );
@@ -77,6 +82,7 @@ class UserController
 			$adv['id'] = $id;
 			$tu->puto( $adv,TT::ADVERT_GROUP,false );
 		}
+		*/
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
 		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));

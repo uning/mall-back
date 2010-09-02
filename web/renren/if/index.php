@@ -20,10 +20,10 @@ if($gflg){
  
 	 $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
 	 $barobj = $tu->getbyid($iid); 
-	 if($barobj['email']){
-		$install_bar = false;
+	 if($barobj == null || $barobj['email'] == null){
+		$install_bar = true;
 	}else{
-	  $install_bar = true;
+	  $install_bar = false;
 	 }
  
  
@@ -219,9 +219,9 @@ version of Flash. Please do so by clicking <a
 <script type="text/javascript">
  
 <?php  if($barobj['fan']){
-echo "var stepCnt = 2; ";
+echo "var installStep = 2; ";
 }else{
-echo "var stepCnt = 1; ";
+echo "var installStep = 1; ";
 }?>
      
 

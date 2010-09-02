@@ -65,7 +65,7 @@ if($_REQUEST['gift'])
 <?php 
 	require_once '../freeGift.php';
     
-	$content = '帮好友装货，卸货，在这里开电影院、盖厕所、做导购员，去好友那里抢客人，都在这里 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;赶快行动&quot;&gt;';
+	
 	
 	$gid = $_REQUEST["gift"];
 	$pid = $_REQUEST['pid'];
@@ -95,6 +95,7 @@ if($_REQUEST['gift'])
 	
 	$width = '740px';
 	$accept_url = RenrenConfig::$canvas_url."accept.php?lid=$linkid";
+	$content = '帮好友装货，卸货，在这里开电影院、盖厕所、做导购员，去好友那里抢客人，都在这里 !!&lt;xn:req-choice url=&quot;'.$accept_url.'&quot;label=&quot;赶快行动&quot;&gt;';
 	//print_r($exclude);
 	if($gid!=NULL&&$gid!=''){
 		 $accept_gift_url = RenrenConfig::$canvas_url."accept.php?lid=$linkid";

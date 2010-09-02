@@ -29,4 +29,4 @@ if($inv)
 $user->update_help($oid,$fid);
 
 }
-header('Location: cinema.php?linkid='.$linkid.'&xn_sig_user='.$fid);
+header('Location: cinema.php?fid='.$linkid.'&xn_sig_user='.$fid);

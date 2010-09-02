@@ -1,0 +1,54 @@
+<config>
+	<version tag="beta1.0"/>
+	<resources parallel="false" use_cache="false">
+		<resource name="ui" label="资源1/13" url="./resource/common/swf/pokerPopup.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/pokerPopup.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 22
+" type="swf" />
+		<resource name="ui" label="资源2/13" url="./resource/common/swf/TableUI.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/TableUI.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 23
+" type="swf" />
+		<resource name="ui" label="资源3/13" url="./resource/common/swf/porkerMain.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/porkerMain.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 24
+" type="swf" />
+		<resource name="ui" label="资源4/13" url="./resource/common/swf/achieves.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/achieves.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 25
+" type="swf" />
+		<resource name="gifts" label="资源5/13" url="./resource/common/swf/gift.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/gift.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 26
+" type="swf" />
+		<resource name="chips" label="资源6/13" url="./resource/common/swf/Chips.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/Chips.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 27
+" type="swf" />
+		<resource name="cards" label="资源7/13" url="./resource/common/swf/Cards.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/Cards.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 28
+" type="swf" />
+		<resource name="sound" label="资源8/13" url="./resource/common/swf/sound.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/sound.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 29
+" type="swf" />
+		<resource name="roomtype" label="资源9/13" url="./resource/common/jx/roomtype.xml?v=d41d8cd98f00b204e9800998ecf8427e" type="xml" />
+		<resource name="gifts" label="资源10/13" url="./resource/common/jx/presents.xml?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/jx/presents.xml): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 31
+" type="xml" />
+		<resource name="achieves" label="资源11/13" url="./resource/common/jx/achieves.xml?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/jx/achieves.xml): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 32
+" type="xml" />
+		<resource name="urls" label="资源12/13" url="./resource/common/jx/urls.xml?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/jx/urls.xml): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 33
+" type="xml" />
+		<resource name="stopwords" label="资源13/13" url="./resource/common/jx/stopwords.xml?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/jx/stopwords.xml): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 34
+" type="xml" />
+	</resources>
+	<main name="main" label="加载主程式" url="./PokerGame.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/PokerGame.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 36
+" use_cache="false"/>
+	<progress_aspect url="./resource/common/swf/loadinglogo.swf?v=
+Warning: md5_file(/home/hotel/work/mall/backend/web/renren/resource/common/swf/loadinglogo.swf): failed to open stream: No such file or directory in /home/hotel/work/mall/backend/web/renren/gen_config.php on line 37
+" />	
+	<resource_servers>
+	    <server name="test" purl="" />
+	</resource_servers>
+	<app_servers>
+	    <server name="test" purl="http://127.0.0.1/pokerbg/" />
+	</app_servers>
+</config>

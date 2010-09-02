@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<version tag="beta1.1"/>
+	
+	<resources parallel="false" use_cache="false">
+		<resource name="test01" label="test01" url="./resource/common/swf/GuildMc.swf?v=1tc1.1" type="swf" />
+		<resource name="test02" label="test02" url="./resource/simplifiedchinese/swf/package.swf?v=1tc1.1" type="swf" />
+		<resource name="test03" label="test03" url="./resource/simplifiedchinese/swf/TestUINew01.swf?v=1tc1.1" type="swf" />
+		<resource name="test04" label="test04" url="./resource/common/swf/gift.swf?v=1tc1.1" type="swf" />
+		<resource name="guild" label="guild" url="./resource/simplifiedchinese/swf/mallTestGuild.swf?v=1tc1.1" type="swf" />
+		<!--resource name="test05" label="test05" url="./resource/common/swf/MallGoods.swf?v=1tc1.1" type="swf" /-->
+		<!--resource name="test06" label="test06" url="./resource/common/swf/NewMallTest.swf?v=1tc1.1" type="swf" /-->
+		
+		<resource name="waiting" label="waiting" url="./resource/common/swf/waiting.swf?v=1tc1.1" type="swf" />
+		<resource name="truck" label="truck" url="./resource/common/swf/MallTruck.swf?v=1tc1.1" type="swf" />
+		<resource name="truckUINew" label="truck" url="./resource/simplifiedchinese/swf/newtruckUI.swf?v=1tc1.1" type="swf" />
+		<resource name="newtruckUI002" label="truck" url="./resource/simplifiedchinese/swf/newtruckUI002.swf?v=1tc1.1" type="swf" />
+		<resource name="player" label="player" url="./resource/common/swf/Player.swf?v=1tc1.1" type="swf" />
+		<!--resource name="playernew" label="playernew" url="./resource/common/swf/PlayerNew.swf?v=1tc1.1" type="swf" /-->
+		<resource name="magicFace" label="player" url="./resource/common/swf/MagicFace.swf?v=1tc1.1" type="swf" />
+		<resource name="manipulater" label="player" url="./resource/common/swf/manipulater.swf?v=1tc1.1" type="swf" />
+		<resource name="Quests" label="Quests" url="./resource/common/swf/Quests.swf?v=1tc1.1" type="swf" />
+		
+		<resource name="items" label="items" url="./resource/simplifiedchinese/xml/items.xml" type="xml" />
+		<resource name="magicfaces" label="magicfaces" url="./resource/common/xml/magicfaces.xml" type="xml" />
+		<resource name="backgrounds" label="backgrounds" url="./resource/common/xml/backgrounds.xml" type="xml" />
+		<resource name="quests" label="quests" url="./resource/simplifiedchinese/xml/quests.xml" type="xml" />
+		<resource name="adverts" label="adverts" url="./resource/simplifiedchinese/xml/adverts.xml" type="xml" />
+		<resource name="achieves" label="achieves" url="./resource/simplifiedchinese/xml/achieves.xml" type="xml" />
+		
+		<resource name="Achieve" label="Achieve" url="./resource/common/swf/Achieve.swf?v=1tc1.1" type="swf" />
+		<resource name="sounds" label="sounds" url="./resource/common/swf/sounds.swf?v=1tc1.1" type="swf" />
+		<resource name="Background" label="Background" url="./resource/common/swf/Background.swf?v=1tc1.1" type="swf" />
+		<resource name="Background_new" label="Background" url="./resource/common/swf/Background_new.swf?v=1tc1.1" type="swf" />
+		
+		<resource name="items" label="items" url="./resource/simplifiedchinese/xml/items.xml" type="xml" />
+		<resource name="quests" label="quests" url="./resource/simplifiedchinese/xml/quests.xml" type="xml" />
+		
+		<resource name="magicfaces" label="magicfaces" url="./resource/common/xml/magicfaces.xml" type="xml" />
+		
+		
+		<resource name="secondResouce" label="secondResouce" url="./resource/simplifiedchinese/xml/second_resource_list.xml" type="xml" />
+	
+	
+	</resources>
+	
+	<main name="main" label="加载主程式" url="MallGame.swf?v=1tc1.1" use_cache="false"/>
+	<progress_aspect url="resource/common/swf/loadinglogo.swf" />
+	
+	<resource_servers>
+	    <server name="test" purl="http://rrmall.playcrab.com/work/mall/Venus/to-company/" />
+	</resource_servers>	
+	<app_servers>
+	    <server name="test" purl="http://rrmall.playcrab.com/work/mall/backend/web/public/" />
+	</app_servers>	
+</config>

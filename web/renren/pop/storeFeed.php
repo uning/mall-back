@@ -95,8 +95,7 @@ switch ($type){
 	default:break;
 }
 TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$ot,'sp1'=>$type));
-file_put_contents('stroefeed.txt',$_REQUEST);
-print_r($_REQUEST);
+
 
 
 

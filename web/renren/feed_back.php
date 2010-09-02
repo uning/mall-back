@@ -344,7 +344,7 @@ elseif($type==1)
 	$str='您抢到了'.'<xn:name uid="' .$value['uid'].'" linked="true" shownetwork="false" />'.'分享的1000金币';
 }
 else{
-	$str = '您已经领取过'.'<xn:name uid="' .$value['uid'].'" linked="true" shownetwork="false" />'.'分享的1000金币';
+	$str = '您已经领取过'.'<xn:name uid="' .$value['uid'].'" linked="true" shownetwork="false" />'.'分享的1000金币, 不能重复领取。';
 } ?>
 <div style="text-align: center;">
 <h3><?php echo $str;?></h3>

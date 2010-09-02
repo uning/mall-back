@@ -1,78 +1,66 @@
 <?php
-    $myloc=dirname(__FILE__);
-    require_once  $myloc.'/bg/base.php';
-    require_once LIB_ROOT.'ModelFactory.php';
-    require_once LIB_ROOT.'AutoIncIdGenerator.php';
-    require_once LIB_ROOT.'renren/renren.php';
-    require_once $myloc.'/config.php';
- 
-    $renren = new Renren();
-    $renren->api_key = RenrenConfig::$api_key;
-    $renren->secret = RenrenConfig::$secret;
-    $renren->init();
-    
-	CrabTools::myprint($renren,RES_DATA_ROOT."/renren"); 
-    
-	$platform_id = "renren".$renren->user; 
-    $user_id     = AutoIncIdGenerator::genid($platform_id);
-    $order_db=ServerConfig::getdb_by_userid(0);
-    $db          = ServerConfig::getdb_by_userid($user_id);
-    $ua = ModelFactory::UserAccount($db); 
-    $order = ModelFactory::Order($order_db);
-    if(!$ua->find($user_id) ){
-//        Logger::error("not existed   user: ".$user_id);
-		print(json_encode(array("message"=>'not existed   user' ) ) );
-        exit();
-    }
-    $order2type = array(1=>array("gem"=>0,"money"=>100000)
-                       ,2=>array("gem"=>0,"money"=>205000)
-					   ,3=>array("gem"=>0,"money"=>515000)
-					   ,4=>array("gem"=>0,"money"=>1035000)
-					   ,5=>array("gem"=>0,"money"=>2080000)
-					   ,6=>array("gem"=>0,"money"=>5150000)
-					   ,7=>array("gem"=>1000,"money"=>0)
-					   ,8=>array("gem"=>2050,"money"=>0)
-					   ,9=>array("gem"=>5150,"money"=>0)
-					   ,10=>array("gem"=>10350,"money"=>0)
-					   ,11=>array("gem"=>20800,"money"=>0)
-					   ,12=>array("gem"=>51500,"money"=>0)
-                       );
-	$amount = $_POST['amount'];
-	$order_data = $order2type[$_POST['order_type']];
+ 	require_once('config.php');
 	
-    if($amount< 10 || $amount > 500 ){
-        print(json_encode(array("message"=>'error amount' ) ) );
-        exit();
-    } 
-    $gem = 0;
-    $money = 0;
-    if( $order_data['money'] == 0){
-	    $gem = $order_data['gem']; 
-	}
-	else if( $order_data['gem'] == 0 ){
-	    $money = $order_data['money'];
-	} 
-    $data = array('user_id'=> $user_id,'pid'=> $platform_id , 'amount'=>$amount, 'gem'=>$gem ,'money'=>$money,'is_paid'=>0,'created_at'=>date( TM_FORMAT,time() ));
-    CrabTools::myprint($data,RES_DATA_ROOT."/data");
-    if( $order->insert($data  ) ){
-//		$o = $renren->api_client->pay_regOrder($order->getAttr("id"),$order->getAttr("amount"),"æ‰‘å…‹".$order->getAttr("gem")."æ¸¸æˆå¸". $order->getAttr("money")."é‡‘å¸");
-        //$id = select id from orders where	
-/*		
-		$id=$order->lastInsertId();	
-        $o = $renren->api_client->pay_regOrder($id,$amount,"æ‰‘å…‹".$gem."æ¸¸æˆå¸".$money."é‡‘å¸");
-		CrabTools::myprint("id = $id and amout = $amount",RES_DATA_ROOT."/submit");
-*/
-        $o = $renren->api_client->pay4Test.regOrder($order->getAttr("id"),$order->getAttr("amount"),"æ‰‘å…‹".$order->getAttr("gem")."æ¸¸æˆå¸". $order->getAttr("money")."é‡‘å¸");
-		CrabTools::myprint($o,RES_DATA_ROOT."/o");
-	    if($o['token'] ){
-	        print(json_encode(array('amount'=>$amount,'token'=>$o['token'],'order_number'=>$order->getAttr("id")) ) );
-        }
-		else{
-            print( json_encode( array('amount'=>$amount,'message'=>'call api error','order_number'=>$order->getAttr("id") ) ) );
-        }
+	$pid =   $_POST['xn_sig_user']; 
 
+ 	
+	$secret  = Renrenconfig::$pay_secure;//
+	if($_POST['xn_sig_skey'] != md5($secret.$pid) ){
+		$ret['app_res_code']= "error";
+		echo json_encode($ret);
+		exit();
+	} 
+
+	
+	$pp = json_decode($_POST['xn_sig_payment'],true);
+	//{"amount":"1","message":"orderingsomelowers.",
+	//"parameters":"{type:'Tulip',quantity:5}",
+	//"paymentType":"payment",
+	//"sandbox":true,
+	// "items": [{"skuId":"test_sku1","price":20,"count":2,"description":"demo descriptionred ower"},],
+	//"orderedTime":1261633596528}
+	if($_POST['xn_sig_sandbox'] == 'true'){
+	    //fake payment
+		$pp['sandbox']  = 'true';
 	}
-	else{
-	    print(json_encode(array("message"=>'error insert' ) ) );
+	if($pp== null || $pp['amount'] == null){
+		$ret['app_res_code']= "error payment";
+		echo json_encode($ret);
+		exit();
 	}
+	
+	$ot = TT::get_tt('order');  
+	$sess=TTGenid::getbypid($pid);
+	$user = new TTUser($sess['id']);
+	$payment = array('parameters'=>$pp['parameters'],'items'=>$pp['items'],'amount'=>$pp['amount'],'message'=>$pp['message'], 'sandbox'=>$pp['sandbox'],'paymentType'=>$pp['paymentType'] ,'orderedTime'=>$pp['orderedTime']);
+	$payment['pid'] = $pid; 
+	$payment['uid'] = $sess['id'];
+	$payment['status'] = 0;
+	$payment['gem']= $pp['amount'] * 10;
+	 
+	//$gem = $user->chGem(0);
+	
+	//chGem(232);
+ 	$orderid = $ot->put($payment);
+	
+	//·µ»ØÊý¾Ý
+	//{"app_res_order_id":20091223061349,"app_res_code":"OK","app_res_message":"10ÈËÈË¶¹¶Ò»»100Q±Ò","app_res_user":230121017}
+	$ret['app_res_order_id']= $orderid;
+	$ret['app_res_code']= "OK";
+	$ret['app_res_message']= $payment['message'];
+	$ret['app_res_user']= $pid; 
+	
+	echo json_encode($ret);
+	
+	//$oq=$ot->getQuery();	
+	//$oq->setLimit(10,0);
+	//$oq->addCond("pid",TokyoTyrant::RDBQC_STREQ , $pid);
+	//$orders =- $oq->search();
+ 	
+//	$id = $sess['id'];
+//	$sess=TTGenid::getbypid($id);
+//	$rid=$ot->put(null,$record);    
+//	$record=$ot->get($rid)
+
+
 ?>

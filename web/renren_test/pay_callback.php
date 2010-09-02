@@ -1,59 +1,58 @@
 <?php
-$myloc=dirname(__FILE__);
-require_once  $myloc.'/bg/base.php';
-require_once LIB_ROOT.'ModelFactory.php';
-require_once LIB_ROOT.'renren/renren.php';
-require_once $myloc.'/config.php';
-Logger::info("pay_callback:".serialize($_POST) );
-$renren = new Renren();
-$renren->api_key = RenrenConfig::$api_key;
-$renren->secret = RenrenConfig::$secret;
-$renren->init();
-$platform_id = "renren".$renren->user;
-$session_key = $renren->session_key;
- 
-$user_id     = AutoIncIdGenerator::genid($platform_id);
-$db          = ServerConfig::getdb_by_userid($user_id);
+ 	require_once('config.php'); 
+ 	$pid =   $_POST['xn_sig_user'];  
+	$secret  = Renrenconfig::$pay_secure;//
+	if($_POST['xn_sig_skey'] != md5($secret.$pid) ){
+		$ret['app_res_code']= "error invalid";
+		echo json_encode($ret);
+		exit();
+	} 
+	
+	$ot = TT::get_tt('order');  
+	$sess=TTGenid::getbypid($pid);
+	$user = new TTUser($sess['id']);
+	
+	
+	$oid = $_POST['xn_sig_order_id'];  
+	$payment = $ot->get($oid);
+	
+	if($payment == null){
+        $ret['app_res_code']= "error no order";
+		echo json_encode($ret);
+		exit(); 
+	}
+	if($payment['status'] == 0){	
+		if($payment['sandbox'] == 'true' && $pid!='30578' && $pid!='253382225' ){ 	
+			$ret['app_res_user']= $pid;
+			$ret['app_res_amount']= $payment['amount'];
+			$ret['app_res_order_id']= $oid;
+			echo json_encode($ret);
+		}
+		else{
+			if($user->chGem($payment['gem'])){
+				$payment['status'] = 1;
+				$payment['handledTime'] =  time();
+				$ot->put($oid,$payment);   
+				
+				//成功后返回
+				//{"app_res_user":12345,"app_res_order_id":1000001,"app_res_amount":100}
+				$ret['app_res_user']= $pid;
+				$ret['app_res_amount']= $payment['amount'];
+				$ret['app_res_order_id']= $oid;
+				echo json_encode($ret);
+		
+			} else{
+				$ret['app_res_code']= "error gem";
+				echo json_encode($ret);
+				exit(); 
+			}
+		}
+	} 
+	
+	 
+	 
+	
+	
 
-$secret  = Renrenconfig::$pay_secure;//
-if($_POST['xn_sig_password'] != $secret ){
-echo "!!";
-exit();
-} 
-$ua = ModelFactory::UserAccount($db);
-$ua->find($user_id);
-$order_db=ServerConfig::getdb_by_userid(0);
-$order = ModelFactory::Order($order_db);
-$order->find($_POST['xn_sig_order_number'] );
-  
-  if($order->getAttr("is_paid") ){
-   print(json_encode(array('user_id'=>$order->getAttr("platform_id"), 'amount'=>$order->getAttr("amount"), 
-  'order_number'=>$order->getAttr("id") ) ));
-	exit();
-  }
-   
-    $gem = $ua->getAttr("gem");
-    $gem += $order->getAttr("gem");
-    $ua->setAttr("gem",$gem);
-    $order->setAttr("is_paid",true);
-    $order->setAttr("paid_at",Date('Y-m-d H:i:s', time() ) );
-      
-    if(!$order->save() ){
-        Logger::error("order save error: ".$_POST['xn_sig_order_number']); 
-  print(json_encode(array('user_id'=>$order->getAttr("platform_id"), 'amount'=>$order->getAttr("amount"), 
-  'order_number'=>$order->getAttr("id") ) ));
-
-        exit();
-    }else{
-            if(!$ua->save() ){
-                Logger::error("useraccount save error: order_id:".$idpay);
-                 print(json_encode(array('user_id'=>$order->getAttr("platform_id"), 'amount'=>$order->getAttr("amount"), 
-  'order_number'=>$order->getAttr("id") ) ));
-                exit();
-            }  
- //render(:text=>{:user_id=>order.xn_id, :amount=>order.amount, :order_number=>order.id}.to_json)    
-
-    }
-  
-
-?>
+	
+	

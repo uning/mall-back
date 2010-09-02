@@ -1,78 +1,102 @@
 <?php
-function changeUser()
+require_once '../config.php';
+
+function changeUser($pid)
 {
-	$pid = $_POST['pid'];
+	
 	$session = TTgenid::getbypid($pid);
 	$uid = $session['id'];
 	$tu = new TTUser($uid);
 	//$tu->addExp();
 	//$tu->get();
 }
-function ShareGift()
+function ShareGift($fid,$pid,$ty)
 {
-	$key =$_POST['fid'];
-	$gift = $_POST['gift'];
-	if(!$gift) return;
 	$obj = array(
-			'uid' => $_POST['uid'],
-			'id' => $key,
+			'uid' => $pid,
+			'lid' => $fid,
 			'type' =>3,
-			'gift' => $gift,
+			'gift' => $ty,
 			'clickTime' => 0,
 			'count' => 15,
-			'rcv' => array()
+			'date' =>date('Ymd'),
+			'rcv' => array($pid=>1)
 		);
-	$tt = TT::TTWeb();
-	$tt -> puto($obj);
-	changeUser();
+	$tt = TT::LinkTT();
+	$tt->put($obj);
+	changeUser($pid);
 }
-function shareTask()
+function shareTask($fid,$pid,$ty)
 {
-	$key = $_POST['fid'];
-	$task = $_POST['task'];
+
 	$obj = array(
-		'uid' =>$_POST['uid'],
-		'id' => $key,
+		'uid' => $pid,
+		'lid' => $fid,
 		'type' => 2,
-		'task' => $task,
+		'task' => $ty,
 		'clickTime' => 0,
 		'count' => 0,
-		'rcv' => array()
+		'date' =>date('Ymd'),
+		'rcv' => array($pid=>1)
 	);
-	$tt = TT::TTWeb();
-	$tt->puto($obj);
-	changeUser();
+	$tt = TT::LinkTT();
+	$tt->put($obj);
+	changeUser($pid);
 }
-function shareGoldCoin()
+function shareGoldCoin($fid,$pid)
 {
-	$key = $_POST['fid'];
+
 	$obj = array(
-		'uid'=> $_POST['uid'],
-		'id' => $key,
+		'uid' => $pid,
+		'lid' => $fid,
 		'type' => 1,
 		'clickTime' => 0,
 		'count' => 0,
-		'rcv' => array()
+		'date' =>date('Ymd'),
+		'rcv' => array($pid=>1)
 	);
-	$tt = TT::TTWeb();
-	$tt->puto($obj);
-	changeUser();
+	$tt = TT::LinkTT();
+	$id = $tt->put($obj);
+	//print_r($tt->getbyuidx('lid',$fid));
+	changeUser($pid);
 }
-
-$feedId = $_POST['fid'];
-$type   = $_POST['type'];
-
+function helpOpenShop($fid,$pid,$ot)
+{
+	$obj = array(
+		'uid' => $pid,
+		'lid' => $fid,
+		'frd' => $_REQUEST['frd'],
+		'type' => 1,
+		'clickTime' => 0,
+		'count' => 0,
+		'oid' => $ot,
+		'date' =>date('Ymd'),
+		'rcv' => array($pid=>1)
+	);
+	$tt = TT::LinkTT();
+	$id = $tt->put($obj);
+	print_r($tt->getbyuidx('lid',$fid));
+	changeUser($pid);
+}
+$type   = $_REQUEST['type'];
+$fid = $_REQUEST['fid'];
+$pid = $_REQUEST['pid'];
+$ot = $_REQUEST['ot'];
 switch ($type){
 
 	case 1: 
-		shareGoldCoin();break;
+		shareGoldCoin($fid,$pid);break;
 	case 2:  
-		shareTask();break;
+		shareTask($fid,$pid,$ot);break;
 	case 3: 
-		ShareGift();break;
+		ShareGift($fid,$pid,$ot);break;
+	case 4:
+		helpOpenShop($fid,$pid,$ot);
 	default:break;
 }
-echo 'i,m hered';
+TTLog::record(array('m'=>'pub_feed','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$ot,'sp1'=>$type));
+file_put_contents('stroefeed.txt',$_REQUEST);
+print_r($_REQUEST);
 
 
 

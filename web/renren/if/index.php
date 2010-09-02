@@ -161,7 +161,7 @@ function install_swf(pid){
 		</div>
 		<div class="pBarStep" id="pBarStepFan">
 			<div class="pBarAction">
-				<a onclick="becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
+				<a onclick="IBar.becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
 			</div>
 			<div style="left: -12px;" class="pBarDone">
 				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_like.png">

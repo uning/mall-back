@@ -52,6 +52,7 @@ class Cinema
 			$ret['s'] = 'notexist';
 			return $ret;
 		}
+		$shop_obj['ctime'] = $now;//捡钱后可以重新进人
 		$item = ItemConfig::getItem( $shop_obj['tag'] );
 		if( !$item ){
 			$ret['s'] = 'itemnotexsit';
@@ -77,21 +78,21 @@ class Cinema
 				return $ret;
 			}
 			$gap = $now - $shop_obj['ctime'];
+			$factor = floor( $gap / 3600 );
+			$money = $factor * $item['sellmoney'];
+			$shop_obj['ctime'] += $factor * 3600;
 			if( $gap > $item['settletime'] ){
-				$gap = $item['settletime'];
+			    $money = floor( $item['settletime'] / 3600 ) * $item['sellmoney'];
+//			    $shop_obj['ctime'] += floor( $gap/3600 ) * 3600;
+                $shop_obj['ctime'] = $now;
 			}
-			$money = $gap * $item['sellmoney'] / 3600;
-		}    	    	    
+		}
 		$tu->numch( TT::MONEY_STAT,$money );
-		$shop_obj['ctime'] = $now;//捡钱后可以重新进人
 		$tu->puto( $shop_obj,TT::CINEMA_GROUP );
 		$ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 		$ret['ashopobj'] = $shop_obj;  //for debug
 		$ret['money'] = $money;
 		$ret['s'] = 'OK';
-                return $ret;
-
+        return $ret;
 	}
-
-
 }

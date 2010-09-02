@@ -13,7 +13,7 @@ require_once('config.php');
 			<div class='share-wrapper'>
 				<xn:share-app-button/> 
 			</div>
-	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="800" width="800" frameborder="0"/>
+	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="1000" width="800" frameborder="0"/>
 		</div> 
     </div>
 </div>

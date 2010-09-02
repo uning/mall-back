@@ -34,6 +34,12 @@ var IBar = {
 	        document.getElementById("installBar").style.display = "block";
 	    }
     }, 
+	init_bar : function() {
+        if (installStep == 2) {
+            document.getElementById("pBarStepFan").className = "pBarStep done";
+			IBar.update_bar();
+        }
+    },
 	
 	permCallBack: function(permission) {
 		if (permission) {

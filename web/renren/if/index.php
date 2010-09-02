@@ -4,9 +4,21 @@ require_once('../config.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
 $gflg = $_REQUEST['glink'];
+$sess = TTGenid::getbypid($pid);
+$uid = $sess['id'];
+$tu = new   TTUser($uid);
+ $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
+	 $barobj = $tu->getbyid($iid); 
+	 $install_bar = true;
+	 if($barobj == null || $barobj['email'] == null){
+		$install_bar = true;
+	}else{
+	  $install_bar = false;
+	 } 
+
 if($gflg){
-	$ts = TT::TTWeb();
-        $data = $ts->getbyid($gflg);
+	
+    $data = $ts->getbyid($gflg);
 	$bids = $data['rfids'];
 	if(strstr($bids,$pid)){
 	}else{//给玩家礼物
@@ -18,6 +30,7 @@ if($gflg){
 	}
 	//$ts->puto($data);
  
+	
 			
 }
 ?>
@@ -27,6 +40,10 @@ if($gflg){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<?php if($install_bar){ ?>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
+<?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
@@ -40,6 +57,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
 <script type="text/javascript">
+var installbar = <?php echo json_encode($barobj) ?>;
 swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
@@ -127,13 +145,42 @@ function install_swf(pid){
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
-        <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
+        <li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$resource_urlp;?>/help/FAQ.html" >常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
 		<li class="payment" ><a  class='fullpage' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>
+	<?php if($install_bar){ ?>
+	<div style="display: none;" id="installBar">
+		<div class="pBarStep done" id="pBarStepInstall">
+			<div class="pBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_install.png">
+			</div>
+		</div>
+		<div class="pBarStep" id="pBarStepFan">
+			<div class="pBarAction">
+				<a onclick="becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
+			</div>
+			<div style="left: -12px;" class="pBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_like.png">
+			</div>
+		</div>
+		<div class="pBarStep" id="pBarStepEmail">
+			<div class="pBarAction">
+				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
+			</div>
+			<div class="pBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_email.png">
+			</div>
+		</div>
+		<div id="progressBar" style="width: 229px;" class="stepcount_1">
+			<div id="progressPercentage">
+			</div>
+		</div> 
+	</div> 
+	<?php } ?>
 </div>
 
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
@@ -174,8 +221,17 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
+ 
+<?php  if($barobj['fan']){
+echo "var installStep = 2; ";
+}else{
+echo "var installStep = 1; ";
+}?>
+     
 
-window.onload=function(){
+
+    window.onload=function(){
+			IBar.init_bar();	 
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
 	}

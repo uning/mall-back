@@ -10,7 +10,7 @@ class JsonServer{
 	protected  $_raw_reg ; 
 	protected  $_do_auth = false;
 
-	protected  $_debug   = true;/* when in debug mod ,result contain the request*/
+	protected  $_debug   = false;/* when in debug mod ,result contain the request*/
 	protected  $_use_deflate = false;
 
 

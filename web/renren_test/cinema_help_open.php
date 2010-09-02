@@ -7,26 +7,16 @@ if(!$linkid||!$fid){
 }
 else {
 	$tw = TT::LinkTT();
-	$irec = $tw->getbyuidx('linkid',$linkid);
+	$irec = $tw->getbyuidx('lid',$linkid);
 }
 
 if($irec){
- $pid = $irec['pid'];
+ $pid = $irec['uid'];
    $oid = $irec['oid'];
    $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);	
 }
 
-if($user){
-foreach ($irec['ids'] as $v){
-	if($v==$fid)
-	{
-		$inv = true;
-		break;
-	}
-}
-if($inv)
-$user->update_help($oid,$fid);
 
-}
-header('Location: cinema.php?linkid='.$linkid.'&xn_sig_user='.$fid);
+$user->update_help($oid,$fid);
+header('Location: cinema.php?fid='.$linkid.'&xn_sig_user='.$fid);

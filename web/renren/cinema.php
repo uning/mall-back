@@ -3,14 +3,14 @@ require_once('config.php');
 require_once('pop/freeGift.php');
 
 //include "./header.php";
-$linkid = $_REQUEST['lid'];
+$linkid = $_REQUEST['fid'];
 $irec = false;
 $pid = false;
 $user =  null;
 if($linkid){
 	$tw = TT::LinkTT();
 	$irec = $tw->getbyuidx('lid',$linkid);;
-    $pid = $irec['pid'];
+    $pid = $irec['uid'];
     $oid = $irec['oid'];
     $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);

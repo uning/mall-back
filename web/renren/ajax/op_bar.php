@@ -7,7 +7,7 @@ $ret['get'] = $_GET;
 echo json_encode($ret);
 */
 $op = $_REQUEST['op'];
-$pid = $_REQUEST['fb_sig_user'];
+$pid = $_REQUEST['xn_sig_user'];
 if($op&&$pid){
 	$sess = TTGenid::getbypid($pid);
 	$uid = $sess['id'];

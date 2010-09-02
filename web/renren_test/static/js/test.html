@@ -26,10 +26,13 @@ var config = {
 		cb:function(){//after config allback
 			PL.js(['stat/common.js'],function(){
 
+			
                 var tt='key';
                 var hash  = {tt:tt};
                 hash[tt]='vaule';
                 console.log(hash.tt,hash.key,hash[tt],hash['key'])
+			
+				/*
 				PLStat.stat_try({ 
 			    	 id  : PLStat.uuid(),//link 唯一标识
 			    	 channel:'mall', //应用标示，flash程序可以从配置读取
@@ -41,13 +44,19 @@ var config = {
 					 d  : 'data1',//其他内容
 					 d1  : 'data1',//其他内容
 					 d2  : 'data1',//其他内容
-				       })
+				       })*/
 			   }
+			   
+           
+			   
 			);
 		}
 }
 console.log('JSON',JSON.parse('{"a":1}'))
-PL.init('fb_config.js',config);
+PL.init('config.js',config);
+	  PL.conf('pid','newb');
+             alert(PL.conf('pid'));
+//alert(PL.conf('pid'));
 
 </script>
 

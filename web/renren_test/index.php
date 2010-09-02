@@ -5,19 +5,80 @@ require_once('config.php');
   // $platform_id = "renren".$renren->user;
     //$session_key = $renren->session_key;
 ?>
-
-<div style="clear:both"></div>
+<style>
+.footnotice {
+background:none repeat scroll 0 0 #FCFAD4;
+width:740px;
+border:1px solid #BEB9B9;
+margin:5px;
+display:none;
+padding:5px;
+}
+.xnid{
+text-align: right; font-size: 12px;
+width:100%;
+margin-bottom:3px;
+margin-top:4px;
+}
+.bottom {
+text-align:center;
+width:800px;
+margin-top:5px;
+}
+.bottom a img{
+border: 0;
+}
+.share-wrapper {
+position:absolute;
+right:0;
+top:0;
+}
+.help {
+color:#444444;
+height:18px;
+line-height:18px;
+margin-left:3px;
+margin-top:4px;
+width:100%;
+}
+</style>
 <div id='is_install'></div>
-<div id='content'>
+<div id='content' style="background-color: #ffffff;">
     <div class='container'>
         <div class='canvas'>
-	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php" height="1055" width="760" frameborder="0"/>
-        </div> 
+			<div class='share-wrapper'>
+				<xn:share-app-button/> 
+			</div>
+	        <xn:iframe scrolling="no" src="<?php echo RenrenConfig::$callback_url?>if/index.php?a=<?php echo $_REQUEST['a']; ?>" height="770" width="800" frameborder="0"/>
+		</div> 
+		
+		<div class="help">
+			    <span style="width: 625px; float: left;">
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;
+				  
+				</span>
+				<span style="width: 175px; float: right; text-align: right;">
+					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
+				</span>
+	  </div>
+		
+
+		<div class='bottom'>
+			<a target='_blank' href='http://page.renren.com/livemall'>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png" /> 
+			</a>
+		</div>
+		
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
+		<div class='footnotice'>
+			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
+		</div>
     </div>
 </div>
 
 <xn:else>
-<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genricbg.jpg"/>
+<img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
 <script>
 var auth = false;
 function authOK()

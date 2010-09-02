@@ -30,7 +30,7 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
         echo "===============================================\n\n";
 }
-dotest('UserController.get_items',array('u'=>1));
+dotest('GoodsController.exhibit_goods');
 return;
 dotest('TaskOnce.get');
 return;

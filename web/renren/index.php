@@ -23,6 +23,7 @@ margin-top:4px;
 .bottom {
 text-align:center;
 width:800px;
+margin-top:5px;
 }
 .bottom a img{
 border: 0;
@@ -64,7 +65,7 @@ width:100%;
 
 		<div class='bottom'>
 			<a target='_blank' href='http://page.renren.com/livemall'>
-				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png"></img>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png" /> 
 			</a>
 		</div>
 		

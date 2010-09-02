@@ -1,18 +1,20 @@
 <?php
 class RenrenConfig
 {
+   public static  $api_key = '8ad12ca6f37e4245807ffe1d06c764ec';
+   public static  $secret  = 'e69c45adbc444428a454d72ff783c9e4';
+   public static  $app_id  = '113391';
+   public static  $canvas_url = "http://apps.renren.com/malltest/";
+   public static  $callback_url = "http://dev.tingkun.com/work/mall/backend/web/renren_test/";
+   public static  $canvas_name = "malltest";
 
-	public static $api_key = "975b170745ce4b4d9fe138df194a5535";
-	public static $secret = "411cd6a100584d50b8d93bd603f26ceb";
-	public static $app_id = 75552;
-	public static $canvas_url = "http://apps.renren.com/happyhotel/mall/";
-	public static $reciever_url = "xd.html";
-
-	public static $callback_url = "http://s1.coolplusplus.com/bg/renren/mall/";
-	public static $resource_urlp = "http://rrmall.playcrab.com/work/mall/backend/web/renren/static/";
-	public static $ajax_urlp = "/mall/ajax/"; //this can be all the same??move to backend
-	public static $pay_secure = 'a0901b';
-	public static $group_url = "http://group.renren.com/GetTribe.do?id=301354649";
+   public static  $reciever_url = "/xd.html";
+   
+   public static  $resource_urlp = "http://192.168.1.50/work/mall/backend/web/renren_test/static/";
+   //public static  $resource_urlp = "http://files5.qq494.cn/pig/hotel/";
+   //public static  $iframe_urlp = "http://supermall.playcrab.com/inif/";
+   public static $group_url = "http://group.renren.com/GetTribe.do?id=336701942";
+   public static $pay_secure = 'a0901b';
 
 }
 

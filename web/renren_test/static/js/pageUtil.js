@@ -27,6 +27,7 @@ function inviteFriends(param, callBack) {
 	try {
 		navigateTo(inviteH.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		inviteH.addClass('active');
 		return false;
 	} catch (e) {
@@ -36,8 +37,7 @@ function inviteFriends(param, callBack) {
 
 function visitFriends(pid,id,callBack){}
 function payFor(pid, callBack) {
-	alert('暂未开放');
-	return;
+	
 	var div =  $("#tabs");
 	if(div==null||div=='undefined')
 		div = $("#tabs",window.parent.document);
@@ -47,6 +47,7 @@ function payFor(pid, callBack) {
 	try {
 		navigateTo(payFor.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		payFor.addClass('active');
 		return false;
 	} catch (e) {
@@ -64,6 +65,7 @@ function chooseGift(callBack)
 	try {
 		navigateTo(freeGift.attr('href'));
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		freeGift.addClass('active');
 		return false;
 	} catch (e) {
@@ -84,6 +86,7 @@ function sendGift(giftid,callBack)
 		var g = isBlank(giftid)?'':'?gift='+giftid;
 		navigateTo(inviteH.attr('href')+g);
 		div.children('a').removeClass('active');
+		div.children('li').removeClass('active');
 		inviteH.addClass('active');
 		return false;
 	} catch (e) {
@@ -100,54 +103,87 @@ var cached_publish_stream = false;
 
 var param;
 var feedCall;
-/*var d = {
-		picture:'http://hdn.xnimg.cn/photos/hdn321/20100519/2235/tiny_Wx1k_67280c019118.jpg',
-		name : '是我的马甲',
-		caption:'曾经黄小虎就站在我面前'
-}*/
+var ddd = {
+		'picture':'http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/feed/gift.jpg',
+		'name' : '礼物feed',
+		'caption':'这里是内容',
+		'ext':{'feedtype':1}
+		
+};
 function popUpFeed(data,callBack){
 	
 	feedCall = callBack;
+	if(data)
 	XN.Connect.showFeedDialog(prepareParams(data));
+	else
+	XN.Connect.showFeedDialog(prepareParams(ddd));
+	
 }
-
+function stat(op)
+{
+	/*if(_gaq){
+		  _gaq._trackEvent('Feed', op);
+	  }*/
+}
 function prepareParams(data){
 	console.log('data:',data);
 	param = data;
-	
 	var feedId = PLStat.uuid();
+	var link = 'http://apps.renren.com/livemall/feed_back.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&fid='+feedId;
+	var ac = 'feed_back.php?&fid='+feedId;
+	if(data['ext']['feedtype']==4){
+		link = 'http://apps.renren.com/livemall/cinema.php?ft='+data['ext']['feedtype']+'&action={action}&xnuid={xnuid}&lid='+feedId;
+		ac = 'ciname.php?&fid='+feedId;
+	}
+	param['fid'] = feedId;
 	 var publish = {
-	  			template_bundle_id: 1,
+	  			template_bundle_id: data['ext']['feedtype'],
 	  			template_data: {images:[
 	                            {src:data['picture'], 
-	                            href:'http://www.renren.com/profile.do?id=202150436&fid='+feedId}
+	                             href:link}
 	                              ]
 	                              ,feedtype:data['name']
 	                              ,content:data['caption']  
-	                              ,xnuid:PL.conf('pid')
-	                              ,action:'pop/feed_back.php?fid='+feedId
+	                              ,xnuid:data['ext']['uid']
+	                              ,action: ac
 	                              },
 	  			body_general: '',
 	  			callback: feedPublishCallback,
 	  			user_message_prompt: "有啥想法没？^o^",
-	  			user_message: "here user_message"
+	  			user_message: "讲两句吧.."
 	  		};
 	
 	return publish;
 }
 
 function feedPublishCallback(response){
-	
-
 	var pub = 1;
 	if(response==null||response=='') pub = 0;
-	$.ajax({
-		type: 'POST',
-		url: '../pop/storeFeed.php',
-		data: 'type=' + param['type'] + '&task=' + param['task']+ '&gift=' + param['gift']+'&pid'+PL.conf('pid')+'&fid'+param['fid'],
-		dataType:'text',
-		success: feedCall
-	});
+	if(pub==0){
+		stat('Try '+param['ext']['feedtype']);
+	}else if(pub==1){
+		stat('Ok '+param['ext']['feedtype']);
+		var k='';
+		if(param['ext']['feedtype']==2){
+			k = '&ot='+param['task'];
+		}else if(param['ext']['feedtype']==3){
+			k = '&ot='+ param['gift'];
+		}
+		else if(param['ext']['feedtype']==4){
+			k = '&ot='+param['ext']['oid']+'&frd='+param['ext']['uid'];
+		}
+		var pid = param['ext']['uid'];
+		if(param['ext']['frd']){
+			pid = param['ext']['frd'];
+		}
+		$.ajax({
+			type: 'POST',
+			url: '../pop/storeFeed.php',
+			data:'type='+param['ext']['feedtype']+'&fid='+param['fid']+k+'&pid='+ pid,
+			success: function (response){}
+		});
+	}
+	
 	
 }
 
@@ -210,7 +246,7 @@ var showFlash = function() {
 	oldIframe = iframe;
 	iframe = false;
 	tabs.children('a').removeClass('active');
-	flashTab.addClass('active');
+	flashTab.children('a').addClass('active');
 	setTimeout(cleanup, 500);
 };
 
@@ -235,7 +271,7 @@ var innerIFramePoller = function() {
 			
 			var height = innerDoc.outerHeight();
 			if (height != lastHeight|| height ==0) {
-				iframe.height(height);
+				iframe.height(height+200);
 				lastHeight = height;
 			}
 		}
@@ -262,7 +298,13 @@ var navigateTo = function(url) {
 		iframe = createIframe().appendTo(htmlFrame);
 	}
 	iframe.load(iframeLoaded);
-	iframe.attr('src', url);
+	if(url.indexOf('?')>-1)
+              nurl = url+'&pid='+query_json.xn_sig_user;
+	else{
+              nurl = url+'?&pid='+query_json.xn_sig_user;
+	}
+	console.log('navigateTo',nurl);
+	iframe.attr('src', nurl);     
 	innerDoc = null; lastHeight = 0;
 	interval = setInterval(innerIFramePoller, 500);
 };
@@ -316,29 +358,60 @@ $(document).ready(
 	/** Opens an overlaying iframe */
 	(function() {
 		
+		var goTo  = function(el){
+		 	if (!el.is('a')) {
+				el = el.parents('a');
+			}
+			navigateTo(el.attr('href'));
+			tabs.children('a').removeClass('active');
+			el.addClass('active'); 
+			
+		};
 		
 		var tabClick = function(e) {
-			if (e && e.target) {
+            if (e && e.target) {
 				var el = $(e.target);
-				if (!el.is('a')) {
-					el = el.parents('a');
-				}
-				navigateTo(el.attr('href'));
-				tabs.children('a').removeClass('active');
-				el.addClass('active');
+				goTo(el);
 				return false;
 			}
 		};
 
 		
 		$(function() {
-			tabs = $('#tabs li');
+		   tabs = $('#tabs li');
 			console.log(tabs.children('a'));
 			tabs.children('a').not('.fullpage').click(tabClick);
 			setupElements();
+		});
+		
+		$(function() { 
+	      if(a=='invite' || a=='freeGift'  || a=='faq'){
+		    tabs = $('#tabs li');
+			var link = $("#"+a);
+			goTo(link);
+		  }
 		});
 
 	})();
 
 });
 
+function sendNotifcation(ids,name,callBack,say)
+{
+	XN.Main.apiClient.notifications_send(45182749, '李彦宾'+"在<a href=\"http://apps.renren.com/livemall/\">购物天堂</a>送给了你一件神秘礼物，并对你说:快来玩啊，真好玩啊，放松一下吧，呵呵"+say, function (result, ex) {
+		  if (ex) {
+			window.alert("出错了，不好意思 " + ex.userData.error_msg);
+	  	  }
+		  else {
+			window.alert(result.result);
+		  }
+    });
+
+}
+
+function openCinema(data,callBack)
+{
+	navigateTo('../pop/open_shop.php?oid='+data['oid']);
+	$('#flash').removeClass('active');
+	//callBack();
+}

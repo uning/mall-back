@@ -219,7 +219,7 @@ class GoodsController
 			//$s['goods'] = $ngoods;
 			$tu->puto($s);
 		}
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
+		TTLog::record(array('m'=>__METHOD__,'s'=>'OK','tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
 		$ret['s'] = 'OK';
 		return $ret;
 	}

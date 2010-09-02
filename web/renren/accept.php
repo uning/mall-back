@@ -292,12 +292,11 @@ $link = $tw->getbyuidx('lid',$linkid);?>
 	}
 	else
 	 $lg = 0;
-	 
+	$new  = 0;
 	if($_REQUEST['new']){
 	 	$new = 1;
-	 }else{
-	 	$new  = 0;
 	 }
+
 	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$lg,'sp2'=>$new));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];

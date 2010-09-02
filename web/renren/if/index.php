@@ -221,7 +221,7 @@ version of Flash. Please do so by clicking <a
 <?php  if($barobj['fan']){
 echo "var stepCnt = 2; ";
 }else{
-echo "var stepCnt = 1; ";};
+echo "var stepCnt = 1; ";
 }?>
      
 

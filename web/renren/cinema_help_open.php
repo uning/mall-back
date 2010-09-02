@@ -7,7 +7,7 @@ if(!$linkid||!$fid){
 }
 else {
 	$tw = TT::LinkTT();
-	$irec = $tw->getbyuidx('linkid',$linkid);
+	$irec = $tw->getbyuidx('lid',$linkid);
 }
 
 if($irec){

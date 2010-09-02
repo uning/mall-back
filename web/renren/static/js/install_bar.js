@@ -3,9 +3,9 @@
 var IBar = {
 	stat:function (op,phase)
 	{
-	  if(_gaq){
-		  _gaq._trackEvent('IBar', op, phase);
-	  }
+	 // if(_gaq){
+	//	  _gaq._trackEvent('IBar', op, phase);
+	 // }
 	},
 	save_bar : function(op) {
 		console.log('save_bar', op)

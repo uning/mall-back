@@ -223,13 +223,10 @@ class CarController
 		unset( $car_obj['t'] );        
 		$tu->puto( $car_obj,TT::CAR_GROUP,false );
 		$ret['c'] = $car_obj;
-
-//		if( $now - $gogoodstime > 3*$goods['buytime'] ){//货物过期
-        if( $now - $gogoodstime > 30 ){
+		if( $now - $gogoodstime > 3*$goods['buytime'] ){//货物过期
 		    $ret['s'] = 'expiration';
 		    return $ret;
 		}
-
 		$num = $car['goodsNumber'];
 		$goods_data['pos'] = 's';
 		$goods_data['tag'] = $goodsTag;

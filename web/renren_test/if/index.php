@@ -60,6 +60,7 @@ function install_swf(pid){
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
 	flashvars.platform = "renren";
+	flashvars.preResourceUrl="";
 	flashvars.errorPage = '/bg/error_log.php';
 	var flash_width = 800;
 	var flash_height = 700;

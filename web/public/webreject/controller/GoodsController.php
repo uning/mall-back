@@ -193,7 +193,7 @@ class GoodsController
 				$ret['s'] = 'goodsnotexsit';
 				return $ret;
 			}
-			$stat['tags'][] = $goods_obj['tag'];
+			$stat['tags'][$index] = $goods_obj['tag'];
 			$item = ItemConfig::getItem( $goods_obj['tag'] );
 			//if( !$item ){
 			//	$ret['s'] = 'goodsnotexsit '.$goods['tag'];

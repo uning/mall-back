@@ -179,6 +179,7 @@ class CarController
 		$tu = new TTUser($uid);
 		$now = time();
 		$car_obj = $tu->getbyid( $cid );
+		$gogoodstime = $car_obj['t'];
 		if( !$car_obj ){
 			$ret['s'] = 'carobjnotexist';
 			return $ret;
@@ -205,7 +206,7 @@ class CarController
 			$ret['s'] = 'timeleft';
 			return $ret;
 		}
-		$num = $car['goodsNumber'];
+		
 		if( $car_obj['addgoods'] ){
 			$num += $car_obj['addgoods'];
 			unset( $car_obj['addgoods'] );
@@ -216,6 +217,17 @@ class CarController
 			}
 			unset( $car_obj['help'] );
 		}
+		if( $car_obj['copolitTag'] ){
+			unset( $car_obj['copolitTag'] );
+		}
+		unset( $car_obj['t'] );        
+		$tu->puto( $car_obj,TT::CAR_GROUP,false );
+		$ret['c'] = $car_obj;
+		if( $now - $gogoodstime > 3*$goods['buytime'] ){//货物过期
+		    $ret['s'] = 'expiration';
+		    return $ret;
+		}
+		$num = $car['goodsNumber'];
 		$goods_data['pos'] = 's';
 		$goods_data['tag'] = $goodsTag;
 		$ids = array();
@@ -224,17 +236,13 @@ class CarController
 				unset($goods_data['id']);
 			$ids[$i]= $tu->puto( $goods_data,TT::GOODS_GROUP );
 		} 
-		if( $car_obj['copolitTag'] ){
-			unset( $car_obj['copolitTag'] );
-		}
-		unset( $car_obj['t'] );        
-		$tu->puto( $car_obj,TT::CAR_GROUP,false );		
+		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
 		if( $add_exp ){
 		    $tu->addExp( $add_exp );
-		}		
-		$ret['s'] = 'OK';
-		$ret['c'] = $car_obj;    
+		}
+		
+		$ret['s'] = 'OK';    
 		$ret['g'] = $ids;
 		return $ret;
 	}
@@ -337,6 +345,7 @@ class CarController
 			$ret['s'] = 'repeat';
 			return $ret;
 		}
+		$goods = ItemConfig::getItem( $car_obj['goodsTag'] );
 		if( $tag != 2006 ){
 			if( $copilot['bag'][$tag] < 1 ){
 				$ret['s'] = 'needbuy';
@@ -346,8 +355,6 @@ class CarController
 			$car_obj['copolitTag'] = $tag;
 		}
 		else{
-			$goodsTag = $car_obj['goodsTag'];
-			$goods = ItemConfig::getItem( $goodsTag );
 			if( $goods['buytime'] >= 1800 ){
 				$car = ItemConfig::getItem( $car_obj['tag'] );
 				$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
@@ -361,15 +368,21 @@ class CarController
 			unset( $car_obj['help'] );
 			unset( $car_obj['goodsTag'] );
 			unset( $car_obj['copolitTag']);
-		}    
+		}
 		$copilot['id'] = $id;
+		$now = time();
 		$tu->puto( $copilot );
 		if( $copi['addgoods'] ){
 			$car_obj['addgoods'] += $copi['addgoods'];
 		}
-		if( $copi['accelerate'] && $car_obj['t'] > 0 ){
-			$car_obj['t'] -= $copi['accelerate'];
-		} 
+		if( $copi['accelerate'] && $car_obj['t'] ){
+			if( $now - $car_obj['t'] + $copi['accelerate'] > $goods['buytime'] ){
+			    $car_obj['t'] = $now - $goods['buytime'];
+			}
+			else{
+			    $car_obj['t'] -= $copi['accelerate'];
+			}
+		}
 		$tu->puto( $car_obj,TT::CAR_GROUP,false );
 		$ret['s'] = 'OK';
 		$ret['tag'] = $tag;

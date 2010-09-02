@@ -40,7 +40,7 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?6" />
 <?php if($install_bar){ ?>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=3"></script>
 <link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?4" />

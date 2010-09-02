@@ -229,7 +229,7 @@ echo "var installStep = 1; ";
 }?>
      
 var pid= <?php echo $pid; ?>;
-var session_key= <?php echo $session_key; ?>;
+var session_key= "<?php echo $session_key; ?>";
  
     window.onload=function(){
 			IBar.update_bar();	 

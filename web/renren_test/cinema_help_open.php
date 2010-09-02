@@ -19,5 +19,4 @@ if($irec){
 
 
 $user->update_help($oid,$fid);
-print_r($user->get_help($oid));
 header('Location: cinema.php?fid='.$linkid.'&xn_sig_user='.$fid);

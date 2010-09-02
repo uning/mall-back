@@ -169,12 +169,12 @@ class Friend{
 		if( !$fids ){
 			$fids = $tu->getf( TT::FRIEND_STAT );
 			if(!$fids ){
-				$fids = "quest01,quest02,quest03,quest04,quest05,quest06,quest07,quest08,quest09";
+				//$fids = "quest01,quest02,quest03,quest04,quest05,quest06,quest07,quest08,quest09";//for test
 			}			
 			if($infos){
-				$ret['infos']=TTExtend::processlist($infos);
-				$ret['s'] = 'OK';
-				return $ret;
+			//	$ret['infos']=TTExtend::processlist($infos);
+			//	$ret['s'] = 'OK';
+			//	return $ret;
 			}
 		}
 		else{
@@ -221,10 +221,89 @@ class Friend{
 		    $tu->putf( 'friend_count',$friend_count );
 		}
 		//*
-		$rinfos[]=array('name'=>'GM','icon'=>'http://hdn.xnimg.cn/photos/hdn121/20100807/1345/h_tiny_WtRB_190e0000358b2f75.jpg',
+		$rinfos[]=array('name'=>'GM','icon'=>'http://hd45.xiaonei.com/photos/hd45/20080915/11/09/tiny_tDX1_3400c200150.jpg',
 			'pid'=>'253382225','exp'=>'10000','dbid'=>2,'ht'=>$now,'help_car'=>1);//GM
 		 //*/
 		$ret['infos'] = &$rinfos;
+		$ret['s'] = 'OK';
+		return $ret;
+	}
+
+
+	public function debug_get($params)
+	{	
+		$now = time();
+		$uid = $params['u'];
+		$tu = new TTUser( $uid );
+		$fids = $params['fids'];
+		$infos = $tu->get('fr',false);
+		if( !$fids ){
+			$fids = $tu->getf( TT::FRIEND_STAT );
+			if(!$fids ){
+				$fids = "quest01,quest02,quest03,quest04,quest05,quest06,quest07,quest08,quest09";
+			}			
+			/*
+			if($infos){
+				$ret['infos']=TTExtend::processlist($infos);
+				$ret['s'] = 'OK';
+				return $ret;
+			}
+		 */
+		}
+		else{
+			$tu->putf( TT::FRIEND_STAT ,$fids);
+		}
+		$fl = explode(',',$fids);
+		$rinfos= array();
+		$dup=array();
+		$now = time();
+		$dup['253382225']=1;
+		//$fl[]='253382225';
+		$friend_count = 0;
+		//记录好友个数
+		foreach( $fl as $pid ){
+			if($dup[$pid])
+				continue;
+			$dup[$pid]=1;
+			$finfos = TTGenid::getbypid($pid); //by tingkun
+			$id = $finfos['id'];
+			if($id){
+				$fdid = $tu->getdid($id,'fr');
+				$fdata = json_decode( $infos[$fdid],true);
+				//if(!$fdata ||  $fdata['ut']<$now - 3600){
+				if(!$fdata ||  $fdata['ut']<$now - 3600){
+					$ftu = new TTUser($finfos['id']);
+					$acc = $ftu->getdata();
+					$acc['name'] = $finfos['name'];
+					$acc['icon'] = $finfos['icon'];
+					$acc['pid'] = $pid;
+					$acc['ut']=$now;
+					$acc['id']=$fdid;
+					$acc['dbid']=$id;
+					$tu->puto($acc);
+					$rinfos[]=$acc;
+				}else
+					$rinfos[]=$fdata;
+				unset($infos[$fdid]);
+			}
+			else{
+				$ret['notget'][]=$pid;
+			}
+			//$rids = array_keys($infos);
+            //$tu->remove($rids);
+            $friend_count++;            
+		}
+		if( $friend_count > $tu->getf('friend_count') ) {
+		    $tu->putf( 'friend_count',$friend_count );
+		}
+		//*
+		$rinfos[]=array('name'=>'GM','icon'=>'http://hdn.xnimg.cn/photos/hdn121/20100807/1345/h_tiny_WtRB_190e0000358b2f75.jpg',
+			'pid'=>'253382225','exp'=>'10000','dbid'=>2,'ht'=>$now,'help_car'=>1);//GM
+		 //*/
+
+
+		$ret['infos'] = $rinfos;
+		$ret['fids'] = $fids;
 		$ret['s'] = 'OK';
 		return $ret;
 	}

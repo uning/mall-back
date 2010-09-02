@@ -138,6 +138,7 @@ class TaskOnce
 	 *  require   u       --  uid
 	 *            tag     --  任务id
 	 *            rids     -- 消耗物品ids（只能是空闲物品）
+	 *            minus  (money=>11,gem=>122)
 	 * @return 
 	 *            s       --  OK，正常
 	 *            award    --  和新手等一致
@@ -169,7 +170,7 @@ class TaskOnce
 			$tu->numch($k,$v);
 			$award[$k]=$v;
 		}
-		$d = $conf['minus'];
+		$d = $params['minus'];
 		if($d)
 		foreach($d as $k=>$v){
 			$tu->numch($k,-$v);

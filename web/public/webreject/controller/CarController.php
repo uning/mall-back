@@ -205,6 +205,10 @@ class CarController
 			$ret['s'] = 'timeleft';
 			return $ret;
 		}
+		if( $now - $car_obj['t'] > 2*$goods['buytime'] ){//货物过期
+		    $ret['s'] = 'expiration';
+		    return $ret;
+		}
 		$num = $car['goodsNumber'];
 		if( $car_obj['addgoods'] ){
 			$num += $car_obj['addgoods'];
@@ -337,6 +341,7 @@ class CarController
 			$ret['s'] = 'repeat';
 			return $ret;
 		}
+		$goods = ItemConfig::getItem( $car_obj['goodsTag'] );
 		if( $tag != 2006 ){
 			if( $copilot['bag'][$tag] < 1 ){
 				$ret['s'] = 'needbuy';
@@ -346,8 +351,6 @@ class CarController
 			$car_obj['copolitTag'] = $tag;
 		}
 		else{
-			$goodsTag = $car_obj['goodsTag'];
-			$goods = ItemConfig::getItem( $goodsTag );
 			if( $goods['buytime'] >= 1800 ){
 				$car = ItemConfig::getItem( $car_obj['tag'] );
 				$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数
@@ -361,15 +364,21 @@ class CarController
 			unset( $car_obj['help'] );
 			unset( $car_obj['goodsTag'] );
 			unset( $car_obj['copolitTag']);
-		}    
+		}
 		$copilot['id'] = $id;
+		$now = time();
 		$tu->puto( $copilot );
 		if( $copi['addgoods'] ){
 			$car_obj['addgoods'] += $copi['addgoods'];
 		}
-		if( $copi['accelerate'] && $car_obj['t'] > 0 ){
-			$car_obj['t'] -= $copi['accelerate'];
-		} 
+		if( $copi['accelerate'] && $car_obj['t'] ){
+			if( $now - $car_obj['t'] + $copi['accelerate'] > $goods['buytime'] ){
+			    $car_obj['t'] = $now - $goods['buytime'];
+			}
+			else{
+			    $car_obj['t'] -= $copi['accelerate'];
+			}
+		}
 		$tu->puto( $car_obj,TT::CAR_GROUP,false );
 		$ret['s'] = 'OK';
 		$ret['tag'] = $tag;

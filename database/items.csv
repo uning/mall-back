@@ -10,7 +10,7 @@ id,name,group,allowShopWidth,buy_goods_star,buy_need_achive,buy_need_level,buyti
 10108,冰激凌,g,1,,,7,1800,,,,,32,food,,,1,icon_icecream,icecream,,,icon_icecream,560,,,,4,8,,shop_dessert_icecream_1_front%8|8|8|8|8|8@140@78#101%shop_dessert_icecream_1_back;shop_dessert_icecream_3_front%8|8|8|8|8|8@540@78#101%shop_dessert_icecream_3_back,,rmg,225,2,-60,false,,1
 10109,康乃馨,g,1,,,8,21600,,,,,138,food,,,1,icon_carnation,carnation,,,icon_carnation,6675,,,,6,12,,shop_flower_carnation_1_front%shop_flower_carnation_1_back;shop_flower_carnation_2_front%shop_flower_carnation_2_back,,rmg,1800,2,0,false,,1
 10110,家庭影院,g,2,,,9,79200,,,,,324,food,,,1,icon_das_Home_Kino,das home-kino,,,icon_das_Home_Kino,39575,,,,720,528,,shop_ipad_video_2_front%13|13|13|13|13|13@340@77#101%shop_ipad_video_2_back;shop_ipad_video_4_front%13|13|13|13|13|13@740@77#101%shop_ipad_video_4_back,,rmg,75,2,-60,false,,1
-10111,平板电脑,g,4,,,10,46800,,,,,152,food,,,1,icon_ipad,ipad,,,icon_ipad,25075,,,,200,260,,shop_ipad_computer_4_front,,rmg,180,2,0,true,,2
+10111,平板电脑,g,3,,,10,46800,,,,,152,food,,,1,icon_ipad,ipad,,,icon_ipad,25075,,,,200,260,,shop_ipad_computer_3_front,,rmg,180,2,0,true,,2
 10112,沙发,g,2,,,12,7200,,,,,62,food,,,1,icon_chair,chair,,,icon_chair,2375,,,,36,72,,shop_fur_settee_2_front%0|13|13|13|13|13@340@78#101%shop_fur_settee_2_back;shop_fur_settee_3_front%0|13|13|13|13|13@540@78#101%shop_fur_settee_3_back,,rmg,100,2,-60,false,,1
 10113,轮滑鞋,g,2,,,14,32400,,,,,209,food,,,1,icon_roces,轮滑鞋,,,icon_roces,10325,,,,20,36,,shop_shoes_roces_2_back,,rmg,900,2,0,true,,1
 10114,口红,g,2,,,15,18000,,,,,102,food,,,1,icon_lipstick,口红,,,icon_lipstick,4575,,,,10,20,,shop_cosmetics_lipstick_2_front%13|13|13|13|13|13@260@70#101%shop_cosmetics_lipstick_2_back,,rmg,900,2,-70,false,,1
@@ -22,12 +22,12 @@ id,name,group,allowShopWidth,buy_goods_star,buy_need_achive,buy_need_level,buyti
 60002,房间1x2,o,,,,1,,true,true,,,,room,0,,2,BuildingGridMc2,房间1x2,,,BuildingGridMc2,0,false,30,true,,,,,,ro,,1,,,,
 60003,房间1x3,o,,,,1,,true,true,,,,room,0,,3,BuildingGridMc3,房间1x3,,,BuildingGridMc3,0,false,45,true,,,,,,ro,,1,,,,
 60004,房间1x4,o,,,,1,,true,true,,,,room,0,,4,BuildingGridMc4,房间1x4,,,BuildingGridMc4,0,false,60,true,,,,,,ro,,1,,,,
-60101,洗手间,o,,,,1,,true,true,,,,special,0,,2,icon_washroom,washroom,,,special_shop_washroom_2_front,380000,false,45,true,0,10,,,,rs,,1,300,false,washroom,2
-60102,电影院,o,,,,1,,true,true,,,,special,48,,4,icon_movie,movie,,,,0,TRUE,0,true,5000,240,,special_shop_movie_4_front%0|13|13|13|13|13@765@95#101%special_shop_movie_4_back,,rs,,1,-100,false,movie,1
-60103,健身房,o,,,,15,,true,,,,,special,38,,3,icon_washroom,washroom,,,specialshop14_front,0,true,0,true,2800,16,3600,,,rs,,1,-100,false,fitness,2
-60104,按摩店,o,,,,20,,true,,,,,special,0,,2,icon_washroom,washroom,,,,240000,false,0,true,6800,16,14400,specialshop13_front%specialshop13_back,,rs,,1,-100,false,massage,2
-60105,星巴克,o,,,,15,,true,,,,,special,68,,3,icon_washroom,washroom,,,,0,true,0,true,1400,24,21600,specialshop12_front%specialshop12_back,,rs,,1,-100,false,shangdao,2
-60106,便利店,o,,,,25,,true,,,,,special,88,,3,icon_washroom,washroom,,,specialshop11_front,0,true,0,true,1500,24,32400,,,rs,,1,-100,false,seven,2
+60101,洗手间,o,,,,1,,true,true,,,,special,0,,2,icon_washroom,卫生间，商城的基础设施，增加当前人气值45。,,,special_shop_washroom_2_front,380000,false,45,true,0,10,,,,rs,,1,300,false,washroom,2
+60102,电影院,o,,,,1,,true,true,,,,special,48,,4,icon_movie,"电影院,客人坐满需要2小时，演播需要2小时，收益5000金币。",,,,0,true,0,true,5000,240,,special_shop_movie_4_front%0|13|13|13|13|13@765@95#101%special_shop_movie_4_back,,rs,,1,-100,false,movie,1
+60103,健身房,o,,,,15,,true,,,,,special,38,,3,icon_fitness,健身房，将顾客变为强壮的肌肉男。每小时收益2800金币。,,,specialshop14_front,0,true,0,true,2800,16,3600,,,rs,,1,0,true,fitness,2
+60104,按摩店,o,,,,20,,true,,,,,special,0,,2,icon_massage,按摩店，解除所有不满意状态。每4小时收益6800金币。,,,,240000,false,0,true,6800,16,14400,specialshop13_front%specialshop13_back,,rs,,1,-150,true,massage,2
+60105,MoonBucks,o,,,,15,,true,,,,,special,68,,3,icon_moonbuck,月巴克咖啡店，每小时收益1400金币，可积累6小时。,,,,0,true,0,true,1400,24,21600,specialshop12_front%specialshop12_back,,rs,,1,100,true,shangdao,2
+60106,便利店,o,,,,25,,true,,,,,special,88,,3,icon_eight,8-11便利店，每小时收益1500金币，可积累9小时。,,,specialshop11_front,0,true,0,true,1500,24,32400,,,rs,,1,0,true,seven,2
 71103,welcome牌,o,,,,1,,true,true,false,,,ceiling,0,,4,dec_walkwaycell_1_4,前装饰,,,dec_walkwaycell_1_4,4200,false,0,true,,,,,,ce,,1,,,,
 71105,减价牌子,o,,,,1,,true,true,false,,,ceiling,0,,2,dec_walkwaycell_2_2,前装饰,,,dec_walkwaycell_2_2,1700,false,0,true,,,,,,ce,,1,,,,
 71107,小吊灯,o,,,,1,,true,true,false,,,ceiling,0,,1,dec_walkwaycell_3_1,前装饰,,,dec_walkwaycell_3_1,9600,false,0,true,,,,,,ce,,1,,,,

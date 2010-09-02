@@ -162,7 +162,7 @@ class Renren_API_Client {
 
 	//
 	function friends_areFriends($uids1, $uids2) { 
-		return $this->_call_method('friends.areFriends', array('uids1' => $uids1,
+		return $this->_call_method('xiaonei.friends.areFriends', array('uids1' => $uids1,
 					'uids2' => $uids2
 					));
 	}

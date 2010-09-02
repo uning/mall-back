@@ -78,6 +78,16 @@ class TTUser extends TTUDB
 				$this->puto( $inventory_obj,TT::GOODS_GROUP );
 			}		    
 		}
+		
+        //初始化三个加速道具
+		$_config = array(2003,2004,2005);
+		$id = $this->getoid( 'copilot',TT::OTHER_GROUP );
+		$copilot = $this->getbyid( $id );
+		$copilot['id'] = $id;
+        foreach( $_config as $tag ){
+            $copilot['bag'][$tag] += 1;
+        }
+        $this->puto( $copilot );
 
 		//初始化楼体
 		$bb_obj['tag'] = 99505;

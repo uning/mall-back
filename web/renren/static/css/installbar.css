@@ -1,6 +1,6 @@
 
 #installBar {
-background:url("../images/bar_body.png") no-repeat scroll 0 0 transparent;
+background:url("../images/bar_bg.png") no-repeat scroll 0 0 transparent;
 height:75px;
 position:relative;
 width:800px;
@@ -8,10 +8,10 @@ margin-bottom: 4px;
 }
 
 #installBar #progressBar {
-background:url("../images/pbar.png") no-repeat scroll 0 0 transparent;
+background:url("../images/bar.png") no-repeat scroll 0 center transparent;
 }
 #progressBar {
-height:24px;
+height:22px;
 left:21px;
 position:absolute;
 top:41px;
@@ -24,7 +24,7 @@ right:10px;
 top:5px;
 width:40px;
 }
-#installBar .pBarStep {
+#installBar .iBarStep {
 height:40px;
 position:absolute;
 text-align:center;
@@ -40,32 +40,32 @@ background:url("../images/67.png") no-repeat scroll 0 0 transparent;
 #installBar .stepcount_3 #progressPercentage {
 background:url("../images/100.png") no-repeat scroll 0 0 transparent;
 }
-#installBar .pBarDone {
+#installBar .iBarDone {
 display:none;
 }
-#installBar .done .pBarDone {
+#installBar .done .iBarDone {
 display:block;
 left:7px;
 position:absolute;
 top:11px;
 }
-#installBar .pBarAction {
+#installBar .iBarAction {
 left:6px;
 position:absolute;
 top:6px;
 }
-#installBar .pBarAction a {
+#installBar .iBarAction a {
 border:0 none;
 }
-#installBar .done .pBarAction {
+#installBar .done .iBarAction {
 display:none;
 }
-#pBarStepInstall {
+#iBarStepInstall {
 left:40px;
 }
-#pBarStepFan {
+#iBarStepFan {
 left:314px;
 }
-#pBarStepEmail {
+#iBarStepEmail {
 left:581px;
 }

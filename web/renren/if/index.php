@@ -42,8 +42,8 @@ if($gflg){
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
 <?php if($install_bar){ ?>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script>
-<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=2"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?3" />
 <?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
@@ -153,29 +153,31 @@ function install_swf(pid){
 	</div>
     </div>
 	<?php if($install_bar){ ?>
-	<div style="display: none;" id="installBar">
-		<div class="pBarStep done" id="pBarStepInstall">
-			<div class="pBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_install.png">
+	<div style="display: block;" id="installBar">
+		<div class="iBarStep done" id="iBarStepInstall">
+			<div class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/install_done.png">
 			</div>
 		</div>
-		<div class="pBarStep" id="pBarStepFan">
-			<div class="pBarAction">
-				<a onclick="IBar.becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
+		<div class="iBarStep" id="iBarStepFan">
+			<div class="iBarAction">
+				<a onclick="IBar.becomeFan(); return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_button.png"></a>
 			</div>
-			<div style="left: -12px;" class="pBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_like.png">
-			</div>
-		</div>
-		<div class="pBarStep" id="pBarStepEmail">
-			<div class="pBarAction">
-				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
-			</div>
-			<div class="pBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_email.png">
+			<div style="left: -12px;" class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_done.png">
 			</div>
 		</div>
-		<div id="progressBar" style="width: 229px;" class="stepcount_1">
+		<div class="iBarStep" id="iBarStepEmail">
+			<div class="iBarAction">
+				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_button.png"></a>
+			</div>
+			<div class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.png">
+			</div>
+		</div>
+		<div id="progressBar" style="width: 238px;" class="stepcount_1">
 			<div id="progressPercentage">
 			</div>
 		</div> 

@@ -4,30 +4,30 @@ require_once('../config.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
 $gflg = $_REQUEST['glink'];
+
+$tu = TT::TTUser($pid);
+ $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
+ $barobj = $tu->getbyid($iid); 
+ $install_bar = true;
+ if($barobj == null || $barobj['email'] == null){
+	$install_bar = true;
+}else{
+  $install_bar = false;
+ } 
+
 if($gflg){
 	$ts = TT::TTWeb();
-        $data = $ts->getbyid($gflg);
+    $data = $ts->getbyid($gflg);
 	$bids = $data['rfids'];
 	if(strstr($bids,$pid)){
 	}else{//给玩家礼物
 		$flag = $data['gift_id'];
                 $fconf = ItemConfig::get($flag);//取礼物信息	
-		$tu = TT::TTUser($pid);
+		
 		//	
 		$bids .=','.$pid;
 	}
-	//$ts->puto($data);
- 
-	 $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
-	 $barobj = $tu->getbyid($iid); 
-	 if($barobj == null || $barobj['email'] == null){
-		$install_bar = true;
-	}else{
-	  $install_bar = false;
-	 }
- 
- 
-			
+	//$ts->puto($data); 
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -37,8 +37,8 @@ if($gflg){
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
 <?php if($install_bar){ ?>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
 <?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">

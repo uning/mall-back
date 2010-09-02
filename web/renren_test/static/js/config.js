@@ -6,7 +6,7 @@ var $config = {
 	api_key:"8ad12ca6f37e4245807ffe1d06c764ec",
 	app_id: "113391",
     canvas_url: "http://apps.renren.com/malltest/",
-	reciever_url:'/xd.html',
+	reciever_url:'/work/mall/backend/web/renren_test/xd.html',
 	jsfiles : [ 
 	        [ 'jsflash.js', 1 ],
 	        [ 'delegator.js', 1 ],

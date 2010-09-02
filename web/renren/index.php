@@ -5,6 +5,13 @@ require_once('config.php');
   // $platform_id = "renren".$renren->user;
     //$session_key = $renren->session_key;
 ?>
+<style>
+.share-wrapper {
+position:absolute;
+right:0;
+top:0;
+}
+</style>
 
 <div id='is_install'></div>
 <div id='content' style="background-color: #ffffff;">

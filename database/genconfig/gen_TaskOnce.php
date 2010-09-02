@@ -1,6 +1,7 @@
 <?php
 $xmlfile = '../../../Venus/src/resource/simplifiedchinese/xml/tasks.xml';
 $xml =  simplexml_load_file($xmlfile);
+$xmlfile = '../../../Venus/src/resource/simplifiedchinese/xml/taskgoals.xml';
 foreach($xml->tasks->task as $t)
 {
 	$id = $t['id'];

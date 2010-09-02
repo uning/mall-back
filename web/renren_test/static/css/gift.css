@@ -1,53 +1,181 @@
 @CHARSET "UTF-8";
 
-  h1 { font-size: 11pt; font-weight: bold; }
-  h2 { font-weight: bold; }
-  .padding_content { padding: 8px; }
-  
-  .clear { clear: both; }
-  .gift_img { padding: 17px 11px 0px 0px; text-align: center; }
-  li.giftLocked .gift_name { color: #666666; margin: -4px 3px 0 0;}
-  .gift_name span { display: block; height: 30px; }
-  .gift_action { margin: 3px 17px 0px 5px; color: red; font-weight: bold; }
-  .giftIconImg { width: 75px; height: 75px; }
-  .giftformsubmit { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 12px; font-weight: bold; text-decoration: none; height: 25px; }
-  .giftsendbtn { border-style: solid; border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea; border-width: 1px; margin: 1px 5px; padding: 3px 10px; background-color: #3b5998; color: white; font-size: 10px; text-decoration: none; }
-  .main_gift_cont ul { list-style-type: none; }
-  .main_gift_cont li { background: #ffffff none no-repeat scroll left top; width: 143px; height: 159px; float: left; position: relative; text-align: center; }
-  .main_gift_cont .gift_img { padding: 5px 9px 5px 1px; height: 80px; }
-  .main_gift_cont .gift_img span { margin: 0pt auto; display: block; height: 80px; width: 75px; }
-  .main_gift_cont .gift_name { margin: 17px 12px 0px 5px; color: #70461e; font-weight: lighter; text-align: center; font-size: 12px; }
-  .main_gift_cont .gift_name span { margin: 4px 0px 0px 6px; display: block; height: 25px; width: 115px; }
-  .main_gift_cont .gift_action { margin: -1px 10px 0px 5px; color: red; font-weight: lighter;font-size:12px; text-align: center; }
-  .main_gift_cont li.giftLocked .gift_action { margin: -3px 10px 0px 5px;}
-  .main_gift_cont li { float: left; text-align: center; margin: 0px 30px 0 0;}
-  .main_gift_cont li.giftLi,   .main_gift_cont li.giftLocked{ width: 143px; height: 166px; }
-  .main_gift_cont li.giftLi { background: url("../images/css/gift_box_open.png") no-repeat 0 0; }
-  .main_gift_cont li.giftLocked { background: url("../images/css/gift_box_locked.png") no-repeat 0 0; }
-  .giftIconImg { height: 80px; margin-top: 15px; margin-left: -13px; margin-bottom: 10px; }
-  a.inputaux { padding: 5px 15px; }
-.inputbutton, .inputsubmit {
-	border-style:solid;
-	border-width:1px;
-	border-color:#d9dfea #0e1f5b #0e1f5b #d9dfea;
-	background-color:#3b5998;
-	color:#fff;
-	padding:2px 15px 3px 15px;
-	text-align:center;
-	*width:1;
-	overflow:visible;
-	*padding:2px 15px
+h1 {
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+h2 {
+	font-weight: bold;
+}
+.items {
+	background-color: #F5DEBC;
+}
+.padding_content {
+	padding: 8px;
+}
+
+.clear {
+	clear: both;
+}
+
+.gift_img {
+	padding: 17px 11px 0px 0px;
+	text-align: center;
+}
+.gift_name {
+	margin: 0px 17px 0px 5px;
+	color: #70461e;
+	font-weight: lighter;
+}
+li.giftLocked .gift_name {
+	color: #666666;
+	margin: -4px 3px 0 0;
+}
+
+.gift_name span {
+	display: block;
+	height: 30px;
+}
+
+.gift_action {
+	margin: -8px 17px 0px 5px;
+	color: red;
+	font-weight: lighter;
+}
+
+.giftIconImg {
+	width: 75px;
+	height: 75px;
+}
+
+.giftformsubmit {
+	border-style: solid;
+	border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea;
+	border-width: 1px;
+	margin: 1px 5px;
+	padding: 3px 10px;
+	background-color: #3b5998;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	height: 25px;
+}
+
+.giftsendbtn {
+	border-style: solid;
+	border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea;
+	border-width: 1px;
+	margin: 1px 5px;
+	padding: 3px 10px;
+	background-color: #3b5998;
+	color: white;
+	font-size: 10px;
+	text-decoration: none;
+}
+
+.main_gift_cont ul {
+	list-style-type: none;
+	z-index: -3;
+}
+
+.main_gift_cont li {
+	background: #ffffff none no-repeat scroll left top;
+	width: 143px;
+	height: 159px;
+	float: left;
+	position: relative;
+	text-align: center;
+}
+
+.main_gift_cont .gift_img {
+	padding: 3px 16px 8px 0px;
+	height: 93px;
+}
+
+.main_gift_cont .gift_img span {
+	margin: 0pt auto;
+	display: block;
+	height: 80px;
+	width: 75px;
+}
+
+.main_gift_cont .gift_name {
+	margin: 17 12 0 5;
+	color: #70461e;
+	text-align: center;
+	font-size: 12px;
+}
+
+.main_gift_cont .gift_name span {
+	margin: 4 0 0 6;
+	display: block;
+	height: 25px;
+	width: 115px;
+}
+
+.main_gift_cont .gift_action {
+	color: red;
+	font-weight: lighter;
+	font-size: 12px;
+	text-align: center;
+}
+
+.main_gift_cont li.giftLocked .gift_action {
+	margin: -3px 10px 0px 5px;
+}
+
+.main_gift_cont li {
+	float: left;
+	text-align: center;
+	margin: 0px 30px 0 0;
+}
+
+.main_gift_cont li.giftLi,.main_gift_cont li.giftLocked {
+	width: 143px;
+	height: 166px;
+}
+
+.main_gift_cont li.giftLi {
+    background: url("../images/css/gift_box_open.png") no-repeat 0 0;
+}
+
+.main_gift_cont li.giftLocked {
+    background: url("../images/css/gift_box_locked.png") no-repeat 0 0;
+}
+
+.giftIconImg {
+	height: 80px;
+	margin-top: 15px;
+	margin-left: -13px;
+	margin-bottom: 10px;
+}
+
+a.inputaux {
+	padding: 5px 15px;
+}
+
+.inputbutton,.inputsubmit {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #d9dfea #0e1f5b #0e1f5b #d9dfea;
+	background-color: #3b5998;
+	color: #fff;
+	padding: 2px 15px 0px 15px;
+	text-align: center; *
+	width: 1;
+	overflow: visible; *
+	padding: 2px 15px
 }
 
 .inputaux {
-	background:#f0f0f0;
-	border-color:#e7e7e7 #666 #666 #e7e7e7;
-	color:#000;
-	font-size:12px;
-	font-weight:bold;
-	margin:1px 5px;
-	padding:3px 10px;
-	text-decoration:none;
-}giftButtonFloat
-	
-
+	background: #f0f0f0;
+	border-color: #e7e7e7 #666 #666 #e7e7e7;
+	color: #000;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 1px 5px;
+	padding: 3px 10px;
+	text-decoration: none;
+}

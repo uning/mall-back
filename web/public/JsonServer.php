@@ -10,7 +10,7 @@ class JsonServer{
 	protected  $_raw_reg ; 
 	protected  $_do_auth = false;
 
-	protected  $_debug   = true;/* when in debug mod ,result contain the request*/
+	protected  $_debug   = false;/* when in debug mod ,result contain the request*/
 	protected  $_use_deflate = false;
 
 
@@ -210,8 +210,7 @@ class JsonServer{
 				'Task.finish'=>1,
 				'Task.get_award'=>1,
 				'Friend.dis_neighbor'=>1,
-				'Friend.invite_neighbor'=>1,
-				'Friend.accept_neighbor'=>1,
+				'HelpGet.award'=>1,
 				);
 
 		try{
@@ -221,7 +220,7 @@ class JsonServer{
 			$r['msg']=$e->getMessage();
 			$r['exce']=$e->getTrace();
 			error_log($method.':'.$r['msg']);
-			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
+			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$_SERVER['REQUEST_TIME'],'p'=>$this->_raw_reg));
 		}
 		if($this->_debug){
 			CrabTools::myprint($ret,REQ_DATA_ROOT.$mypre.'.resp');
@@ -229,15 +228,17 @@ class JsonServer{
 		if(!$ret){
 			$ret['s']= "KO";
 			$ret['msg']= "$cn::$m return null";
+			TTLog::record(array('s'=>'rnull','m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 		}
 		$tm = $_SERVER['REQUEST_TIME'];
 		if($ret['s']=='OK'){
 			if(array_key_exists($method,$log_method)){
 				TTLog::record(array('s'=>'OK','m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 			}
-		}else{
-			TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 		}
+		//else{
+		//	TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
+		//}
 		return $ret;
 	}
 }

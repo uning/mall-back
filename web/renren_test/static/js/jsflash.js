@@ -149,9 +149,13 @@ var PF = {
 	},
 	
 	popUpFeed: function (id,data){
-		alert(data);
 		console.log('popUpFeed');
 		popUpFeed(data,function(response){
+			PF.flashapp.onfb_playcrab(id,response);
+		});
+	},
+	switchToCinema: function(id,data){
+		openCinema(data,function(response){
 			PF.flashapp.onfb_playcrab(id,response);
 		});
 	}

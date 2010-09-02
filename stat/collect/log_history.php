@@ -91,6 +91,7 @@ for($i=$start;$i<=$end;++$i){
 		}
 		if($m=='Gift.accept'){
 			$gtags = $p['gids'];
+			if($gtags)
 			foreach( $gtags as $gtag ){
 				$dgr["$mpre@$gtag"] += 1;
 				$sp1.="$gtag@";
@@ -98,6 +99,7 @@ for($i=$start;$i<=$end;++$i){
 		}
 		if($m=='ItemController.buy'){
 			$items = $p['d'];
+			if($items)
 			foreach( $items as $tag){
 				$dgr["$mpre@$tag"] += 1;
 				$sp1.="$tag@";
@@ -105,6 +107,7 @@ for($i=$start;$i<=$end;++$i){
 		}
 		if($m=='CarController.buy'){
 			$cars = $p['c'];
+			if($cars)
 			foreach( $cars as $tag){
 				$dgr["$mpre@$tag"] += 1;
 				$sp1.="$tag@";
@@ -159,6 +162,9 @@ for($i=$start;$i<=$end;++$i){
 	//print_r($p);
 	fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
 }
+
+print_r($dgr);
+return;
 store_varible($dgr);
 $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
 if($dbconfig['password']){

@@ -263,7 +263,8 @@ var pid= <?php echo $pid; ?>;
 var session_key= "<?php echo $session_key; ?>";
  
     window.onload=function(){
-			IBar.init_bar();	 
+	        if( typeof(IBar) != 'undefined' )
+		        	IBar.init_bar();	 
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
 	}

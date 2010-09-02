@@ -4,9 +4,21 @@ require_once('../config.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
 $gflg = $_REQUEST['glink'];
+$sess = TTGenid::getbypid($pid);
+$uid = $sess['id'];
+$tu = new   TTUser($uid);
+ $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
+	 $barobj = $tu->getbyid($iid); 
+	 $install_bar = true;
+	 if($barobj == null || $barobj['email'] == null){
+		$install_bar = true;
+	}else{
+	  $install_bar = false;
+	 } 
+
 if($gflg){
-	$ts = TT::TTWeb();
-        $data = $ts->getbyid($gflg);
+	
+    $data = $ts->getbyid($gflg);
 	$bids = $data['rfids'];
 	if(strstr($bids,$pid)){
 	}else{//给玩家礼物
@@ -18,6 +30,7 @@ if($gflg){
 	}
 	//$ts->puto($data);
  
+	
 			
 }
 ?>
@@ -27,7 +40,10 @@ if($gflg){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?1" />
+<?php if($install_bar){ ?>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
+<?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
@@ -41,6 +57,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
 <script type="text/javascript">
+var installbar = <?php echo json_encode($barobj) ?>;
 swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
@@ -135,6 +152,7 @@ function install_swf(pid){
 	</ul>
 	</div>
     </div>
+	<?php if($install_bar){ ?>
 	<div style="display: none;" id="installBar">
 		<div class="pBarStep done" id="pBarStepInstall">
 			<div class="pBarDone">
@@ -151,7 +169,7 @@ function install_swf(pid){
 		</div>
 		<div class="pBarStep" id="pBarStepEmail">
 			<div class="pBarAction">
-				<a onclick="XN.Connect.showPermissionDialog('email',permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
+				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
 			</div>
 			<div class="pBarDone">
 				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_email.png">
@@ -162,6 +180,7 @@ function install_swf(pid){
 			</div>
 		</div> 
 	</div> 
+	<?php } ?>
 </div>
 
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
@@ -202,60 +221,17 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
-var stepCnt = 1;
+ 
+<?php  if($barobj['fan']){
+echo "var installStep = 2; ";
+}else{
+echo "var installStep = 1; ";
+}?>
+     
 
-function permCallBack(permission) {
-		if (permission) {
-	        stepCnt++;
-	        document.getElementById("pBarStepEmail").className = "pBarStep done";
-	    }
-        updInstallBar();        
-	}
- 
-	function becomeFan() {
-	    window.open("http://page.renren.com/pa/bf?pid=699110107", "_blank");
-	
-	    stepCnt++;
-	    document.getElementById("pBarStepFan").className = "pBarStep done";
-	    
-	    updInstallBar();
-	}
- 
-    function updInstallBar() {
-	    var w;
-	    switch (stepCnt) {
-	        case 1: 
-	            w = 229;
-	            break;
-	        case 2:
-	            w = 509;
-	            break;
-	        default:
-	            w = 747;
-	            break;
-	    }
-	    
-	    document.getElementById("progressBar").style.width = w + "px";
-	    document.getElementById("progressBar").className = "stepcount_" + stepCnt;
-	
-	    if (stepCnt >= 3) {
-	    	document.getElementById("installBar").style.display = "none";
-	    }
-	    else {
-	        document.getElementById("installBar").style.display = "block";
-	    }
-    }
- 
-    function initBar() {
-        if (stepCnt == 2) {
-            document.getElementById("pBarStepFan").className = "pBarStep done";
-        }
-    }
-    
 
     window.onload=function(){
-			initBar();	
-
+			IBar.init_bar();	 
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
 	}

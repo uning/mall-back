@@ -36,7 +36,7 @@ var IBar = {
     }, 
 	init_bar : function() {
         if (installStep == 2) {
-            document.getElementById("pBarStepFan").className = "pBarStep done";
+            document.getElementById("iBarStepFan").className = "iBarStep done";
 			IBar.update_bar();
         }
     },
@@ -44,7 +44,7 @@ var IBar = {
 	permCallBack: function(permission) {
 		if (permission) {
 	        installStep++;
-	        document.getElementById("pBarStepEmail").className = "pBarStep done";
+	        document.getElementById("iBarStepEmail").className = "iBarStep done";
 	    }
         IBar.update_bar();        
 		IBar.save_bar('email');
@@ -54,7 +54,7 @@ var IBar = {
  		IBar.stat('fan','try'); 
 		window.open("http://page.renren.com/pa/bf?pid=699110107", "_blank"); 
 	    installStep++;
-	    document.getElementById("pBarStepFan").className = "pBarStep done"; 
+	    document.getElementById("iBarStepFan").className = "iBarStep done"; 
 	    IBar.update_bar();
 		IBar.save_bar('fan')
 	    IBar.stat('fan','ok');     

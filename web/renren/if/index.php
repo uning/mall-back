@@ -161,7 +161,8 @@ function install_swf(pid){
 		</div>
 		<div class="iBarStep" id="iBarStepFan">
 			<div class="iBarAction">
-				<a onclick="IBar.becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
+				<a onclick="IBar.becomeFan(); return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_button.png"></a>
 			</div>
 			<div style="left: -12px;" class="iBarDone">
 				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_done.png">
@@ -169,13 +170,14 @@ function install_swf(pid){
 		</div>
 		<div class="iBarStep" id="iBarStepEmail">
 			<div class="iBarAction">
-				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
+				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_button.png"></a>
 			</div>
 			<div class="iBarDone">
 				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.png">
 			</div>
 		</div>
-		<div id="progressBar" style="width: 229px;" class="stepcount_1">
+		<div id="progressBar" style="width: 238px;" class="stepcount_1">
 			<div id="progressPercentage">
 			</div>
 		</div> 

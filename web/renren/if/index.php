@@ -42,8 +42,8 @@ if($gflg){
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
 <?php if($install_bar){ ?>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script>
-<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=2"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?3" />
 <?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">

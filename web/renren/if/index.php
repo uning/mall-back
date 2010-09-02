@@ -3,6 +3,7 @@ require_once('../config.php');
 
 //
 $pid = $_REQUEST['xn_sig_user'];
+$session_key = $_REQUEST['xn_sig_session_key'];
 $gflg = $_REQUEST['glink'];
 $sess = TTGenid::getbypid($pid);
 $uid = $sess['id'];
@@ -39,10 +40,10 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?6" />
 <?php if($install_bar){ ?>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script>
-<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=3"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?4" />
 <?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
@@ -57,8 +58,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
 <script type="text/javascript">
-var installbar = <?php echo json_encode($barobj) ?>;
-swf_install = false;
+ swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
@@ -153,29 +153,31 @@ function install_swf(pid){
 	</div>
     </div>
 	<?php if($install_bar){ ?>
-	<div style="display: none;" id="installBar">
-		<div class="pBarStep done" id="pBarStepInstall">
-			<div class="pBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_install.png">
+	<div style="display: block;" id="installBar">
+		<div class="iBarStep done" id="iBarStepInstall">
+			<div class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/install_done.png">
 			</div>
 		</div>
-		<div class="pBarStep" id="pBarStepFan">
-			<div class="pBarAction">
-				<a onclick="becomeFan(); return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_like.png"></a>
+		<div class="iBarStep" id="iBarStepFan">
+			<div class="iBarAction">
+				<a onclick="IBar.becomeFan(); return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_button.png"></a>
 			</div>
-			<div style="left: -12px;" class="pBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_like.png">
-			</div>
-		</div>
-		<div class="pBarStep" id="pBarStepEmail">
-			<div class="pBarAction">
-				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#"><img border="0" src="http://asset.mayagame.com/asset/icons/button_email.png"></a>
-			</div>
-			<div class="pBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/done_email.png">
+			<div style="left: -12px;" class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_done.png">
 			</div>
 		</div>
-		<div id="progressBar" style="width: 229px;" class="stepcount_1">
+		<div class="iBarStep" id="iBarStepEmail">
+			<div class="iBarAction">
+				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_button.png"></a>
+			</div>
+			<div class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.png">
+			</div>
+		</div>
+		<div id="progressBar" style="width: 238px;" class="stepcount_1">
 			<div id="progressPercentage">
 			</div>
 		</div> 
@@ -228,8 +230,9 @@ echo "var installStep = 2; ";
 echo "var installStep = 1; ";
 }?>
      
-
-
+var pid= <?php echo $pid; ?>;
+var session_key= "<?php echo $session_key; ?>";
+ 
     window.onload=function(){
 			IBar.init_bar();	 
 			var o=document.getElementById('scrollBox');

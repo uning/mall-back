@@ -9,7 +9,7 @@ var IBar = {
 	},
 	save_bar : function(op) {
 		console.log('save_bar', op)
-		$.post("ajax/op_bar.php?op=" + op,  function(data){console.debug("xxxx",data)}, 'json');
+		$.post("../ajax/op_bar.php?op=" + op+"&xn_sig_user="+pid,  function(data){console.debug("xxxx",data)}, 'json');
 	},
 	update_bar: function() {
 	    var w;

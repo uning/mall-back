@@ -228,7 +228,7 @@ echo "var installStep = 2; ";
 echo "var installStep = 1; ";
 }?>
      
-
+var pid= <?php echo $pid; ?>;
 
     window.onload=function(){
 			IBar.init_bar();	 

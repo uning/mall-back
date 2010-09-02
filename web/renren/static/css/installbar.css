@@ -11,17 +11,17 @@ margin-bottom: 4px;
 background:url("../images/bar.png") no-repeat scroll 0 center transparent;
 }
 #progressBar {
-height:22px;
+height:23px;
 left:21px;
 position:absolute;
 top:41px;
 width:747px;
 }
-#installBar #progressPercentage {
-height:20px;
+#installBar #progressPercentage { 
+height:30px;
 position:absolute;
 right:10px;
-top:5px;
+top:-6px;
 width:40px;
 }
 #installBar .iBarStep {

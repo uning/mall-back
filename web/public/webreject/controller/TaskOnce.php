@@ -198,10 +198,10 @@ class TaskOnce
 		if($rids)
                     $tu->remove($rids);
 		$ret['award'] = $award;
-		$data['id']=$tid;
-		$data['s']='finished';
-		$data['ut']=time();
-		$tu->puto($data);
+		$to['id']=$tid;
+		$to['s']='finished';
+		$to['ut']=time();
+		$tu->puto($to);
 		$ret['s'] = 'OK';
 		return $ret;
 	}    

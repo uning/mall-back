@@ -303,7 +303,7 @@ class Renren_API_Client {
 	}
 	
 	private function json_to_array($json){
-		return json_decode($jso,true);
+		return json_decode($json,true);
 	}
 	private function checkreturn($result)
 	{	

@@ -19,8 +19,7 @@ if($gflg){
 	//$ts->puto($data);
  
 	 $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
-	 $barobj = $tu->getbyid($iid);
-	 
+	 $barobj = $tu->getbyid($iid); 
 	 if($barobj['email']){
 		$install_bar = false;
 	}else{
@@ -38,6 +37,7 @@ if($gflg){
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
 <?php if($install_bar){ ?>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=1"></script
 <link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?2" />
 <?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
@@ -53,6 +53,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
 <script type="text/javascript">
+var installbar = <?php echo json_encode($barobj) ?>;
 swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
@@ -216,7 +217,14 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
-    var stepCnt = 1;    
+
+	<?php if($barobj['email']) { ?>
+<?php else if($barobj['fan']) { ?>
+  var stepCnt = 2;  	  
+<?php else { ?>   
+ var stepCnt = 1;  	
+<? } ?>
+
 
     window.onload=function(){
 			IBar.init_bar();	 

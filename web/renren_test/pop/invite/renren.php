@@ -255,7 +255,7 @@ class Renren_API_Client {
 	{
 		$this->errno = 0;
 		$this->errmsg = ''; 
-		$url = 'http://api.com/restserver.do';
+		$url = 'http://api.renren.com/restserver.do';
 
 		$params = array();
 		$params['method'] = $method;

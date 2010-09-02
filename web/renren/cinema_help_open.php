@@ -11,22 +11,13 @@ else {
 }
 
 if($irec){
- $pid = $irec['pid'];
+ $pid = $irec['uid'];
    $oid = $irec['oid'];
    $sess=TTGenid::getbypid($pid);	
 	$user = new TTUser($sess['id']);	
 }
 
-if($user){
-foreach ($irec['ids'] as $v){
-	if($v==$fid)
-	{
-		$inv = true;
-		break;
-	}
-}
-if($inv)
+
 $user->update_help($oid,$fid);
 
-}
 header('Location: cinema.php?fid='.$linkid.'&xn_sig_user='.$fid);

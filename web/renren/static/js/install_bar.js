@@ -9,7 +9,7 @@ var IBar = {
 	},
 	save_bar : function(op) {
 		console.log('save_bar', op)
-		$.post("../ajax/op_bar.php?op=" + op+"&xn_sig_user="+pid,  function(data){console.debug("xxxx",data)}, 'json');
+		$.post("../ajax/op_bar.php?op=" + op+"&xn_sig_user="+pid+"&xn_sig_session_key="+session_key,  function(data){console.debug("xxxx",data)}, 'json');
 	},
 	update_bar: function() {
 	    var w;
@@ -33,12 +33,7 @@ var IBar = {
 	    else {
 	        document.getElementById("installBar").style.display = "block";
 	    }
-    },
-	init_bar : function() {
-        if (installStep == 2) {
-            document.getElementById("pBarStepFan").className = "pBarStep done";
-        }
-    },
+    }, 
 	
 	permCallBack: function(permission) {
 		if (permission) {

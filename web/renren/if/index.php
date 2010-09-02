@@ -218,11 +218,12 @@ version of Flash. Please do so by clicking <a
 </html>
 <script type="text/javascript">
  
-<?php  if($barobj['fan']) { ?>
-  var stepCnt = 2;  	  
-<?php else { ?>   
- var stepCnt = 1;  	
-<? } ?>
+<?php  if($barobj['fan']){
+echo "var stepCnt = 2; ";
+}else{
+echo "var stepCnt = 1; ";};
+}?>
+     
 
 
     window.onload=function(){

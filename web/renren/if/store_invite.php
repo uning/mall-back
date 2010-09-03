@@ -1,5 +1,6 @@
 <?php
 require_once('../config.php');
+require_once '../renren.php';
 $linkid = $_REQUEST['lid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];

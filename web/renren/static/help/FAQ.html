@@ -83,9 +83,10 @@ function getPos(e)
 function scroller(el) 
 {  
 	if(typeof el != 'object') { el = document.getElementById(el); }  
-	if(!el) return; 
+	var scroll  = document.getElementById('scroller');
+	if(!el) {scroll.scrollTop=0; return;}
  	var p = getPos(el); 
-     var scroll  = document.getElementById('scroller');
+     
  	scroll.scrollTop =  p.y-60; 
 } 
 		
@@ -127,7 +128,7 @@ function scroller(el)
 </table>
 
 <table id="q" border="0" cellpadding="0"  cellspacing="0">
-<tr class="title"><td width="90%">哪些需要由你来决定</td><td width="10%"></td></tr>
+<tr class="title"><td width="90%">哪些需要由你来决定</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -145,7 +146,7 @@ function scroller(el)
 </tr>
 </table>
 <table id="q2" border="0" cellspacing="0" cellpadding="0">
-<tr class="title"><td width="90%">销售秘笈</td><td></td></tr>
+<tr class="title"><td width="90%">销售秘笈</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2" >
 <hr color="6699bb" width="100%">
@@ -156,7 +157,7 @@ function scroller(el)
 	</tr>
 </table>
 <table id="q3" border="0" cellspacing="0" cellpadding="0">
-<tr class="title"><td width="90%">进货秘笈</td><td></td></tr>
+<tr class="title"><td width="90%">进货秘笈</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -166,7 +167,7 @@ function scroller(el)
 </tr>
 </table>
 <table id="q4" border="0" cellspacing="0">
-<tr class="title"><td width="90%">怎样升级更快呢</td><td></td></tr>
+<tr class="title"><td width="90%">怎样升级更快呢</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -179,7 +180,7 @@ function scroller(el)
 </tr>
 </table>
 <table id="q5" border="0" cellspacing="0">
-<tr class="title"><td width="90%">装扮商场</td><td></td></tr>
+<tr class="title"><td width="90%">装扮商场</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -192,7 +193,7 @@ function scroller(el)
 </tr>
 </table>
 <table id="q6" border="0" cellspacing="0">
-<tr class="title"><td width="90%">关心一下你的顾客吧</td><td></td></tr>
+<tr class="title"><td width="90%">关心一下你的顾客吧</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -203,7 +204,7 @@ function scroller(el)
 </tr>
 </table>
 <table id="q7" border="0" cellspacing="0">
-<tr class="title"><td width="90%">如果我离线了，我的商场还能赚钱么？</td><td ></td></tr>
+<tr class="title"><td width="90%">如果我离线了，我的商场还能赚钱么？</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">

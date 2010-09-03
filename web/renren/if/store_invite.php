@@ -72,10 +72,8 @@ $ids = $_REQUEST['ids'];
 		$ids.=$id;
 	}
 	$ids = substr($ids,1);
-	$renren->api_client->notifications_send($ids,$noti);
-	}catch(Exception  $e){
-		print_r($e);
-	}
-	header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
+	$r = $renren->api_client->notifications_send($ids,$noti);
+	
+	header('Location: '.RenrenConfig::$canvas_url.'?f=invite&noti='.$r);
 	
 

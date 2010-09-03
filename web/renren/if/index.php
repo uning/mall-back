@@ -329,8 +329,25 @@ var config = {
 		      console.log('index log callback' +  window.location.href);
 	      },
 	after_fbinit: function(){//before FB.init callback
+		   
+
+	
+	
 	    	  console.log('index after_fbinit');
 	    	   pid = PL.conf('pid')||query_json.xn_sig_user;
+			   
+			    XN.Main.get_sessionState().waitUntilReady(function() {
+		　　　XN.Main.apiClient.users_getLoggedInUser(function(result, ex) {
+ 				if (!ex && pid == result.uid){ 
+					
+				}else{
+					window.location = '<?php echo RenrenConfig::$canvas_url;?>';
+					return;
+				}
+			  });
+		　　});
+			   
+			   
 	  		   if(!pid){
 	  			   var getpid = function(r){
 	  				   pid = r.uid;

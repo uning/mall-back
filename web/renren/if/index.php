@@ -256,9 +256,9 @@ version of Flash. Please do so by clicking <a
 			</a>
 		</div>
 		
-		<div class='help'><span style="width: 625px; float: left;">Music: Kevin MacLeod</span>
-		<span style="width: 175px; float: right; text-align: right;">
-		商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?>
+		<div class='help'><span style="width: 615px; float: left;">Music: Kevin MacLeod</span>
+		<span style="width: 185px; float: right; text-align: right;">
+		商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?>&nbsp;
 		</span></div>
 		
 		<div class='footnotice'>

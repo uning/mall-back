@@ -15,13 +15,13 @@ var IBar = {
 	    var w;
 	    switch (installStep) {
 	        case 1: 
-	            w = 238;
+	            w = 241;
 	            break;
 	        case 2:
-	            w = 516;
+	            w = 519;
 	            break;
 	        default:
-	            w = 752;
+	            w = 755;
 	            break;
 	    } 
 	    document.getElementById("progressBar").style.width = w + "px";

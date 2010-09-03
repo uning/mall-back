@@ -1,12 +1,27 @@
 <?php
 require_once('../config.php');
-
+require_once('../renren.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
-$session_key = $_REQUEST['xn_sig_session_key'];
+$session_key = $_POST['xn_sig_session_key'];
 $gflg = $_REQUEST['glink'];
 $sess = TTGenid::getbypid($pid);
 $uid = $sess['id'];
+if($session_key!=$sess['session_key']){
+	$renren = new Renren();
+	$renren ->api_key = RenrenConfig::$api_key;
+	$renren ->secret = RenrenConfig::$secret;
+	$renren ->session_key = $session_key;
+	$renren->init($session_key);
+	$rt = $renren->api_client->users_getLoggedInUser();
+	if($rt['uid']==$pid){
+		$sess['session_key'] = $session_key;
+		TTGenid::update($sess,$sess['id']);
+	}else 
+	{
+			header('Location: '.RenrenConfig::$canvas_url);
+	}
+}
 $tu = new   TTUser($uid);
  $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
 	 $barobj = $tu->getbyid($iid); 
@@ -241,7 +256,7 @@ version of Flash. Please do so by clicking <a
 			</a>
 		</div>
 		
-		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		<div class='xnid'><span style="width: 625px; float: left;">Music: Kevin MacLeod</span>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
 		
 		<div class='footnotice'>
 			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				

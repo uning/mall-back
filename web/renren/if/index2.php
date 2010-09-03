@@ -1,8 +1,29 @@
 <?php
 require_once('../config.php');
 
+require_once('../renren.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
+$session_key = $_REQUEST['xn_sig_session_key'];
+$gflg = $_REQUEST['glink'];
+$sess = TTGenid::getbypid($pid);
+$uid = $sess['id'];
+
+if($session_key!=$sess['session_key']){
+	$renren = new Renren();
+	$renren ->api_key = RenrenConfig::$api_key;
+	$renren ->secret = RenrenConfig::$secret;
+	$renren ->session_key = $session_key;
+	$renren->init($session_key);
+	$rt = $renren->api_client->users_getLoggedInUser();
+	if($rt['uid']==$pid){
+		$sess['session_key'] = $session_key;
+		TTGenid::update($sess,$sess['id']);
+	}else 
+	{
+			header('Location: '.RenrenConfig::$canvas_url);
+	}
+}
 $gflg = $_REQUEST['glink'];
 if($gflg){
 	$ts = TT::TTWeb();

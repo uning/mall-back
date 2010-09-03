@@ -48,7 +48,7 @@ if($gflg){
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
-
+var session = '<?php echo $session_key; ?>';
 </script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
@@ -252,12 +252,9 @@ version of Flash. Please do so by clicking <a
 </body>
 </html>
 <script type="text/javascript">
- 
-<?php  if($barobj['fan']){
-echo "var installStep = 2; ";
-}else{
-echo "var installStep = 1; ";
-}?>
+<?php  if($barobj['fan']){ echo "var installStep = 2; ";}
+		else{echo "var installStep = 1; ";}
+?>;
      
 var pid= <?php echo $pid; ?>;
 var session_key= "<?php echo $session_key; ?>";
@@ -295,6 +292,7 @@ function update_info()
 	XN.Main.get_sessionState().waitUntilReady(function(){
 		var get_user=function (r){
 			if(r[0]&&r[0].name){
+				r[0]['session'] = session_key;
 				$.post("../ajax/save_info.php", r[0], function(){}, 'json');
 			}
 		}

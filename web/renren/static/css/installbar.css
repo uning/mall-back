@@ -1,6 +1,6 @@
 
 #installBar {
-background:url("../images/bar_bg.png") no-repeat scroll 0 0 transparent;
+background:url("../images/bar_bg.jpg") no-repeat scroll 0 0 transparent;
 height:75px;
 position:relative;
 width:800px;
@@ -32,13 +32,13 @@ top:0;
 width:130px;
 }
 #installBar .stepcount_1 #progressPercentage {
-background:url("../images/33.png") no-repeat scroll 0 0 transparent;
+background:url("../images/33.jpg") no-repeat scroll 0 0 transparent;
 }
 #installBar .stepcount_2 #progressPercentage {
-background:url("../images/67.png") no-repeat scroll 0 0 transparent;
+background:url("../images/67.jpg") no-repeat scroll 0 0 transparent;
 }
 #installBar .stepcount_3 #progressPercentage {
-background:url("../images/100.png") no-repeat scroll 0 0 transparent;
+background:url("../images/100.jpg") no-repeat scroll 0 0 transparent;
 }
 #installBar .iBarDone {
 display:none;

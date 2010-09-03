@@ -162,25 +162,25 @@ function install_swf(pid){
 	<div style="display: block;" id="installBar">
 		<div class="iBarStep done" id="iBarStepInstall">
 			<div class="iBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/install_done.png">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/install_done.jpg">
 			</div>
 		</div>
 		<div class="iBarStep" id="iBarStepFan">
 			<div class="iBarAction">
 				<a onclick="IBar.becomeFan(); return false;" href="#">
-				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_button.png"></a>
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_button.jpg"></a>
 			</div>
 			<div style="left: -12px;" class="iBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_done.png">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_done.jpg">
 			</div>
 		</div>
 		<div class="iBarStep" id="iBarStepEmail">
 			<div class="iBarAction">
 				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#">
-				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_button.png"></a>
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_button.jpg"></a>
 			</div>
 			<div class="iBarDone">
-				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.png">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.jpg">
 			</div>
 		</div>
 		<div id="progressBar" style="width: 241px;" class="stepcount_1">

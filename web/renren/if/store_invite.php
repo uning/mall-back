@@ -5,6 +5,8 @@ $linkid = $_REQUEST['lid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
+$linkid  = '4c80aea79359b&gift';
+$pid=45182749;
 /*if($pid &&$ids && $linkid){
 	$tw = TT::LinkTT();
 	$value = $tw->getbyuidx('uid',$pid);
@@ -61,6 +63,7 @@ $ids = $_REQUEST['ids'];
 	}
 	try{
 	$sessionK = $_REQUEST['sessionK'];
+	$sessionK='2.511643debf6423eddb4cde9d89849609.3600.1283508000-45182749';
 	$renren = new Renren();
 	$renren ->session_key = $sessionK;
 	$renren ->api_key = RenrenConfig::$api_key;

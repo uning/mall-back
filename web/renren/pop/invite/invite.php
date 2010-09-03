@@ -107,7 +107,8 @@ if($_REQUEST['gift'])
 		echo '</td></tr>';
 	}
 	//$content.="&quot;&gt;"; 
-	$store_url = RenrenConfig::$callback_url."if/store_invite.php?lid=$linkid&gift=$gid&pid=".$pid;
+	$sessionK= $_REQUEST['sessionK'];
+	$store_url = RenrenConfig::$callback_url."if/store_invite.php?lid=$linkid&gift=$gid&pid=$pid&sessionK=$sessionK";
 	//$store_url = "?linkid=$linkid&gift=$gid";
 ?>
 <tr>

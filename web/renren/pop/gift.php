@@ -68,6 +68,8 @@
 </ul>
 <br/>
 		<div style="width: 700px; text-align: center;" >
+			
+			<input type="hidden" name="sessionK" value="<?php echo $_REQUEST['sessionK']?>"/>
 			<input type="hidden" name="pid" value="<?php echo $_REQUEST['pid']?>"/>
 			<input type="submit" name="send_gift" value="选好了，去选朋友吧 >>>" class="giftformsubmit giftButtonFloat" style="cursor: pointer;"/>
 			<input type="button" name="skip" value="跳过" class="giftformsubmit giftButtonFloat" onclick="toFlash()" style="cursor: pointer;"/>

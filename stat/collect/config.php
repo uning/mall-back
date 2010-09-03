@@ -10,7 +10,13 @@ $datestr = date('Y-m-d',$now);
 $weekday = date('N',$now);
 $day_starttime = strtotime($datestr);
 $day_endtime = $day_starttime + 86400;
-echo "$datestr $weekday\n";
+echo "date:$datestr \nweekday:$weekday\n";
+
+require_once '../../web/renren/renren.php';
+$ren = new Renren();
+$ren -> api_key ='a32cb73bea154d2c9d40703b66dc9142'; 
+$ren -> secret = '023a6201a9b04955b1af79b1e9037c16';
+$ren -> init();
 
 $dbconfig=array(
 		//'host' => '122.11.61.28',

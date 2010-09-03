@@ -39,9 +39,10 @@ for($i=1;$i<=$user_num;++$i){
 		$dgr['mannual_'.$o['key']]+=1;
 	}
 	if($ino){
-		end($ino);
-		$o = each($ino);
-		$dgr['installbar_'.$o['key']]+=1;
+		foreach($ino as $k=>$v){
+			if($k!='id')
+				$dgr['installbar_'.$k]+=1;
+		}
 	}
 	$dgr['gem']+=$data['gem'];
 	$dgr['money']+=$data['money'];

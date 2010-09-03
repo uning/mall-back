@@ -338,8 +338,7 @@ var config = {
 			   
 			    XN.Main.get_sessionState().waitUntilReady(function() {
 		　　　XN.Main.apiClient.users_getLoggedInUser(function(result, ex) {
-				console.debug("users_getLoggedInUser",result):
-				if (!ex && pid == result.uid){ 
+ 				if (!ex && pid == result.uid){ 
 					
 				}else{
 					window.location = '<?php echo RenrenConfig::$canvas_url;?>';

@@ -256,7 +256,10 @@ version of Flash. Please do so by clicking <a
 			</a>
 		</div>
 		
-		<div class='xnid'><span style="width: 625px; float: left;">Music: Kevin MacLeod</span>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		<div class='help'><span style="width: 625px; float: left;">Music: Kevin MacLeod</span>
+		<span style="width: 175px; float: right; text-align: right;">
+		商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?>
+		</span></div>
 		
 		<div class='footnotice'>
 			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				

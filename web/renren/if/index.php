@@ -7,7 +7,21 @@ $session_key = $_POST['xn_sig_session_key'];
 $gflg = $_REQUEST['glink'];
 $sess = TTGenid::getbypid($pid);
 $uid = $sess['id'];
-
+if($session_key!=$sess['session_key']){
+	$renren = new Renren();
+	$renren ->api_key = RenrenConfig::$api_key;
+	$renren ->secret = RenrenConfig::$secret;
+	$renren ->session_key = $session_key;
+	$renren->init($session_key);
+	$rt = $renren->api_client->users_getLoggedInUser();
+	if($rt['uid']==$pid){
+		$sess['session_key'] = $session_key;
+		TTGenid::update($sess,$sess['id']);
+	}else 
+	{
+			header('Location: '.RenrenConfig::$canvas_url);
+	}
+}
 $tu = new   TTUser($uid);
  $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
 	 $barobj = $tu->getbyid($iid); 

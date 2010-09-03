@@ -77,6 +77,11 @@ function install_swf(pid){
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
+	
+	flashvars.GUIDE_TYPE = <?php  if($pid&&$pid%2==0) {echo "1";}else{echo "2";}?>;
+ 		
+
+	
 	flashvars.platform = "renren";
 	flashvars.errorPage = '/bg/error_log.php';
 	var flash_width = 800;

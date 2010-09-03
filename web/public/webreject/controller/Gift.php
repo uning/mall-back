@@ -103,6 +103,8 @@ class Gift{
 				$id = $tu->getdid(null,$g);
 				$id2id[$gid] = $id;
 				$d['id']=$id;
+				unset($d['msg']);
+				$d['pos'] = 's';
 				$tu->puto($d);
 			}else
 				$id2id[$gid] = null;

@@ -32,7 +32,7 @@ function dotest($m,$p=null)
 }
 $now = 1282208631;
 $now = time();
-dotest('GoodsController.dcheckout',array('u'=>27,'now'=>$now));
+dotest('GoodsController.dcheckout',array('u'=>1,'now'=>$now));
 return;
 dotest('Friend.debug_get',array('u'=>4));
 return;

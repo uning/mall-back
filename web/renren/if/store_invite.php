@@ -58,6 +58,7 @@ $ids = $_REQUEST['ids'];
 	$tw->put($_REQUEST);
 	TTLog::record(array('m'=>'pub_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$linkid,'sp1'=>$gid));
 	}
+	try{
 	$sessionK = $_REQUEST['sessionK'];
 	$renren = new Renren();
 	$renren ->session_key = $sessionK;
@@ -71,6 +72,9 @@ $ids = $_REQUEST['ids'];
 	}
 	$ids = substr($ids,1);
 	$renren->api_client->notifications_send($ids,$noti);
+	}catch(Exception  $e){
+		print_r($e);
+	}
 	header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
 	
 

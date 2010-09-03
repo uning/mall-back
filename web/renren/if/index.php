@@ -117,6 +117,7 @@ function install_swf(pid){
 <div id="header">
 	<div class='topbar'> 
  			<ul id="scrollBox">   
+				  <li><span>货车进货回来后如果超过进货两倍时间没有收货，货物将会腐烂，而你将一无所有</span></li>
 				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
 				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
 				  <li> 多上货才能多赚钱 </li>  

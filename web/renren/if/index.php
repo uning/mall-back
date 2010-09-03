@@ -273,6 +273,10 @@ version of Flash. Please do so by clicking <a
 </div-->
 
 
+<?php
+ include FB_CURR.'/cs/baidutongji_js.php';
+?> 
+
 </body>
 </html>
 <script type="text/javascript">

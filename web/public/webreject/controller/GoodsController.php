@@ -404,12 +404,13 @@ class GoodsController
 		$goods = $tu->get( TT::GOODS_GROUP);
 		foreach( $goods as $g ){
 			$shopid = $g['pos']['y'];
-			if(!$shopid)
+			if(!$shopid || $shopid=='s')
 				continue;
 			if(!isset($condata[$shopid]['shop'])){
 				$shop = $tu->getbyid($shopid);
 				if(!$shop){
 					//error log
+					$ret['goods_no_shop'][] = $g;
 					continue;
 				}
 				$condata[$shopid]['shop'] = $shop;
@@ -418,7 +419,7 @@ class GoodsController
 				$total_width += $item['gridWidth'];
 			}
 			$stime = $g['stime']; //上架时间 
-			$condata[$shopid]['goods'][$stime]= &$g;
+			$condata[$shopid]['goods'][$stime]= $g;
 
 		}
 		$ret['condata'] = $condata;
@@ -582,7 +583,7 @@ class GoodsController
 		$goods = $tu->get(TT::GOODS_GROUP);
 		foreach( $goods as $g ){
 			$shopid = $g['pos']['y'];
-			if(!$shopid)
+			if(!$shopid || $shopid=='s')
 				continue;
 			if(!isset($condata[$shopid]['shop'])){
 				$shop = $tu->getbyid($shopid);
@@ -596,7 +597,7 @@ class GoodsController
 				$total_width += $item['gridWidth'];
 			}
 			$stime = $g['stime']; //上架时间 
-			$condata[$shopid]['goods'][$stime]= &$g;
+			$condata[$shopid]['goods'][$stime]= $g;
 
 		}
 

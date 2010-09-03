@@ -49,149 +49,45 @@ a:visited{
 			scroller(name,100);//window.location = window.location.protocol+window.location.pathname+"#"+name;
 		}
 		
-function intval(v)
-
+function intval(v) 
 {
 
-v = parseInt(v);
-
-return isNaN(v) ? 0 : v;
-
+	v = parseInt(v); 
+	return isNaN(v) ? 0 : v; 
 }
 
- 
+  
+function getPos(e) 
+{ 
+	var l = 0; 
+	var t = 0; 
+	var w = intval(e.style.width); 
+	var h = intval(e.style.height); 
+	var wb = e.offsetWidth; 
+	var hb = e.offsetHeight; 
+	while (e.offsetParent){ 
+	l += e.offsetLeft + (e.currentStyle?intval(e.currentStyle.borderLeftWidth):0);
 
-// 获取元素信息
+	t += e.offsetTop + (e.currentStyle?intval(e.currentStyle.borderTopWidth):0);
 
-function getPos(e)
+	e = e.offsetParent; 
+	} 
+	l += e.offsetLeft + (e.currentStyle?intval(e.currentStyle.borderLeftWidth):0);
 
-{
-
-var l = 0;
-
-var t = 0;
-
-var w = intval(e.style.width);
-
-var h = intval(e.style.height);
-
-var wb = e.offsetWidth;
-
-var hb = e.offsetHeight;
-
-while (e.offsetParent){
-
-l += e.offsetLeft + (e.currentStyle?intval(e.currentStyle.borderLeftWidth):0);
-
-t += e.offsetTop + (e.currentStyle?intval(e.currentStyle.borderTopWidth):0);
-
-e = e.offsetParent;
-
+	t += e.offsetTop + (e.currentStyle?intval(e.currentStyle.borderTopWidth):0); 
+	return {x:l, y:t, w:w, h:h, wb:wb, hb:hb}; 
 }
 
-l += e.offsetLeft + (e.currentStyle?intval(e.currentStyle.borderLeftWidth):0);
-
-t += e.offsetTop + (e.currentStyle?intval(e.currentStyle.borderTopWidth):0);
-
-return {x:l, y:t, w:w, h:h, wb:wb, hb:hb};
-
-}
-
+  
  
-
-// 获取滚动条信息
-
-function getScroll()
-
-{
-
-var t, l, w, h;
-
-
-if (document.documentElement && document.documentElement.scrollTop) {
-
-t = document.documentElement.scrollTop;
-
-l = document.documentElement.scrollLeft;
-
-w = document.documentElement.scrollWidth;
-
-h = document.documentElement.scrollHeight;
-
-} else if (document.body) {
-
-t = document.body.scrollTop;
-
-l = document.body.scrollLeft;
-
-w = document.body.scrollWidth;
-
-h = document.body.scrollHeight;
-
-}
-
-return { t: t, l: l, w: w, h: h };
-
-}
-
- 
-
-// 锚点(Anchor)间平滑跳转
-
-function scroller(el, duration)
-
-{
-
-if(typeof el != 'object') { el = document.getElementById(el); }
-
- 
-
-if(!el) return;
-
- 
-
-var z = this;
-
-z.el = el;
-
-z.p = getPos(el);
-
-z.s = getScroll();
-
-z.clear = function(){window.clearInterval(z.timer);z.timer=null};
-
-z.t=(new Date).getTime();
-
- 
-
-z.step = function(){
-
-var t = (new Date).getTime();
-
-var p = (t - z.t) / duration;
-
-if (t >= duration + z.t) {
-
-z.clear();
-
-window.setTimeout(function(){z.scroll(z.p.y, z.p.x)},13);
-
-} else {
-
-st = ((-Math.cos(p*Math.PI)/2) + 0.5) * (z.p.y-z.s.t) + z.s.t;
-
-sl = ((-Math.cos(p*Math.PI)/2) + 0.5) * (z.p.x-z.s.l) + z.s.l;
-
-z.scroll(st, sl);
-
-}
-
-};
-
-z.scroll = function (t, l){window.scrollTo(l, t)};
-
-z.timer = window.setInterval(function(){z.step();},13);
-
+function scroller(el) 
+{  
+	if(typeof el != 'object') { el = document.getElementById(el); }  
+	var scroll  = document.getElementById('scroller');
+	if(!el) {scroll.scrollTop=0; return;}
+ 	var p = getPos(el); 
+     
+ 	scroll.scrollTop =  p.y-60; 
 } 
 		
 		</script>
@@ -208,7 +104,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </table>
 
 
-<div style="text-align: center;overflow-y:scroll;">
+<div id='scroller' style="text-align: center;overflow-y:scroll;height:500px;">
 
 
 <table>
@@ -232,7 +128,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </table>
 
 <table id="q" border="0" cellpadding="0"  cellspacing="0">
-<tr class="title"><td width="90%">哪些需要由你来决定</td><td width="10%"></td></tr>
+<tr class="title"><td width="90%">哪些需要由你来决定</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -250,7 +146,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </tr>
 </table>
 <table id="q2" border="0" cellspacing="0" cellpadding="0">
-<tr class="title"><td width="90%">销售秘笈</td><td></td></tr>
+<tr class="title"><td width="90%">销售秘笈</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2" >
 <hr color="6699bb" width="100%">
@@ -261,7 +157,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 	</tr>
 </table>
 <table id="q3" border="0" cellspacing="0" cellpadding="0">
-<tr class="title"><td width="90%">进货秘笈</td><td></td></tr>
+<tr class="title"><td width="90%">进货秘笈</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -271,7 +167,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </tr>
 </table>
 <table id="q4" border="0" cellspacing="0">
-<tr class="title"><td width="90%">怎样升级更快呢</td><td></td></tr>
+<tr class="title"><td width="90%">怎样升级更快呢</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -284,7 +180,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </tr>
 </table>
 <table id="q5" border="0" cellspacing="0">
-<tr class="title"><td width="90%">装扮商场</td><td></td></tr>
+<tr class="title"><td width="90%">装扮商场</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -297,7 +193,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </tr>
 </table>
 <table id="q6" border="0" cellspacing="0">
-<tr class="title"><td width="90%">关心一下你的顾客吧</td><td></td></tr>
+<tr class="title"><td width="90%">关心一下你的顾客吧</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">
@@ -308,7 +204,7 @@ z.timer = window.setInterval(function(){z.step();},13);
 </tr>
 </table>
 <table id="q7" border="0" cellspacing="0">
-<tr class="title"><td width="90%">如果我离线了，我的商场还能赚钱么？</td><td ></td></tr>
+<tr class="title"><td width="90%">如果我离线了，我的商场还能赚钱么？</td><td width="10%" style='text-align:right'><a href='javascript:void(0)' onclick='goTo(0)' >[TOP]</a></td></tr>
 <tr>
 <td colspan="2">
 <hr color="6699bb" width="100%">

@@ -61,7 +61,7 @@ $pid=45182749;
 	$tw->put($_REQUEST);
 	TTLog::record(array('m'=>'pub_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$linkid,'sp1'=>$gid));
 	}
-	try{
+
 	$sessionK = $_REQUEST['sessionK'];
 	$sessionK='2.511643debf6423eddb4cde9d89849609.3600.1283508000-45182749';
 	$renren = new Renren();

@@ -5,6 +5,21 @@ $confile = $rdir.'0_mall_config.xml';
 $xml =  simplexml_load_file($confile);
 $outf = $mypos.'/static/flash/o_0_mall_config.xml'; 
 
+while(true){
+	$str_md5 = md5(file_get_contents('http://files5.qq494.cn/pig/hotel/flash/MallGame.swf'));
+	$new_md5 = md5_file($mypos.'/static/flash/MallGame.swf');
+	if($str_md5 != $new_md5){
+		echo 'MallGame.swf not equal--------'."\n";	
+		if($retry >3 )
+			die('genconfig errror valid not equal ');
+		$retry++;
+		sleep(100);
+		continue;
+	}
+	break;
+}
+
+
 $out .= <<<EOT
 <?xml version="1.0" encoding="utf-8"?>
 <config>
@@ -63,9 +78,6 @@ $out .= <<<EOT
 	
 	<resource_servers>
 	 <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
-	 <!--
-	    <server name="test" purl="http://rrmall.playcrab.com/static/flash/" />
--->
 	</resource_servers>	
 	<app_servers>
 	    <server name="test" purl="http://rrmall.playcrab.com/bg/" />

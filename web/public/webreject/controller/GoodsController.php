@@ -402,6 +402,7 @@ class GoodsController
 			$now = time();
 		$debug = true;
 		$goods = $tu->get( TT::GOODS_GROUP);
+		$ret['goods']=$goods;
 		foreach( $goods as $g ){
 			$shopid = $g['pos']['y'];
 			if(!$shopid || $shopid=='s')

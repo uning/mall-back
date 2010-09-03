@@ -67,13 +67,13 @@ $ids = $_REQUEST['ids'];
 	$renren ->secret = RenrenConfig::$secret;
 	$renren->init($sessionK);
 	$noti = '<xn:name uid="'.$pid.'" linked="true"/><a href="'.RenrenConfig::$canvas_url.'">喊你去帮他装货、卸货，顺便帮他抢几个客人</a>';
-	$ids = ',';
+	$ids = '';
 	foreach ($_REQUEST['ids'] as $id){
-		$ids.=$id;
+		$ids.=$id.',';
 	}
-	$ids = substr($ids,1);
+	$ids = substr($ids,0,strlen($ids)-1);
 	$r = $renren->api_client->notifications_send($ids,$noti);
 	
-	header('Location: '.RenrenConfig::$canvas_url.'?f=invite&noti='.$r[0]['result']);
+	header('Location: '.RenrenConfig::$canvas_url.'?f=invite&noti='.$ids);
 	
 

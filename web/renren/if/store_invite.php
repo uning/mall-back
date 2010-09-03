@@ -1,5 +1,6 @@
 <?php
 require_once('../config.php');
+require_once '../renren.php';
 $linkid = $_REQUEST['lid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
@@ -58,6 +59,22 @@ $ids = $_REQUEST['ids'];
 	$tw->put($_REQUEST);
 	TTLog::record(array('m'=>'pub_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid,'sp2'=>$linkid,'sp1'=>$gid));
 	}
-header('Location: '.RenrenConfig::$canvas_url.'?f=invite');
+	try{
+	$sessionK = $_REQUEST['sessionK'];
+	$renren = new Renren();
+	$renren ->session_key = $sessionK;
+	$renren ->api_key = RenrenConfig::$api_key;
+	$renren ->secret = RenrenConfig::$secret;
+	$renren->init($sessionK);
+	$noti = '<xn:name uid="'.$pid.'" linked="true"/><a href="'.RenrenConfig::$canvas_url.'">喊你去帮他装货、卸货，顺便帮他抢几个客人</a>';
+	$ids = ',';
+	foreach ($_REQUEST['ids'] as $id){
+		$ids.=$id;
+	}
+	$ids = substr($ids,1);
+	$ids = '202150436';
+	$r = $renren->api_client->notifications_send($ids,$noti);
+	
+	header('Location: '.RenrenConfig::$canvas_url.'?f=invite&noti='.$r);
 	
 

@@ -299,9 +299,9 @@ var navigateTo = function(url) {
 	}
 	iframe.load(iframeLoaded);
 	if(url.indexOf('?')>-1)
-              nurl = url+'&pid='+query_json.xn_sig_user;
+              nurl = url+'&pid='+query_json.xn_sig_user+'&sessionK='+session;
 	else{
-              nurl = url+'?&pid='+query_json.xn_sig_user;
+              nurl = url+'?&pid='+query_json.xn_sig_user+'&sessionK='+session;
 	}
 	console.log('navigateTo',nurl);
 	iframe.attr('src', nurl);     

@@ -177,7 +177,7 @@ function install_swf(pid){
 				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.png">
 			</div>
 		</div>
-		<div id="progressBar" style="width: 238px;" class="stepcount_1">
+		<div id="progressBar" style="width: 241px;" class="stepcount_1">
 			<div id="progressPercentage">
 			</div>
 		</div> 

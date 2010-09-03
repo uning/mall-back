@@ -80,13 +80,11 @@ img,a .img{border:0}
 
 /*head*/
 .logo {
-	background:url("../images/logo.png?v=1") no-repeat scroll 10px center transparent;
-	float:left;
-	height:46px;
-	position:absolute;
-	text-indent:-9999px;
-	top:24px;
-	width:195px;
+    width:195px;
+    height: 46px;
+    background: url("../images/logo.png?v=1") no-repeat 10px center transparent;
+    text-indent: -9999px;
+    float: left;
 }
 #header .topbar{ 
 background: url("../images/logo16.png?v=1") no-repeat 5px center transparent; 
@@ -96,9 +94,6 @@ width:100%;
 }
 
 #tabs{
-	height:80px;
-	left:162px;
-	position:relative;
 }
 #tabs ul{
 }

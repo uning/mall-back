@@ -40,7 +40,7 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?6" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?7" />
 <?php if($install_bar){ ?>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=3"></script>
 <link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?4" />
@@ -77,6 +77,11 @@ function install_swf(pid){
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
+	
+	flashvars.GUIDE_TYPE = <?php  if($pid&&$pid%2==0) {echo "1";}else{echo "2";}?>;
+ 		
+
+	
 	flashvars.platform = "renren";
 	flashvars.errorPage = '/bg/error_log.php';
 	var flash_width = 800;
@@ -120,6 +125,7 @@ function install_swf(pid){
 				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
 				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
 				  <li> 多上货才能多赚钱 </li>  
+				  <li><span>货车进货回来后如果超过进货两倍时间没有收货，货物将会腐烂，而你将一无所有</span></li>
 				  <li> 离线的时候，商场依然是在运作的 </li>  
 				  <li> <span>厕所</span>虽然不能收钱，但是可以提高人气 </li>  
 				  <li> <span>电影院</span>要所有的座位都坐上人才能开演 </li>  
@@ -145,7 +151,7 @@ function install_swf(pid){
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
-        <li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$resource_urlp;?>/help/FAQ.html" >常见问题</a></li>
+        <li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$resource_urlp;?>/help/FAQ.html">常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
 		<li class="payment" ><a  class='fullpage' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
@@ -177,7 +183,7 @@ function install_swf(pid){
 				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.png">
 			</div>
 		</div>
-		<div id="progressBar" style="width: 238px;" class="stepcount_1">
+		<div id="progressBar" style="width: 241px;" class="stepcount_1">
 			<div id="progressPercentage">
 			</div>
 		</div> 
@@ -215,6 +221,35 @@ version of Flash. Please do so by clicking <a
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
 </div>
+
+
+		
+		<div class="help">
+			    <span style="width: 625px; float: left;">
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;
+				  
+				</span>
+				<span style="width: 175px; float: right; text-align: right;">
+					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
+				</span>
+	  </div>
+		
+
+		<div class='bottom'>
+			<a target='_blank' href='http://page.renren.com/livemall'>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png" /> 
+			</a>
+		</div>
+		
+		<div class='xnid'>商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?></div>
+		
+		<div class='footnotice'>
+			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
+		</div>
+
+
+
+
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
@@ -234,7 +269,8 @@ var pid= <?php echo $pid; ?>;
 var session_key= "<?php echo $session_key; ?>";
  
     window.onload=function(){
-			IBar.init_bar();	 
+	        if( typeof(IBar) != 'undefined' )
+		        	IBar.init_bar();	 
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
 	}

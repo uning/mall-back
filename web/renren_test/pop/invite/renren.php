@@ -162,7 +162,7 @@ class Renren_API_Client {
 
 	//
 	function friends_areFriends($uids1, $uids2) { 
-		return $this->_call_method('xiaonei.friends.areFriends', array('uids1' => $uids1,
+		return $this->_call_method('friends.areFriends', array('uids1' => $uids1,
 					'uids2' => $uids2
 					));
 	}
@@ -236,10 +236,10 @@ class Renren_API_Client {
 	}
 
 	private function _call_method($method, $args) {
-		$args['format'] = 'XML';
+		$args['format'] = 'JSON';
 
 		$result = $this->call_method($method,$args);
-		$result = $this->xml_to_array($result);
+		$result = $this->json_to_array($result);
 		return $result;
 
 	}
@@ -255,7 +255,7 @@ class Renren_API_Client {
 	{
 		$this->errno = 0;
 		$this->errmsg = ''; 
-		$url = 'http://api.com/restserver.do';
+		$url = 'http://api.renren.com/restserver.do';
 
 		$params = array();
 		$params['method'] = $method;
@@ -301,7 +301,10 @@ class Renren_API_Client {
 		}
 		return $item;
 	}
-
+	
+	private function json_to_array($json){
+		return json_decode($json,true);
+	}
 	private function checkreturn($result)
 	{	
 		$msg='';
@@ -359,7 +362,7 @@ class Renren_API_Client {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			// curl_setopt($ch, CURLOPT_USERAGENT, 'Playcrab Renren API PHP Client 0.1 (curl) ' . phpversion());
 			$result = curl_exec($ch); 
-			print_r($result);
+			//print_r($result);
 			curl_close($ch); 
 
 		} else {
@@ -379,7 +382,7 @@ class Renren_API_Client {
 				while (!feof($sock)) {
 					$result .= fgets($sock, 4096);
 				}
-				print_r($result);
+				//print_r($result);
 				fclose($sock);
 			}
 		}

@@ -3,47 +3,46 @@
 	<version tag="beta1.0"/>
 	
 	<resources parallel="false" use_cache="false">
-		<resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=tc3.4" type="xml" />
+		<resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=tc3.5" type="xml" />
 		
-		<resource name="GuildMc"		label="游戏素材2" 	url="./resource/common/swf/end/GuildMc.swf?v=tc3.4" 				type="swf" />
-		<resource name="waiting"		label="游戏素材3" 	url="./resource/common/swf/end/waiting.swf?v=tc3.4" 				type="swf" />
-		<resource name="truck" 			label="游戏素材4" 	url="./resource/common/swf/end/MallTruck.swf?v=tc3.4" 				type="swf" />
-		<resource name="magicFace" 		label="游戏素材5" 	url="./resource/common/swf/end/MagicFace.swf?v=tc3.4" 				type="swf" />
-		<resource name="manipulater" 	label="游戏素材6" 	url="./resource/common/swf/end/manipulater.swf?v=tc3.4" 			type="swf" />
-		<resource name="sounds" 		label="游戏素材7" 	url="./resource/common/swf/end/sounds.swf?v=tc3.4" 					type="swf" />
-		<resource name="Background" 	label="游戏素材8" 	url="./resource/common/swf/end/Background.swf?v=tc3.4" 				type="swf" />
-		<resource name="Background_new" label="游戏素材9" 	url="./resource/common/swf/end/Background_new.swf?v=tc3.4" 			type="swf" />
-		<resource name="gift" 			label="游戏素材10" 	url="./resource/common/swf/end/gift.swf?v=tc3.4" 					type="swf" />
+		<resource name="GuildMc"		label="游戏素材2" 	url="./resource/common/swf/end/GuildMc.swf?v=tc3.5" 				type="swf" />
+		<resource name="waiting"		label="游戏素材3" 	url="./resource/common/swf/end/waiting.swf?v=tc3.5" 				type="swf" />
+		<resource name="truck" 			label="游戏素材4" 	url="./resource/common/swf/end/MallTruck.swf?v=tc3.5" 				type="swf" />
+		<resource name="magicFace" 		label="游戏素材5" 	url="./resource/common/swf/end/MagicFace.swf?v=tc3.5" 				type="swf" />
+		<resource name="manipulater" 	label="游戏素材6" 	url="./resource/common/swf/end/manipulater.swf?v=tc3.5" 			type="swf" />
+		<resource name="sounds" 		label="游戏素材7" 	url="./resource/common/swf/end/sounds.swf?v=tc3.5" 					type="swf" />
+		<resource name="Background" 	label="游戏素材8" 	url="./resource/common/swf/end/Background.swf?v=tc3.5" 				type="swf" />
+		<resource name="Background_new" label="游戏素材9" 	url="./resource/common/swf/end/Background_new.swf?v=tc3.5" 			type="swf" />
+		<resource name="gift" 			label="游戏素材10" 	url="./resource/common/swf/end/gift.swf?v=tc3.5" 					type="swf" />
 		
-		<resource name="UI" 			label="游戏素材11" 	url="./resource/simplifiedchinese/swf/end/UI.swf?v=tc3.4" 			type="swf" />
+		<resource name="UI" 			label="游戏素材11" 	url="./resource/simplifiedchinese/swf/end/UI.swf?v=tc3.5" 			type="swf" />
 		
-		<resource name="items" 			label="游戏素材12" 	url="./resource/simplifiedchinese/xml/items.xml?v=tc3.4" 					type="xml" />
-		<resource name="magicfaces" 	label="游戏素材13" 	url="./resource/common/xml/magicfaces.xml?v=tc3.4" 							type="xml" />
-		<resource name="backgrounds" 	label="游戏素材14" 	url="./resource/common/xml/backgrounds.xml?v=tc3.4" 						type="xml" />
-		<resource name="quests" 		label="游戏素材15" 	url="./resource/simplifiedchinese/xml/quests.xml?v=tc3.4" 					type="xml" />
-		<resource name="tasks" 			label="游戏素材16" 	url="./resource/simplifiedchinese/xml/tasks.xml?v=tc3.4" 					type="xml" />
-		<resource name="taskgoals" 		label="游戏素材17" 	url="./resource/simplifiedchinese/xml/taskgoals.xml?v=tc3.4" 				type="xml" />
-		<resource name="adverts" 		label="游戏素材18" 	url="./resource/simplifiedchinese/xml/adverts.xml?v=tc3.4" 					type="xml" />
-		<resource name="achieves" 		label="游戏素材19" 	url="./resource/simplifiedchinese/xml/achieves.xml?v=tc3.4" 				type="xml" />
-		<resource name="feed" 			label="游戏素材20" 	url="./resource/simplifiedchinese/xml/feed.xml?v=tc3.4" 					type="xml" />
-		<resource name="items" 			label="游戏素材21" 	url="./resource/simplifiedchinese/xml/items.xml?v=tc3.4" 					type="xml" />
-		<resource name="quests" 		label="游戏素材22" 	url="./resource/simplifiedchinese/xml/quests.xml?v=tc3.4" 					type="xml" />
-		<resource name="magicfaces" 	label="游戏素材23" 	url="./resource/common/xml/magicfaces.xml?v=tc3.4" 							type="xml" />
-		<resource name="goodsIcon"	 	label="游戏素材24" 	url="./resource/common/swf/end/MallGoodsIcon.swf?v=tc3.4" 					type="swf" />
-		<resource name="guideUrl"	 	label="游戏素材25" 	url="./test_end_guide_resource_list.xml?v=tc3.4" 							type="xml" />
-	
+		<resource name="items" 			label="游戏素材12" 	url="./resource/simplifiedchinese/xml/items.xml?v=tc3.5"			type="xml" />
+		<resource name="magicfaces" 	label="游戏素材13" 	url="./resource/common/xml/magicfaces.xml?v=tc3.5"					type="xml" />
+		<resource name="backgrounds" 	label="游戏素材14" 	url="./resource/common/xml/backgrounds.xml?v=tc3.5"					type="xml" />
+		<resource name="quests" 		label="游戏素材15" 	url="./resource/simplifiedchinese/xml/quests.xml?v=tc3.5"			type="xml" />
+		<resource name="tasks" 			label="游戏素材16" 	url="./resource/simplifiedchinese/xml/tasks.xml?v=tc3.5"			type="xml" />
+		<resource name="taskgoals" 		label="游戏素材17" 	url="./resource/simplifiedchinese/xml/taskgoals.xml?v=tc3.5"		type="xml" />
+		<resource name="adverts" 		label="游戏素材18" 	url="./resource/simplifiedchinese/xml/adverts.xml?v=tc3.5" 			type="xml" />
+		<resource name="achieves" 		label="游戏素材19" 	url="./resource/simplifiedchinese/xml/achieves.xml?v=tc3.5" 		type="xml" />
+		<resource name="feed" 			label="游戏素材20" 	url="./resource/simplifiedchinese/xml/feed.xml?v=tc3.5"				type="xml" />
+		<resource name="items" 			label="游戏素材21" 	url="./resource/simplifiedchinese/xml/items.xml?v=tc3.5"			type="xml" />
+		<resource name="quests" 		label="游戏素材22" 	url="./resource/simplifiedchinese/xml/quests.xml?v=tc3.5"			type="xml" />
+		<resource name="magicfaces" 	label="游戏素材23" 	url="./resource/common/xml/magicfaces.xml?v=tc3.5"					type="xml" />
+		<resource name="goodsIcon"	 	label="游戏素材24" 	url="./resource/common/swf/end/MallGoodsIcon.swf?v=tc3.5"			type="swf" />
+		<resource name="guideUrl"	 	label="游戏素材25" 	url="./test_end_guide_resource_list.xml?v=tc3.5"					type="xml" />
+		<resource name="guideMask"	 	label="游戏素材26" 	url="./resource/simplifiedchinese/swf/end/guideMaskType.swf?v=tc3.5" type="swf" />
+
 	</resources>
 	
-	<main name="main" label="加载主程式" url="MallGame.swf?v=tc3.4" use_cache="false"/>
-	<progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=tc3.4" />
+	<main name="main" label="加载主程式" url="MallGame.swf?v=tc3.5" use_cache="false"/>
+	<progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=tc3.5" />
 	
 	<resource_servers>
-	    <server name="test" purl="./" />
-	    <!--server name="test" purl="http://192.168.1.50/work/mall/Venus/to-company/" /-->
+	    <server name="test" purl="" />
 	</resource_servers>	
 	<app_servers>
 	    <!--server name="test" purl="http://192.168.1.50/work/mall/backend/web/public/" /-->
 	    <server name="test2" purl="/work/mall/backend/web/public/" />
 	</app_servers>	
-
 </config>

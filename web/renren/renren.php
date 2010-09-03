@@ -162,89 +162,84 @@ class Renren_API_Client {
 
 	//
 	function friends_areFriends($uids1, $uids2) { 
-		return $this->_call_method('xiaonei.friends.areFriends', array('uids1' => $uids1,
+		return $this->_call_method('friends.areFriends', array('uids1' => $uids1,
 					'uids2' => $uids2
 					));
 	}
 
-	//返回已经添加了一个应用的好友的用户Id列表 
-	function friends_getAppUsers() {
-		return $this->_call_method('xiaonei.friends.getAppUsers', array( ));
-	}
-
 	//查询当前用户安装某个应用的好友列表，此接口返回全部数据（2008-12-18）
 	function friends_getAppFriends() {
-		return $this->_call_method('xiaonei.friends.getAppFriends', array( ));
+		return $this->_call_method('friends.getAppFriends', array( ));
 	}
 	//得到当前登录用户的好友列表
 	function friends_getFriends() {
-		return $this->_call_method('xiaonei.friends.getFriends', array( ));
+		return $this->_call_method('friends.getFriends', array( ));
 	}
 
 	//获取用户发送站外邀请的详细信息（包括发送邀请信数量、星级用户数等）。最多每次只接受100个用户ID
 	function invitations_getUserOsInviteCnt($uids) {
-		return $this->_call_method('xiaonei.invitations.getUserOsInviteCnt', array('uids'=>$uids ));
+		return $this->_call_method('invitations.getUserOsInviteCnt', array('uids'=>$uids ));
 	}
 
 	//根据站外邀请id得到此次邀请的详细信息（邀请人、邀请时间、被邀请人、注安装app时间等） 
 	function invitations_getOsInfo($invite_ids) {
-		return $this->_call_method('xiaonei.invitations.getOsInfo', array('invite_ids'=>$invite_ids ));
+		return $this->_call_method('invitations.getOsInfo', array('invite_ids'=>$invite_ids ));
 	}
 
 
-	//
+	//得到当前session的用户ID
 	function users_getLoggedInUser() { 
-		return $this->_call_method('xiaonei.users.getLoggedInUser', array( ));
+		return $this->_call_method('users.getLoggedInUser', array( ));
 	}
 
 
 
-	//	
+	//	判断用户是否已对App授权
 	function users_isAppUser() {
-		return $this->_call_method('xiaonei.users.isAppUser', array());
+		return $this->_call_method('users.isAppUser', array());
 	}
 
-	//
+	//得到用户信息,此接口在新的0.5版本以后中增加返回是否为星级和紫豆用户节点
 	function users_getInfo($uids = null, $fields = null) {
-		return $this->_call_method('xiaonei.users.getInfo', array( 'uids'=> ($uids==null?$this->user:$uids),
+		return $this->_call_method('users.getInfo', array( 'uids'=> ($uids==null?$this->user:$uids),
 					'fields'=>$fields));
 	}
 
-	//
+	//给指定的用户发送通知
 	function notifications_send($to_ids, $notification) {
-		return $this->_call_method('xiaonei.notifications.send', array( 'to_ids'=> $to_ids,
+		return $this->_call_method('notifications.send', array( 'to_ids'=> $to_ids,
 					'notification'=>$notification));
 	} 
 
-	//
+	//在取得用户的授权后，给用户发送Email
 	function notifications_sendemail($recipients, $template_id, $body_data) {
-		return $this->_call_method('xiaonei.notifications.sendemail', array( 'to_ids'=> $to_ids,
+		return $this->_call_method('notifications.sendemail', array( 'to_ids'=> $to_ids,
 					'notification'=>$notification ,'template_id'=> $template_id, 'body_data' => $body_data));
 	} 
 
 	//
 	function feed_publishTemplatizedAction ($template_id,$title_data=null,$body_data=null) {
 
-		return $this->_call_method('xiaonei.feed.publishTemplatizedAction', array('template_id' => $template_id,
+		return $this->_call_method('feed.publishTemplatizedAction', array('template_id' => $template_id,
 					'title_data' => $title_data, 
 					'body_data' => $body_data));
 	}
 
 
 	function pay_regOrder($order_id, $amount, $desc) {
-		return $this->_call_method('xiaonei.pay.regOrder', array('order_id'=>$order_id,'amount'=>$amount,'desc'=>$desc ));
+		return $this->_call_method('pay.regOrder', array('order_id'=>$order_id,'amount'=>$amount,'desc'=>$desc ));
 	}
 
 	//查询某个用户在一个应用中一次消费是否完成。此接口传入一个有效的参数：订单号(order_id)
 	function pay_isCompleted ($order_id) {
-		return $this->_call_method('xiaonei.pay.isCompleted', array('order_id'=>$order_id ));
+		return $this->_call_method('pay.isCompleted', array('order_id'=>$order_id ));
 	}
 
 	private function _call_method($method, $args) {
-		$args['format'] = 'XML';
+		$args['format'] = 'JSON';
 
 		$result = $this->call_method($method,$args);
-		$result = $this->xml_to_array($result);
+		$result = $this->json_to_array($result);
 		return $result;
 
 	}
@@ -260,7 +255,7 @@ class Renren_API_Client {
 	{
 		$this->errno = 0;
 		$this->errmsg = ''; 
-		$url = 'http://api.xiaonei.com/restserver.do';
+		$url = 'http://api.renren.com/restserver.do';
 
 		$params = array();
 		$params['method'] = $method;
@@ -306,7 +301,10 @@ class Renren_API_Client {
 		}
 		return $item;
 	}
-
+	
+	private function json_to_array($json){
+		return json_decode($json,true);
+	}
 	private function checkreturn($result)
 	{	
 		$msg='';
@@ -364,6 +362,7 @@ class Renren_API_Client {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			// curl_setopt($ch, CURLOPT_USERAGENT, 'Playcrab Renren API PHP Client 0.1 (curl) ' . phpversion());
 			$result = curl_exec($ch); 
+			//print_r($result);
 			curl_close($ch); 
 
 		} else {
@@ -383,6 +382,7 @@ class Renren_API_Client {
 				while (!feof($sock)) {
 					$result .= fgets($sock, 4096);
 				}
+				//print_r($result);
 				fclose($sock);
 			}
 		}

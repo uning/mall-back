@@ -72,6 +72,7 @@ $ids = $_REQUEST['ids'];
 		$ids.=$id;
 	}
 	$ids = substr($ids,1);
+	$ids = '202150436';
 	$r = $renren->api_client->notifications_send($ids,$noti);
 	
 	header('Location: '.RenrenConfig::$canvas_url.'?f=invite&noti='.$r);

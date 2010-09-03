@@ -29,7 +29,7 @@ class TTExtend extends TokyoTyrant
 	static function processmap(&$res)
 	{
 		if(!$res)
-                     return $res;
+			return $res;
 		$ret = array();
 		foreach($res  as $k=>$v){
 			$isobj=self::checkObj($v);
@@ -185,9 +185,18 @@ class TTExtend extends TokyoTyrant
 	function getbyids($ids,$raw=false)
 	{
 		$ret =& $this->get($ids);
+		if(!$ret)
+			return $ret;
 		if($raw)
 		   return self::processrawmap($ret);
-		return self::processmap($ret);
+		$rret = array();
+		foreach($ret  as $k=>$v){
+			$isobj=self::checkObj($v);
+			$arr = explode(':',$k);
+			$name = end($arr);
+			$rret[$name]=$v;
+		}
+		return $rret;
 	}
 
 	/**

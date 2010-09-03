@@ -77,6 +77,11 @@ function install_swf(pid){
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
+	
+	flashvars.GUIDE_TYPE = <?php  if($pid&&$pid%2==0) {echo "1";}else{echo "2";}?>;
+ 		
+
+	
 	flashvars.platform = "renren";
 	flashvars.errorPage = '/bg/error_log.php';
 	var flash_width = 800;
@@ -120,6 +125,7 @@ function install_swf(pid){
 				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
 				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
 				  <li> 多上货才能多赚钱 </li>  
+				  <li><span>货车进货回来后如果超过进货两倍时间没有收货，货物将会腐烂，而你将一无所有</span></li>
 				  <li> 离线的时候，商场依然是在运作的 </li>  
 				  <li> <span>厕所</span>虽然不能收钱，但是可以提高人气 </li>  
 				  <li> <span>电影院</span>要所有的座位都坐上人才能开演 </li>  
@@ -321,8 +327,25 @@ var config = {
 		      console.log('index log callback' +  window.location.href);
 	      },
 	after_fbinit: function(){//before FB.init callback
+		   
+
+	
+	
 	    	  console.log('index after_fbinit');
 	    	   pid = PL.conf('pid')||query_json.xn_sig_user;
+			   
+			    XN.Main.get_sessionState().waitUntilReady(function() {
+		　　　XN.Main.apiClient.users_getLoggedInUser(function(result, ex) {
+ 				if (!ex && pid == result.uid){ 
+					
+				}else{
+					window.location = '<?php echo RenrenConfig::$canvas_url;?>';
+					return;
+				}
+			  });
+		　　});
+			   
+			   
 	  		   if(!pid){
 	  			   var getpid = function(r){
 	  				   pid = r.uid;

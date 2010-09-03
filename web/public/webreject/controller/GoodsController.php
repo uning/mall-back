@@ -228,7 +228,7 @@ class GoodsController
 
 	/**
 	 * 结算卖货
-	 * @param $params
+	 * @param $params use shop
 	 *   u   - userid
          *   sids  - shop ids
 	 * @return 
@@ -238,7 +238,7 @@ class GoodsController
 	 *   selloutids - 卖完删除的id
 	 *   goods   --数量有辩护的商品列表
 	 */  
-	static public function checkout($params)
+	static public function shop_checkout($params)
 	{
 		$uid = $params['u'];
 		$sids= $params['sids'];
@@ -401,28 +401,27 @@ class GoodsController
 		if(!$now)
 			$now = time();
 		$debug = true;
-		//获取人气和宣传值
-		$shops = $tu->get( TT::SHOP_GROUP);
-		foreach( $shops as $shop ){
-			if( $shop['pos'] != 's' ){
-				$item = ItemConfig::getItem( $shop['tag'] );
-				@asort($shop['goods']);
-				$gids = @array_keys($shop['goods']);
-				if($gids){
-					$gs  = $tu->getbyids($gids);
-					if($gs['g']){
-						$condata[$shop['id']]['sconfig']= $item;
-						$condata[$shop['id']]['shop']= $shop;
-						$condata[$shop['id']]['goods']= &$gs['g'];
-						$total_width += $item['gridWidth'];
-					}else{
-						unset($shop['goods']);//=array();
-						$tu->puto($shop);	
-					}
+		$goods = $tu->get( TT::GOODS_GROUP);
+		foreach( $goods as $g ){
+			$shopid = $g['pos']['y'];
+			if(!$shopid)
+				continue;
+			if(!isset($condata[$shopid]['shop'])){
+				$shop = $tu->getbyid($shopid);
+				if(!$shop){
+					//error log
+					continue;
 				}
+				$condata[$shopid]['shop'] = $shop;
+				$item = ItemConfig::getItem( $shop['tag'] );
+				$condata[$shopid]['sconfig']= $item;
+				$total_width += $item['gridWidth'];
 			}
-		}
+			$stime = $g['stime']; //上架时间 
+			$condata[$shopid]['goods'][$stime]= &$g;
 
+		}
+		$ret['condata'] = $condata;
 
 		if(!$condata || !$total_width){
 			$ret['s']='OK';
@@ -464,6 +463,7 @@ class GoodsController
 		foreach( $condata as $s=>$vvv ){
 			$sconfig = &$vvv['sconfig'];
 			$gs  = &$vvv['goods'];
+			 ksort($gs);
 			$shop = &$vvv['shop'];
 
 			$curtime = $shop['ctime'];//可以售卖新商品时间
@@ -553,6 +553,174 @@ class GoodsController
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
 		$ret['u'] = $uid;
+		return $ret;
+	}
+	/**
+	 * 结算卖货 with goods
+	 * @param $params
+	 *   u   - userid
+         *   sids  - shop ids
+		
+	 * @return 
+	 *   s  - OK,noneed(短期内没有需要结算的商品),busy(太快)
+	 *   income  - 获得金币
+	 *   money   - 总金币
+	 *   selloutids - 卖完删除的id
+	 *   goods   --数量有辩护的商品列表
+	 */  
+	static public function checkout($params)
+	{
+		$uid = $params['u'];
+		$sids= $params['sids'];
+		$now= $params['now'];
+		if(!$now){
+		   $now=time();
+		}
+		$tu = new TTUser( $uid );
+		//获取人气和宣传值
+
+		$goods = $tu->get(TT::GOODS_GROUP);
+		foreach( $goods as $g ){
+			$shopid = $g['pos']['y'];
+			if(!$shopid)
+				continue;
+			if(!isset($condata[$shopid]['shop'])){
+				$shop = $tu->getbyid($shopid);
+				if(!$shop){
+					//error log
+					continue;
+				}
+				$condata[$shopid]['shop'] = $shop;
+				$item = ItemConfig::getItem( $shop['tag'] );
+				$condata[$shopid]['sconfig']= $item;
+				$total_width += $item['gridWidth'];
+			}
+			$stime = $g['stime']; //上架时间 
+			$condata[$shopid]['goods'][$stime]= &$g;
+
+		}
+
+		if(!$condata || !$total_width){
+			$ret['s']='OK';
+			$ret['msg']='nogoods';
+			return $ret;
+		}
+
+		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
+		$popu = $params[TT::POPU];
+		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
+                $maxpopu = $ua['maxpopu'];
+		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
+		$adv = $tu->getbyid( $aid );
+		$used_advert = $adv['use'];
+		if(!$used_advert)
+                   $used_advert = array();
+		
+		//处理广告
+		foreach($used_advert as $k=>$v){
+			$adv = AdvertConfig::getAdvert( $tag );
+			if($start  + $adv['allTime'] < $now)
+				continue;
+			$savead[$k]= $v;
+		}
+
+		if($savead){
+			$adv['use']=$savead;
+			$tu->puto($adv);
+		}else if($used_advert){
+			unset($adv['use']);
+			$tu->puto($adv);
+		}
+
+		$selloutids = array();
+		$income = 0;
+		$sale_count = 0; //销售份数
+		$popu +=15*$total_width;
+		foreach( $condata as $s=>$vvv ){
+			$sconfig = &$vvv['sconfig'];
+			$gs  = &$vvv['goods'];
+			 ksort($gs);
+			$shop = &$vvv['shop'];
+
+			$curtime = $shop['ctime'];//可以售卖新商品时间
+			$cgoods = array();
+			$shop_changed=false;
+			foreach( $gs as $t=>$g ){
+				$gconfig = ItemConfig::getItem($g['tag']);
+				if(!$gconfig){
+					continue;
+				}
+				$ctime = $g['ctime'];//上次结算时间
+				if($curtime < $t)
+					$curtime = $t; //上架时间
+				if( $curtime< $ctime )
+					$curtime = $ctime;
+				if($curtime < $g['stime'])
+					$curtime = $g['stime'];
+				$g['ctime'] = $now;  
+				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
+					//$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
+					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth']);
+					if($snum >= $g['num']){//卖完了
+						$asnum = $g['num'];
+					}
+					else{
+						$asnum = $snum;
+					}
+					if($asnum==0){
+						break;
+					} 
+
+					$ret['sell'][$g['tag']] += $asnum;
+					$sale_count += $asnum;//记录销售份数，成就用
+					$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
+					$g['num'] -= $asnum;
+					$curtime +=  floor($asnum * $pertime);//
+
+					$shop_changed=true;
+					$shop['ctime']=$curtime;
+					if( $g['num']==0 ){//当前时间段卖光此箱货物，继续卖下一个货物
+						$cgoods[]=$g;
+						$selloutids[] = $g['id'];
+						unset($shop['goods'][$g['id']]);
+						break;//跳出时间段循环，继续卖同一商店下一个上架时间的货物（在同一商店，同一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
+					}
+				}//foreach group
+				if( $g['num']!= 0 ){
+					$tu->puto( $g,TT::GOODS_GROUP);
+					break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算
+				}
+			}//foreach goods
+			if($shop_changed){
+				$tu->puto($shop);
+			}
+		}//foreach shop
+
+
+
+
+
+		//总销售份数
+		$now_sale_count = $tu->numch( 'total_count',$sale_count );
+		//总销售额
+		$now_total_sale = $tu->numch( 'total_sale',$income );
+		
+		//记录玩家每一种物品卖出量
+		if($ret['sell']){
+			foreach($ret['sell'] as $gid=>$num){
+				$tu->numch("sale_goods_$gid",$num);	
+			}
+		}
+
+		$ret['s'] = 'OK';
+		$ret['income'] = $income;
+		$ret['money']  = $tu->numch('money',$income);
+		$ret['t'] = $now;
+		$ret['rids'] = $selloutids;
+		$ret['u'] = $uid;
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		$tu->remove( $selloutids);
 		return $ret;
 	}
 }

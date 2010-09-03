@@ -15,16 +15,16 @@ class Cinema
 		$cid = $params['cid'];
 		$tu = new TTUser( $uid );
 		$cinema_obj = $tu->getbyid( $cid );
-		$ret['bcinemaobj'] = $cinema_obj;  //for debug
-		$ret['btime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
+//		$ret['bcinemaobj'] = $cinema_obj;  //for debug
+//		$ret['btime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
 		if( !$cinema_obj ){
 			$ret['s'] = 'notexsit';
 			return $ret;
 		}
 		$item = ItemConfig::getItem( $cinema_obj['tag'] );
 		$cinema_obj['ctime'] -= $item['selltime'];
-		$ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
-		$ret['acinemaobj'] = $cinema_obj;  //for debug
+//		$ret['atime'] = date( TM_FORMAT,$cinema_obj['ctime'] );
+//		$ret['acinemaobj'] = $cinema_obj;  //for debug
 		$tu->puto( $cinema_obj,TT::CINEMA_GROUP );
 		$ret['s'] = 'OK';
 		return $ret;
@@ -45,14 +45,15 @@ class Cinema
 		$now = time();
 		$tu = new TTUser( $uid );
 		$shop_obj = $tu->getbyid( $sid );
-		$ret['now'] = date( TM_FORMAT,$now );  //for debug
-		$ret['bshopobj'] = $shop_obj;  //for debug
-		$ret['btime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+//		$ret['now'] = $now;  //for debug
+//		$ret['fnow'] = date( TM_FORMAT,$now );  //for debug
+//		$ret['bshopobj'] = $shop_obj;  //for debug
+//		$ret['fbshopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 		if( !$shop_obj ){
 			$ret['s'] = 'notexist';
 			return $ret;
 		}
-		$shop_obj['ctime'] = $now;//捡钱后可以重新进人
+		
 		$item = ItemConfig::getItem( $shop_obj['tag'] );
 		if( !$item ){
 			$ret['s'] = 'itemnotexsit';
@@ -64,6 +65,7 @@ class Cinema
 				return $ret;
 			}
 			$money = $item['sellmoney'];
+			$shop_obj['ctime'] = $now;
 		}
 		elseif( $shop_obj['tag'] == '60103' || $shop_obj['tag'] == '60104' ){//健身房和按摩店
 			if( $now - $shop_obj['ctime'] < $item['settletime'] ){//开业时间需满足一定条件才可以收钱
@@ -71,8 +73,9 @@ class Cinema
 				return $ret;	            
 			}
 			$money = $item['sellmoney'];
+			$shop_obj['ctime'] = $now;
 		}
-		elseif( $shop_obj['tag'] == '60105' ||  $shop_obj['tag'] == '60106' ){//上岛和7-11便利店
+		elseif( $shop_obj['tag'] == '60105' ||  $shop_obj['tag'] == '60106' ){//月巴克和8-11便利店
 			if( $now - $shop_obj['ctime'] < 3600 ){//开业1小时后就可以收钱，但最多只能积累6~9小时
 				$ret['s'] = 'time';
 				return $ret;
@@ -89,8 +92,8 @@ class Cinema
 		}
 		$tu->numch( TT::MONEY_STAT,$money );
 		$tu->puto( $shop_obj,TT::CINEMA_GROUP );
-		$ret['atime'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
-		$ret['ashopobj'] = $shop_obj;  //for debug
+//		$ret['fashopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+//		$ret['ashopobj'] = $shop_obj;  //for debug
 		$ret['money'] = $money;
 		$ret['s'] = 'OK';
         return $ret;

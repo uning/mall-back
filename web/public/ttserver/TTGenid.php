@@ -5,7 +5,6 @@
  */
 class TTGenid {
 
-	const IDX_F='@';
 	static private $_t;
 
 	/**

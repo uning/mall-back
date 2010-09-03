@@ -94,6 +94,7 @@ width:100%;
 }
 
 #tabs{
+padding-top:14px;
 }
 #tabs ul{
 }
@@ -127,7 +128,7 @@ list-style:none outside none;
 #navga ul li {
     float: left;
     cursor: pointer;
-    padding:13px 5px 0 0;
+    padding:0 5px 0 0;
 }
 
 #navga ul li a {

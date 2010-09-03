@@ -154,7 +154,7 @@ function install_swf(pid){
         <li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$resource_urlp;?>/help/FAQ.html">常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
-		<li class="payment" ><a  class='fullpage' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
+		<li class="payment" ><a  class='fullpage' onclick='javascript:alert('暂未开放');return false;' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>

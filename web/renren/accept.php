@@ -319,7 +319,7 @@ $touser = $_REQUEST['xn_sig_user'];
 					break;
 					}
 		}
-	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
+	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got&&$tsess['star']==1){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
 		$copilot = $ftu->getbyid( $cid );

@@ -23,12 +23,13 @@
 	$ren -> init( $session_key);
 	$ret = $ren->api_client->friends_getAppFriends();
 	
-	print_r($ret); 
 	
-	//$fidstr =implode(',',$fids);
-   //file_put_contents('friend.txt',TT::FRIEND_STAT." $uid add ".$fidstr);
-    
-	//$tu->putf( TT::FRIEND_STAT,$fidstr);
+	if($ret && $ret[0]) {
+		$fidstr =implode(',',$ret);
+		$tu->putf( TT::FRIEND_STAT,$fidstr);
+	}
+	
+	print_r($ret);  
 
 echo "OK";
 

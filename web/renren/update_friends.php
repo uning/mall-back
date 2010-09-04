@@ -24,7 +24,7 @@
 	$ret = $ren->api_client->friends_getAppFriends();
 	
 	
-	if($ret && $ret[0]) {
+	if($ret && $ret[0] && $ret[0]>0 ) {
 		$fidstr =implode(',',$ret);
 		$tu->putf( TT::FRIEND_STAT,$fidstr);
 	}

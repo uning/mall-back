@@ -1,4 +1,1 @@
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb0461902c4b45466130e875388b2ad00' type='text/javascript'%3E%3C/script%3E"));
-</script>
+<script type="text/javascript" src="http://js.tongji.linezing.com/2051209/tongji.js"></script><noscript><a href="http://www.linezing.com"><img style='width:0;height:0;' src="http://img.tongji.linezing.com/2051209/tongji.gif"/></a></noscript>

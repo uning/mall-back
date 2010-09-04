@@ -140,6 +140,7 @@ function install_swf(pid){
 				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
 				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
 				  <li> 多上货才能多赚钱 </li>  
+				  <li> 欢迎大家加QQ群： 120817224</li>
 				  <li><span>货车进货回来后如果超过进货两倍时间没有收货，货物将会腐烂，而你将一无所有</span></li>
 				  <li> 离线的时候，商场依然是在运作的 </li>  
 				  <li> <span>厕所</span>虽然不能收钱，但是可以提高人气 </li>  
@@ -220,10 +221,9 @@ function install_swf(pid){
 	style="font-size: 19px; font-family: tahoma; color: #4880d7; margin-top: 0px; padding-top: 0px">Loading
 Game...</span><br />
 <span
-	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">If
-your game does not load within 10 seconds, you may need to upgrade your
-version of Flash. Please do so by clicking <a
-	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">here</a></span>
+	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">
+	如果游戏很长时间都没有开始加载，你可能需要升级你的Flash版本。请点击 <a
+	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">这里</a></span>
 </div>
 </div>
 </div>

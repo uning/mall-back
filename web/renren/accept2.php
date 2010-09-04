@@ -52,11 +52,12 @@ $touser = 45182749;
 					}
 		}
 	$diff = time() - $att;
+	print_r($diff.'\n');
 	print_r($invite.'\n');
 	print_r($gemd.'\n');
 	print_r($ut.'\n');
 
-	if($invite&&$new ==1&&!$gemd){
+	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got&&$diff<45){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
 		$copilot = $ftu->getbyid( $cid );

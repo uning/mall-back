@@ -30,3 +30,5 @@ print_r($data);
 $tt=$tu->getAll(false);
 print_r(TTExtend::processmap($tt));
 print_r($tt);
+?>
+

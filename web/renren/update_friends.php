@@ -37,7 +37,7 @@
 		$tu->putf( TT::FRIEND_STAT,$fidstr);
 		echo "OK";
 	}else{
-		echo "<span color='red'>failed</span>";
+		echo "failed\n";
 	}
 	
 	print_r($ret);  

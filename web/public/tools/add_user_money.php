@@ -20,6 +20,7 @@ if(!$u){
 if(!$data||!$data['id']){
 	echo "<p><form method='get'>PID: <input name='pid' type='text' /><input type='submit' value='获取用户' /> </form></p>";
 }else{ 
+     echo "<p>查找用户</p>";
     $u = $data['id'];
 	if(!$u)
 		die( "no u get");

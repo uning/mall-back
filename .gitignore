@@ -9,7 +9,7 @@ web/public/upload/*
 err.*
 log.*
 t
-
+config.php
 bg
 web/*/static/flash/*
 #web/renren/static/flash/*

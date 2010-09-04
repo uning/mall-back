@@ -6,7 +6,8 @@ class TT extends TTG{
 				'type'=>'TTExtend',
 				'procs'=>array(
 					array(
-						array('host'=>'122.11.61.27','port'=>'15000')
+						array('host'=>'122.11.61.27','port'=>'15000'),
+						array('host'=>'122.11.61.28','port'=>'15000')
 					     ),
 					)
 				),
@@ -45,7 +46,8 @@ class TT extends TTG{
 					'procs'=>
 					array(
 						array(
-							array('host'=>'122.11.61.27','port'=>'16004')
+							array('host'=>'122.11.61.27','port'=>'16004'),
+							array('host'=>'122.11.61.28','port'=>'16004')
 						     ),
 					     )
 					),

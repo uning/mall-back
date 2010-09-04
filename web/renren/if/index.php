@@ -93,7 +93,7 @@ function install_swf(pid){
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
 	
-	flashvars.GUIDE_TYPE = <?php  if($pid&&$pid%2==0) {echo "1";}else{echo "2";}?>;
+	flashvars.GUIDE_TYPE = 1;
  		
 
 	
@@ -140,6 +140,7 @@ function install_swf(pid){
 				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
 				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
 				  <li> 多上货才能多赚钱 </li>  
+				  <li> 欢迎大家加QQ群： 120817224</li>
 				  <li><span>货车进货回来后如果超过进货两倍时间没有收货，货物将会腐烂，而你将一无所有</span></li>
 				  <li> 离线的时候，商场依然是在运作的 </li>  
 				  <li> <span>厕所</span>虽然不能收钱，但是可以提高人气 </li>  
@@ -166,7 +167,7 @@ function install_swf(pid){
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
-        <li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$resource_urlp;?>/help/FAQ.html">常见问题</a></li>
+        <li class="faq"><a id='faq'  href="../pop/faq.php">常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
 		<li class="payment" ><a  class='fullpage' onclick="alert('暂未开放');return false;" href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
@@ -220,10 +221,9 @@ function install_swf(pid){
 	style="font-size: 19px; font-family: tahoma; color: #4880d7; margin-top: 0px; padding-top: 0px">Loading
 Game...</span><br />
 <span
-	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">If
-your game does not load within 10 seconds, you may need to upgrade your
-version of Flash. Please do so by clicking <a
-	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">here</a></span>
+	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">
+	如果游戏很长时间都没有开始加载，你可能需要升级你的Flash版本。请点击 <a
+	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">这里</a></span>
 </div>
 </div>
 </div>
@@ -241,7 +241,7 @@ version of Flash. Please do so by clicking <a
 		
 		<div class="help">
 			    <span style="width: 625px; float: left;">
-					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;&nbsp;[QQ群：120817224]
 				  
 				</span>
 				<span style="width: 175px; float: right; text-align: right;">
@@ -272,6 +272,10 @@ version of Flash. Please do so by clicking <a
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
 
+
+<?php
+ include FB_CURR.'/cs/baidutongji_js.php';
+?> 
 
 </body>
 </html>
@@ -352,18 +356,7 @@ var config = {
 	    	  console.log('index after_fbinit');
 	    	   pid = PL.conf('pid')||query_json.xn_sig_user;
 			   
-			    XN.Main.get_sessionState().waitUntilReady(function() {
-		　　　XN.Main.apiClient.users_getLoggedInUser(function(result, ex) {
- 				if (!ex && pid == result.uid){ 
-					
-				}else{
-					window.location = '<?php echo RenrenConfig::$canvas_url;?>';
-					return;
-				}
-			  });
-		　　});
-			   
-			   
+			     
 	  		   if(!pid){
 	  			   var getpid = function(r){
 	  				   pid = r.uid;

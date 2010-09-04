@@ -30,7 +30,7 @@ class TTUDB{
 	protected $_cache;//use cache(id=>data)
 	protected $_use_cache=false;//TODO:use cache
 
-	function TTUDB($uid,$name='main',$only_read=false)
+	function TTUDB($uid,$only_read=false,$name='main')
 	{
 		$this->_u = $uid;
 		$this->type = $only_read?'slave':'master';

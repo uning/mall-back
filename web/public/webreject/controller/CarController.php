@@ -221,20 +221,22 @@ class CarController
 			unset( $car_obj['copolitTag'] );
 		}
 		unset( $car_obj['t'] );        
-		$tu->puto( $car_obj,TT::CAR_GROUP,false );
+		$num += $car['goodsNumber'];
+
+		$tu->puto( $car_obj,TT::CAR_GROUP,false);
 		$ret['c'] = $car_obj;
 		if( $now - $gogoodstime > 3*$goods['buytime'] ){//货物过期
 		    $ret['s'] = 'expiration';
 		    return $ret;
 		}
-		$num = $car['goodsNumber'];
 		$goods_data['pos'] = 's';
 		$goods_data['tag'] = $goodsTag;
 		$ids = array();
 		for( $i=0;$i<$num;$i++ ){
-			if( isset( $goods_data['id'] ) )
-				unset($goods_data['id']);
-			$ids[$i]= $tu->puto( $goods_data,TT::GOODS_GROUP );
+			$id = $tu->getoid(null,TT::GOODS_GROUP );
+			$goods_data['id'] = $id;
+			$ids[$i] = $id;
+			$tu->puto( $goods_data,TT::GOODS_GROUP ,false);
 		} 
 		
 		$add_exp = $goods['exp']*$car['goodsNumber'];//乘以载重箱，经验不包括好友帮助增加的箱数

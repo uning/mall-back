@@ -23,15 +23,16 @@ $uhf=fopen($uhfname,'w') or die("open $uhfname failed");
 
 $cont_no = 0;
 $end = $start + $num;
+$end = $logt->put(null,array('ad'=>1,'add'=>2));
 for($i=$start;$i<=$end;++$i){
 	$data = $logt->get($i);		
-//	$logt->out($i);
+	//	$logt->out($i);
 	$tm = $data['tm'];
 	if(!$data){
 		continue;	
 	}
 	if($tm < $day_starttime)
-                continue;
+		continue;
 	if($tm > $day_endtime)
 		break;
 	$s = $data['s'];
@@ -40,7 +41,7 @@ for($i=$start;$i<=$end;++$i){
 
 	$dgr[$mpre] ++;
 	$inp2=0;
-    $inp1=0;
+	$inp1=0;
 	$sp2='';
 	$sp1='';
 
@@ -92,26 +93,26 @@ for($i=$start;$i<=$end;++$i){
 		if($m=='Gift.accept'){
 			$gtags = $p['gids'];
 			if($gtags)
-			foreach( $gtags as $gtag ){
-				$dgr["$mpre@$gtag"] += 1;
-				$sp1.="$gtag@";
-			}
+				foreach( $gtags as $gtag ){
+					$dgr["$mpre@$gtag"] += 1;
+					$sp1.="$gtag@";
+				}
 		}
 		if($m=='ItemController.buy'){
 			$items = $p['d'];
 			if($items)
-			foreach( $items as $tag){
-				$dgr["$mpre@$tag"] += 1;
-				$sp1.="$tag@";
-			}
+				foreach( $items as $tag){
+					$dgr["$mpre@$tag"] += 1;
+					$sp1.="$tag@";
+				}
 		}
 		if($m=='CarController.buy'){
 			$cars = $p['c'];
 			if($cars)
-			foreach( $cars as $tag){
-				$dgr["$mpre@$tag"] += 1;
-				$sp1.="$tag@";
-			}
+				foreach( $cars as $tag){
+					$dgr["$mpre@$tag"] += 1;
+					$sp1.="$tag@";
+				}
 		}
 		if($m=='GoodsController.exhibit_goods'){
 			$tags = $p['tags'];
@@ -135,40 +136,39 @@ for($i=$start;$i<=$end;++$i){
 	else
 	{
 		if($m=='pub_feed'){
-		//sp1 = type
-		$dgr["$m@$sp1"]+=1;
+			//sp1 = type
+			$dgr["$m@$sp1"]+=1;
 		}
 		if($m=='feed_back'){
-		//sp1==type
-		$dgr["$m@$sp1@$sp2"]+=1;
+			//sp1==type
+			$dgr["$m@$sp1@$sp2"]+=1;
 		}
 		if($m=='pub_invite'){
-		//sp1 = gift 
-		$dgr["$m@$sp1"]+=1;
+			//sp1 = gift 
+			$dgr["$m@$sp1"]+=1;
 		}
 		if($m=='accept_invite'){
-		//sp1 = gift  sp2 =新安装
-		$pre = $m.$sp2;
-		$dgr["$pre@$sp1@$sp2"]+=1;
+			//sp1 = gift  sp2 =新安装
+			$pre = $m.$sp2;
+			$dgr["$pre@$sp1@$sp2"]+=1;
 		}
 		if($m=='help_open_shop'){
-		//sp1 = oid sp2 = new one
+			//sp1 = oid sp2 = new one
 			$dgr["$m@$sp1@$sp2"]+=1;
 		}
 	}
 	if(!$uid)
 		$uid = $data['u'];
-	
+
 	//print_r($p);
 	fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
 }
 
 print_r($dgr);
-return;
 store_varible($dgr);
 $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
 if($dbconfig['password']){
-  $cmd.=" -p'{$dbconfig['password']}' ";
+	$cmd.=" -p'{$dbconfig['password']}' ";
 }
 $cmd .= $dbconfig['dbname'];
 $cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE '.$table.'  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         

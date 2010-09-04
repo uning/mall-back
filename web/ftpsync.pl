@@ -552,13 +552,14 @@ sub dosync()
         elsif ($doverbose) { print $infotext; }
         elsif (! $doquiet) { print "n"; }
       }
-      elsif ($notimestampcheck == 0 && $remotefiledates{$curlocalfile} < $localfiledates{$curlocalfile}) {
-        $dorefresh=1;
-        $infotext="Newer: ".$curlocalfile." (".$localfilesizes{$curlocalfile}." bytes, ".$localfiledates{$curlocalfile}." versus ".$remotefiledates{$curlocalfile}.")\n";
-        if ($doinfoonly) { print $infotext; next; }
-        if ($doverbose)  { print $infotext; }
-        elsif (! $doquiet) { print "u"; }
-      }
+	  ##elsif ($notimestampcheck == 0 && $remotefiledates{$curlocalfile} < $localfiledates{$curlocalfile}) {
+	  ##  $dorefresh=1;
+	  ##  $infotext="Newer: ".$curlocalfile." (".$localfilesizes{$curlocalfile}." bytes, ".$localfiledates{$curlocalfile}." versus ".$remotefiledates{$curlocalfile}.")\n";
+		
+	  ##  if ($doinfoonly) { print $infotext; next; }
+	  ##  if ($doverbose)  { print $infotext; }
+	  ##  elsif (! $doquiet) { print "u"; }
+	  ## }
       elsif ($remotefilesizes{$curlocalfile} != $localfilesizes{$curlocalfile}) {
         $dorefresh=1;
         $infotext="Changed (different sized): ".$curlocalfile." (".$localfilesizes{$curlocalfile}."  versus ".$remotefilesizes{$curlocalfile}." bytes)\n";

@@ -17,7 +17,7 @@ if(!$u){
 }else
 	$data = TTGenid::getbyid($u);
 
-if(!$data||$data['id']){
+if(!$data||!$data['id']){
 	echo "<p><form method='get'>PID: <input name='pid' type='text' /><input type='submit' value='获取用户' /> </form></p>";
 }else{ 
     $u = $data['id'];

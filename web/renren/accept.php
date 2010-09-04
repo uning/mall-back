@@ -1,5 +1,7 @@
 <?php 
 require_once('config.php');
+require_once('renren.php');
+
 ?>
 <style type="text/css">
 .padding_content {
@@ -271,14 +273,13 @@ text-decoration:none;
 }
 </style>
 <?php
-require_once('config.php');
 require_once('pop/freeGift.php');
-$linkid = $_REQUEST['lid'];
-$touser = $_REQUEST['xn_sig_user'];	
+$linkid = $_REQUEST['lid'];	
 $tw = TT::LinkTT();
-//list($pid,$str) = explode(':',$linkid);
-//$irec = $tw->getbyuidx('uid',$pid);
-$link = $tw->getbyuidx('lid',$linkid);?>
+$link = $tw->getbyuidx('lid',$linkid);
+
+$touser = $_REQUEST['xn_sig_user'];
+?>
 <xn:if-is-app-user>
 <div id='is_install'></div>
 <?php
@@ -291,7 +292,7 @@ $link = $tw->getbyuidx('lid',$linkid);?>
 		$lg = $link['gift'];
 	}
 	else
-	 $lg = 0;
+	   $lg = 0;
 	$new  = 0;
 	if($_REQUEST['new']){
 	 	$new = 1;

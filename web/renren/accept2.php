@@ -52,7 +52,10 @@ $touser = 45182749;
 					}
 		}
 	$diff = time() - $att;
-	print_r($invite&&$new ==1&&!$gemd&&!$ut);
+	print_r($invite);
+	print_r($gemd);
+	print_r($ut);
+
 	if($invite&&$new ==1&&!$gemd&&!$ut){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    

@@ -68,8 +68,12 @@ class TTG{
 		if($type=='master'){
 			$r = 0;
 		}else{
-			$wc = count($config[$id]);
-			$r = rand()%$wc;
+			$wc = count($config[$id]); 
+			$sl = $wc - 1; 
+			if($sl) 
+				$r = 1+rand()%$sl; 
+			else 
+				$r = 0; 
 		}
 		$r= $config[$id][$r];
 

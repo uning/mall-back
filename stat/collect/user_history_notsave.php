@@ -132,7 +132,7 @@ for($i=1;$i<=$user_num;++$i){
 	
 }
 print_r($dgr);
-//exit;
+exit;
 //*
 store_varible($dgr);
 $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";

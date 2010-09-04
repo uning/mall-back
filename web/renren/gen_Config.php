@@ -74,13 +74,15 @@ foreach($fs as $v){
 	$r['url']=$src;
 	$out .= "   ".$r->asXML()."\n";
 }
+	    //<server name="test" purl="http://s26.coolplusplus.com/static/flash/" />
 $out .= <<<EOT
 	
 	<resource_servers>
-	 <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
+	 	<server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
 	</resource_servers>	
 	<app_servers>
-	    <server name="test" purl="http://rrmall.playcrab.com/bg/" />
+	    <server name="test" purl="http://s27.coolplusplus.com/bg/" />
+	    <server name="test" purl="http://s26.coolplusplus.com/bg/" />
 	</app_servers>	
 </config>
 EOT;

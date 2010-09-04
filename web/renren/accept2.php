@@ -57,6 +57,7 @@ $touser = 45182749;
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
 		$copilot = $ftu->getbyid( $cid );
+		print_r($copilot);
 		$copilot['id'] = $cid;
 		$copilot['bag'][2004] += 1;
 		$ftu->puto($copilot);

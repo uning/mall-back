@@ -5,7 +5,7 @@ class TTUser extends TTUDB
 	protected $_data;
 
 
-	public function TTUDB($u,$name='main',$only_read=false)
+	public function TTUser($u,$name='main',$only_read=false)
 	{
 		parent::TTUDB($u,$name,$only_read);
 	}

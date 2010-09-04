@@ -2,14 +2,22 @@
 
 require_once 'base.php';
 $upload_path = dirname(__FILE__).'/upload/';
-file_put_contents('feedback.txt.bak',print_r($_POST,true).print_r($_FILES,true));
+//file_put_contents('feedback.txt.bak',print_r($_POST,true).print_r($_FILES,true));
 if($_POST['message']){
 	include 'mail.php';
-	$mail->Subject = 'feedback:'.$_POST['userdbid'].'('.$_POST['userpid'].')';
+	$user = json_decode($_POST['user'],true);
+
+	if($_POST['type']==1){
+	$title="建议";
+	}else{
+	$title="Bug";
+	}
+	$mail->Subject = "mall feedback:$title";
 	$body.="<pre>\n";
-	$body .="\n{$_POST['message']}\n";
-	foreach($_POST as $k=>$v){
-		if($k!='message')
+	$body .="\n{$_POST['message']}\n----------------------------\n\n";
+	$body.='<a href="http://msg.renren.com/SendMessage.do?id='.$user['pid'].'">send xn message</a><br/>';
+	$body.='http://msg.renren.com/SendMessage.do?id='.$user['pid']."\n";
+	foreach($user as $k=>$v){
 			$body .="$k:$v\n";
 	}
 	//$_SERVER['PHP_SELF'];

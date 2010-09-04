@@ -23,6 +23,8 @@ if(!$data||!$data['id']){
 }else{ 
    
     $u = $data['id'];
+	$name = $data['name']; 
+	
 	if(!$u)
 		die( "no u get");
     
@@ -30,14 +32,14 @@ if(!$data||!$data['id']){
    
    
 	echo "<p><a href='add_user_money.php'>换个用户</a>&nbsp&nbsp;&nbsp;<a target='_blank' href='get_user.php?u=".$u."'>用户信息</a><p>";
-    echo "<p>现有金币".$tu->chMoney(0).",宝石".$tu->chGem(0)."</p><br/><br/>";
+    echo $name."<p>现有金币".$tu->chMoney(0).",宝石".$tu->chGem(0)."</p><br/><br/>";
 	
    
 	if($_POST['money'] && $_POST['gem'] &&$_POST['money']>=0 &&$_POST['gem']>=0&&$_POST['money']<=1000000000 &&$_POST['gem']<=1000){
 		
 		$tu->numch('money',$_POST['money']);
 		$tu->numch('gem',$_POST['gem']);
-		echo "<p>OK</p>"; 
+		echo "<p>OK，  <a href='http://msg.renren.com/SendMessage.do?id=".$data['pid']."'>发送站内信通知".$name."</a></p>"; 
 	}else{
 		echo "<p>输入要加的金币和宝石数</p>";
 	} 

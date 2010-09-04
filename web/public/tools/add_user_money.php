@@ -35,7 +35,7 @@ if(!$data||$data['id']){
 		
 		$tu->numch('money',$_POST['money']);
 		$tu->numch('gem',$_POST['gem']);
-		echo "<p>OK".</p>"; 
+		echo "<p>OK</p>"; 
 	}else{
 		echo "<p>输入不合法</p>";
 	} 

@@ -1,13 +1,10 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:xn="http://www.renren.com/2009/xnml">
+<html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="-1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/jsflash.js"></script>
-<title>活力商城</title>
+  <title>活力商城</title>
 <body>
 <?php
 echo "<pre>\n<form method='get'>";

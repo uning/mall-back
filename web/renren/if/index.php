@@ -241,7 +241,7 @@ Game...</span><br />
 		
 		<div class="help">
 			    <span style="width: 625px; float: left;">
-					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;&nbsp;[QQ群：120817224]
 				  
 				</span>
 				<span style="width: 175px; float: right; text-align: right;">

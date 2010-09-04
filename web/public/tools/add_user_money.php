@@ -35,7 +35,7 @@ if(!$data||!$data['id']){
     echo $name."<p>现有金币".$tu->chMoney(0).",宝石".$tu->chGem(0)."</p><br/><br/>";
 	
    
-	if($_POST['money'] && $_POST['gem'] &&$_POST['money']>=0 &&$_POST['gem']>=0&&$_POST['money']<=1000000000 &&$_POST['gem']<=1000){
+	if( $_POST['money']>=0 &&$_POST['gem']>=0&&$_POST['money']<=1000000000 &&$_POST['gem']<=1000){
 		
 		$tu->numch('money',$_POST['money']);
 		$tu->numch('gem',$_POST['gem']);

@@ -52,11 +52,11 @@ $touser = 45182749;
 					}
 		}
 	$diff = time() - $att;
-	print_r($invite);
-	print_r($gemd);
-	print_r($ut);
+	print_r($invite.'\n');
+	print_r($gemd.'\n');
+	print_r($ut.'\n');
 
-	if($invite&&$new ==1&&!$gemd&&!$ut){
+	if($invite&&$new ==1&&!$gemd){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
 		$copilot = $ftu->getbyid( $cid );
@@ -71,47 +71,6 @@ $touser = 45182749;
 	if($invite){
 	$gid = $link['gift'];
 	if($gid){?>
-		<div id='content'>
-	<div class='container'>
-        <div class='canvas'>
-			<div id="header">
-				<div id="navga">
-				<div class="logo"><a href="<?php echo RenrenConfig::$canvas_url;?>" target="_top" title="开始游戏!">logo</a></div>
-			   <div id="tabs">
-				<ul class="clearfix tcenter">       
-					<li class="game" id="flashTab" ><a  href="<?php echo RenrenConfig::$canvas_url;?>" >游戏</a></li>
-					<li class="freegift"><a class="active"  href="<?php echo RenrenConfig::$canvas_url;?>?a=freeGift" id="freeGift" >免费礼物</a></li>
-					<li class="invite" ><a href="<?php echo RenrenConfig::$canvas_url;?>?a=invite" >邀请好友</a></li>
-					<li class="faq"><a id='faq'  href="<?php echo RenrenConfig::$canvas_url;?>?a=faq" >常见问题</a></li>
-					<li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" target='_blank' id="forum">论坛</a></li>
-					<li class="payment" ><a  href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   id ="pay">充值</a></li>
-				</ul>
-				</div>
-				</div>
-			</div>
-			</div>
-			</div>
-	<div class="padding_content center" style="overflow: hidden;">
-	<div class="main_giftConfirm_cont">
-	<h3>您接受了<?php echo $gift[$gid]['name'];?></h3>
-	<div class="gift_box_holder">
-	<div class="gift_box_cont">
-	<div class="giftConfirm_img"><img
-		src="<?php echo RenrenConfig::$resource_urlp; ?>/images/giftIcon/<?php echo $gift[$gid]['icon'];?>"></img>
-	</div>
-	<div class="giftConfirm_name"><span><?php echo $gift[$gid]['name'];?></span></div>
-	</div>
-	<div class="gift_from">
-	<h3>From</h3>
-	</div>
-	<div class="from_box_cont">
-	<div class="giftFrom_img"><xn:profile-pic uid="<?php echo $fromuser;?>" linked="false" size="tiny" /></div>
-	<div class="giftFrom_name"><span><xn:name uid="<?php echo $fromuser;?>" linked="false" shownetwork="false" /></span></div>
-	</div>
-	</div>
-	</div>
-	</div>
-	<div style="text-align: center;">
 	<?php 
 		if($got) {?>
 			
@@ -141,22 +100,6 @@ $touser = 45182749;
 		?>
 	<xn:else>
 <img src="<?php echo RenrenConfig::$resource_urlp ?>images/genericbg.jpg"/>
-<script>
-var auth = false;
-function authOK()
-{
-	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&new="+Math.random() ) ;
-}
-function authKO()
-{
-	auth = false;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>") ;
-}
-var is_install=document.getElementById('is_install');
-if(!Session.isApplicationAdded() || is_install == null ){
-	Session.requireLogin(authOK,authKO);
-}
-</script>
+
 </xn:else>
 </xn:if-is-app-user>

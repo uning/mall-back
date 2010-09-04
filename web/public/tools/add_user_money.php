@@ -1,3 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:xn="http://www.renren.com/2009/xnml">
+<head>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/jsflash.js"></script>
+<title>æ´»åŠ›å•†åŸ</title>
+<body>
 <?php
 echo "<pre>\n<form method='get'>";
 require_once '../base.php';
@@ -15,8 +26,8 @@ if(!$u){
 if(!$data||$data['id']){
 	echo "<p>PID: <input name='pid' type='text' /></p>";
 }
-	echo "<p>½ğ±Ò: <input name='money' value='5000' type='text' /></p>";
-	echo "<p>±¦Ê¯: <input name='gem' value='0' type='text' /></p>";
+	echo "<p>é‡‘å¸: <input name='money' value='5000' type='text' /></p>";
+	echo "<p>å®çŸ³: <input name='gem' value='0' type='text' /></p>";
 	
 
 
@@ -30,7 +41,11 @@ if($_REQUEST['money'] && $_REQUEST['gem'] &&$_REQUEST['money']>=0 &&$_REQUEST['g
 	echo "<p>OK</p>";
 
 }else{
-	echo "<p>ÊäÈë²»ºÏ·¨</p>";
+	echo "<p>è¾“å…¥ä¸åˆæ³•</p>";
 }
 
-echo "<p><input type='submit' value='È·¶¨'/></p></form>";
+echo "<p><input type='submit' value='ç¡®å®š'/></p></form>";
+
+?>
+</body>
+</html>

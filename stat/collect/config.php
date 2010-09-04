@@ -5,6 +5,7 @@ require_once($myloc.'/../../web/public/base.php');
 require_once LIB_ROOT.'DBModel.php';
 
 $gtt =TT::get_tt('genid',0,'slave'); 
+$gttw =TT::get_tt('genid');
 $now = time();
 $datestr = date('Y-m-d',$now);
 $weekday = date('N',$now);

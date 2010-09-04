@@ -39,7 +39,7 @@ if(!$data||!$data['id']){
 		
 		$tu->numch('money',$_POST['money']);
 		$tu->numch('gem',$_POST['gem']);
-		echo "<p>OK，  <a href='http://msg.renren.com/SendMessage.do?id=".$data['pid']."'>发送站内信通知".$name."</a></p>"; 
+		echo "<p>OK，  <a target='_blank' href='http://msg.renren.com/SendMessage.do?id=".$data['pid']."'>发送站内信通知".$name."</a></p>"; 
 	}else{
 		echo "<p>输入要加的金币和宝石数</p>";
 	} 

@@ -301,7 +301,7 @@ $touser = $_REQUEST['xn_sig_user'];
 	 	$new = 1;
 	 }
 
-	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$lg,'sp2'=>$new));
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$fromuser,'sp1'=>$lg,'sp2'=>$new,'intp1'=>$touser));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
@@ -319,7 +319,7 @@ $touser = $_REQUEST['xn_sig_user'];
 					break;
 					}
 		}
-	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got&&$tsess['star']==1){
+	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
 		$copilot = $ftu->getbyid( $cid );

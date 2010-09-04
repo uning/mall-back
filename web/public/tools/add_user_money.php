@@ -18,9 +18,10 @@ if(!$u){
 	$data = TTGenid::getbyid($u);
 
 if(!$data||!$data['id']){
+   echo "<p>查找用户</p>";
 	echo "<p><form method='get'>PID: <input name='pid' type='text' /><input type='submit' value='获取用户' /> </form></p>";
 }else{ 
-     echo "<p>查找用户</p>";
+   
     $u = $data['id'];
 	if(!$u)
 		die( "no u get");
@@ -31,7 +32,7 @@ if(!$data||!$data['id']){
 	
 	echo "<form method='post'>";
 	echo "<p>金币: <input name='money' value='5000' type='text' /></p>";
-	echo "<p>宝石: <input ame='gem' value='0' type='text' /></p>";
+	echo "<p>宝石: <input name='gem' value='0' type='text' /></p>";
 	 
 	if($_POST['money'] && $_POST['gem'] &&$_POST['money']>=0 &&$_POST['gem']>=0&&$_POST['money']<=1000000000 &&$_POST['gem']<=1000){
 		
@@ -39,7 +40,7 @@ if(!$data||!$data['id']){
 		$tu->numch('gem',$_POST['gem']);
 		echo "<p>OK</p>"; 
 	}else{
-		echo "<p>输入不合法</p>";
+		echo "<p>输入要加的金币和宝石数</p>";
 	} 
     echo "<p><input type='submit' value='确定'/></p></form>";
 }

@@ -13,10 +13,10 @@ if(!$u){
 	$data = TTGenid::getbyid($u);
 
 if(!$data||$data['id']){
-	echo "<p>PID: <input name='pid' type='text' /></p>"
+	echo "<p>PID: <input name='pid' type='text' /></p>";
 }
-	echo "<p>金币: <input name='money' value='5000' type='text' /></p>"
-	echo "<p>宝石: <input name='gem' value='0' type='text' /></p>"
+	echo "<p>金币: <input name='money' value='5000' type='text' /></p>";
+	echo "<p>宝石: <input name='gem' value='0' type='text' /></p>";
 	
 
 
@@ -33,4 +33,4 @@ if($_REQUEST['money'] && $_REQUEST['gem'] &&$_REQUEST['money']>=0 &&$_REQUEST['g
 	echo "<p>输入不合法</p>";
 }
 
-echo "<p><input type='submit' value='确定'/></p></form>"
+echo "<p><input type='submit' value='确定'/></p></form>";

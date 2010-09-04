@@ -9,6 +9,7 @@
 <?php
 require_once '../base.php';
 $u=$_REQUEST['u'];
+$data = null;
 if(!$u){
  	$pid=$_REQUEST['pid'];  
     if($pid)

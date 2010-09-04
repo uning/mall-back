@@ -103,13 +103,14 @@ class ItemController {
 					GoodsController::checkout($params);
 					$item_obj = $tu->getbyid( $row['id'] );
 				}
-				//{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
+				/*{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
 				if($item_obj['goods']){
 					$ret['s'] = 'notempty';
 					$ret['index'] = $index;
 					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));
-					continue;
+					//continue;
 				}
+				 */
 			}
 			if( $item['type'] != 'ro' ){//改为不计算店面的人气
 			    if( $item['tag'] == '60102'){//移动电影院后，结算时间应当

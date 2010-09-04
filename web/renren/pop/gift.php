@@ -76,5 +76,9 @@
 		</div>
 </div>
 </form>
+
+<?php
+ include FB_CURR.'/cs/baidutongji_js.php';
+?> 
 </body>
 </html>

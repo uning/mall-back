@@ -1,3 +1,6 @@
+<?php 
+	require_once('../config.php');
+?>
 <html>
 <head>
 
@@ -99,7 +102,7 @@ function scroller(el)
 <div style="text-align: center;border: #3399bb solid 1px;">
 <table id="head" style='width:99%'>
 <tr> 
-	<td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../images/css/close.png"/></a></td>
+	<td align="right"><a onclick="toFlash()" style="cursor: pointer;"><img src="../../static/images/css/close.png"/></a></td>
 </tr>
 </table>
 
@@ -218,6 +221,8 @@ function scroller(el)
 </div>
 </div>
 
-
+<?php
+ include FB_CURR.'/cs/baidutongji_js.php';
+?> 
 </body>
 </html>

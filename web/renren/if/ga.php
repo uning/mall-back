@@ -1,29 +1,8 @@
 <?php
 require_once('../config.php');
 
-require_once('../renren.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
-$session_key = $_REQUEST['xn_sig_session_key'];
-$gflg = $_REQUEST['glink'];
-$sess = TTGenid::getbypid($pid);
-$uid = $sess['id'];
-
-if($session_key!=$sess['session_key']){
-	$renren = new Renren();
-	$renren ->api_key = RenrenConfig::$api_key;
-	$renren ->secret = RenrenConfig::$secret;
-	$renren ->session_key = $session_key;
-	$renren->init($session_key);
-	$rt = $renren->api_client->users_getLoggedInUser();
-	if($rt['uid']==$pid){
-		$sess['session_key'] = $session_key;
-		TTGenid::update($sess,$sess['id']);
-	}else 
-	{
-			header('Location: '.RenrenConfig::$canvas_url);
-	}
-}
 $gflg = $_REQUEST['glink'];
 if($gflg){
 	$ts = TT::TTWeb();
@@ -51,10 +30,9 @@ if($gflg){
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
-
 </script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
-<script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js?df"></script>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/stat/common.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jsflash.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/pageUtil.js?v=12"></script>
@@ -67,9 +45,6 @@ function install_swf(pid){
 		   return ;
 	   swf_install = true;
 	
-	  console.log('install_swf',pid);
-	  PL.conf('pid',pid);
-
 	//For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. --> 
 		var swfVersionStr = "10.0.0";
 	swfVersionStr = "0.0.0";
@@ -82,7 +57,7 @@ function install_swf(pid){
 	flashvars.pconf = '../static/flash/o_0_mall_config.xml';
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "760";
-	flashvars.CRITICAL_ERROR_SHOW = "0";
+	//flashvars.fb_sig_app_secret = "60d180ac578ce34093b3ce2d1d450f84";
 	flashvars.platform = "renren";
 	var flash_width = 760;
 	var flash_height = 700;
@@ -91,8 +66,7 @@ function install_swf(pid){
 	params.bgcolor = "#F0F8FF";
 	params.allowscriptaccess = "always";  // must be always since html is different domain from swf :(
 	params.allowfullscreen = "true";
-	//params.wmode = "window";//opaque
-	params.wmode = "opaque";
+	params.wmode = "window";//opaque
 	params.flashvars = flashvars;
 	var attributes = {};
 	attributes.id = "flash_run_id";
@@ -110,6 +84,10 @@ function install_swf(pid){
 } 
 </script>
 
+
+<?php
+ include FB_CURR.'/cs/gajs_init.php';
+?> 
 
  
 
@@ -133,13 +111,12 @@ function install_swf(pid){
 	</ul>
 	</div>
     </div>
-    <input type="button" onclick="popUpFeed()" value="jksk"/>
 </div>
 
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
 <div id="appFrame" class="flashVisible">
 <div id="flashFrame"
-	style="background: url('<?php echo RenrenConfig::$resource_urlp;?>/images/genericbg.jpg') no-repeat; margin-top: 0px; padding: 0px">
+	style="background: url('../static/images/back.png') no-repeat; margin-top: 0px; padding: 0px">
 
 
 

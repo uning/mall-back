@@ -48,3 +48,4 @@ if(!Session.isApplicationAdded() || is_install == null ){
 </xn:else>
 
 </xn:if-is-app-user>
+<img style='width:0;height:0;' src='http://img.tongji.linezing.com/2051209/tongji.gif' />

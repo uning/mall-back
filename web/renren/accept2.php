@@ -20,9 +20,6 @@ $touser = 45182749;
 	$att = $tsess['authat'];
 	$ut = $tsess['ut'];
 	$gemd = $tsess['gemd'];
-	print_r($att);
-	print_r($ut);
-	print_r($gemd);
 	if($link['gift']){
 		$lg = $link['gift'];
 	}

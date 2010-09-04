@@ -10,7 +10,7 @@ $gap=86400;
 
 $table = 'user_history';
 print_r($tfs);
-$uhfname = $myloc."/data/$table/$weekday.csv";
+$uhfname = $myloc."/data/$table/$weekday.t.csv";
 system("mkdir -p $myloc/data/$table/");
 $uhf=fopen($uhfname,'w') or die("open $uhfname failed");
 for($i=1;$i<=$user_num;++$i){
@@ -21,7 +21,7 @@ for($i=1;$i<=$user_num;++$i){
 		continue;	
 	if(!is_numeric($pid))
 		continue;
-	$tu = new TTuser($uid,'main',true);
+	$tu = new TTuser($uid,true);
 	$fnames = array('money','exp','gem','friend_count');
 	foreach($fnames as $fn)
 		$dids[] = $tu->getdid($fn);

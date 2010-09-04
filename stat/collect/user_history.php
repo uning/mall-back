@@ -21,7 +21,13 @@ for($i=1;$i<=$user_num;++$i){
 		continue;	
 	if(!is_numeric($pid))
 		continue;
-	$tu = new TTuser($uid,'main',true);
+	$accesstime = $ud['at'];
+	$unstalltime = $ud['ut'];
+	$authtime = $ud['authat'];
+	if($authtime >$day_endtime){
+		break;
+	}
+	$tu = new TTuser($uid,true);
 	$fnames = array('money','exp','gem','friend_count');
 	foreach($fnames as $fn)
 		$dids[] = $tu->getdid($fn);
@@ -50,10 +56,6 @@ for($i=1;$i<=$user_num;++$i){
 	$dgr['money']+=$data['money'];
 	$dgr['exp']+=$data['exp'];
 
-	$accesstime = $ud['at'];
-	$unstalltime = $ud['ut'];
-	$installtime = $ud['it'];
-	$authtime = $ud['authat'];
 	if($accesstime > $day_starttime ){//daily active user
 		$dgr['login_num']++;
 		if(!$data['f_num'])
@@ -70,27 +72,17 @@ for($i=1;$i<=$user_num;++$i){
 		if($unstalltime>$authtime)
 			++$dgr['auth_unauth_num'];
 		else if($accesstime <$authtime)
-			++$dgr['auth_noinstall_num'];
+			++$dgr['auth_noplay_num'];
 		else
 			++$dgr['auth_num'];
 		++$dgr['total_auth_num'];
-	}
-	if($installtime>$day_starttime){
-		if($unstalltime<$installtime){
-			if($unstalltime)
-				$dgr['reinstall_num']++;
-			else
-				$dgr['install_num']++;
-		}else{
-			$dgr['in_un_num']++;//当天卸载人数
-		}
 	}
 	if($unstalltime>$accesstime){
 		$dgr['unstall_num']++;
 	}
 
 
-///#apicall get
+///#platform apicall get 
 	if($ud['name']!='' && strstr($ud['name'],'我很二')==''  ){
 		continue;
 	}
@@ -127,7 +119,7 @@ for($i=1;$i<=$user_num;++$i){
 		print_r($ud);
 	}
 
-	$gtt->put($uid,$newd);
+	$gttw->put($uid,$newd);
 
 	
 }

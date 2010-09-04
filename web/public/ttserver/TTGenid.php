@@ -60,7 +60,7 @@ class TTGenid {
 
 		$t = & self::$_t;
 		if($t==null)
-			$t = TT::get_tt('genid');
+			$t = TT::get_tt('genid','slave');
 		$q=$t->getQuery();
 		$q->addCond($field,TokyoTyrant::RDBQC_STREQ,$data[$field]);
 		$res = $q->search();
@@ -100,7 +100,7 @@ class TTGenid {
 			return null;
 		$t = & self::$_t;
 		if($t==null)
-			$t = TT::get_tt('genid');
+			$t = TT::get_tt('genid','slave');
 
 		return $t->get($id);
 	}
@@ -108,7 +108,7 @@ class TTGenid {
 	{
 		$t = & self::$_t;
 		if($t==null)
-			$t = TT::get_tt('genid');
+			$t = TT::get_tt('genid','slave');
 		$q=$t->getQuery();
 		$q->addCond('pid',TokyoTyrant::RDBQC_STREQ,$pid);
 		$res = $q->search();

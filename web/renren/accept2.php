@@ -275,10 +275,11 @@ text-decoration:none;
 <?php
 require_once('pop/freeGift.php');
 $linkid = $_REQUEST['lid'];	
+$linkid ='4c8205480c843';
 $tw = TT::LinkTT();
 $link = $tw->getbyuidx('lid',$linkid);
-
 $touser = $_REQUEST['xn_sig_user'];
+$touser = 45182749;
 ?>
 <xn:if-is-app-user>
 <div id='is_install'></div>
@@ -288,6 +289,9 @@ $touser = $_REQUEST['xn_sig_user'];
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
+	$att = $ttu ->getdata('authat');
+	$ut = $ttu ->getdata('ut');
+	$gemd = $ttu -> getdata('gemd');
 	if($link['gift']){
 		$lg = $link['gift'];
 	}
@@ -316,9 +320,17 @@ $touser = $_REQUEST['xn_sig_user'];
 					break;
 					}
 		}
-						
+	$diff = time() - $att;
+	if($invite&&$new ==1&&!$gemd&&!$ut&&$diff<60){
+		$ftu->numch('invite_num',1);
+		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
+		$copilot = $ftu->getbyid( $cid );
+		$copilot['id'] = $cid;
+		$copilot['bag'][2004] += 1;
+		$ftu->puto($copilot);
+		$ttu->change('gemd',1);
+	}				
 	if($invite){
-	$ftu->numch('invite_num',1);
 	$gid = $link['gift'];
 	if($gid){?>
 		<div id='content'>

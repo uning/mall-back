@@ -27,13 +27,7 @@ if(!$data||!$data['id']){
 		die( "no u get");
     
 	$tu = new TTUser($u); 
-    echo "<p><a href='add_user_money.php'>换个用户</a>&nbsp&nbsp;&nbsp;<a href='get_user.php?u=".$u."'>用户信息</a><p>";
-    echo "<p>现有金币".$tu->chMoney(0).",宝石".$tu->chGem(0)."</p><br/><br/>";
-	
-	echo "<form method='post'>";
-	echo "<p>金币: <input name='money' value='5000' type='text' /></p>";
-	echo "<p>宝石: <input name='gem' value='0' type='text' /></p>";
-	 
+   
 	if($_POST['money'] && $_POST['gem'] &&$_POST['money']>=0 &&$_POST['gem']>=0&&$_POST['money']<=1000000000 &&$_POST['gem']<=1000){
 		
 		$tu->numch('money',$_POST['money']);
@@ -42,6 +36,15 @@ if(!$data||!$data['id']){
 	}else{
 		echo "<p>输入要加的金币和宝石数</p>";
 	} 
+	
+	
+	echo "<p><a href='add_user_money.php'>换个用户</a>&nbsp&nbsp;&nbsp;<a href='get_user.php?u=".$u."'>用户信息</a><p>";
+    echo "<p>现有金币".$tu->chMoney(0).",宝石".$tu->chGem(0)."</p><br/><br/>";
+	
+	echo "<form method='post'>";
+	echo "<p>金币: <input name='money' value='5000' type='text' /></p>";
+	echo "<p>宝石: <input name='gem' value='0' type='text' /></p>";
+	
     echo "<p><input type='submit' value='确定'/></p></form>";
 }
 ?>

@@ -3,7 +3,7 @@ require_once('../config.php');
 require_once('../renren.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
-$session_key = $_POST['xn_sig_session_key'];
+$session_key = $_REQUEST['xn_sig_session_key'];
 $gflg = $_REQUEST['glink'];
 $sess = TTGenid::getbypid($pid);
 $uid = $sess['id'];

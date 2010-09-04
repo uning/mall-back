@@ -288,6 +288,9 @@ $touser = $_REQUEST['xn_sig_user'];
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
+	$att = $tsess['authat'];
+	$ut = $tsess['ut'];
+	$gemd = $tsess['gemd'];
 	if($link['gift']){
 		$lg = $link['gift'];
 	}
@@ -316,7 +319,16 @@ $touser = $_REQUEST['xn_sig_user'];
 					break;
 					}
 		}
-						
+	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
+		$ftu->numch('invite_num',1);
+		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
+		$copilot = $ftu->getbyid( $cid );
+		$copilot['id'] = $cid;
+		$copilot['bag'][2004] += 1;
+		$ftu->puto($copilot);
+		$tsess['gemd']=1;
+		TTGenid::update($tsess,$tsess['id']);
+	}								
 	if($invite){
 	$ftu->numch('invite_num',1);
 	$gid = $link['gift'];

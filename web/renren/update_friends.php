@@ -35,11 +35,14 @@
 	if($ret && $ret[0] && $ret[0]>0 ) {
 		$fidstr =implode(',',$ret);
 		$tu->putf( TT::FRIEND_STAT,$fidstr);
+		echo "OK";
+	}else{
+		echo "failed\n";
 	}
 	
 	print_r($ret);  
 
-echo "OK";
+
 
 ?>
 </body>

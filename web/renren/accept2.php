@@ -20,9 +20,6 @@ $touser = 45182749;
 	$att = $tsess['authat'];
 	$ut = $tsess['ut'];
 	$gemd = $tsess['gemd'];
-	print_r($att);
-	print_r($ut);
-	print_r($gemd);
 	if($link['gift']){
 		$lg = $link['gift'];
 	}
@@ -51,22 +48,15 @@ $touser = 45182749;
 					break;
 					}
 		}
-	$diff = time() - $att;
-	print_r($invite.'\n');
-	print_r($gemd.'\n');
-	print_r($ut.'\n');
-
-	if($invite&&$new ==1&&!$gemd){
+	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
 		$copilot = $ftu->getbyid( $cid );
-		print_r($copilot);
 		$copilot['id'] = $cid;
 		$copilot['bag'][2004] += 1;
 		$ftu->puto($copilot);
 		$tsess['gemd']=1;
 		TTGenid::update($tsess,$tsess['id']);
-		print_r( $ftu->getbyid( $cid ));
 	}				
 	if($invite){
 	$gid = $link['gift'];

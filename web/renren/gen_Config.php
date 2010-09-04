@@ -6,14 +6,14 @@ $xml =  simplexml_load_file($confile);
 $outf = $mypos.'/static/flash/o_0_mall_config.xml'; 
 
 while(true){
-	$str_md5 = md5(file_get_contents('http://files5.qq494.cn/pig/hotel/flash/MallGame.swf'));
-	$new_md5 = md5_file($mypos.'/static/flash/MallGame.swf');
+	$str_md5 = file_get_contents('http://files5.qq494.cn/pig/hotel/flash/version.txt');
+	$new_md5 = file_get_contents($mypos.'/static/flash/version.txt');
 	if($str_md5 != $new_md5){
-		echo 'MallGame.swf not equal--------'."\n";	
+		echo 'version not equal--------'."\n";	
 		if($retry >3 )
 			die('genconfig errror valid not equal ');
 		$retry++;
-		sleep(100);
+		sleep(30);
 		continue;
 	}
 	break;

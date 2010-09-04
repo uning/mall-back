@@ -6,6 +6,12 @@ require_once('config.php');
     //$session_key = $renren->session_key;
 ?>
 <style>
+.fan-wrapper{
+ position:absolute;
+right:60px;
+top:0;
+}
+
 .share-wrapper {
 position:absolute;
 right:0;
@@ -16,7 +22,10 @@ top:0;
 <div id='is_install'></div>
 <div id='content' style="background-color: #ffffff;">
     <div class='container'>
-        <div class='canvas'>
+		<div class='canvas'>
+            <div class='fan-wrapper'>
+              <xn:app-fan/>
+            </div>
 			<div class='share-wrapper'>
 				<xn:share-app-button/> 
 			</div>

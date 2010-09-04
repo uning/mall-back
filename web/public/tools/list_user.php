@@ -43,7 +43,7 @@ for($i=$u;$i<$e;++$i)
 		echo "{$pid}({$i})({$t['name']}):  <a target='_blank' href='../../renren/static/flash/loader_demo.php?pid=$pid'>play demo</a> | ";	
 		if(is_numeric($pid)){
 		echo "<a target='_blank' href='../../renren/update_info.php?xn_sig_user=$pid'>get platform data</a> | ";	
-		//echo "<a target='_blank' href='../../renren/update_info.php?xn_sig_user=$pid&xn_sig_session_key=$sk'>update friends</a> ";	
+		echo "<a target='_blank' href='../../renren/update_friends.php?xn_sig_user=$pid'>update friends</a> | ";	
 		}
 		echo "<a target='_blank' href='get_user.php?u=$i'>view data</a> \n";	
 	}

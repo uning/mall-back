@@ -93,7 +93,7 @@ function install_swf(pid){
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
 	
-	flashvars.GUIDE_TYPE = 3;
+	flashvars.GUIDE_TYPE = 1;
  		
 
 	

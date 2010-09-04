@@ -10,8 +10,8 @@
 
 	require_once 'renren.php';
 	$ren = new Renren();
-	$ren -> api_key ='a32cb73bea154d2c9d40703b66dc9142'; 
-	$ren -> secret = '023a6201a9b04955b1af79b1e9037c16';
+	$ren -> api_key =RenrenConfig::$api_key;
+	$ren -> secret = RenrenConfig::$secret;
 	$ren -> init();
 	$ret = $ren->api_client->users_getInfo(array($pid),array("uid","name","sex","star","zidou","vip","tinyurl","birthday","email_hash"));
 	if($ret[0]['name']){

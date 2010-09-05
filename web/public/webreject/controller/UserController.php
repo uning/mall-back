@@ -32,7 +32,7 @@ class UserController
 		$ret['s'] = 'OK';
 		$ret['t'] = time();
 		$params['u']=$uid;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($params)));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$new,'u'=>'uid','sp1'=>$params['pid']));
 		return $ret;
 	}
 
@@ -85,7 +85,7 @@ class UserController
 		*/
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$last['continued']));
 		return $ret;				
 	}
 

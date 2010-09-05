@@ -320,7 +320,7 @@ function update_info()
 	XN.Main.get_sessionState().waitUntilReady(function(){
 		var get_user=function (r){
 			if(r[0]&&r[0].name){
-				r[0]['session'] = session_key;
+				r[0]['session_key'] = session_key;
 				$.post("../ajax/save_info.php", r[0], function(){}, 'json');
 			}
 		}

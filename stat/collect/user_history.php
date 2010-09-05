@@ -17,23 +17,31 @@ for($i=1;$i<=$user_num;++$i){
 	$ud = $gtt->get($i);		
 	$uid = $i;
 	$pid = $ud['pid'];
-	if(!$ud || !$uid || !$pid)
-		continue;	
+	if(!$ud){
+		echo "get user $i failed\n";
+		continue;
+	}
+	if( !$uid || !$pid){
+		echo "user $i have no pid\n";
+		continue;
+	}	
 	if(!is_numeric($pid))
 		continue;
 	$accesstime = $ud['at'];
 	$unstalltime = $ud['ut'];
 	$authtime = $ud['authat'];
-	if($authtime >$day_endtime){
-		break;
-	}
 	$tu = new TTuser($uid,true);
-	$fnames = array('money','exp','gem','friend_count');
+	$fnames = array('money','exp','gem','friend_count','it');
 	foreach($fnames as $fn)
 		$dids[] = $tu->getdid($fn);
 	$dids[] = $tu->getoid('mannual',TT::OTHER_GROUP);
 	$dids[] = $tu->getoid('installbar',TT::OTHER_GROUP);
 	$data = $tu->getbyids($dids);
+
+	if($data['it'] >$day_endtime){
+		echo "end at user $i \n";
+		break;
+	}
 	$level=$tu->getLevel($data['exp']);
 	$dgr["level_$level"]+=1;
 	//print_r($data);
@@ -80,7 +88,12 @@ for($i=1;$i<=$user_num;++$i){
 	if($unstalltime>$accesstime){
 		$dgr['unstall_num']++;
 	}
+	if(!$accesstime)
+		$dgr['total_noacctive_user']+=1;
 
+	$dgr['total_user']+=1;
+	if($i%100==0)
+		echo "$uid user proessed \n";
 
 ///#platform apicall get 
 	if($ud['name']!='' && strstr($ud['name'],'我很二')==''  ){

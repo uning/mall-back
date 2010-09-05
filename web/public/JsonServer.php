@@ -189,8 +189,6 @@ class JsonServer{
 				'Advert.set'=>1,
 				'Cinema.enter'=>1,
 				'Cinema.pick'=>1,
-				'Gift.send'=>1,
-				'Gift.accept'=>1,
 				'Man.update'=>1,
 				'UserController.update_friends'=>1,
 				'UserController.enlarge_mall'=>1,

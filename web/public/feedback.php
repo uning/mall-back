@@ -16,6 +16,7 @@ if($_POST['message']){
 	$body.="<pre>\n";
 	$body .="\n{$_POST['message']}\n----------------------------\n\n";
 	$body.='<a href="http://msg.renren.com/SendMessage.do?id='.$user['pid'].'">send xn message</a><br/>';
+	$body.='<a href="http://dev.tingkun.com/work/mall/backend/web/renren/update_friends.php?xn_sig_user='.$user['pid'].'">update friend</a><br/>';
 	$body.='http://msg.renren.com/SendMessage.do?id='.$user['pid']."\n";
 	foreach($user as $k=>$v){
 			$body .="$k:$v\n";

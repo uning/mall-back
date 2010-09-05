@@ -7,6 +7,7 @@ require_once LIB_ROOT.'DBModel.php';
 $gtt =TT::get_tt('genid',0,'slave'); 
 $gttw =TT::get_tt('genid');
 $now = time();
+//$now -= 86400;
 $datestr = date('Y-m-d',$now);
 $weekday = date('N',$now);
 $day_starttime = strtotime($datestr);

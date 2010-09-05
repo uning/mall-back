@@ -4,6 +4,7 @@ require_once($myloc.'/config.php');
 
 $user_num = $gtt->num(); 
 echo "user_num = $user_num\n";
+$mail_body.="user_num = $user_num\n";
 $now = time();
 $gap=86400;
 
@@ -30,6 +31,12 @@ for($i=1;$i<=$user_num;++$i){
 	$accesstime = $ud['at'];
 	$unstalltime = $ud['ut'];
 	$authtime = $ud['authat'];
+	if($authtime >$day_endtime){
+		if($i - $lastau == 1){
+		 echo "break at user $i\n"; 
+		 $mail_body.="break at user $i\n"; 
+		}
+	}
 	$tu = new TTuser($uid,true);
 	$fnames = array('money','exp','gem','friend_count','it');
 	foreach($fnames as $fn)
@@ -38,15 +45,9 @@ for($i=1;$i<=$user_num;++$i){
 	$dids[] = $tu->getoid('installbar',TT::OTHER_GROUP);
 	$data = $tu->getbyids($dids);
 
-	if($data['it'] >$day_endtime){
-		echo "end at user $i \n";
-		break;
-	}
 	$level=$tu->getLevel($data['exp']);
 	$dgr["level_$level"]+=1;
-	//print_r($data);
-	//exit;
-	//count man 
+
 	$mano = $data['mannual'];
 	$ino = $data['installbar'];
 	if($mano){
@@ -136,16 +137,4 @@ for($i=1;$i<=$user_num;++$i){
 
 	
 }
-print_r($dgr);
-//exit;
-//*
-store_varible($dgr);
-$cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
-if($dbconfig['password']){
-  $cmd.=" -p'{$dbconfig['password']}' ";
-}
-$cmd .= $dbconfig['dbname'];
-$cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE '.$table.'  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         
-//*/
-system($cmd);
-fclose($uhf);
+include 'end_stat.php';

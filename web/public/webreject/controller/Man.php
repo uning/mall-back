@@ -99,7 +99,7 @@ class Man{
 		if($d&&$mano[$step]['dtime']>0){
 			$ret['s']='already';	
 			$ret['d']=$mano;
-			//return $ret;
+			return $ret;//
 		}
 		$award = array();
 		if($v){

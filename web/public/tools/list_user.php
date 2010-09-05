@@ -57,7 +57,8 @@ for($i=$u;$i<$e;++$i)
 		if(is_numeric($pid)){
 		echo "<a target='_blank' href='../../renren/update_info.php?xn_sig_user=$pid'>get platform data</a> | ";	
 			echo "<a target='_blank' href='../../renren/update_friends.php?xn_sig_user=$pid'>update friends</a> | ";	
-		echo "<a target='_blank' href='add_user_money.php?pid=$pid'>add money</a> | ";	
+	    	echo "<a target='_blank' href='add_user_money.php?pid=$pid'>add money</a> | ";	
+			echo "<a target='_blank' href='http://msg.renren.com/SendMessage.do?id=$pid'>renren站内信</a> | ";	
 		}
 		echo "<a target='_blank' href='get_user.php?u=$i'>view data</a> \n";	
 	}

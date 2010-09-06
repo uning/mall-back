@@ -683,7 +683,7 @@ class GoodsController
 					$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
 					$g['num'] -= $asnum;
 					$curtime +=  floor($asnum * $pertime);//
-
+					$g['ctime'] = $curtime;  
 					$shop_changed=true;
 					$shop['ctime']=$curtime;
 					if( $g['num']==0 ){//当前时间段卖光此箱货物，继续卖下一个货物
@@ -700,7 +700,9 @@ class GoodsController
 				}
 			}//foreach goods
 			if($shop_changed){
+				$shop['_s'] = 'goods';
 				if($shop_empty){
+					$shop['_s'] = 'empty';
 					unset($shop['goods']);
 				}
 				$tu->puto($shop);

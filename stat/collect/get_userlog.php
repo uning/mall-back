@@ -1,22 +1,20 @@
 <?php
 
 $user = $argv[1];
-//$user = 8127;
-$start = 1000000;
+$user = 8127;
+$start = 300000;
 $myloc = dirname(__FILE__);
 require_once($myloc.'/config.php');
 
-$logt = TT::get_tt('log',true);
+$logt = TT::get_tt('log');
 $num = $logt->num();
-if(!$start){
-	$tq = $logt->getQuery();
-	$tq->setLimit(1);
-	$r = $tq->search();
-	foreach($r as $k=>$v)
-	{
-		$start = $k;
-		break;	
-	}
+$tq = $logt->getQuery();
+$tq->setLimit(1);
+$r = $tq->search();
+foreach($r as $k=>$v)
+{
+	$start = $k;
+	break;	
 }
 
 

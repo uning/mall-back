@@ -305,7 +305,7 @@ $touser = $_REQUEST['xn_sig_user'];
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
-	if($link['date']<20100906){
+	if($link['time']<20100906){
 	$invite = false;
 	foreach($ids as $id){
 		if($id==$touser){

@@ -83,11 +83,9 @@ if($_REQUEST['gift'])
 	{
 		$today = $feed['time'];
 		$arr = '0';
-		if($today['date']==date('Ymd'))
-		foreach ($feed['invite'] as $v){
-			
-				 $arr.=','.$v;
-			
+		if($today==date('Ymd'))
+		foreach ($feed['invite'] as $k=>$v){
+				 $arr.=','.$k;
 		}
 	}
 	

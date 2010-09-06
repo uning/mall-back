@@ -305,15 +305,35 @@ $touser = $_REQUEST['xn_sig_user'];
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
-				$invite = false;
+	if($link['date']<20100906){
+	$invite = false;
+	foreach($ids as $id){
+		if($id==$touser){
+				$invite = true;
+				break;
+				}
+		}
+		$got = false;
+	foreach ($getted as $u){
+			if($u==$touser){
+				$got = true;
+					break;
+					}
+		}		
+	}	
+	else{
+		$invite = false;
+		if(!is_array($ids))
+		$ids = array();
 	if(array_key_exists($touser,$ids))
 				$invite = true;
-		 
 				$got = false;
 	if(array_key_exists($touser,$getted))
 				$got = true;
-					
-
+	} 
+	
+			
+	
 	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    

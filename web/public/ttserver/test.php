@@ -20,9 +20,15 @@ function dodebug($str)
 	echo "$str=";eval('echo  ' .$str.';');echo "\n";
 }
 
+
 record_time($st);
 //require_once('TTt.php');
 require_once('test_config.php');
+$tu = new TTUser(1);
+echo $tu->getf('money')."\n";
+$tu->chMoney(100);
+echo $tu->getf('money')."\n";
+exit;
 
 $ltt = TT::LinkTT();
 

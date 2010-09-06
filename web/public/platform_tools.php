@@ -19,7 +19,8 @@ function get_friends($uid,$sess=null,$tu=null)
 	$ren -> init( $sk);
 	$ret= $ren->api_client->friends_getAppFriends();
 	if($ret[0]>1){
-		return $ret;
+		return implode(',',$ret);
 	}
-	return array();
+	return '';
 }
+

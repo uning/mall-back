@@ -34,6 +34,8 @@ if($c==null){
 		JsonServer::registerController('GoodsController');
 		JsonServer::registerController('Task');
 		JsonServer::registerController('Friend');
+		JsonServer::registerController('TaskOnce');
+		JsonServer::registerController('HelpGet');
 		JsonServer::registerController('Tool');
 		JsonServer::registerController('DataS');
          

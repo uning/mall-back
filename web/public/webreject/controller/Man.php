@@ -178,6 +178,7 @@ class Man{
 			}
 		}
 		$tu->puto($mano);
+        TTLog::record( array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$step ) );		
 		$ret['s'] = 'OK';
 		$ret['award'] = $award;
 		return $ret;

@@ -40,12 +40,12 @@ class Gift{
 		$ftu = new TTUser($fid);
 		$id = $ftu->getdid(null,TT::GIFT_GROUP);
 		$obj['gtag'] = $gift_obj['tag'];
-		$obj['id']=$id;
-		$obj['fid'] = $uid;
+		$obj['id']=$id;  //受礼人的礼物组id
+		$obj['fid'] = $uid;  //送礼人
 		if( $params['msg'] )
 		    $obj['msg'] = $params['msg'];
 		$ftu->puto( $obj );
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$fid,'sp1'=>$gift_obj['tag']));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$fid,'intp1'=>$uid,'sp1'=>$gift_obj['tag']));
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -64,7 +64,16 @@ class Gift{
 	{
 		$uid = $params['u'];
 		$tu = new TTUser($uid);
-		$ret['d'] = $tu->get(TT::GIFT_GROUP);
+		$gifts = $tu->get(TT::GIFT_GROUP);
+                $ret = array();
+		foreach( $gifts as $index=>$gift ){
+			if( $gift['fid'] ){
+				$fdata = TTGenid::getbyid( $gift['fid'] );
+				$gifts[$index]['name'] = $fdata['name'];
+				$gifts[$index]['icon'] = $fdata['icon'];
+			}
+		}
+		$ret['d'] = $gifts;
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -113,7 +122,7 @@ class Gift{
 		$tu->remove($rids);
 		$ret['s'] = 'OK';
 		$ret['id2id'] = $id2id;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$d['fid'],'sp1'=>$tag));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$d['fid'],'sp1'=>$tag));
 		return $ret;
 	}
 }

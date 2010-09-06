@@ -102,7 +102,6 @@ class Advert
 		    $tu->putf( 'maxpopu',$maxpopu );
 
 	    //使用广告次数
-		$advert_count = $tu->numch( 'advert_count',1 );	
 		$ret['s'] = 'OK';
 		$ret['t'] = $now;
 		$ret['tag'] =  $adv_tag;

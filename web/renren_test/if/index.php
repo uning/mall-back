@@ -1,12 +1,40 @@
 <?php
 require_once('../config.php');
-
+require_once('../renren.php');
 //
 $pid = $_REQUEST['xn_sig_user'];
+$session_key = $_REQUEST['xn_sig_session_key'];
 $gflg = $_REQUEST['glink'];
+$sess = TTGenid::getbypid($pid);
+$uid = $sess['id'];
+if($session_key!=$sess['session_key']){
+	$renren = new Renren();
+	$renren ->api_key = RenrenConfig::$api_key;
+	$renren ->secret = RenrenConfig::$secret;
+	$renren ->session_key = $session_key;
+	$renren->init($session_key);
+	$rt = $renren->api_client->users_getLoggedInUser();
+	if($rt['uid']==$pid){
+		$sess['session_key'] = $session_key;
+		TTGenid::update($sess,$sess['id']);
+	}else 
+	{
+			header('Location: '.RenrenConfig::$canvas_url);
+	}
+}
+$tu = new   TTUser($uid);
+ $iid = $tu->getdid('installbar',TT::OTHER_GROUP);
+	 $barobj = $tu->getbyid($iid); 
+	 $install_bar = true;
+	 if($barobj == null || $barobj['email'] == null){
+		$install_bar = true;
+	}else{
+	  $install_bar = false;
+	 } 
+
 if($gflg){
-	$ts = TT::TTWeb();
-        $data = $ts->getbyid($gflg);
+	
+    $data = $ts->getbyid($gflg);
 	$bids = $data['rfids'];
 	if(strstr($bids,$pid)){
 	}else{//给玩家礼物
@@ -18,6 +46,7 @@ if($gflg){
 	}
 	//$ts->puto($data);
  
+	
 			
 }
 ?>
@@ -26,11 +55,15 @@ if($gflg){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php //include FB_CURR.'/cs/check_connect_redirect.php';?>
-<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?5" />
+<link rel="stylesheet"href="<?php echo RenrenConfig::$resource_urlp;?>css/main.css?7" />
+<?php if($install_bar){ ?>
+<script src="<?php echo RenrenConfig::$resource_urlp;?>js/install_bar.js?v=3"></script>
+<link rel="stylesheet" href="<?php echo RenrenConfig::$resource_urlp;?>css/installbar.css?4" />
+<?php } ?>
 <link rel="shortcut icon" href="<?php echo RenrenConfig::$resource_urlp;?>images/favicon.ico" type="image/x-icon" />
 <script type="text/javascript">
 var a='<?php echo $_REQUEST['a']; ?>';
-
+var session = '<?php echo $session_key; ?>';
 </script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/jquery-1.4.2.min.js"></script>
 <script src="<?php echo RenrenConfig::$resource_urlp;?>js/loader.js"></script>
@@ -40,7 +73,7 @@ var a='<?php echo $_REQUEST['a']; ?>';
 <script type="text/javascript"  src="http://static.connect.renren.com/js/v1.0/FeatureLoader.jsp"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"> </script>
 <script type="text/javascript">
-swf_install = false;
+ swf_install = false;
 function install_swf(pid){
 	  if(swf_install || !pid)
 		   return ;
@@ -59,6 +92,11 @@ function install_swf(pid){
 	flashvars.languagetype = "0";
 	flashvars.STAGE_WIDTH = "800";
 	flashvars.CRITICAL_ERROR_SHOW = "0";
+	
+	flashvars.GUIDE_TYPE = 1;
+ 		
+
+	
 	flashvars.platform = "renren";
 	flashvars.preResourceUrl="";
 	flashvars.errorPage = '/bg/error_log.php';
@@ -80,6 +118,7 @@ function install_swf(pid){
 
 	/*flashDivId*/
 	params.base = "http://192.168.1.50/work/mall/Venus/to-company/";
+	//params.base = "http://127.0.0.1/work/mall/Venus/to-company/";
 	swfobject.embedSWF(
 		"../static/flash/MallLoader.swf?v=<?php echo md5_file('../static/flash/MallLoader.swf');?>", "flashapp", 
 			flash_width, flash_height, 
@@ -102,7 +141,9 @@ function install_swf(pid){
  			<ul id="scrollBox">   
 				  <li> 点击顾客，把他们送到他们想去的地方，会有小惊喜哦 </li>  
 				  <li> 把顾客送到<span>电影院</span>，他们会很乐意看场电影 </li>  
-				  <li> 多上货才能多赚钱 </li>  
+				  <li> 货物卖完了，记得及时上货哦。多上货才能多赚钱 </li>  
+				  <li> 欢迎大家加QQ群： 120817224</li>
+				  <li><span>货车进货回来后如果超过进货两倍时间没有收货，货物将会过期，而你将一无所有</span></li>
 				  <li> 离线的时候，商场依然是在运作的 </li>  
 				  <li> <span>厕所</span>虽然不能收钱，但是可以提高人气 </li>  
 				  <li> <span>电影院</span>要所有的座位都坐上人才能开演 </li>  
@@ -128,13 +169,44 @@ function install_swf(pid){
         <li class="game" id="flashTab" ><a class="active" href="#switchToFlash" id="flash">游戏</a></li>
         <li class="freegift"><a href="../pop/gift.php" id="freeGift" >免费礼物</a></li>
         <li class="invite" ><a href="../pop/invite/invite.php" id="invite" >邀请好友</a></li>
-        <li class="faq"><a id='faq'  href="../static/help/FAQ.html" >常见问题</a></li>
+        <li class="faq"><a id='faq'  href="../pop/faq.php">常见问题</a></li>
         <!--li class="problem"><a href="javascript:sendNotifcation();" class="fullpage" id="problem">问题反馈</a></li-->
         <li class="forum"><a href="<?php echo RenrenConfig::$group_url; ?>" class="fullpage" id="forum"  target='_blank'>论坛</a></li>
-		<li class="payment" ><a  class='fullpage' href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
+		<li class="payment" ><a  class='fullpage' onclick="alert('暂未开放');return false;" href="<?php echo RenrenConfig::$canvas_url;?>pay.php"   target="_top" id ="pay">充值</a></li>
 	</ul>
 	</div>
     </div>
+	<?php if($install_bar){ ?>
+	<div style="display: block;" id="installBar">
+		<div class="iBarStep done" id="iBarStepInstall">
+			<div class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/install_done.jpg">
+			</div>
+		</div>
+		<div class="iBarStep" id="iBarStepFan">
+			<div class="iBarAction">
+				<a onclick="IBar.becomeFan(); return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_button.jpg"></a>
+			</div>
+			<div style="left: -12px;" class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/fan_done.jpg">
+			</div>
+		</div>
+		<div class="iBarStep" id="iBarStepEmail">
+			<div class="iBarAction">
+				<a onclick="XN.Connect.showPermissionDialog('email',IBar.permCallBack);return false;" href="#">
+				<img border="0" src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_button.jpg"></a>
+			</div>
+			<div class="iBarDone">
+				<img src="<?php echo RenrenConfig::$resource_urlp;?>/images/email_done.jpg">
+			</div>
+		</div>
+		<div id="progressBar" style="width: 241px;" class="stepcount_1">
+			<div id="progressPercentage">
+			</div>
+		</div> 
+	</div> 
+	<?php } ?>
 </div>
 
 <div ><!-- style="background: url('../static/images/back.png') no-repeat;" -->
@@ -151,10 +223,9 @@ function install_swf(pid){
 	style="font-size: 19px; font-family: tahoma; color: #4880d7; margin-top: 0px; padding-top: 0px">Loading
 Game...</span><br />
 <span
-	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">If
-your game does not load within 10 seconds, you may need to upgrade your
-version of Flash. Please do so by clicking <a
-	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">here</a></span>
+	style="font-size: 16px; font-family: tahoma; margin-top: 0px; padding-top: 0px">
+	如果游戏很长时间都没有开始加载，你可能需要升级你的Flash版本。请点击 <a
+	href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash&promoid=BUIGP">这里</a></span>
 </div>
 </div>
 </div>
@@ -167,16 +238,60 @@ version of Flash. Please do so by clicking <a
 <div id="loadingFrame" style="display:none;background: url('../static/images/backsmall.png') no-repeat;"><img
 	src="../static/images/loading.gif"/></div>
 </div>
+
+
+		
+		<div class="help">
+			    <span style="width: 625px; float: left;">
+					[<a href='http://group.renren.com/GetThread.do?id=331584998&parentpage=&curpage=0&label=&tribeId=336701942' target='_blank'>如何清除浏览器缓存</a>]&nbsp;&nbsp;[QQ群：120817224]
+				  
+				</span>
+				<span style="width: 175px; float: right; text-align: right;">
+					[<a target="_blank" href="http://msg.renren.com/SendMessage.do?id=253382225">联系客服</a>]&nbsp;
+				</span>
+	  </div>
+		
+
+		<div class='bottom'>
+			<a target='_blank' href='http://page.renren.com/livemall'>
+				<img src="<?php echo RenrenConfig::$resource_urlp ?>images/bottom.png" /> 
+			</a>
+		</div>
+		
+		<div class='help'><span style="width: 615px; float: left;">Music: Kevin MacLeod</span>
+		<span style="width: 185px; float: right; text-align: right;">
+		商场门牌号: <?php echo $_REQUEST['xn_sig_user'] ?>&nbsp;
+		</span></div>
+		
+		<div class='footnotice'>
+			健康忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。				    				
+		</div>
+
+
+
+
 <!--div style="margin: 0 ">
 <input type="button" onclick="openCinema()" value="test"></input>
 </div-->
 
 
+<?php
+ include FB_CURR.'/cs/baidutongji_js.php';
+?> 
+
 </body>
 </html>
 <script type="text/javascript">
-
-window.onload=function(){
+<?php  if($barobj['fan']){ echo "var installStep = 2; ";}
+		else{echo "var installStep = 1; ";}
+?>;
+     
+var pid= <?php echo $pid; ?>;
+var session_key= "<?php echo $session_key; ?>";
+ 
+    window.onload=function(){
+	        if( typeof(IBar) != 'undefined' )
+		        	IBar.init_bar();	 
 			var o=document.getElementById('scrollBox');
 			window.setInterval(function(){scrollup(o,24,0);},3000); 
 	}
@@ -207,6 +322,7 @@ function update_info()
 	XN.Main.get_sessionState().waitUntilReady(function(){
 		var get_user=function (r){
 			if(r[0]&&r[0].name){
+				r[0]['session_key'] = session_key;
 				$.post("../ajax/save_info.php", r[0], function(){}, 'json');
 			}
 		}
@@ -235,8 +351,14 @@ var config = {
 		      console.log('index log callback' +  window.location.href);
 	      },
 	after_fbinit: function(){//before FB.init callback
+		   
+
+	
+	
 	    	  console.log('index after_fbinit');
 	    	   pid = PL.conf('pid')||query_json.xn_sig_user;
+			   
+			     
 	  		   if(!pid){
 	  			   var getpid = function(r){
 	  				   pid = r.uid;

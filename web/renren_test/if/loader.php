@@ -44,8 +44,7 @@ width: 100%;
 <div class="flashContainer"
 style="background: black; text-align: center">
 <div id="flashDivId"><!-- alternative content here.... -->
-<p>To view this page ensure that Adobe Flash Player version 10.0.0 or
-greater is installed. "Music: Kevin MacLeod".</p>
+<p>需要安装Adobe Flash Player version 10.0.0或者更新版本 "Music: Kevin MacLeod".</p>
 <script type="text/javascript"> 
 var pageHost = ((document.location.protocol == "https:") ? "https://" :	"http://"); 
 document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" 

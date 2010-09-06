@@ -13,4 +13,5 @@ config.php
 bg
 web/*/static/flash/*
 #web/renren/static/flash/*
+verion
 

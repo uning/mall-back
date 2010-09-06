@@ -30,11 +30,11 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
 	echo "===============================================\n\n";
 }
-dotest('CarController.get_goods',array("u"=>"35","c"=>array("goodsTag"=>"10101","id"=>"35:c:4c7cae1786184")));
-return;
+dotest('Man.update',array('u'=>8127,'step'=>'1'));
+exit;
 $now = 1282208631;
 $now = time();
-dotest('GoodsController.dcheckout',array('u'=>1,'now'=>$now));
+dotest('GoodsController.dcheckout',array('u'=>174,'now'=>$now));
 return;
 dotest('Friend.debug_get',array('u'=>4));
 return;

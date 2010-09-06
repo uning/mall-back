@@ -26,7 +26,7 @@ if(!$start )
 
 $cont_no = 0;
 $end = $id;
-$start = $end - 10;
+$start = $end - 100;
 if($start<1){
 	$start = 1;
 }

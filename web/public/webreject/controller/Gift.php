@@ -45,9 +45,7 @@ class Gift{
 		if( $params['msg'] )
 		    $obj['msg'] = $params['msg'];
 		$ftu->puto( $obj );
-		$stat = array();
-		$stat['tag'] = $gift_obj['tag'];
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$fid,'sp1'=>$gift_obj['tag']));
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -93,7 +91,7 @@ class Gift{
 				if($tag)
 					$d['tag'] = $tag;
 				else
-                                    $tag = $d['tag'];
+					$tag = $d['tag'];
 				$conf = ItemConfig::getItem($tag);
 				if(!$conf)
 					continue;	
@@ -115,6 +113,7 @@ class Gift{
 		$tu->remove($rids);
 		$ret['s'] = 'OK';
 		$ret['id2id'] = $id2id;
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$d['fid'],'sp1'=>$tag));
 		return $ret;
 	}
 }

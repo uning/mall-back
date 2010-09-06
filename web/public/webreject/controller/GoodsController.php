@@ -219,7 +219,7 @@ class GoodsController
 			//$s['goods'] = $ngoods;
 			$tu->puto($s);
 		}
-		TTLog::record(array('m'=>__METHOD__,'s'=>'OK','tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
+		TTLog::record(array('m'=>__METHOD__,'s'=>'OK','u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -325,11 +325,11 @@ class GoodsController
 					$curtime = $ctime;
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
-				$g['ctime'] = $now;  
 				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					//$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
-					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth']);
+					$pertime = $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth'];
+					$snum = floor( $gr[0]/$pertime);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}
@@ -348,6 +348,7 @@ class GoodsController
 
 					$shop_changed=true;
 					$shop['ctime']=$curtime;
+					$g['ctime'] = $curtime;  
 					if( $g['num']==0 ){//当前时间段卖光此箱货物，继续卖下一个货物
 						$cgoods[]=$g;
 						$selloutids[] = $g['id'];
@@ -387,7 +388,7 @@ class GoodsController
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
 		$ret['u'] = $uid;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		$tu->remove( $selloutids);
 		return $ret;
 	}
@@ -402,7 +403,7 @@ class GoodsController
 			$now = time();
 		$debug = true;
 		$goods = $tu->get( TT::GOODS_GROUP);
-		$ret['goods']=$goods;
+		//$ret['goods']=$goods;
 		foreach( $goods as $g ){
 			$shopid = $g['pos']['y'];
 			if(!$shopid || $shopid=='s')
@@ -423,7 +424,7 @@ class GoodsController
 			$condata[$shopid]['goods'][$stime]= $g;
 
 		}
-		$ret['condata'] = $condata;
+		//$ret['condata'] = $condata;
 
 		if(!$condata || !$total_width){
 			$ret['s']='OK';
@@ -483,14 +484,14 @@ class GoodsController
 					$curtime = $ctime;
 				if($curtime < $g['stime'])
 					$curtime = $g['stime'];
-				$g['ctime'] = $now;  
 				$gaps = self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
-				$ret[$g['id']]['getTimeRates']=array($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
+				$ret[$g['id']]['startctime']=$curtime;
 				$ret[$g['id']]['gaps']=$gaps;
 				$ret[$g['id']]['shop']=$s;
 				$ret[$g['id']]['mydata']=$g;
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
-					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth']);
+					$pertime = $gconfig['selltime']/$gr[1]/$sconfig['gridWidth'];
+					$snum = floor( $gr[0]/$pertime);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}
@@ -498,25 +499,27 @@ class GoodsController
 						$asnum = $snum;
 					}
 
-					if($debug){
-						$ret[$g['id']][$k]['sell_num']=$asnum;
-						$ret[$g['id']][$k]['curtime']=$curtime;
-						$ret[$g['id']][$k]['gap']=$gr[0];
-						$ret[$g['id']][$k]['ratio']=$gr[1];
-						$ret[$g['id']][$k]['basespertime'] = $gconfig['selltime'];
-						$ret[$g['id']][$k]['shopwidth'] = $sconfig['gridWidth'];
-					}
 
 					$ret['sell'][$g['tag']] += $asnum;
 					$sale_count += $asnum;//记录销售份数，成就用
 					$income += $asnum* $gconfig['sellmoney'];  //sellmoney是单份物品的卖价
 					$g['num'] -= $asnum;
-
 					$curtime +=  floor($asnum * $pertime);//
+					$g['ctime'] = $curtime;  
+					$shop['ctime']=$curtime;
+					if($debug){
+						$ret[$g['id']][$k]['sell_num']=$asnum;
+						$ret[$g['id']][$k]['endcurtime']=$curtime;
+						$ret[$g['id']][$k]['gap']=$gr[0];
+						$ret[$g['id']][$k]['pertime']=$pertime;
+						$ret[$g['id']][$k]['ratio']=$gr[1];
+						$ret[$g['id']][$k]['left_num']=$g['num'];
+						$ret[$g['id']][$k]['basespertime'] = $gconfig['selltime'];
+						$ret[$g['id']][$k]['shopwidth'] = $sconfig['gridWidth'];
+					}
 					if( $g['num']==0 ){//当前时间段卖光此箱货物，继续卖下一个货物
 						$cgoods[]=$g;
 						$selloutids[] = $g['id'];
-						$shop['ctime']=$curtime;
 						$shop_changed=true;
 						unset($shop['goods'][$g['id']]);
 						break;//跳出时间段循环，继续卖同一商店下一个上架时间的货物（在同一商店，同一时间上架但售卖顺序不同的货物，已在上架时微调成不同上架时间）
@@ -663,7 +666,8 @@ class GoodsController
 				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					//$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
-					$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1]*$sconfig['gridWidth']);
+					$pertime = $gconfig['selltime']/$gr[1]/$sconfig['gridWidth'];
+					$snum = floor( $gr[0]/$pertime);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
 					}
@@ -720,8 +724,7 @@ class GoodsController
 		$ret['money']  = $tu->numch('money',$income);
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
-		$ret['u'] = $uid;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		$tu->remove( $selloutids);
 		return $ret;
 	}

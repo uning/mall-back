@@ -1,17 +1,21 @@
 <?php
-
+ini_set('memory_limit','1G');
 $myloc = dirname(__FILE__);
 require_once($myloc.'/../../web/public/base.php');
 require_once LIB_ROOT.'DBModel.php';
 
+$mail_body="<pre>\n";
+
 $gtt =TT::get_tt('genid',0,'slave'); 
 $gttw =TT::get_tt('genid');
 $now = time();
+//$now -= 86400;
 $datestr = date('Y-m-d',$now);
 $weekday = date('N',$now);
 $day_starttime = strtotime($datestr);
 $day_endtime = $day_starttime + 86400;
 echo "date:$datestr \nweekday:$weekday\n";
+$mail_body.="date:$datestr \nweekday:$weekday\n";
 
 require_once '../../web/renren/renren.php';
 $ren = new Renren();
@@ -31,7 +35,7 @@ $cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['hos
 if($dbconfig['password']){
   $cmd.=" -p'{$dbconfig['password']}'";
 }
-echo "$cmd\n";
+
 $db = ServerConfig::connect_mysql($dbconfig);
 
 
@@ -70,8 +74,6 @@ function store_varible($pairs)
 		}
 	}
 }
-//$dgfs = $dgm->getTableFields('daily_general');
-//print_r($dgfs);
 
 function get_insert_sql($table,&$fields,&$data,$ignore='',$dup=' ON DUPLICATE KEY UPDATE')//update
 {

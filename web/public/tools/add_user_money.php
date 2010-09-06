@@ -44,7 +44,7 @@ if(!$data||!$data['id']){
 		echo "<p>输入要加的金币和宝石数</p>";
 		
 		echo "<form method='post'>";
-	    echo "<p>金币: <input name='money' value='5000' type='text' /></p>";
+	    echo "<p>金币: <input name='money' value='0' type='text' /></p>";
 	    echo "<p>宝石: <input name='gem' value='0' type='text' /></p>";
 	
         echo "<p><input type='submit' value='确定'/></p></form>";

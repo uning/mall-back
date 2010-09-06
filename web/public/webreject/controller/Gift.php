@@ -40,8 +40,8 @@ class Gift{
 		$ftu = new TTUser($fid);
 		$id = $ftu->getdid(null,TT::GIFT_GROUP);
 		$obj['gtag'] = $gift_obj['tag'];
-		$obj['id']=$id;
-		$obj['fid'] = $uid;
+		$obj['id']=$id;  //受礼人的礼物组id
+		$obj['fid'] = $uid;  //送礼人
 		if( $params['msg'] )
 		    $obj['msg'] = $params['msg'];
 		$ftu->puto( $obj );
@@ -64,7 +64,18 @@ class Gift{
 	{
 		$uid = $params['u'];
 		$tu = new TTUser($uid);
-		$ret['d'] = $tu->get(TT::GIFT_GROUP);
+//		$ret['d'] = $tu->get(TT::GIFT_GROUP);
+        $gifts = $tu->get(TT::GIFT_GROUP);
+        $ret['d'] = $gifts;
+        foreach( $gifts as $gift ){
+            if( $gift['fid'] ){
+                $fdata = TTGenid::getid( $gift['id'] );
+                $gifts[]['test'] = $fdata;
+//                $gifts[]['name'] = $name;
+//                $gifts[]['icon'] = $icon;
+            }
+        }
+        $ret['test'] = $gifts;
 		$ret['s'] = 'OK';
 		return $ret;
 	}

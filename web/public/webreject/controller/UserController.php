@@ -215,12 +215,12 @@ class UserController
 		$user = $tu->getf( array( TT::EXP_STAT,TT::CAPACITY_STAT ) );
 		$capa = $user[TT::CAPACITY_STAT];
 		$cap = explode( ",",$capa );
-		$ret['capa'] = $capa;         // for debug
-		$ret['cap'] = $cap;         // for debug
+//		$ret['capa'] = $capa;         // for debug
+//		$ret['cap'] = $cap;         // for debug
 		$width = $cap[0];
 		$height = $cap[1];
-		$ret['width'] = $width;         // for debug
-		$ret['height'] = $height;         // for debug
+//		$ret['width'] = $width;         // for debug
+//		$ret['height'] = $height;         // for debug
 		$length = count( UpgradeConfig::$_upgrade );       //必须先遍历找出最大值
 		$max_width = UpgradeConfig::$_upgrade[$length]['shopwidth'];
 		$max_height = UpgradeConfig::$_upgrade[$length]['shopheight'];
@@ -229,6 +229,7 @@ class UserController
 				continue;
 			if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] ){
 			    if( $width == $max_width && $height == $max_height ){
+			        $need = $upgrade;
 			        break;
 			    }
 			    continue;
@@ -236,7 +237,7 @@ class UserController
 			$need = $upgrade;
 			break;
 		}
-		$ret['need'] = $need;    // for debug
+//		$ret['need'] = $need;    // for debug
 		//		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
 		$l = 0;
 		foreach( $level2money as $level=>$money ){

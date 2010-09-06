@@ -298,4 +298,34 @@ class UserController
 		$ret['s'] = 'OK';
 		return $ret;
 	}
+	/**
+	 *update popula
+	 *$params  
+	 *     u     -- uid
+	 *     ids    --  itemids with popu
+	 *     popu    --  itemids with popu
+	 **/
+	function update_popu($params)
+	{
+		$uid = $params['u'];
+		$ids= $params['ids'];
+		$tu = new ttuser( $uid );
+		$ret['oldpopu'] = $tu->getf(TT::POPU);
+		$ret['s'] = 'OK';
+		if(!$ids){
+			$tu->putf(TT::POPU,0);	
+			$ret['newpopu'] = $tu->getf(TT::POPU);
+			return $ret;
+		}
+		$items = $tu->getbyids($ids);
+		$popu = 0;
+		foreach($items as $o){
+			$conf = ItemConfig::getItem( $o['tag'] );
+			$popu += $conf['pop'];
+		}
+		$tu->putf(TT::POPU,$popu);
+		$ret['newpopu'] = $tu->getf(TT::POPU);
+		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$popu));
+		return $ret;
+	}
 }

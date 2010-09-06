@@ -15,12 +15,12 @@ class GoodsController
 		$pratio = 0;
 		$plong = 0;
 		if($popu > $max_popu)
-                   $popu = $max_popu;
+			$popu = $max_popu;
 		$old_ratio = $popu/15/$gridWidth;
 		$ret=array();
 		foreach( $advert as $start=>$tag ){
 			if($start > $now)
-			    continue;
+				continue;
 			$adv = AdvertConfig::getAdvert( $tag );
 			if($start  + $adv['allTime'] < $computetime)
 				continue;
@@ -73,7 +73,7 @@ class GoodsController
 	}
 
 
-	
+
 	/**
 	 * 直接购买物品到商店　——仅供测试用
 	 *   
@@ -117,7 +117,7 @@ class GoodsController
 		$ret['ids'] = $ids;
 		return $ret;
 	}
-	
+
 	/**
 	 * 售卖货物
 	 *   
@@ -130,26 +130,26 @@ class GoodsController
 	 */
 	public function sale( $params )
 	{
-	    $uid = $params['u'];
-	    $tu = new TTUser( $uid );
-	    foreach( $params['d'] as $index=>$id ){
-	        $goods_obj = $tu->getbyid( $id );
-	        if( !$goods_obj ){
+		$uid = $params['u'];
+		$tu = new TTUser( $uid );
+		foreach( $params['d'] as $index=>$id ){
+			$goods_obj = $tu->getbyid( $id );
+			if( !$goods_obj ){
 				$ret['s'] =  'notexsit';
 				$ret['index'] = $index;
 				return $ret;	            
-	        }
-	        $sale_ret = $tu->saleItem( $goods_obj );
-	   		if( $sale_ret['s'] != 'OK' ){
+			}
+			$sale_ret = $tu->saleItem( $goods_obj );
+			if( $sale_ret['s'] != 'OK' ){
 				$sale_ret['index'] = $index;
 				return $sale_ret;
 			}	        
-	    }
-	    $tu->remove( $params['d'] );
-	    $ret['s'] = 'OK';
-	    return $ret;
+		}
+		$tu->remove( $params['d'] );
+		$ret['s'] = 'OK';
+		return $ret;
 	}	
-	
+
 	/**
 	 * 上架,在shop记录里记录商品id
 	 * @param $params
@@ -160,7 +160,7 @@ class GoodsController
 	 *    s     --OK
 	 *    s     --nogood ,商品不存在
 	 *    s     --noshop ,商品不存在
-                      max,已经放满
+	 max,已经放满
 	 */
 	public function exhibit_goods( $params )
 	{
@@ -230,7 +230,7 @@ class GoodsController
 	 * 结算卖货
 	 * @param $params use shop
 	 *   u   - userid
-         *   sids  - shop ids
+	 *   sids  - shop ids
 	 * @return 
 	 *   s  - OK,noneed(短期内没有需要结算的商品),busy(太快)
 	 *   income  - 获得金币
@@ -244,7 +244,7 @@ class GoodsController
 		$sids= $params['sids'];
 		$now= $params['now'];
 		if(!$now){
-		   $now=time();
+			$now=time();
 		}
 		$tu = new TTUser( $uid );
 		//获取人气和宣传值
@@ -278,13 +278,13 @@ class GoodsController
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$popu = $params[TT::POPU];
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-                $maxpopu = $ua['maxpopu'];
+		$maxpopu = $ua['maxpopu'];
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
 		if(!$used_advert)
-                   $used_advert = array();
-		
+			$used_advert = array();
+
 		//处理广告
 		foreach($used_advert as $k=>$v){
 			$adv = AdvertConfig::getAdvert( $tag );
@@ -374,7 +374,7 @@ class GoodsController
 		$now_sale_count = $tu->numch( 'total_count',$sale_count );
 		//总销售额
 		$now_total_sale = $tu->numch( 'total_sale',$income );
-		
+
 		//记录玩家每一种物品卖出量
 		if($ret['sell']){
 			foreach($ret['sell'] as $gid=>$num){
@@ -436,13 +436,13 @@ class GoodsController
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$popu = $params[TT::POPU];
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-                $maxpopu = $ua['maxpopu'];
+		$maxpopu = $ua['maxpopu'];
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
 		if(!$used_advert)
-                   $used_advert = array();
-		
+			$used_advert = array();
+
 		//处理广告
 		foreach($used_advert as $k=>$v){
 			$adv = AdvertConfig::getAdvert( $tag );
@@ -453,10 +453,10 @@ class GoodsController
 
 		if($savead){
 			$adv['use']=$savead;
-		//	$tu->puto($adv);
+			//	$tu->puto($adv);
 		}else if($used_advert){
 			unset($adv['use']);
-		//	$tu->puto($adv);
+			//	$tu->puto($adv);
 		}
 
 		$selloutids = array();
@@ -466,7 +466,7 @@ class GoodsController
 		foreach( $condata as $s=>$vvv ){
 			$sconfig = &$vvv['sconfig'];
 			$gs  = &$vvv['goods'];
-			 ksort($gs);
+			ksort($gs);
 			$shop = &$vvv['shop'];
 
 			$curtime = $shop['ctime'];//可以售卖新商品时间
@@ -532,8 +532,8 @@ class GoodsController
 				}
 			}//foreach goods
 			if($shop_changed){
-					if(!$debug)
-						$tu->puto( $g,TT::GOODS_GROUP );
+				if(!$debug)
+					$tu->puto( $g,TT::GOODS_GROUP );
 			}
 		}//foreach shop
 
@@ -549,7 +549,7 @@ class GoodsController
 
 		//总销售份数
 		//总销售额
-		
+
 		//记录玩家每一种物品卖出量
 
 		$ret['s'] = 'OK';
@@ -564,8 +564,8 @@ class GoodsController
 	 * 结算卖货 with goods
 	 * @param $params
 	 *   u   - userid
-         *   sids  - shop ids
-		
+	 *   sids  - shop ids
+
 	 * @return 
 	 *   s  - OK,noneed(短期内没有需要结算的商品),busy(太快)
 	 *   income  - 获得金币
@@ -577,11 +577,8 @@ class GoodsController
 	{
 		$uid = $params['u'];
 		$sids= $params['sids'];
-		$now= $params['now'];
-		if(!$now){
-		   $now=time();
-		}
-		$tu = new TTUser( $uid );
+		$now=time();
+		$tu = new ttuser( $uid );
 		//获取人气和宣传值
 
 		$goods = $tu->get(TT::GOODS_GROUP);
@@ -616,13 +613,13 @@ class GoodsController
 		if($popu<0)
 			$popu = 0;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
-                $maxpopu = $ua['maxpopu'];
+		$maxpopu = $ua['maxpopu'];
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
 		$adv = $tu->getbyid( $aid );
 		$used_advert = $adv['use'];
 		if(!$used_advert)
-                   $used_advert = array();
-		
+			$used_advert = array();
+
 		//处理广告
 		foreach($used_advert as $k=>$v){
 			$adv = AdvertConfig::getAdvert( $tag );
@@ -646,7 +643,7 @@ class GoodsController
 		foreach( $condata as $s=>$vvv ){
 			$sconfig = &$vvv['sconfig'];
 			$gs  = &$vvv['goods'];
-			 ksort($gs);
+			ksort($gs);
 			$shop = &$vvv['shop'];
 
 			$curtime = $shop['ctime'];//可以售卖新商品时间
@@ -718,7 +715,7 @@ class GoodsController
 		$now_sale_count = $tu->numch( 'total_count',$sale_count );
 		//总销售额
 		$now_total_sale = $tu->numch( 'total_sale',$income );
-		
+
 		//记录玩家每一种物品卖出量
 		if($ret['sell']){
 			foreach($ret['sell'] as $gid=>$num){
@@ -735,4 +732,5 @@ class GoodsController
 		$tu->remove( $selloutids);
 		return $ret;
 	}
+
 }

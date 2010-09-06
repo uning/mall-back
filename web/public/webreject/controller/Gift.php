@@ -64,18 +64,16 @@ class Gift{
 	{
 		$uid = $params['u'];
 		$tu = new TTUser($uid);
-//		$ret['d'] = $tu->get(TT::GIFT_GROUP);
-        $gifts = $tu->get(TT::GIFT_GROUP);
-        $ret['d'] = $gifts;
-        foreach( $gifts as $gift ){
-            if( $gift['fid'] ){
-                $fdata = TTGenid::getid( $gift['id'] );
-                $gifts[]['test'] = $fdata;
-//                $gifts[]['name'] = $name;
-//                $gifts[]['icon'] = $icon;
-            }
-        }
-        $ret['test'] = $gifts;
+		$gifts = $tu->get(TT::GIFT_GROUP);
+                $ret = array();
+		foreach( $gifts as $gift ){
+			if( $gift['fid'] ){
+				$fdata = TTGenid::getbyid( $gift['fid'] );
+				$gifts[]['name'] = $fdata['name'];
+				$gifts[]['icon'] = $fdata['icon'];
+			}
+		}
+		$ret['d'] = $gifts;
 		$ret['s'] = 'OK';
 		return $ret;
 	}

@@ -148,6 +148,26 @@ class Friend{
 		return $ret;
 	}
 
+
+      
+	/**
+	 * 更新好友列表并返回好友信息。若参数为空，则返回存储的好友信息。
+	 * @param $params
+	 *  require    u          --  userid
+	 *             fids       --  好友平台id字符串，用逗号隔开
+	 * @return
+	 *             s          --  OK,others fail
+	 *             infos      --  好友信息数组
+	 *             u          --  好友内部id数组 ? why? infos already have the id
+	 *             a          --  好友帐户信息数组 //why not use map ,dbid 
+	 */
+	function public update()
+	{
+		$ret['s']='OK';
+		//require_once '';	
+		return $ret;
+	}
+
 	/**
 	 * 更新好友列表并返回好友信息。若参数为空，则返回存储的好友信息。
 	 * @param $params
@@ -438,7 +458,7 @@ class Friend{
 			$num = 3;
 		//$mydata = TTGenid::getbyid($uid); 
 		$car['help'][$uid] =  $num;
-		$add_exp *= 2;
+		$add_exp *= 4;
 		$ret['exp']  = $tu->addExp($add_exp);
 		$ret['award']['exp'] = $add_exp;
 		$fdata['ht'] = $now;

@@ -83,6 +83,10 @@ require_once 'freeGift.php';
 </tr>
 </table>
 </div>
+<?php
+ include FB_CURR.'/cs/baidutongji_js.php';
+?> 
+
 </body>
 <script type="text/javascript">
 var config = {

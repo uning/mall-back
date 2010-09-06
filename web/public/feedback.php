@@ -8,7 +8,7 @@ if($_POST['message']){
 	$user = json_decode($_POST['user'],true);
 
 	if($_POST['type']==1){
-	$title="建议";
+	$title="Sug";
 	}else{
 	$title="Bug";
 	}

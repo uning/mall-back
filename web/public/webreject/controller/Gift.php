@@ -66,11 +66,11 @@ class Gift{
 		$tu = new TTUser($uid);
 		$gifts = $tu->get(TT::GIFT_GROUP);
                 $ret = array();
-		foreach( $gifts as $gift ){
+		foreach( $gifts as $index=>$gift ){
 			if( $gift['fid'] ){
 				$fdata = TTGenid::getbyid( $gift['fid'] );
-				$gifts[]['name'] = $fdata['name'];
-				$gifts[]['icon'] = $fdata['icon'];
+				$gifts[$index]['name'] = $fdata['name'];
+				$gifts[$index]['icon'] = $fdata['icon'];
 			}
 		}
 		$ret['d'] = $gifts;

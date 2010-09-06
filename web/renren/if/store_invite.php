@@ -44,7 +44,7 @@ $ids = $_REQUEST['ids'];
 	}
 	else 
 	{
-		if($value['time']!=$date){
+		if(strtotime($value['time'])!=strtotime($date)){
 			$value['time']=$date;
 			$value['invite'] = array_flip($ids);
 		}

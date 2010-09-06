@@ -5,6 +5,21 @@ $confile = $rdir.'0_mall_config.xml';
 $xml =  simplexml_load_file($confile);
 $outf = $mypos.'/static/flash/o_0_mall_config.xml'; 
 
+while(true){
+	$str_md5 = file_get_contents('http://files5.qq494.cn/pig/hotel/flash/version.txt');
+	$new_md5 = file_get_contents($mypos.'/static/flash/version.txt');
+	if($str_md5 != $new_md5){
+		echo 'version not equal--------'."\n";	
+		if($retry >3 )
+			die('genconfig errror valid not equal ');
+		$retry++;
+		sleep(30);
+		continue;
+	}
+	break;
+}
+
+
 $out .= <<<EOT
 <?xml version="1.0" encoding="utf-8"?>
 <config>
@@ -59,16 +74,15 @@ foreach($fs as $v){
 	$r['url']=$src;
 	$out .= "   ".$r->asXML()."\n";
 }
+	    //<server name="test" purl="http://s26.coolplusplus.com/static/flash/" />
 $out .= <<<EOT
 	
 	<resource_servers>
-	 <server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
-	 <!--
-	    <server name="test" purl="http://rrmall.playcrab.com/static/flash/" />
--->
+	 	<server name="test" purl="http://files5.qq494.cn/pig/hotel/flash/" /> 
 	</resource_servers>	
 	<app_servers>
-	    <server name="test" purl="http://rrmall.playcrab.com/bg/" />
+	    <server name="test" purl="http://s27.coolplusplus.com/bg/" />
+	    <server name="test" purl="http://s26.coolplusplus.com/bg/" />
 	</app_servers>	
 </config>
 EOT;

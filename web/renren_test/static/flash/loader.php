@@ -1,6 +1,7 @@
 <?php
 require_once ('../../config.php');
 
+
 $pid = $_GET ['pid'];
 if (! $pid) {
 	$pid = $_COOKIE ['user_name'];
@@ -78,7 +79,7 @@ PL.js(['http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'],functi
 		console.log('query:'+hash[0]+'='+hash[1]);
 		}
 		flashvars.platform_id = '<?php echo  $pid;?>';//flashvars.fb_sig_user;
-		flashvars.pconf = '0_mall_config.xml';
+		flashvars.pconf = '../../test_config.php';
 		flashvars.languagetype = "0";
 //flashvars.platform = "facebook";
 flashvars.platform = "<?php echo  $platform;?>";
@@ -102,7 +103,6 @@ attributes.name = "SuperMall";
 attributes.align = "t";
 attributes.salign = "tl";
 /*flashDivId*/
-params.base = "http://192.168.1.50/work/mall/Venus/to-company/";
 swfobject.embedSWF(
 		"/work/mall/Venus/to-company/MallLoader.swf?v=", "flashDivId", 
 

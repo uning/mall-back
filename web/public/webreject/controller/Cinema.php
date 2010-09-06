@@ -45,10 +45,10 @@ class Cinema
 		$now = time();
 		$tu = new TTUser( $uid );
 		$shop_obj = $tu->getbyid( $sid );
-		$ret['now'] = $now;  //for debug
-		$ret['fnow'] = date( TM_FORMAT,$now );  //for debug
-		$ret['bshopobj'] = $shop_obj;  //for debug
-		$ret['fbshopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+//		$ret['now'] = $now;  //for debug
+//		$ret['fnow'] = date( TM_FORMAT,$now );  //for debug
+//		$ret['bshopobj'] = $shop_obj;  //for debug
+//		$ret['fbshopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 		if( !$shop_obj ){
 			$ret['s'] = 'notexist';
 			return $ret;
@@ -90,10 +90,10 @@ class Cinema
                 $shop_obj['ctime'] = $now;
 			}
 		}
-		$tu->numch( TT::MONEY_STAT,$money );
+		$tu->chMoney($money );
 		$tu->puto( $shop_obj,TT::CINEMA_GROUP );
-		$ret['fashopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
-		$ret['ashopobj'] = $shop_obj;  //for debug
+//		$ret['fashopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
+//		$ret['ashopobj'] = $shop_obj;  //for debug
 		$ret['money'] = $money;
 		$ret['s'] = 'OK';
         return $ret;

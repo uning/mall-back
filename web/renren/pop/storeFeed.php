@@ -4,9 +4,9 @@ require_once '../config.php';
 function changeUser($pid)
 {
 	
-	$session = TTgenid::getbypid($pid);
-	$uid = $session['id'];
-	$tu = new TTUser($uid);
+	//$session = TTgenid::getbypid($pid);
+	//$uid = $session['id'];
+	//$tu = new TTUser($uid);
 	//$tu->addExp();
 	//$tu->get();
 }
@@ -75,7 +75,7 @@ function helpOpenShop($fid,$pid,$ot)
 	);
 	$tt = TT::LinkTT();
 	$id = $tt->put($obj);
-	print_r($tt->getbyuidx('lid',$fid));
+	//print_r($tt->getbyuidx('lid',$fid));
 	changeUser($pid);
 }
 $type   = $_REQUEST['type'];

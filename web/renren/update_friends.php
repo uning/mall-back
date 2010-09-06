@@ -21,7 +21,6 @@
 		
 		
     $ar['pid']=$pid; 
-    $ar['authat']=time();; 
 
 	require_once 'renren.php';
 	$ren = new Renren();

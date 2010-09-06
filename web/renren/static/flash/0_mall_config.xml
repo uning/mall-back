@@ -3,29 +3,29 @@
 	<version tag="beta1.0"/>
 	
 	<resources parallel="false" use_cache="false">
-		<resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=tc3.6"						type="xml" />
+		<resource name="secondResouce" label="游戏素材1" url="./test_end_second_resource_list.xml?v=tc3.8"						type="xml" />
 		
-		<resource name="GuildMc"		label="游戏素材2" 	url="./resource/common/swf/end/GuildMc.swf?v=tc3.6" 				type="swf" />
-		<resource name="waiting"		label="游戏素材3" 	url="./resource/common/swf/end/waiting.swf?v=tc3.6" 				type="swf" />
-		<resource name="truck" 			label="游戏素材4" 	url="./resource/common/swf/end/MallTruck.swf?v=tc3.6" 				type="swf" />
-		<resource name="magicFace" 		label="游戏素材5" 	url="./resource/common/swf/end/MagicFace.swf?v=tc3.6" 				type="swf" />
-		<resource name="manipulater" 	label="游戏素材6" 	url="./resource/common/swf/end/manipulater.swf?v=tc3.6" 			type="swf" />
-		<resource name="sounds" 		label="游戏素材7" 	url="./resource/common/swf/end/sounds.swf?v=tc3.6" 					type="swf" />
-		<resource name="Background" 	label="游戏素材8" 	url="./resource/common/swf/end/Background.swf?v=tc3.6" 				type="swf" />
-		<resource name="Background_new" label="游戏素材9" 	url="./resource/common/swf/end/Background_new.swf?v=tc3.6" 			type="swf" />
-		<resource name="gift" 			label="游戏素材10" 	url="./resource/common/swf/end/gift.swf?v=tc3.6" 					type="swf" />
+		<resource name="GuildMc"		label="游戏素材2" 	url="./resource/common/swf/end/GuildMc.swf?v=tc3.8" 				type="swf" />
+		<resource name="waiting"		label="游戏素材3" 	url="./resource/common/swf/end/waiting.swf?v=tc3.8" 				type="swf" />
+		<resource name="truck" 			label="游戏素材4" 	url="./resource/common/swf/end/MallTruck.swf?v=tc3.8" 				type="swf" />
+		<resource name="magicFace" 		label="游戏素材5" 	url="./resource/common/swf/end/MagicFace.swf?v=tc3.8" 				type="swf" />
+		<resource name="manipulater" 	label="游戏素材6" 	url="./resource/common/swf/end/manipulater.swf?v=tc3.8" 			type="swf" />
+		<resource name="sounds" 		label="游戏素材7" 	url="./resource/common/swf/end/sounds.swf?v=tc3.8" 					type="swf" />
+		<resource name="Background" 	label="游戏素材8" 	url="./resource/common/swf/end/Background.swf?v=tc3.8" 				type="swf" />
+		<resource name="Background_new" label="游戏素材9" 	url="./resource/common/swf/end/Background_new.swf?v=tc3.8" 			type="swf" />
+		<resource name="gift" 			label="游戏素材10" 	url="./resource/common/swf/end/gift.swf?v=tc3.8" 					type="swf" />
 		
-		<resource name="UI" 			label="游戏素材11" 	url="./resource/simplifiedchinese/swf/end/UI.swf?v=tc3.6" 			type="swf" />
+		<resource name="UI" 			label="游戏素材11" 	url="./resource/simplifiedchinese/swf/end/UI.swf?v=tc3.8" 			type="swf" />
 	
-		<resource name="xmlbin" 		label="游戏素材12" 	url="./resource/simplifiedchinese/xml/xml.bin?v=tc3.6" 				type="bin" />
-		<resource name="goodsIcon"	 	label="游戏素材13" 	url="./resource/common/swf/end/MallGoodsIcon.swf?v=tc3.6" 			type="swf" />
-		<resource name="guideUrl1"	 	label="游戏素材14" 	url="./test_end_guide_resource_list1.xml?v=tc3.6" 					type="xml" />
-		<resource name="guideUrl2"	 	label="游戏素材15" 	url="./test_end_guide_resource_list2.xml?v=tc3.6"					type="xml" />
+		<resource name="xmlbin" 		label="游戏素材12" 	url="./resource/simplifiedchinese/xml/xml.bin?v=tc3.8" 				type="bin" />
+		<resource name="goodsIcon"	 	label="游戏素材13" 	url="./resource/common/swf/end/MallGoodsIcon.swf?v=tc3.8" 			type="swf" />
+		<resource name="guideUrl1"	 	label="游戏素材14" 	url="./test_end_guide_resource_list1.xml?v=tc3.8" 					type="xml" />
+		<resource name="guideUrl2"	 	label="游戏素材15" 	url="./test_end_guide_resource_list2.xml?v=tc3.8"					type="xml" />
 
 	</resources>
 	
-	<main name="main" label="加载主程式" url="MallGame.swf?v=tc3.6" use_cache="false"/>
-	<progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=tc3.6" />
+	<main name="main" label="加载主程式" url="MallGame.swf?v=tc3.8" use_cache="false"/>
+	<progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=tc3.8" />
 	
 	<resource_servers>
 	    <server name="test" purl="" />

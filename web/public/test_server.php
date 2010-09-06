@@ -4,6 +4,8 @@ class JsonServerExecption extends Exception
 {
 };
 
+
+
 class JsonServer{
 
 	protected  $_req     = array() ;/*struct req*/
@@ -67,17 +69,32 @@ class JsonServer{
 		@$str=unserialize(file_get_contents(REQ_DATA_ROOT.$name.'.param'));
 		return $str;
 	}
+
 	/**
 	 * 
 	 */
 	protected function auth($key)
 	{
-		if($this->_do_auth==false || $this->_debug )
-			return true;
-		static $secret='playcrab';
-		return md5($key.$secret)==$auth;
+		return true;
+		$now = $_SERVER['REQUEST_TIME'];	
+		if(!$key){
+			$pid  = '';//get by 
+			$sess = TTGenid::getbypid($pid);
+			$kdata[]=$sess['pid'];
+			$kdata[]=$sess['id'];
+			$kdata[]=$now;
+			return base64_encode(implode(':',$kdata));
+		}
+		$keyd = base64_decode($key);
+		$kdata = explode(':',$keyd,3);
+		if($kdata[2]<100){
+			return false;
+		}
+		if($kdata[2]+3600 >$now)
+			return $key;
+		$kdata[2]=$now;
+		return base64_encode(implode(':',$kdata));
 	}
-
 	/**
 	 * @param $m
 	 * @param $params
@@ -189,41 +206,28 @@ class JsonServer{
 				'Advert.set'=>1,
 				'Cinema.enter'=>1,
 				'Cinema.pick'=>1,
+				'Gift.send'=>1,
+				'Gift.accept'=>1,
 				'Man.update'=>1,
-		        'Man.satisfy'=>1,
-				'UserController.update_info'=>1,
+				'UserController.update_friends'=>1,
 				'UserController.enlarge_mall'=>1,
-		        'UserController.update_profile'=>1,
 				'ItemController.buy'=>1,
 				'ItemController.sale'=>1,
 				'CarController.buy'=>1,
 				'CarController.sale'=>1,
 				'CarController.go_goods'=>1,
+				'CarController.enlarge_garage'=>1,
 				'CarController.buy_copolit'=>1,
 				'CarController.apply_copolit'=>1,
 				'GoodsController.checkout'=>1,
-		        'GoodsController.sale'=>1,
-/*		
 				'Task.share'=>1,
 				'Task.request'=>1,
 				'Task.accept'=>1,
 				'Task.update'=>1,
 				'Task.finish'=>1,
 				'Task.get_award'=>1,
-				'Friend.get_tasks'=>1,
-*/				
 				'Friend.dis_neighbor'=>1,
-		        'Friend.invite_neighbor'=>1,
-		        'Friend.accept_neighbor'=>1,
-                'Friend.visit'=>1,
-		        'Friend.help_car'=>1,
-		        'Friend.accept_neighbor'=>1,
-		        'HelpGet.help'=>1,
-		        'HelpGet.open'=>1,
-		        'HelpGet.award'=>1,		
-				'TaskOnce.accept'=>1,
-				'TaskOnce.update'=>1,
-				'TaskOnce.finish'=>1					
+				'HelpGet.award'=>1,
 				);
 
 		try{

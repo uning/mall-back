@@ -219,7 +219,7 @@ class GoodsController
 			//$s['goods'] = $ngoods;
 			$tu->puto($s);
 		}
-		TTLog::record(array('m'=>__METHOD__,'s'=>'OK','tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
+		TTLog::record(array('m'=>__METHOD__,'s'=>'OK','u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($stat)));
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -384,11 +384,11 @@ class GoodsController
 
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
-		$ret['money']  = $tu->numch('money',$income);
+		$ret['money']  = $tu->chMoney($income);
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
 		$ret['u'] = $uid;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		$tu->remove( $selloutids);
 		return $ret;
 	}
@@ -424,7 +424,7 @@ class GoodsController
 			$condata[$shopid]['goods'][$stime]= $g;
 
 		}
-		$ret['condata'] = $condata;
+		//$ret['condata'] = $condata;
 
 		if(!$condata || !$total_width){
 			$ret['s']='OK';
@@ -490,7 +490,7 @@ class GoodsController
 				$ret[$g['id']]['shop']=$s;
 				$ret[$g['id']]['mydata']=$g;
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
-					$pertime = $gconfig['selltime']*$gr[1]*$sconfig['gridWidth'];
+					$pertime = $gconfig['selltime']/$gr[1]/$sconfig['gridWidth'];
 					$snum = floor( $gr[0]/$pertime);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
@@ -511,6 +511,7 @@ class GoodsController
 						$ret[$g['id']][$k]['sell_num']=$asnum;
 						$ret[$g['id']][$k]['endcurtime']=$curtime;
 						$ret[$g['id']][$k]['gap']=$gr[0];
+						$ret[$g['id']][$k]['pertime']=$pertime;
 						$ret[$g['id']][$k]['ratio']=$gr[1];
 						$ret[$g['id']][$k]['left_num']=$g['num'];
 						$ret[$g['id']][$k]['basespertime'] = $gconfig['selltime'];
@@ -612,6 +613,8 @@ class GoodsController
 
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$popu = $params[TT::POPU];
+		if($popu<0)
+			$popu = 0;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
                 $maxpopu = $ua['maxpopu'];
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );
@@ -649,6 +652,7 @@ class GoodsController
 			$curtime = $shop['ctime'];//可以售卖新商品时间
 			$cgoods = array();
 			$shop_changed=false;
+			$shop_empty = true;
 			foreach( $gs as $t=>$g ){
 				$gconfig = ItemConfig::getItem($g['tag']);
 				if(!$gconfig){
@@ -665,7 +669,7 @@ class GoodsController
 				$gaps =  self::getTimeRates($used_advert,$curtime,$now,$popu,$maxpopu,$total_width);
 				foreach( $gaps as $k=>$gr ){//测试信息需要该索引值
 					//$snum = floor( $gr[0]/$gconfig['selltime']*$gr[1] );
-					$pertime = $gconfig['selltime']*$gr[1]*$sconfig['gridWidth'];
+					$pertime = $gconfig['selltime']/$gr[1]/$sconfig['gridWidth'];
 					$snum = floor( $gr[0]/$pertime);
 					if($snum >= $g['num']){//卖完了
 						$asnum = $g['num'];
@@ -694,10 +698,14 @@ class GoodsController
 				}//foreach group
 				if( $g['num']!= 0 ){
 					$tu->puto( $g,TT::GOODS_GROUP);
+					$shop_empty = false;
 					break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算
 				}
 			}//foreach goods
 			if($shop_changed){
+				if($shop_empty){
+					unset($shop['goods']);
+				}
 				$tu->puto($shop);
 			}
 		}//foreach shop
@@ -720,11 +728,10 @@ class GoodsController
 
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
-		$ret['money']  = $tu->numch('money',$income);
+		$ret['money']  = $tu->chMoney($income);
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
-		$ret['u'] = $uid;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
 		$tu->remove( $selloutids);
 		return $ret;
 	}

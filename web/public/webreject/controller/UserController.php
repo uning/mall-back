@@ -272,7 +272,8 @@ class UserController
 		$tu = new TTUser( $uid );
 		$tu->chMoney($params['money'] );
 		$tu->numch( TT::GEM_STAT,$params['gem'] );
-		$tu->numch( TT::EXP_STAT,$params['exp'] );
+//		$tu->numch( TT::EXP_STAT,$params['exp'] );
+		$tu->addExp( $params['exp'] );
 		$ret['a'] = $tu->getf( array( TT::MONEY_STAT,TT::GEM_STAT,TT::EXP_STAT ) );
 		$ret['s'] = 'OK';
 		return $ret;

@@ -422,7 +422,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&new="+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?lid=<?php echo $linkid; ?>&new="+Math.random() ) ;
 }
 function authKO()
 {

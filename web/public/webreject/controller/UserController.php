@@ -247,7 +247,7 @@ class UserController
 	{
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-		$tu->numch( TT::MONEY_STAT,$params['money'] );
+		$tu->chMoney($params['money'] );
 		$tu->numch( TT::GEM_STAT,$params['gem'] );
 		$tu->numch( TT::EXP_STAT,$params['exp'] );
 		$ret['a'] = $tu->getf( array( TT::MONEY_STAT,TT::GEM_STAT,TT::EXP_STAT ) );

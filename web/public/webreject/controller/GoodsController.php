@@ -384,7 +384,7 @@ class GoodsController
 
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
-		$ret['money']  = $tu->numch('money',$income);
+		$ret['money']  = $tu->chMoney($income);
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
 		$ret['u'] = $uid;
@@ -721,7 +721,7 @@ class GoodsController
 
 		$ret['s'] = 'OK';
 		$ret['income'] = $income;
-		$ret['money']  = $tu->numch('money',$income);
+		$ret['money']  = $tu->chMoney($income);
 		$ret['t'] = $now;
 		$ret['rids'] = $selloutids;
 		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));

@@ -174,6 +174,13 @@ class TTUDB{
 	}
 
 
+	public function removeAll()
+	{
+		$keyp = $this->_u.':';
+		$keys = $this->_t->fwmKeys($keyp,100000);
+		$this->_t->remove($keys);
+	}
+
 	public function getAll($seri=true)
 	{	
 		$max=100000;

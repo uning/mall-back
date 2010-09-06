@@ -172,14 +172,13 @@ class Friend{
 		$fids = $params['fids'];
 		$infos = $tu->get('fr',false);
 		if( !$fids ){
-			if($upd=='update' ){//call from platform
+			$fids = $tu->getf( TT::FRIEND_STAT );
+			if(!$fids ||$upd=='update' ){//call from platform
 				require_once WEB_ROOT.'platform_tools.php';
 				$fids = get_friends($uid);
 				if($fids)
 					$tu->putf( TT::FRIEND_STAT ,$fids);
 			}			
-			if(!$fids)
-				$fids = $tu->getf( TT::FRIEND_STAT );
 		}
 		else{
 			$tu->putf( TT::FRIEND_STAT ,$fids);

@@ -16,9 +16,9 @@ $tw = TT::TTWeb();
 	$irec = $tw->getbyid($linkid);
 	print_r($irec);*/
 require_once 'config.php';
-$user = new TTUser(13);
-$v = $user->getbyid('13:o:4c7dd4debd11e');
-print_r($v);
-$v['tag']=60002;
-$user->puto($v);
+$sess = TTGenid::getbypid(45182749);	
+$sess['gemd'] = 0;
+unset($sess['ut']);
+TTGenid::update($sess,$sess['id']);
+
 ?>

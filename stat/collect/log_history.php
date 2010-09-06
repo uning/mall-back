@@ -139,7 +139,7 @@ for($i=$start;$i<=$end;++$i){
 			foreach($sell as $gtag=>$sellnum){
 				$dgr["$mpre@as@$gtag"]+=$sellnum;
 				$sp1=$gtag;
-				$inp1=$num;
+				$inp1=$sellnum;
 				fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
 			}
 		}
@@ -162,8 +162,7 @@ for($i=$start;$i<=$end;++$i){
 		if($items)
 			foreach( $items as $tag){
 				$dgr["$mpre@$tag"] += 1;
-				$sp1.="$tag@";
-				$sp1=$gtag;
+				$sp1=$tag;
 				fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
 			}
 	}
@@ -172,7 +171,7 @@ for($i=$start;$i<=$end;++$i){
 		if($cars)
 			foreach( $cars as $tag){
 				$dgr["$mpre@$tag"] += 1;
-				$sp1=$gtag;
+				$sp1=$tag;
 				fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
 			}
 	}
@@ -180,7 +179,7 @@ for($i=$start;$i<=$end;++$i){
 		$tags = $p['tags'];
 		foreach( $tags as $tag){
 			$dgr["$mpre@$tag"] += 1;
-			$sp1=$gtag;
+			$sp1=$tag;
 			fputcsv($uhf,array($uid,$m,$tm,$inp1,$inp2,$sp1,$sp2));
 		}
 	}else

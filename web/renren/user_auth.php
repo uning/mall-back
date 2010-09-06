@@ -30,6 +30,8 @@
 			$ar[$kk]=$vv;
 		}
 	}
+	$ar['session_key']=$session_key;
+	TTGenid::genid($ar);
 	echo '<pre>';
 	print_r($ar);
 	

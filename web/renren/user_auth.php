@@ -1,6 +1,12 @@
 <?php 
     include "config.php";
     $pid = $_REQUEST['xn_sig_user'];
+	
+	$sess = TTGenid::getbypid($pid);
+	$uid = $sess['id'];
+	$tu = new TTUser($uid);
+	
+	$session_key = $_REQUEST['xn_sig_session_key'];
 	//$pid ='253382225';
 	if(!$pid)
 		die('no pid');
@@ -9,9 +15,12 @@
 
 	require_once 'renren.php';
 	$ren = new Renren();
-	$ren -> api_key ='a32cb73bea154d2c9d40703b66dc9142'; 
-	$ren -> secret = '023a6201a9b04955b1af79b1e9037c16';
-	$ren -> init();
+	$ren -> api_key = RenrenConfig::$api_key;
+	$ren -> secret = RenrenConfig::$secret;
+	
+	$renren ->session_key = $session_key;
+	$ren -> init( $session_key);
+	 
 	$ret = $ren->api_client->users_getInfo(array($pid),array("uid","name","sex","star","zidou","vip","tinyurl","birthday","email_hash"));
 	if($ret[0]['name']){
 		$ar['icon']=$ret[0]['headurl'];
@@ -21,7 +30,22 @@
 			$ar[$kk]=$vv;
 		}
 	}
+	$ar['session_key']=$session_key;
+	TTGenid::genid($ar);
 	echo '<pre>';
 	print_r($ar);
-    $sess = TTGenid::genid($ar);
+	
+	
+	$ret = $ren->api_client->friends_getAppFriends();
+	
+	if($ret && $ret[0] && $ret[0]>0 ) {
+		$fidstr =implode(',',$ret);
+		$tu->putf( TT::FRIEND_STAT,$fidstr);
+		echo "friends OK\n";
+	}else{
+		echo "failed\n";
+	} 
+	print_r($ret);  
+	
+	 
 

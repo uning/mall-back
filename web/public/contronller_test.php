@@ -31,7 +31,11 @@ function dotest($m,$p=null)
 	echo "===============================================\n\n";
 }
 
+<<<<<<< HEAD
 dotest('UserController.update_popu',array('u'=>1));
+=======
+dotest('Friend.get',array('u'=>1));
+>>>>>>> d8e9839436c4a9d0da3384ac339708f40e7ea670
 return;
 $now = 1282208631;
 $now = time();

@@ -323,6 +323,8 @@ $touser = $_REQUEST['xn_sig_user'];
 	}	
 	else{
 		$invite = false;
+		if(!is_array($ids))
+		$ids = array();
 	if(array_key_exists($touser,$ids))
 				$invite = true;
 				$got = false;

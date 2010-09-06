@@ -438,7 +438,7 @@ class Friend{
 			$num = 3;
 		//$mydata = TTGenid::getbyid($uid); 
 		$car['help'][$uid] =  $num;
-		$add_exp *= 4;
+		$add_exp *= 2;
 		$ret['exp']  = $tu->addExp($add_exp);
 		$ret['award']['exp'] = $add_exp;
 		$fdata['ht'] = $now;

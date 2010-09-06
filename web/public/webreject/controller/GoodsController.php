@@ -613,6 +613,8 @@ class GoodsController
 
 		$params = $tu->getf( array(TT::POPU,TT::EXP_STAT) );
 		$popu = $params[TT::POPU];
+		if($popu<0)
+			$popu = 0;
 		$ua = UpgradeConfig::getUpgradeNeed( $params['exp'] );
                 $maxpopu = $ua['maxpopu'];
 		$aid = $tu->getoid( 'advert',TT::OTHER_GROUP );

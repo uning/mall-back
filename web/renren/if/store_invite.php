@@ -40,17 +40,28 @@ $ids = $_REQUEST['ids'];
 	$value = $tw->getbyuidx('uid',$pid);
 	if(!$value)
 	{
-		$value = array('uid'=>$pid,'invite'=>$ids,'accepted'=>array(),'time'=>$date);
+		$value = array('uid'=>$pid,'invite'=>array_flip($ids),'accepted'=>array(),'time'=>$date);
 	}
 	else 
 	{
 		if($value['time']!=$date){
 			$value['time']=$date;
-			$value['invite'] = $ids;
+			$value['invite'] = array_flip($ids);
 		}
 		else
 		{
-			array_merge($value['invite'],$ids);
+			$ids = array_flip($ids);
+			foreach ($ids as $k=>$v){
+				if(array_key_exists($k,$value['invite']))
+				{
+					unset($ids[$k]);
+				}
+				else
+				{
+					$value['invite'][$k]=$v;
+				}
+			}
+			$_REQUEST['ids'] = $ids;
 		}
 	}
 	$_REQUEST['geted'] =array(0);
@@ -68,7 +79,7 @@ $ids = $_REQUEST['ids'];
 	$renren->init($sessionK);
 	$noti = '<xn:name uid="'.$pid.'" linked="true"/><a href="'.RenrenConfig::$canvas_url.'">正在玩购物天堂，邀请你去帮他装货、卸货，顺便帮他抢几个客人</a>';
 	$ids = '';
-	foreach ($_REQUEST['ids'] as $id){
+	foreach ($ids as $k =>$id){
 		$ids.=$id.',';
 	}
 	$ids = substr($ids,0,strlen($ids)-1);

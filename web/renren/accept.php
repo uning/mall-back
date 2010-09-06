@@ -305,20 +305,15 @@ $touser = $_REQUEST['xn_sig_user'];
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
-	$invite = false;
-	foreach($ids as $id){
-		if($id==$touser){
+				$invite = false;
+	if(array_key_exists($touser,$ids))
 				$invite = true;
-				break;
-				}
-		}  
-	$got = false;
-	foreach ($getted as $u){
-			if($u==$touser){
+		 
+				$got = false;
+	if(array_key_exists($touser,$getted))
 				$got = true;
-					break;
-					}
-		}
+					
+
 	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
 		$ftu->numch('invite_num',1);
 		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
@@ -330,7 +325,6 @@ $touser = $_REQUEST['xn_sig_user'];
 		TTGenid::update($tsess,$tsess['id']);
 	}								
 	if($invite){
-	$ftu->numch('invite_num',1);
 	$gid = $link['gift'];
 	if($gid){?>
 		<div id='content'>
@@ -393,7 +387,7 @@ $touser = $_REQUEST['xn_sig_user'];
 			}
 		}
 		if(!$got){
-		$link['geted'][] = $touser;
+		$link['geted'][$touser] =1 ;
 		$tw->put($link);
 		}
 		if(!$gid){?>

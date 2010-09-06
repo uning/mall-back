@@ -4,6 +4,7 @@ require_once($myloc.'/config.php');
 
 $user_num = $gtt->num(); 
 echo "user_num = $user_num\n";
+$mail_body.="user_num = $user_num\n";
 $now = time();
 $gap=86400;
 
@@ -17,28 +18,36 @@ for($i=1;$i<=$user_num;++$i){
 	$ud = $gtt->get($i);		
 	$uid = $i;
 	$pid = $ud['pid'];
-	if(!$ud || !$uid || !$pid)
-		continue;	
+	if(!$ud){
+		echo "get user $i failed\n";
+		continue;
+	}
+	if( !$uid || !$pid){
+		echo "user $i have no pid\n";
+		continue;
+	}	
 	if(!is_numeric($pid))
 		continue;
 	$accesstime = $ud['at'];
 	$unstalltime = $ud['ut'];
 	$authtime = $ud['authat'];
 	if($authtime >$day_endtime){
-		break;
+		if($i - $lastau == 1){
+		 echo "break at user $i\n"; 
+		 $mail_body.="break at user $i\n"; 
+		}
 	}
 	$tu = new TTuser($uid,true);
-	$fnames = array('money','exp','gem','friend_count');
+	$fnames = array('money','exp','gem','friend_count','it');
 	foreach($fnames as $fn)
 		$dids[] = $tu->getdid($fn);
 	$dids[] = $tu->getoid('mannual',TT::OTHER_GROUP);
 	$dids[] = $tu->getoid('installbar',TT::OTHER_GROUP);
 	$data = $tu->getbyids($dids);
+
 	$level=$tu->getLevel($data['exp']);
 	$dgr["level_$level"]+=1;
-	//print_r($data);
-	//exit;
-	//count man 
+
 	$mano = $data['mannual'];
 	$ino = $data['installbar'];
 	if($mano){
@@ -80,7 +89,12 @@ for($i=1;$i<=$user_num;++$i){
 	if($unstalltime>$accesstime){
 		$dgr['unstall_num']++;
 	}
+	if(!$accesstime)
+		$dgr['total_noacctive_user']+=1;
 
+	$dgr['total_user']+=1;
+	if($i%100==0)
+		echo "$uid user proessed \n";
 
 ///#platform apicall get 
 	if($ud['name']!='' && strstr($ud['name'],'我很二')==''  ){
@@ -123,16 +137,4 @@ for($i=1;$i<=$user_num;++$i){
 
 	
 }
-print_r($dgr);
-//exit;
-//*
-store_varible($dgr);
-$cmd = "mysql -u{$dbconfig['username']} -P{$dbconfig['port']}  -h{$dbconfig['host']} ";
-if($dbconfig['password']){
-  $cmd.=" -p'{$dbconfig['password']}' ";
-}
-$cmd .= $dbconfig['dbname'];
-$cmd .=' -e "LOAD DATA INFILE \''.$uhfname.'\' INTO TABLE '.$table.'  FIELDS TERMINATED BY \',\' ESCAPED BY \'\\\\\\\' LINES TERMINATED BY \'\n\';"';         
-//*/
-system($cmd);
-fclose($uhf);
+include 'end_stat.php';

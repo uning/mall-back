@@ -32,7 +32,7 @@ class UserController
 		$ret['s'] = 'OK';
 		$ret['t'] = time();
 		$params['u']=$uid;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($params)));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$new,'u'=>'uid','sp1'=>$params['pid']));
 		return $ret;
 	}
 
@@ -85,7 +85,7 @@ class UserController
 		*/
 		$ret['s'] = 'OK';	
 		$ret['days'] = $last['continued'];
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'p'=>json_encode($ret)));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$last['continued']));
 		return $ret;				
 	}
 
@@ -247,7 +247,7 @@ class UserController
 	{
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-		$tu->numch( TT::MONEY_STAT,$params['money'] );
+		$tu->chMoney($params['money'] );
 		$tu->numch( TT::GEM_STAT,$params['gem'] );
 		$tu->numch( TT::EXP_STAT,$params['exp'] );
 		$ret['a'] = $tu->getf( array( TT::MONEY_STAT,TT::GEM_STAT,TT::EXP_STAT ) );

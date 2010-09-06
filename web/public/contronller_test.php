@@ -34,6 +34,8 @@ $now = 1282208631;
 $now = time();
 dotest('GoodsController.dcheckout',array('u'=>174,'now'=>$now));
 return;
+dotest('Man.update',array('u'=>8127,'step'=>'1'));
+exit;
 dotest('Friend.debug_get',array('u'=>4));
 return;
 dotest('UserController.update_profile');

@@ -70,7 +70,7 @@ class Achieve
 			return $ret;
 		}
 		$achieves[$tag] = time();
-		$money = $tu->numch( 'money',$config['rewardMoney'] );
+		$money = $tu->chMoney($config['rewardMoney'] );
 		$exp = $tu->numch( 'exp',$config['rewardRep'] );
 
 		if( $config['item'] ){//成就达成的物品奖励

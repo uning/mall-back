@@ -66,7 +66,7 @@ $ids = $_REQUEST['ids'];
 	$renren ->api_key = RenrenConfig::$api_key;
 	$renren ->secret = RenrenConfig::$secret;
 	$renren->init($sessionK);
-	$noti = '<xn:name uid="'.$pid.'" linked="true"/><a href="'.RenrenConfig::$canvas_url.'">喊你去帮他装货、卸货，顺便帮他抢几个客人</a>';
+	$noti = '<xn:name uid="'.$pid.'" linked="true"/><a href="'.RenrenConfig::$canvas_url.'">正在玩购物天堂，邀请你去帮他装货、卸货，顺便帮他抢几个客人</a>';
 	$ids = '';
 	foreach ($_REQUEST['ids'] as $id){
 		$ids.=$id.',';

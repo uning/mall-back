@@ -107,8 +107,7 @@ class ItemController {
 				if($item_obj['goods']){
 					$ret['s'] = 'notempty';
 					$ret['index'] = $index;
-					TTLog::record(array('m'=>'move_gshop','tm'=> $_SERVER['REQUEST_TIME'],'p'=>'{"u":"'.$uid.'"}','error'=>'move full shop'));
-					return $ret;
+					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp1'=>$item_obj['id']));
 					continue;
 				}
 				 //*/

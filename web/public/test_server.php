@@ -4,6 +4,8 @@ class JsonServerExecption extends Exception
 {
 };
 
+
+
 class JsonServer{
 
 	protected  $_req     = array() ;/*struct req*/
@@ -67,17 +69,32 @@ class JsonServer{
 		@$str=unserialize(file_get_contents(REQ_DATA_ROOT.$name.'.param'));
 		return $str;
 	}
+
 	/**
 	 * 
 	 */
 	protected function auth($key)
 	{
-		if($this->_do_auth==false || $this->_debug )
-			return true;
-		static $secret='playcrab';
-		return md5($key.$secret)==$auth;
+		return true;
+		$now = $_SERVER['REQUEST_TIME'];	
+		if(!$key){
+			$pid  = '';//get by 
+			$sess = TTGenid::getbypid($pid);
+			$kdata[]=$sess['pid'];
+			$kdata[]=$sess['id'];
+			$kdata[]=$now;
+			return base64_encode(implode(':',$kdata));
+		}
+		$keyd = base64_decode($key);
+		$kdata = explode(':',$keyd,3);
+		if($kdata[2]<100){
+			return false;
+		}
+		if($kdata[2]+3600 >$now)
+			return $key;
+		$kdata[2]=$now;
+		return base64_encode(implode(':',$kdata));
 	}
-
 	/**
 	 * @param $m
 	 * @param $params
@@ -189,6 +206,8 @@ class JsonServer{
 				'Advert.set'=>1,
 				'Cinema.enter'=>1,
 				'Cinema.pick'=>1,
+				'Gift.send'=>1,
+				'Gift.accept'=>1,
 				'Man.update'=>1,
 				'UserController.update_friends'=>1,
 				'UserController.enlarge_mall'=>1,

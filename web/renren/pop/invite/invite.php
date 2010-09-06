@@ -81,7 +81,7 @@ if($_REQUEST['gift'])
 	$feed = $tt->getbyuidx('uid',$pid);
 	if($feed)
 	{
-		$today = $feed['today'];
+		$today = $feed['time'];
 		$arr = '0';
 		if($today['date']==date('Ymd'))
 		foreach ($feed['invite'] as $v){

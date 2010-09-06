@@ -274,7 +274,8 @@ text-decoration:none;
 </style>
 <?php
 require_once('pop/freeGift.php');
-$linkid = $_REQUEST['lid'];	
+$linkid = $_REQUEST['lid'];
+$linkid='4c84b502095ce';
 $tw = TT::LinkTT();
 $link = $tw->getbyuidx('lid',$linkid);
 print_r($link);
@@ -284,6 +285,7 @@ $touser = $_REQUEST['xn_sig_user'];
 <xn:if-is-app-user>
 <div id='is_install'></div>
 <?php
+$touser = 45182749;
 	$fromuser = $link['pid'];
 	$fsess = TTGenid::getbypid($fromuser);	
 	$tsess = TTGenid::getbypid($touser);	
@@ -306,7 +308,7 @@ $touser = $_REQUEST['xn_sig_user'];
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
-	if($link['date']<'20100906'){
+	if(strtotime($link['date'])<strtotime('20100906')){
 	$invite = false;
 	foreach($ids as $id){
 		if($id==$touser){

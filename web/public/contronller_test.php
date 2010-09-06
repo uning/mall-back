@@ -31,7 +31,7 @@ function dotest($m,$p=null)
 	echo "===============================================\n\n";
 }
 
-dotest('Cinema.pick');
+dotest('Friend.get',array('u'=>1));
 return;
 $now = 1282208631;
 $now = time();

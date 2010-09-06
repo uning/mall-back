@@ -20,6 +20,7 @@ if($session_key!=$sess['session_key']){
 	}else 
 	{
 			header('Location: '.RenrenConfig::$canvas_url);
+			exit;
 	}
 }
 $tu = new   TTUser($uid);

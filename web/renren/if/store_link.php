@@ -18,7 +18,7 @@ if($pid &&$ids && $linkid&&$oid){
 		$_REQUEST['geted'] = array();
 		$_REQUEST['time'] = date('Ymd');
 		$tw->put($_REQUEST);
-		print_r($_REQUEST);
+		//print_r($_REQUEST);
 		TTLog::record(array('m'=>'open_shop_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$pid));
 	}
 	

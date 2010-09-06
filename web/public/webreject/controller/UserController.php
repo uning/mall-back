@@ -212,8 +212,23 @@ class UserController
 				);	    			 
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
-		$exp = $tu->getf( TT::EXP_STAT );
-		$need = UpgradeConfig::getUpgradeNeed( $exp );
+		$user = $tu->getf( array( TT::EXP_STAT,TT::CAPACITY_STAT ) );
+		$capa = $user[TT::CAPACITY_STAT];
+		$cap = explode( ",",$capa );
+		$ret['capa'] = $capa;         // for debug
+		$ret['cap'] = $cap;         // for debug		
+		$width = $cap[0];
+		$height = $cap[1];
+		$ret['width'] = $width;         // for debug
+		$ret['height'] = $height;         // for debug				
+		$need = UpgradeConfig::getUpgradeNeed( $user['exp'] );
+		$last = UpgradeConfig::$_upgrade[ $need['id'] - 1 ];
+		$ret['need'] = $need;
+		$ret['last'] = $last;
+		if( $cap[0] != $last['shopwidth'] || $cap[1] != $last['shopheight'] ){
+		    $ret['s'] = 'skip';
+		    return $ret;
+		}
 //		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
         $l = 0;
         foreach( $level2money as $level=>$money ){

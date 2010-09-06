@@ -105,9 +105,10 @@ class ItemController {
 				}
 				//*{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
 				if($item_obj['_s'] == 'goods'){
+					$ret['error'] = 'notempty';
 					$ret['s'] = 'OK';
 					$ret['index'] = $index;
-					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp1'=>$item_obj['id']));
+					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp2'=>'movegoodsshop','sp1'=>$item_obj['id']));
 					continue;
 				}
 				 //*/
@@ -163,7 +164,7 @@ class ItemController {
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
 
-		foreach( $params['d'] as $index=> $id ){
+		foreach($params['d'] as $index=> $id ){
 			$item_obj = $tu->getbyid( $id);
 			if( !$item_obj ){
 				$ret['s'] =  'notexsit';

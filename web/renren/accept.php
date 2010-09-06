@@ -305,7 +305,7 @@ $touser = $_REQUEST['xn_sig_user'];
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
-	if($link['date']<20100906){
+	if(strtotime($link['date']) < strtotime('20100906')){
 	$invite = false;
 	foreach($ids as $id){
 		if($id==$touser){
@@ -314,7 +314,7 @@ $touser = $_REQUEST['xn_sig_user'];
 				}
 		}
 		$got = false;
-	foreach ($getted as $u){
+	foreach ($getted as $u=>$v){
 			if($u==$touser){
 				$got = true;
 					break;
@@ -325,10 +325,10 @@ $touser = $_REQUEST['xn_sig_user'];
 		$invite = false;
 		if(!is_array($ids))
 		$ids = array();
-	if(array_key_exists($touser,$ids))
+		if(array_key_exists($touser,$ids))
 				$invite = true;
 				$got = false;
-	if(array_key_exists($touser,$getted))
+		if(array_key_exists($touser,$getted))
 				$got = true;
 	} 
 	
@@ -422,7 +422,7 @@ var auth = false;
 function authOK()
 {
 	auth = true;
-	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?linkid=<?php echo $linkid; ?>&new="+Math.random() ) ;
+	document.setLocation("<?php echo RenrenConfig::$canvas_url;?>accept.php?lid=<?php echo $linkid; ?>&new="+Math.random() ) ;
 }
 function authKO()
 {

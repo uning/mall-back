@@ -221,21 +221,18 @@ class UserController
 		$height = $cap[1];
 		$ret['width'] = $width;         // for debug
 		$ret['height'] = $height;         // for debug
-		/*		
-				$need = UpgradeConfig::getUpgradeNeed( $user['exp'] );
-				$last = UpgradeConfig::$_upgrade[ $need['id'] - 1 ];
-				$ret['need'] = $need;
-				$ret['last'] = $last;
-				if( $cap[0] != $last['shopwidth'] || $cap[1] != $last['shopheight'] ){
-				$ret['s'] = 'skip';
-				return $ret;
-				}
-		 */		
+		$length = count( UpgradeConfig::$_upgrade );       //必须先遍历找出最大值
+		$max_width = UpgradeConfig::$_upgrade[$length]['shopwidth'];
+		$max_height = UpgradeConfig::$_upgrade[$length]['shopheight'];
 		foreach( UpgradeConfig::$_upgrade as $upgrade ){
 			if( $width > $upgrade['shopwidth'] || $height > $upgrade['shopheight'] )
 				continue;
-			if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] )
-				continue;
+			if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] ){
+			    if( $width == $max_width && $height == $max_height ){
+			        break;
+			    }
+			    continue;
+			}
 			$need = $upgrade;
 			break;
 		}

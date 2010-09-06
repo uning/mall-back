@@ -216,11 +216,12 @@ class UserController
 		$capa = $user[TT::CAPACITY_STAT];
 		$cap = explode( ",",$capa );
 		$ret['capa'] = $capa;         // for debug
-		$ret['cap'] = $cap;         // for debug		
+		$ret['cap'] = $cap;         // for debug
 		$width = $cap[0];
 		$height = $cap[1];
 		$ret['width'] = $width;         // for debug
-		$ret['height'] = $height;         // for debug				
+		$ret['height'] = $height;         // for debug
+/*		
 		$need = UpgradeConfig::getUpgradeNeed( $user['exp'] );
 		$last = UpgradeConfig::$_upgrade[ $need['id'] - 1 ];
 		$ret['need'] = $need;
@@ -229,6 +230,16 @@ class UserController
 		    $ret['s'] = 'skip';
 		    return $ret;
 		}
+*/		
+		foreach( UpgradeConfig::$_upgrade as $upgrade ){
+		    if( $width > $upgrade['shopwidth'] || $height > $upgrade['shopheight'] )
+		        continue;
+		    if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] )
+		        continue;
+		    $need = $upgrade;
+		    break;
+		}
+		$ret['need'] = $need;    // for debug
 //		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
         $l = 0;
         foreach( $level2money as $level=>$money ){

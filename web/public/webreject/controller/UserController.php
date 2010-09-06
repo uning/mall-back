@@ -194,8 +194,8 @@ class UserController
 	public function enlarge_mall ( $params )
 	{
 		$level2money = array(//键为等级，值为所需金币
-		         0=>0
-			    ,2=>500
+				0=>0
+				,2=>500
 				,5=>1000
 				,9=>10000
 				,13=>10000
@@ -221,35 +221,35 @@ class UserController
 		$height = $cap[1];
 		$ret['width'] = $width;         // for debug
 		$ret['height'] = $height;         // for debug
-/*		
-		$need = UpgradeConfig::getUpgradeNeed( $user['exp'] );
-		$last = UpgradeConfig::$_upgrade[ $need['id'] - 1 ];
-		$ret['need'] = $need;
-		$ret['last'] = $last;
-		if( $cap[0] != $last['shopwidth'] || $cap[1] != $last['shopheight'] ){
-		    $ret['s'] = 'skip';
-		    return $ret;
-		}
-*/		
+		/*		
+				$need = UpgradeConfig::getUpgradeNeed( $user['exp'] );
+				$last = UpgradeConfig::$_upgrade[ $need['id'] - 1 ];
+				$ret['need'] = $need;
+				$ret['last'] = $last;
+				if( $cap[0] != $last['shopwidth'] || $cap[1] != $last['shopheight'] ){
+				$ret['s'] = 'skip';
+				return $ret;
+				}
+		 */		
 		foreach( UpgradeConfig::$_upgrade as $upgrade ){
-		    if( $width > $upgrade['shopwidth'] || $height > $upgrade['shopheight'] )
-		        continue;
-		    if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] )
-		        continue;
-		    $need = $upgrade;
-		    break;
+			if( $width > $upgrade['shopwidth'] || $height > $upgrade['shopheight'] )
+				continue;
+			if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] )
+				continue;
+			$need = $upgrade;
+			break;
 		}
 		$ret['need'] = $need;    // for debug
-//		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
-        $l = 0;
-        foreach( $level2money as $level=>$money ){
-            if(  $level < $need['level']){
-                $l = $level;
-                continue;
-            }
-            break;
-        }
-        $leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$l] ); 
+		//		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
+		$l = 0;
+		foreach( $level2money as $level=>$money ){
+			if(  $level < $need['level']){
+				$l = $level;
+				continue;
+			}
+			break;
+		}
+		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$l] ); 
 		if( $leftmoney<0 ){
 			$ret['s'] = 'money';
 			return $ret;

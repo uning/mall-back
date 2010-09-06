@@ -108,7 +108,7 @@ class ItemController {
 					$ret['error'] = 'notempty';
 					$ret['s'] = 'OK';
 					$ret['index'] = $index;
-					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp2'=>'movegoodsshop','sp1'=>$item_obj['id']));
+					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp2'=>'movegoodsshop','shoptag'=>$item_obj['tag'],'sp1'=>$item_obj['id']));
 					continue;
 				}
 				 //*/

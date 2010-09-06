@@ -43,7 +43,7 @@ li.giftLocked .gift_name {
 
 .main_giftConfirm_cont {
 	background:
-		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_box.png")
+		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_box.png")
 		no-repeat scroll left top;
 	width: 744px;
 	height: 265px;
@@ -61,7 +61,7 @@ li.giftLocked .gift_name {
 
 .gift_box_cont {
 	background:
-		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_gift.png")
+		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_gift.png")
 		no-repeat scroll left top;
 	width: 152px;
 	height: 151px;
@@ -85,7 +85,7 @@ li.giftLocked .gift_name {
 
 .from_box_cont {
 	background: 
-		url("http://rrmall.playcrab.com/work/mall/backend/web/renren/static/images/css/gift_confirm_user.png")
+		url("<?php echo RenrenConfig::$resource_urlp; ?>/images/css/gift_confirm_user.png")
 		no-repeat scroll left top;
 	width: 117px;
 	height: 115px;
@@ -305,15 +305,17 @@ $touser = $_REQUEST['xn_sig_user'];
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
-	if(strtotime($link['date']) < strtotime('20100906')){
+	$got = false;
 	$invite = false;
+	if(strtotime($link['date']) < strtotime('20100906')){
+	
 	foreach($ids as $id){
 		if($id==$touser){
 				$invite = true;
 				break;
 				}
 		}
-		$got = false;
+		
 	foreach ($getted as $u=>$v){
 			if($u==$touser){
 				$got = true;
@@ -322,12 +324,12 @@ $touser = $_REQUEST['xn_sig_user'];
 		}		
 	}	
 	else{
-		$invite = false;
+		
 		if(!is_array($ids))
 		$ids = array();
 		if(array_key_exists($touser,$ids))
 				$invite = true;
-				$got = false;
+				
 		if(array_key_exists($touser,$getted))
 				$got = true;
 	} 

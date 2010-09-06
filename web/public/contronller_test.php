@@ -31,8 +31,6 @@ function dotest($m,$p=null)
 	echo "===============================================\n\n";
 }
 
-dotest('UserController.update_popu',array('u'=>1));
-dotest('Friend.get',array('u'=>1));
 return;
 $now = 1282208631;
 $now = time();

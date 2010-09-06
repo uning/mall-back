@@ -649,6 +649,7 @@ class GoodsController
 			$curtime = $shop['ctime'];//可以售卖新商品时间
 			$cgoods = array();
 			$shop_changed=false;
+			$shop_empty = true;
 			foreach( $gs as $t=>$g ){
 				$gconfig = ItemConfig::getItem($g['tag']);
 				if(!$gconfig){
@@ -694,10 +695,14 @@ class GoodsController
 				}//foreach group
 				if( $g['num']!= 0 ){
 					$tu->puto( $g,TT::GOODS_GROUP);
+					$shop_empty = false;
 					break;//跳出上架时间循环，但是继续店铺循环，终止同一店铺的货物队列中其他货物的结算
 				}
 			}//foreach goods
 			if($shop_changed){
+				if($shop_empty){
+					unset($shop['goods']);
+				}
 				$tu->puto($shop);
 			}
 		}//foreach shop

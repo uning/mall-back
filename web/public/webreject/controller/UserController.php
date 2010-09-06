@@ -253,6 +253,7 @@ class UserController
 			return $ret;
 		}
 		$tu->putf( TT::CAPACITY_STAT,$need['shopwidth'].",".$need['shopheight'] );
+		TTLog::record( array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$level2money[$l],'sp1'=>$need['shopwidth'].",".$need['shopheight'] ) );
 		$ret['s'] = 'OK';
 		return $ret;
 	}

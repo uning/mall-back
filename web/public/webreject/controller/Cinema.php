@@ -90,7 +90,7 @@ class Cinema
                 $shop_obj['ctime'] = $now;
 			}
 		}
-		$tu->chMoney( TT::MONEY_STAT,$money );
+		$tu->chMoney($money );
 		$tu->puto( $shop_obj,TT::CINEMA_GROUP );
 //		$ret['fashopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 //		$ret['ashopobj'] = $shop_obj;  //for debug

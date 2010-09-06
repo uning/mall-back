@@ -30,6 +30,9 @@ function dotest($m,$p=null)
 	record_time($st," $m ");
 	echo "===============================================\n\n";
 }
+
+dotest('Friend.get',array('u'=>1));
+return;
 $now = 1282208631;
 $now = time();
 dotest('GoodsController.dcheckout',array('u'=>26,'now'=>$now));

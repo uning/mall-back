@@ -10,6 +10,10 @@
 平台id:<input name='pid'></input>
 <input type=submit value='查询'></input>
 </form>
+<form>
+内部id:<input name='start'></input>
+<input type=submit value='查询'></input>
+</form>
 <?php
 require_once '../base.php';
 echo "<pre>\n";

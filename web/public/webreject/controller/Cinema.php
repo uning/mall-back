@@ -90,12 +90,11 @@ class Cinema
                 $shop_obj['ctime'] = $now;
 			}
 		}
-//                $ret['bmoney'] = $tu->getf( TT::MONEY_STAT );
 		$tu->chMoney($money );
-//                $ret['amoney'] = $tu->getf( TT::MONEY_STAT );
 		$tu->puto( $shop_obj,TT::CINEMA_GROUP );
 //		$ret['fashopobj'] = date( TM_FORMAT,$shop_obj['ctime'] );  //for debug
 //		$ret['ashopobj'] = $shop_obj;  //for debug
+        TTLog::record( array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$money,'sp1'=>$shop_obj['ctime'] ) );
 		$ret['money'] = $money;
 		$ret['s'] = 'OK';
         return $ret;

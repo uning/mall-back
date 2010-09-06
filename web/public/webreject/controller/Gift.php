@@ -45,7 +45,7 @@ class Gift{
 		if( $params['msg'] )
 		    $obj['msg'] = $params['msg'];
 		$ftu->puto( $obj );
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$fid,'sp1'=>$gift_obj['tag']));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$fid,'intp1'=>$uid,'sp1'=>$gift_obj['tag']));
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -122,7 +122,7 @@ class Gift{
 		$tu->remove($rids);
 		$ret['s'] = 'OK';
 		$ret['id2id'] = $id2id;
-		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$d['fid'],'sp1'=>$tag));
+		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$d['fid'],'sp1'=>$tag));
 		return $ret;
 	}
 }

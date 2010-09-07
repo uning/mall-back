@@ -61,12 +61,12 @@ class TT extends TTG{
 						     ),
 						),
 				     ),
-			'stat' => array(
+			'gem' => array(
 					'type'=>'TTable',
 					'procs'=>
 					array(
 						array(
-							array('host'=>'122.11.61.27','port'=>'16000')
+							array('host'=>'122.11.61.27','port'=>'16006')
 						     ),
 					     )
 				       ),

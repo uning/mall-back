@@ -32,7 +32,9 @@ class CarController
 				$ret['index'] = $index;
 				return $buy_ret;
 			}
-			$ids[] = $tu->puto($row,TT::CAR_GROUP);
+			$row['id'] = $tu->getdid(null,TT::CAR_GROUP);	
+			$tu->puto($row);
+			$ids[$index]=$row['id'];
 		}	
 		$ret['s'] = 'OK';
 		$ret['ids'] = $ids;
@@ -289,16 +291,30 @@ class CarController
 		$uid = $params['u'];
 		$tag = $params['tag'];
 		$num = $params['num']; 
+		
+		$stat['tag']=$tag;
+		$stat['op']='buy_copolit';
+		$stat['num']=$num;
+		$stat['u']=$uid;
+		$stat['tm']=$_SERVER['REQUEST_TIME'];
+		$gemt = TT::GemTT();
+
 		$tu = new TTUser( $uid );
 		$copi = self::$_config[$tag];
 		if( !$copi ){
 			$ret['s'] = 'copinotexsit';
+
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
-		$ret['copi'] = $copi;  // for debug
 		$gem = $tu->change( 'gem',0-$copi['gem'][$num] );
 		if( $gem< 0 ){
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			$ret['s'] = 'gem';
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}   
 		$id = $tu->getoid('copilot',TT::OTHER_GROUP );	    
@@ -308,8 +324,16 @@ class CarController
 		$tu->puto( $copilot );
 
 		$ret['s'] = 'OK';
+		$ret['gem'] = $gem;
+
+
 		$ret['tag'] = $tag;
 		$ret['num'] = $num;
+
+		$stat['gem'] = $copi['gem'][$num];
+		$stat['t'] = 'gem';
+		$stat['s']=$ret['s'];
+		$gemt->putKeep(null,$stat);
 		return $ret;
 	}
 
@@ -331,8 +355,19 @@ class CarController
 		$tag = $params['tag'];
 		$cid = $params['cid'];
 		$copi = self::$_config[$tag];
+
+		$stat['tag']=$tag;
+		$stat['op']='apply_copolit';
+		$stat['num']=$num;
+		$stat['u']=$uid;
+		$stat['tm']=$_SERVER['REQUEST_TIME'];
+		$gemt = TT::GemTT();
+
 		if( !$copi ){
 			$ret['s'] = 'copinotexist';
+
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
 		$tu = new TTUser( $uid );
@@ -341,6 +376,8 @@ class CarController
 		$car_obj = $tu->getbyid( $cid );
 		if( !$car_obj ){
 			$ret['s'] = 'carnotexsit';
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
 		if( $tag != 2006 && $car_obj['copolitTag'] ){
@@ -388,6 +425,9 @@ class CarController
 		$tu->puto( $car_obj,TT::CAR_GROUP,false );
 		$ret['s'] = 'OK';
 		$ret['tag'] = $tag;
+
+		$stat['s']=$ret['s'];
+		$gemt->putKeep(null,$stat);
 		return $ret;
 	}	
 }

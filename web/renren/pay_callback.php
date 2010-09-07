@@ -39,6 +39,15 @@
 				$ret['app_res_user']= $pid;
 				$ret['app_res_amount']= $payment['amount'];
 				$ret['app_res_order_id']= $oid;
+				
+				$stat['t']='gem';
+				$stat['u']=$this->_u;
+				$stat['op']='pay';
+				$stat['tm']=$_SERVER['REQUEST_TIME'];
+				$gemt = TT::GemTT();
+				$stat['s']='OK';
+				$gemt->putKeep(null,$stat);
+
 				echo json_encode($ret);
 		
 			} else{

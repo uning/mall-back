@@ -26,6 +26,9 @@ class ItemController {
 		$uid = $params['u'];
 		$ids=array();
 		$tu = new TTUser($uid);
+		if($tu->check_dup($params['_cid'],$ret)){
+			return $ret;
+		}
 		$pop = 0 ;
 		$shop_num  = 0;
 		$now = time();
@@ -79,6 +82,9 @@ class ItemController {
 	{
 		$uid = $params['u'];
 		$tu = new TTUser($uid);
+		if($tu->check_dup($params['_cid'],$ret)){
+			return $ret;
+		}
 		$index = 1;
 		$ids = array();
 		$pop=0;

@@ -30,6 +30,12 @@ class UserController
 		$ret['u'] = $uid;
 		$ret['a'] = $tu->getdata();
 		$ret['s'] = 'OK';
+
+		$ret['cid']=$tu->numch('_cid');
+		$flashv = $params['fv'];
+		if($flashv){
+			$tu->putf('fv',$flashv);	
+		}
 		$ret['t'] = time();
 		$params['u']=$uid;
 		TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$new,'u'=>'uid','sp1'=>$params['pid']));
@@ -49,6 +55,13 @@ class UserController
 		$award = array( 1=>1000,2=>2000,3=>4000,4=>8000,5=>20000 );
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
+
+		
+		if($tu->check_dup($params['_cid'],$ret)){
+			return $ret;
+		}
+
+
 		$now = time();
 		$today_start = strtotime ( date( TM_FORMAT,strtotime( date("Y-m-d",$now) ) ) );
 		$yesterday_start = strtotime( date( TM_FORMAT,strtotime( date("Y-m-d",$now-86400) ) ) );
@@ -193,6 +206,7 @@ class UserController
 
 	public function enlarge_mall ( $params )
 	{
+
 		$level2money = array(//键为等级，值为所需金币
 				0=>0
 				,2=>500
@@ -212,6 +226,11 @@ class UserController
 				);	    			 
 		$uid = $params['u'];
 		$tu = new TTUser( $uid );
+		if($tu->check_dup($params['_cid'],$ret)){
+			return $ret;
+		}
+
+
 		$user = $tu->getf( array( TT::EXP_STAT,TT::CAPACITY_STAT ) );
 		$capa = $user[TT::CAPACITY_STAT];
 		$cap = explode( ",",$capa );
@@ -308,9 +327,15 @@ class UserController
 	 **/
 	function update_popu($params)
 	{
+		
+
 		$uid = $params['u'];
 		$ids= $params['ids'];
 		$tu = new ttuser( $uid );
+		if($tu->check_dup($params['_cid'],$ret)){
+			return $ret;
+		}
+
 		$ret['oldpopu'] = $tu->getf(TT::POPU);
 		$ret['s'] = 'OK';
 		if(!$ids){

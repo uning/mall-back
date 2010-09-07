@@ -420,7 +420,11 @@ class Friend{
 					$ret['s']='nocar '.$cid;
 					return $ret;
 				}
-				if(count($car['help'])>5){
+				$carconf = ItemConfig::getItem($car['tag']);
+				$counts = count($car['help']);
+				if($counts>$carconf['gridWidth']){
+					$ret['help_time'] = $counts; 
+					$ret['gridW'] = $car['help']; 
 					$ret['s']='max';
 					return $ret;
 				}
@@ -434,9 +438,9 @@ class Friend{
 				}
 				$level = $tu->getLevel();
 				$num = 1;
-				if($level >19) 
-					$num = 2;
 				if($level >39) 
+					$num = 2;
+				if($level >69) 
 					$num = 3;
 				//$mydata = TTGenid::getbyid($uid); 
 				$car['help'][$uid] =  $num;

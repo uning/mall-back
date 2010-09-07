@@ -4,7 +4,7 @@
  *
  */
 class TTable extends TokyoTyrantTable {
-	public  $needSV = true;
+	public  $needSV = false;
 
 	protected function before_save(&$data)
 	{

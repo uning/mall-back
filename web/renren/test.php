@@ -20,4 +20,4 @@ var publish = {
 	};
 
 </script>
-<a href="#" onclick="XNML.showFeedDialog(feedSettings)">显示新鲜事</a>
+<a href="#" onclick="XNML.showFeedDialog(publish)">显示新鲜事</a>

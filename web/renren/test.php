@@ -1,12 +1,12 @@
 
-<form action="#">	
-	<input type="submit" value="哈哈哈哈" name="publish" id="publish" class="inputsubmit"/>
-</form>
+
+	<input type="submit" value="哈哈哈哈" name="publish" id="publish" class="inputsubmit" onclick="proxy(110107)"/>
+
 
 <script type="text/javascript">
-		function proxy(appId, callback){
+		function proxy(appId){
 		var url = '/xnml/promptFeed.do';
-		var pars = 'app_id=' + appId + '&callback=' + callback;
+		var pars = 'app_id=' + appId + '&callback=' + 'http://apps.renren.com/livemall/?f=bookmark&origin=103';
 		var myAjax = new Ajax.Request(url, {
 			method: 'post',
 			parameters: pars,

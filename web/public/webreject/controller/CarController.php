@@ -308,6 +308,7 @@ class CarController
 			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
+//		$ret['copi'] = $copi;  // for debug
 		$gem = $tu->change( 'gem',0-$copi['gem'][$num] );
 		if( $gem< 0 ){
 			$stat['s']=$ret['s'];

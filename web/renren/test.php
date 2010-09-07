@@ -8,10 +8,10 @@ var feedSettings
 "template_data":{"images":
   [{"src":"http://fmn042.xnimg.cn/fmn042/20090806/0905/p_large_oQSJ_2633m016062.jpg",
   "href":"http://dev.renren.com/developers/portal.do"}],
-  "title":"这里是{title}的值",
-  "content":"{content}支持校内，情系人人！",
-  "action":"这里是{action}的值",
-  "rruid":"这里是{rruid}的值"
+  "title":"ttt",
+  "content":"支持校内，情系人人！",
+  "action":"这里是的值",
+  "rruid":"这里是的值"
 },
 "body_general":"这里用来显示 body_general",
 "callback": test,

@@ -1,25 +1,21 @@
+<script>
+function test(ok){
+    window.alert('here in feed callback!!, return ' + ok);
+}
 
-
-	<input type="submit" value="哈哈哈哈" name="publish" id="publish" class="inputsubmit" onclick="proxy(110107)"/>
-
-
-<script type="text/javascript">
-		function proxy(appId){
-		var url = '/xnml/promptFeed.do';
-		var pars = 'app_id=' + appId + '&callback=' + 'http://apps.renren.com/livemall/?f=bookmark&origin=103';
-		var myAjax = new Ajax.Request(url, {
-			method: 'post',
-			parameters: pars,
-			onComplete: function (r) {
-				var json = eval('(' + r.responseText + ')');
-				if(json.errorMsg.length != 0){
-					XN.DO.showError(json.errorMsg, "发生错误");
-				}
-				else{
-					showDialog(json, appId);
-				}
-			}
-		});
-	}
+var feedSettings
+ = {"template_id":"1",
+"template_data":{"images":
+  [{"src":"http://fmn042.xnimg.cn/fmn042/20090806/0905/p_large_oQSJ_2633m016062.jpg",
+  "href":"http://dev.renren.com/developers/portal.do"}],
+  "title":"这里是{title}的值",
+  "content":"{content}支持校内，情系人人！",
+  "action":"这里是{action}的值",
+  "rruid":"这里是{rruid}的值"
+},
+"body_general":"这里用来显示 body_general",
+"callback": test,
+"user_message_prompt": "这里用来显示user_message_prompt"
+};
 </script>
-
+<a href="#" onclick="XNML.showFeedDialog(feedSettings)">显示新鲜事</a>

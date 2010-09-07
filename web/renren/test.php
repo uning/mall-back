@@ -1,5 +1,5 @@
 
-<form onSubmit="proxy('9999','http://apps.renren.com/livemall/?f=bookmark&origin=103'); return false;">	
+<form action="#">	
 	<input type="submit" value="哈哈哈哈" name="publish" id="publish" class="inputsubmit"/>
 </form>
 

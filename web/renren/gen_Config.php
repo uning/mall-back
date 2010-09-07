@@ -9,7 +9,7 @@ while(true){
 	$str_md5 = file_get_contents('http://files5.qq494.cn/pig/hotel/flash/version.txt');
 	$new_md5 = file_get_contents($mypos.'/static/flash/version.txt');
 	if($str_md5 != $new_md5){
-		echo 'version not equal--------'."\n";	
+		echo "version not equal--------remote=$str_md5 new_md5=$new_md5\n";	
 		if($retry >3 )
 			die('genconfig errror valid not equal ');
 		$retry++;

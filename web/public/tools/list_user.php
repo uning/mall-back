@@ -6,11 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-<form>
+<form  target='_blank' action='user_panel.php'>
 平台id:<input name='pid'></input>
 <input type=submit value='查询'></input>
 </form>
-<form>
+<form  target='_blank' action='user_panel.php'>
 内部id:<input name='start'></input>
 <input type=submit value='查询'></input>
 </form>

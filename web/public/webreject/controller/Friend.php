@@ -204,7 +204,7 @@ class Friend{
 					$ftu = new TTUser($finfos['id']);
 					$acc = $ftu->getdata(array('money','exp','gem'));
 					if(!$acc['exp'])
- 						exit;
+ 						continue ;
 					$acc['name'] = $finfos['name'];
 					$acc['icon'] = $finfos['icon'];
 					$acc['pid'] = $pid;

@@ -295,7 +295,7 @@ class CarController
 			$ret['s'] = 'copinotexsit';
 			return $ret;
 		}
-		$ret['copi'] = $copi;  // for debug
+//		$ret['copi'] = $copi;  // for debug
 		$gem = $tu->change( 'gem',0-$copi['gem'][$num] );
 		if( $gem< 0 ){
 			$ret['s'] = 'gem';

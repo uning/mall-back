@@ -27,7 +27,6 @@ class ItemController {
 		$ids=array();
 		$tu = new TTUser($uid);
 		$pop = 0 ;
-		$shop_num  = 0;
 		$now = time();
 		foreach($params['d'] as $index=>$row){
 			$tag = $row['tag'];

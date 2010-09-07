@@ -5,7 +5,9 @@ $linkid = $_REQUEST['lid'];
 $gid = $_REQUEST["gift"];
 $pid = $_REQUEST['pid'];
 $ids = $_REQUEST['ids'];
-
+if(!is_array($ids)){
+	$ids = array($pid);
+}
 	$date = date('Ymd');
 	$_REQUEST['date'] = $date;
 	$tw = TT::LinkTT();
@@ -50,12 +52,12 @@ $ids = $_REQUEST['ids'];
 	$renren ->secret = RenrenConfig::$secret;
 	$renren->init($sessionK);
 	$noti = '<xn:name uid="'.$pid.'" linked="true"/><a href="'.RenrenConfig::$canvas_url.'">正在玩购物天堂，邀请你去帮他装货、卸货，顺便帮他抢几个客人</a>';
-	$ids = '';
-	foreach ($ids as $k =>$id){
-		$ids.=$id.',';
+	$idstr = '';
+	foreach ($_REQUEST['ids'] as $k =>$id){
+		$idstr.=$k.',';
 	}
-	$ids = substr($ids,0,strlen($ids)-1);
-	$r = $renren->api_client->notifications_send($ids,$noti);
+	$ids = substr($ids,0,strlen($idstr)-1);
+	$r = $renren->api_client->notifications_send($idstr,$noti);
 	
 	header('Location: '.RenrenConfig::$canvas_url.'?f=invite&noti='.$r['result']);
 	

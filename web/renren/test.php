@@ -1,25 +1,25 @@
-<?php
-/*	$myloc=dirname(__FILE__);
-    require_once  $myloc.'/bg/base.php'; 
-	require_once LIB_ROOT.'ModelFactory.php';
-	require_once LIB_ROOT.'AutoIncIdGenerator.php';
-    $platform_id = "302268025";
-    $pid = "renren302268025";
-	$user_id = AutoIncIdGenerator::genid($platform_id);
-	$p_user = AutoIncIdGenerator::genid($pid);
-	echo "user_id = $user_id\n";
-	echo "p_user = $p_user\n";
-require_once('config.php');
-$linkid =':4c60c7314f3ef';
-$tw = TT::TTWeb();
-	echo 'i.m here<br>';	
-	$irec = $tw->getbyid($linkid);
-	print_r($irec);*/
-require_once 'config.php';
-$sess = TTGenid::getbypid(45182749);	
-$sess['gemd'] = 0;
-print_r($sess);
-$sess['ut']='';
-TTGenid::update($sess,$sess['id']);
 
-?>
+<form onSubmit="proxy('9999','http://apps.renren.com/livemall/?f=bookmark&origin=103'); return false;">	
+	<input type="submit" value="哈哈哈哈" name="publish" id="publish" class="inputsubmit"/>
+</form>
+
+<script type="text/javascript">
+		function proxy(appId, callback){
+		var url = '/xnml/promptFeed.do';
+		var pars = 'app_id=' + appId + '&callback=' + callback;
+		var myAjax = new Ajax.Request(url, {
+			method: 'post',
+			parameters: pars,
+			onComplete: function (r) {
+				var json = eval('(' + r.responseText + ')');
+				if(json.errorMsg.length != 0){
+					XN.DO.showError(json.errorMsg, "发生错误");
+				}
+				else{
+					showDialog(json, appId);
+				}
+			}
+		});
+	}
+</script>
+

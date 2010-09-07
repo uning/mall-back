@@ -202,7 +202,9 @@ class Friend{
 				//if(!$fdata ||  $fdata['ut']<$now - 3600){
 				if(!$fdata ||  $fdata['ut']<$now - 3600){
 					$ftu = new TTUser($finfos['id']);
-					$acc = $ftu->getdata();
+					$acc = $ftu->getdata(array('money','exp','gem'));
+					if(!$acc['exp'])
+ 						continue ;
 					$acc['name'] = $finfos['name'];
 					$acc['icon'] = $finfos['icon'];
 					$acc['pid'] = $pid;

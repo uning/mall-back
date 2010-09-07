@@ -104,7 +104,7 @@ attributes.align = "t";
 attributes.salign = "tl";
 /*flashDivId*/
 swfobject.embedSWF(
-		"/work/mall/Venus/to-company/MallLoader.swf?v=", "flashDivId", 
+		"/work/mall/Venus/to-company/MallLoader.swf?v=<?php echo md5_file('/home/hotel/work/mall/Venus/to-company/MallLoader.swf') ;?>", "flashDivId", 
 
 		flash_width, flash_height, 
 		swfVersionStr, xiSwfUrlStr, 

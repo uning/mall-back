@@ -21,10 +21,6 @@ class AchieveConfig
 ,1028=>array('name'=>'运输队','group'=>'gogoods_count','aimNum'=>'3000','levelNeed'=>'30','rewardMoney'=>'50000','rewardRep'=>'5000','rewardIconNum'=>'','tag'=>'1028',)
 ,1029=>array('name'=>'快递公司','group'=>'gogoods_count','aimNum'=>'6000','levelNeed'=>'50','rewardMoney'=>'50000','rewardRep'=>'5000','rewardIconNum'=>'','tag'=>'1029',)
 ,1030=>array('name'=>'集散码头','group'=>'gogoods_count','aimNum'=>'10000','levelNeed'=>'50','rewardMoney'=>'100000','rewardRep'=>'10000','rewardIconNum'=>'','tag'=>'1030',)
-,1031=>array('name'=>'发传单','group'=>'advert_count','aimNum'=>'10','levelNeed'=>'20','rewardMoney'=>'10000','rewardRep'=>'1000','rewardIconNum'=>'','tag'=>'1031',)
-,1032=>array('name'=>'销售专员','group'=>'advert_count','aimNum'=>'40','levelNeed'=>'30','rewardMoney'=>'50000','rewardRep'=>'5000','rewardIconNum'=>'','tag'=>'1032',)
-,1033=>array('name'=>'销售总监','group'=>'advert_count','aimNum'=>'80','levelNeed'=>'50','rewardMoney'=>'100000','rewardRep'=>'10000','rewardIconNum'=>'','tag'=>'1033',)
-,1034=>array('name'=>'推销传奇','group'=>'advert_count','aimNum'=>'200','levelNeed'=>'50','rewardMoney'=>'100000','rewardRep'=>'10000','rewardIconNum'=>'','tag'=>'1034',)
 ,);
     static function getAchieve ( $tag )
     {

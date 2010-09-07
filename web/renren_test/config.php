@@ -8,9 +8,9 @@ class RenrenConfig
    public static  $callback_url = "http://dev.tingkun.com/work/mall/backend/web/renren_test/";
    public static  $canvas_name = "malltest";
 
-   public static  $reciever_url = "/xd.html";
+   public static  $reciever_url = "http://dev.tingkun.com/work/mall/backend/web/renren_test/xd.html";
    
-   public static  $resource_urlp = "http://192.168.1.50/work/mall/backend/web/renren_test/static/";
+   public static  $resource_urlp = "http://rrmall.playcrab.com/static/";
    //public static  $resource_urlp = "http://files5.qq494.cn/pig/hotel/";
    //public static  $iframe_urlp = "http://supermall.playcrab.com/inif/";
    public static $group_url = "http://group.renren.com/GetTribe.do?id=336701942";

@@ -1,5 +1,7 @@
 <?php 
 require_once('config.php');
+require_once('renren.php');
+
 ?>
 <style type="text/css">
 .padding_content {
@@ -271,14 +273,13 @@ text-decoration:none;
 }
 </style>
 <?php
-require_once('config.php');
 require_once('pop/freeGift.php');
-$linkid = $_REQUEST['lid'];
-$touser = $_REQUEST['xn_sig_user'];	
+$linkid = $_REQUEST['lid'];	
 $tw = TT::LinkTT();
-//list($pid,$str) = explode(':',$linkid);
-//$irec = $tw->getbyuidx('uid',$pid);
-$link = $tw->getbyuidx('lid',$linkid);?>
+$link = $tw->getbyuidx('lid',$linkid);
+
+$touser = $_REQUEST['xn_sig_user'];
+?>
 <xn:if-is-app-user>
 <div id='is_install'></div>
 <?php
@@ -287,37 +288,63 @@ $link = $tw->getbyuidx('lid',$linkid);?>
 	$tsess = TTGenid::getbypid($touser);	
 	$ftu = new TTUser($fsess['id']);
 	$ttu = new TTUser($tsess['id']);
+	$att = $tsess['authat'];
+	$ut = $tsess['ut'];
+	$gemd = $tsess['gemd'];
 	if($link['gift']){
 		$lg = $link['gift'];
 	}
 	else
-	 $lg = 0;
+	   $lg = 0;
 	$new  = 0;
 	if($_REQUEST['new']){
 	 	$new = 1;
 	 }
 
-	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$touser,'sp1'=>$lg,'sp2'=>$new));
+	TTLog::record(array('m'=>'accept_invite','tm'=> $_SERVER['REQUEST_TIME'],'u'=>$fromuser,'sp1'=>$lg,'sp2'=>$new,'intp1'=>$touser));
 	//$tudata=$ftu->getf(array('name','icon'));
 	$getted = $link['geted'];
 	$ids = $link['ids'];
+	if($link['date']<20100906){
 	$invite = false;
 	foreach($ids as $id){
 		if($id==$touser){
 				$invite = true;
 				break;
 				}
-		}  
-	$got = false;
+		}
+		$got = false;
 	foreach ($getted as $u){
 			if($u==$touser){
 				$got = true;
 					break;
 					}
-		}
-						
+		}		
+	}	
+	else{
+		$invite = false;
+		if(!is_array($ids))
+		$ids = array();
+	if(array_key_exists($touser,$ids))
+				$invite = true;
+				$got = false;
+	if(array_key_exists($touser,$getted))
+				$got = true;
+	} 
+	
+			
+	
+	if($invite&&$new ==1&&!$gemd&&!$ut&&!$got){
+		$ftu->numch('invite_num',1);
+		$cid = $ftu->getoid('copilot',TT::OTHER_GROUP );	    
+		$copilot = $ftu->getbyid( $cid );
+		$copilot['id'] = $cid;
+		$copilot['bag'][2004] += 1;
+		$ftu->puto($copilot);
+		$tsess['gemd']=1;
+		TTGenid::update($tsess,$tsess['id']);
+	}								
 	if($invite){
-	$ftu->numch('invite_num',1);
 	$gid = $link['gift'];
 	if($gid){?>
 		<div id='content'>
@@ -380,7 +407,7 @@ $link = $tw->getbyuidx('lid',$linkid);?>
 			}
 		}
 		if(!$got){
-		$link['geted'][] = $touser;
+		$link['geted'][$touser] =1 ;
 		$tw->put($link);
 		}
 		if(!$gid){?>

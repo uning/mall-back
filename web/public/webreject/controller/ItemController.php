@@ -104,11 +104,11 @@ class ItemController {
 					$item_obj = $tu->getbyid( $row['id'] );
 				}
 				//*{//对货物尚未卖完的店面进行移动时要先单个结算，确定货物队列为空时才能移动
-				if($item_obj['goods'] && $item_obj['ctime']+3600 >$now){
-					$ret['s'] = 'notempty';
+				if($item_obj['_s'] == 'goods'){
+					$ret['error'] = 'notempty';
 					$ret['s'] = 'OK';
 					$ret['index'] = $index;
-					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp1'=>$item_obj['id']));
+					TTLog::record(array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'sp2'=>'movegoodsshop','shoptag'=>$item_obj['tag'],'sp1'=>$item_obj['id']));
 					continue;
 				}
 				 //*/

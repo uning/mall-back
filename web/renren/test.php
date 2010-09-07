@@ -18,7 +18,8 @@ $tw = TT::TTWeb();
 require_once 'config.php';
 $sess = TTGenid::getbypid(45182749);	
 $sess['gemd'] = 0;
-unset($sess['ut']);
+print_r($sess);
+$sess['ut']='';
 TTGenid::update($sess,$sess['id']);
 
 ?>

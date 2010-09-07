@@ -20,7 +20,3 @@ id,name,type,group,uiShowType,functionType,aimNum,levelNeed,discription,rewardMo
 1028,运输队,13,gogoods_count,goods,商业成就,3000,30,派遣卡车出运3000次,50000,5000,,
 1029,快递公司,13,gogoods_count,goods,商业成就,6000,50,派遣卡车出运6000次,50000,5000,,
 1030,集散码头,13,gogoods_count,goods,商业成就,10000,50,派遣卡车出运10000次,100000,10000,,
-1031,发传单,32,advert_count,manage,品牌成就,10,20,使用广告宣传10次,10000,1000,,
-1032,销售专员,32,advert_count,manage,品牌成就,40,30,使用广告宣传40次,50000,5000,,
-1033,销售总监,32,advert_count,manage,品牌成就,80,50,使用广告宣传80次,100000,10000,,
-1034,推销传奇,32,advert_count,manage,品牌成就,200,50,使用广告宣传200次,100000,10000,,

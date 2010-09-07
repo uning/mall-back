@@ -215,31 +215,29 @@ class UserController
 		$user = $tu->getf( array( TT::EXP_STAT,TT::CAPACITY_STAT ) );
 		$capa = $user[TT::CAPACITY_STAT];
 		$cap = explode( ",",$capa );
-		$ret['capa'] = $capa;         // for debug
-		$ret['cap'] = $cap;         // for debug
+//		$ret['capa'] = $capa;         // for debug
+//		$ret['cap'] = $cap;         // for debug
 		$width = $cap[0];
 		$height = $cap[1];
-		$ret['width'] = $width;         // for debug
-		$ret['height'] = $height;         // for debug
-		/*		
-				$need = UpgradeConfig::getUpgradeNeed( $user['exp'] );
-				$last = UpgradeConfig::$_upgrade[ $need['id'] - 1 ];
-				$ret['need'] = $need;
-				$ret['last'] = $last;
-				if( $cap[0] != $last['shopwidth'] || $cap[1] != $last['shopheight'] ){
-				$ret['s'] = 'skip';
-				return $ret;
-				}
-		 */		
+//		$ret['width'] = $width;         // for debug
+//		$ret['height'] = $height;         // for debug
+		$length = count( UpgradeConfig::$_upgrade );       //必须先遍历找出最大值
+		$max_width = UpgradeConfig::$_upgrade[$length]['shopwidth'];
+		$max_height = UpgradeConfig::$_upgrade[$length]['shopheight'];
 		foreach( UpgradeConfig::$_upgrade as $upgrade ){
 			if( $width > $upgrade['shopwidth'] || $height > $upgrade['shopheight'] )
 				continue;
-			if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] )
-				continue;
+			if( $width == $upgrade['shopwidth'] && $height == $upgrade['shopheight'] ){
+			    if( $width == $max_width && $height == $max_height ){
+			        $need = $upgrade;
+			        break;
+			    }
+			    continue;
+			}
 			$need = $upgrade;
 			break;
 		}
-		$ret['need'] = $need;    // for debug
+//		$ret['need'] = $need;    // for debug
 		//		$leftmoney = $tu->change( TT::MONEY_STAT,0-$level2money[$need['level']]); //有可能在之间的某个level调用此函数
 		$l = 0;
 		foreach( $level2money as $level=>$money ){
@@ -255,6 +253,7 @@ class UserController
 			return $ret;
 		}
 		$tu->putf( TT::CAPACITY_STAT,$need['shopwidth'].",".$need['shopheight'] );
+		TTLog::record( array('m'=>__METHOD__,'tm'=> $_SERVER['REQUEST_TIME'],'u'=>$uid,'intp1'=>$level2money[$l],'sp1'=>$need['shopwidth'].",".$need['shopheight'] ) );
 		$ret['s'] = 'OK';
 		return $ret;
 	}
@@ -275,7 +274,8 @@ class UserController
 		$tu = new TTUser( $uid );
 		$tu->chMoney($params['money'] );
 		$tu->numch( TT::GEM_STAT,$params['gem'] );
-		$tu->numch( TT::EXP_STAT,$params['exp'] );
+//		$tu->numch( TT::EXP_STAT,$params['exp'] );
+		$tu->addExp( $params['exp'] );
 		$ret['a'] = $tu->getf( array( TT::MONEY_STAT,TT::GEM_STAT,TT::EXP_STAT ) );
 		$ret['s'] = 'OK';
 		return $ret;
@@ -297,6 +297,36 @@ class UserController
 		$tu = new TTUser( $uid );
 		$tu->mputf( $ups );
 		$ret['s'] = 'OK';
+		return $ret;
+	}
+	/**
+	 *update popula
+	 *$params  
+	 *     u     -- uid
+	 *     ids    --  itemids with popu
+	 *     popu    --  itemids with popu
+	 **/
+	function update_popu($params)
+	{
+		$uid = $params['u'];
+		$ids= $params['ids'];
+		$tu = new ttuser( $uid );
+		$ret['oldpopu'] = $tu->getf(TT::POPU);
+		$ret['s'] = 'OK';
+		if(!$ids){
+			$tu->putf(TT::POPU,0);	
+			$ret['newpopu'] = $tu->getf(TT::POPU);
+			return $ret;
+		}
+		$items = $tu->getbyids($ids);
+		$popu = 0;
+		foreach($items as $o){
+			$conf = ItemConfig::getItem( $o['tag'] );
+			$popu += $conf['pop'];
+		}
+		$tu->putf(TT::POPU,$popu);
+		$ret['newpopu'] = $tu->getf(TT::POPU);
+		TTLog::record(array('m'=>__METHOD__,'u'=>$uid,'tm'=> $_SERVER['REQUEST_TIME'],'intp1'=>$popu));
 		return $ret;
 	}
 }

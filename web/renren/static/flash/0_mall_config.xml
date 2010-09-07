@@ -15,21 +15,23 @@
 		<resource name="Background_new" label="游戏素材9" 	url="./resource/common/swf/end/Background_new.swf?v=tc3.8" 			type="swf" />
 		<resource name="gift" 			label="游戏素材10" 	url="./resource/common/swf/end/gift.swf?v=tc3.8" 					type="swf" />
 		
-		<resource name="UI" 			label="游戏素材11" 	url="./resource/simplifiedchinese/swf/end/UI.swf?v=tc3.8" 			type="swf" />
+		<resource name="UI" 			label="游戏素材11" 	url="./resource/simplifiedchinese/swf/end/UI.swf?v=tc3.9" 			type="swf" />
 	
 		<resource name="xmlbin" 		label="游戏素材12" 	url="./resource/simplifiedchinese/xml/xml.bin?v=tc3.8" 				type="bin" />
 		<resource name="goodsIcon"	 	label="游戏素材13" 	url="./resource/common/swf/end/MallGoodsIcon.swf?v=tc3.8" 			type="swf" />
 		<resource name="guideUrl1"	 	label="游戏素材14" 	url="./test_end_guide_resource_list1.xml?v=tc3.8" 					type="xml" />
 		<resource name="guideUrl2"	 	label="游戏素材15" 	url="./test_end_guide_resource_list2.xml?v=tc3.8"					type="xml" />
 
+
 	</resources>
 	
-	<main name="main" label="加载主程式" url="MallGame.swf?v=tc3.8" use_cache="false"/>
-	<progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=tc3.8" />
+	<main name="main" label="加载主程式" url="MallGame.swf?v=tc3.92" use_cache="false"/>
+	<progress_aspect url="resource/common/swf/end/loadinglogo.swf?v=tc3.91" />
 	
 	<resource_servers>
 	    <server name="test" purl="" />
 	</resource_servers>	
+
 	<app_servers>
 	    <!--server name="test" purl="http://192.168.1.50/work/mall/backend/web/public/" /-->
 	    <server name="test2" purl="/work/mall/backend/web/public/" />

@@ -224,13 +224,24 @@ class TTUser extends TTUDB
 	 */
 	public function buyItem($tag,$num = 1,$usegem = false)
 	{
+		$stat['tag']=$tag;
+		$stat['num']=$num;
+		$stat['u']=$this->_u;
+		$stat['op']='buy';
+		$stat['tm']=$_SERVER['REQUEST_TIME'];
 		$item = ItemConfig::getItem( $tag );
+		$gemt = TT::GemTT();
 		if(!$item || !isset($item['tag'])){
 			$ret['s'] = 'notfind';
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
+
 			return $ret;
 		}
 		if( $item['can_buy'] != 'true'  &&  $item['can_buy'] != '1' && $item['group'] != 'g' ){
 			$ret['s'] = 'notbuy';
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
 
@@ -248,6 +259,8 @@ class TTUser extends TTUDB
 		//等级检查
 		if($item['buy_need_level']>$this->getLevel($data[TT::EXP_STAT])){
 			$ret['s'] = 'level';
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
 
@@ -255,12 +268,16 @@ class TTUser extends TTUDB
 		if($bna && !$data[$bna]){
 			$ret['s'] = 'achive';
 			$ret['id'] = $item['buy_need_achiveid'];
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
 		//任务
 		if($bnt && !$data[$bnt]){
 			$ret['s'] = 'task';
 			$ret['id'] = $item['buy_need_task'];
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}
 		//总数限制
@@ -274,6 +291,8 @@ class TTUser extends TTUDB
 			if( $lnum<1 ){
 				$ret['s'] = 'buynumlimit';
 				$ret['maxnum'] = $total_buy;
+				$stat['s']=$ret['s'];
+				$gemt->putKeep(null,$stat);
 				return $ret;
 			}
 		}
@@ -303,14 +322,21 @@ class TTUser extends TTUDB
 			if($rnum<0){//钱不够
 				$ret['s']   = $currency;
 				$ret['num'] = $rnum +$cnum;//买物品失败，剩余金币或宝石
+				$stat['s']=$ret['s'];
+				$gemt->putKeep(null,$stat);
 				return $ret;
 			}
 		}
 
 		$ret['s'] = 'OK';
+
+		$stat[$currency] = $cnum;
+		$stat['t'] = $currency;
+		$stat['s']=$ret['s'];
+		$gemt->putKeep(null,$stat);
+
 		$ret[$currency] = $rnum;
 		$saled = $tusys->numch($statid,$num);
-
 		if($total_buy)
 			$ret['saled_num'] = $saled;
 		return $ret;
@@ -325,9 +351,17 @@ class TTUser extends TTUDB
 	public function saleItem(&$data,$num = 1)
 	{
 		$tag = $data['tag'];
+		$stat['tag']=$tag;
+		$stat['num']=$num;
+		$stat['u']=$this->_u;
+		$stat['op']='sale';
+		$stat['tm']=$_SERVER['REQUEST_TIME'];
+		$gemt = TT::GemTT();
 		$item = ItemConfig::getItem( $tag );
 		if(!$item || !isset($item['tag'])){
 			$ret['s'] = 'notfind';
+			$stat['s']=$ret['s'];
+			$gemt->putKeep(null,$stat);
 			return $ret;
 		}	
 		if( $item['onlygem'] == 'true' ){//对用宝石购买的物品，按1:10000换成金币再3折
@@ -347,6 +381,10 @@ class TTUser extends TTUDB
 		$saled = $tusys->numch($statid,$num);//记录系统回购每种商品总数
 		$ret['s'] = 'OK';
 		$ret['money'] = $rnum;
+		$stat['money'] = $cnum;
+		$stat['t'] = 'money';
+		$stat['s']=$ret['s'];
+		$gemt->putKeep(null,$stat);
    		return $ret;
 	}
 
@@ -384,6 +422,26 @@ class TTUser extends TTUDB
 		$obj['id'] = $oid;
 		TTLog::record(array('s'=>'OK','m'=>__METHOD__,'tm'=>$now,'sp1'=>$tag,'intp1'=>$fid));
 		$this->puto($obj);
+	}
+	
+	/**
+	  check wether mutil window operation
+	 */
+	public function check_dup($cid,&$ret)
+	{
+		return false;
+		$data = $this->getdata(array('_cid','fv'));
+		
+		$ncid = $data['_cid'];
+		$ret['cid']=$ncid;
+		//if($cid != $cid && $data['fv']>99){
+		if($cid != $ncid ){
+			$ret['s']='dup';
+			$ret['ocid'] =$cid;
+			$ret['data'] = $data;
+			return $ret;
+		}
+		return false;
 	}
 
 

@@ -189,6 +189,15 @@ class JsonServer{
 				'Advert.set'=>1,
 				'Cinema.enter'=>1,
 				'Cinema.pick'=>1,
+				'Man.satisfy'=>1,
+			//	'ItemController.buy'=>1, //in gem t  
+			//	'ItemController.sale'=>1, //in gem t
+			//	'CarController.buy'=>1,    //in gem t
+			//	'CarController.sale'=>1,   // in gem t
+			//	'CarController.buy_copolit'=>1,//
+			//	'CarController.apply_copolit'=>1, //
+			//	'GoodsController.checkout'=>1, //
+			//	'GoodsController.sale'=>1, //
 				'ItemController.buy'=>1,
 				'ItemController.sale'=>1,
 				'CarController.buy'=>1,
@@ -210,9 +219,10 @@ class JsonServer{
 				'TaskOnce.accept'=>1,
 				'TaskOnce.update'=>1,
 				'TaskOnce.finish'=>1					
-				);
+			);
 
 		try{
+			$req['p']['_cid'] = $req['cid'];
 			$ret=$c->$m($req['p']);
 		}catch(Exception $e){
 			$r['s']='exc';
@@ -235,9 +245,6 @@ class JsonServer{
 				TTLog::record(array('s'=>'OK','m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
 			}
 		}
-		//else{
-		//	TTLog::record(array('s'=>$ret['s'],'m'=>$method,'tm'=>$tm,'p'=>$this->_raw_reg));
-		//}
 		return $ret;
 	}
 }

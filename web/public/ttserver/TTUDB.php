@@ -24,8 +24,8 @@ class TTUDB{
 	public   $name = 'main';//for tt
 	public   $type = 'master';
 
-	protected $_u;//user
-	protected $_t;//tt connection
+	public $_u;//user
+	public $_t;//tt connection
 
 	protected $_cache;//use cache(id=>data)
 	protected $_use_cache=false;//TODO:use cache

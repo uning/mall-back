@@ -31,6 +31,8 @@ function dotest($m,$p=null)
 	echo "===============================================\n\n";
 }
 
+
+dotest('UserController.precheckout',array('u'=>1,'cid'=>10));
 return;
 $now = 1282208631;
 $now = time();

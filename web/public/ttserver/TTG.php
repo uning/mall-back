@@ -92,7 +92,7 @@ class TTG{
 	static function TTWeb(){return new TTUDB(0,'web');}
 	static function TTDS($uid){return new TTUDB($uid,'data');}
 	static function LinkTT(){static $c;if($c)return $c; $c = &self::get_tt('link');$c->needSV=true;return $c; }
-	static function StatTT(){static $c;if($c)return $c; $c = &self::get_tt('stat');$c->needSV=false;return $c; }
+	static function GemTT(){static $c;if($c)return $c; $c = &self::get_tt('gem');$c->needSV=false;return $c; }
 	static function LogTT(){static $c;if($c)return $c; return $c = &self::get_tt('log');}
 	
 }

@@ -16,4 +16,4 @@ function dotest($m,$p=null)
         echo "===============================================\n\n";
 }
 //dotest( 'Tool.add_friends',$p = array( 'pids'=>"task00,tianyuan,wely111,pb02005100,test965,820,JimmyChou,test194,new,task01,new1,task02,task03,task04,task05,test495,task06,task07,task08,task09" ) );
-dotest('UserController.cheat',$p= array('u'=>190,'exp'=>100000));
+dotest( 'Tool.resetNull');

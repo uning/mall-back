@@ -272,4 +272,27 @@ $ret['array2'] = $pid_array2;
         $ret['s'] = 'OK';
         return $ret;
     }
+    
+    public function resetNull( )
+    {//解决上架的货物中num字段为空或零的情况
+        $ret = array();
+        for( $i=1;$i<50000;$i++ ){
+            $uid = $i;
+            $tu = new TTUser( $uid );
+            $goods = $tu->get( TT::GOODS_GROUP );
+            if( $goods ){
+                foreach( $goods as $index=>$goods_obj ){
+                    $ret[$i]['bgoods'][$index] = $goods_obj;    // for debug
+                    $item = ItemConfig::getItem( $goods_obj['tag'] );
+                    $ret[$i]['item'][$index] = $item;        // for debug
+                    if( !$goods_obj['num'] )
+                        $goods_obj['num'] = $item['unitcout'];
+                    $ret[$i]['agoods'][$index] = $goods_obj;        // for debug
+                    
+                    // save new goods_obj
+                }
+            }
+        }
+        return $ret;
+    }
  }
